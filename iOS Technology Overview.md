@@ -84,4 +84,13 @@ airdrop能够让用户为距离较近的设备分享照片，文档，URLs以及
 系统在接收到文件后，会存储到你的app的沙盒中的**Documents/Inbox**目录下。如果你打算修改文件的话，你必须在系统将文件存储到这个目录之前将文件移动到其他目录。（系统只允许你在这个这个目录下读和删除文件）存储在这个目录下的文件是加密的，所以你必须处理如果iOS设备被锁定，你无法得到文件这种情况。  
 想了解更多关于使用activity view controller类来分享文件的信息的话，请查阅：UIActivityViewController Class Reference。  
 ### TextKit
-TextKit是一整套处理文字排版的高层API和类的封装集合。使用TextKit，你可以对文字进行段落、行列甚至页面级别的排版；你可以将文字浮动在图片周围的任意位置；你可以使用它来管理多种字体。
+TextKit是一整套处理文字排版的高层API和类的封装集合。使用TextKit，你可以对文字进行段落、行列甚至页面级别的排版；你可以将文字浮动在图片周围的任意位置；你可以使用它来管理多种字体。如果你打算使用Core Text框架对文字进行渲染的话，你应该考虑使用TextKit代替。TextKit与所有UIKit中基于文本的控件相关，使用它能够让app生成、编辑、展示、以及存储文本更为容易，并且可能会使用更少的代码就能够达到效果。  
+TextKit包含了一些新的UIKit类，扩展了一些已经存在的类，包括以下：  
+
+* NSAttributedString 类扩展了一些功能支持新的属性。
+* NSLayoutManager 类生成字形以及渲染的文本。
+* NSTextContainer 类定义了文本能够渲染的范围。
+* NSTextStorage 类定义了一些基本接口来管理基于文本的内容。
+
+想了解更多关于TextKit的信息，请查看Text变成指南。  
+### UIKit Dynamics(UIKit动力学)
