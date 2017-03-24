@@ -113,3 +113,23 @@ TextKit包含了一些新的UIKit类，扩展了一些已经存在的类，包�
 关于如何模态化的展示、消除VC，请查看iOS VC编程指南。关于如何通过一个特殊的VC来展示界面，请查阅iOS VC目录。
 ## Cocoa Touch Frameworks
 以下段落对Cocoa Touch层的框架以及提供的服务进行了介绍。
+### Address Book UI Framework(地址簿UI框架)
+有关如何使用本框架的类和使用方法，请参阅iOS地址簿编程指南，以及iOS地址簿UI框架索引。
+### EventKit UI Framework(活动事件UI框架)
+有关本框架的更多类和方法信息，请参阅活动事件UI框架索引。
+### GameKit Framework(游戏相关框架)
+有关如何使用游戏相关框架，请参阅游戏中心编程指南以及游戏相关框架索引。
+### iAd Framework(广告框架)
+想了解更多如何在你的app中使用广告，请参阅广告编程指南以及广告框架索引。
+### MapKit Framework(地图框架)
+想了解更多地图框架的类，请参阅定位和地图编程指南，以及地图框架索引。
+### Message UI Framework(短信UI框架)
+想了解更多短信框架的类，请查阅短信UI框架索引。想了解更多如何使用该框架的类，请查阅iOS系统短信编程话题。
+### Notification Center Framework(通知中心框架)
+通知中心框架为生成在通知中心中可以浏览的小工具提供了支持。想了解更多如何生成通知中心小工具的相关信息，请查阅app扩展编程指南以及通知中心框架索引。
+### PushKit Framework(推送框架)
+想了解更多该框架的接口信息，请查阅该框架的头文件。
+### Twitter Framework（社交分享框架）
+Twitter框架已被社交分享框架取代，该框架能够通过Twitter服务器提供生成推文以及URL地址。想了解更多信息，请查阅：Social Framework
+### UIKit Framework（UI基础框架）
+有关UI基础框架更多类的介绍，请参阅UIKit Framework Reference。
