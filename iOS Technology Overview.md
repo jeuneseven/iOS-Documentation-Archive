@@ -49,7 +49,7 @@ iOS开发者文库在开发过程中是很重要的资源。它包含了API参�
 如果你已经支付了iOS开发者计划的相应产品，你就可以在一台设备上开始开发了。当你登录后，你可以在iOS开发者中心获得Xcode以及iOS SDK的一份拷贝。  
 
 # Cocoa Touch 层
-Cocoa Touch 层包含了构件iOS app的很多重要的framework。这些framework决定了你的app如何表现。并且提供构件app的基础，以及一些关键技术的支持，例如多线程，屏幕上的输入，推送通知，和很多高层级的系统服务。当你设计你的app时，你应该多研究这一层的相关技术以供满足你的需要。  
+Cocoa Touch 层包含了构件iOS app的很多重要的framework。这些framework决定了你的app如何表现。并且提供构件app的基础，以及一些关键技术的支持，例如多任务处理（并行），屏幕上的输入，推送通知，和很多高层级的系统服务。当你设计你的app时，你应该多研究这一层的相关技术以供满足你的需要。  
 ## 高层级的功能
 以下段落描述了Cocoa Touch 层的一些重要相关技术。  
 ### App Extensions （app扩展）
@@ -94,3 +94,22 @@ TextKit包含了一些新的UIKit类，扩展了一些已经存在的类，包�
 
 想了解更多关于TextKit的信息，请查看Text变成指南。  
 ### UIKit Dynamics(UIKit动力学)
+更多的你可以使用的内容，请查看：UIKit Framework 参考。
+### Multitasking(多任务处理)
+关于如何辅助iOS多任务处理模型，请查看iOS app编程指南。
+### Auto Layout(自动布局)
+关于自动布局的更多信息，请查看自动布局指南。
+### Storyboards(故事版)
+关于更多的使用故事版构建你的用户界面，请查看Xcode概览。关于如何通过代码来控制你的故事版，请查看UIStoryboard Class 参考。
+### UI State Preservation(保留UI状态)
+关于如何为你的app添加状态保留的更多信息，请查阅iOS app编程指南。
+### Apple Push Notification Service(推送服务)
+关于如何使用配置你的app的远程推送功能，请查阅本地以及远程推送通知编程指南。
+### Local Notifications(本地通知)
+关于如何使用本地通知，请查阅本地以及远程推送通知编程指南。
+### Gesture Recognizers(手势)
+关于更多可用的手势，请参考iOS事件处理指南。
+### Standard System View Controllers（一些标准的系统VC）
+关于如何模态化的展示、消除VC，请查看iOS VC编程指南。关于如何通过一个特殊的VC来展示界面，请查阅iOS VC目录。
+## Cocoa Touch Frameworks
+以下段落对Cocoa Touch层的框架以及提供的服务进行了介绍。
