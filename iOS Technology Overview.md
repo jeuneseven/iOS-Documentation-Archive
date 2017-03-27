@@ -256,3 +256,4 @@ UI基础框架提供了重要的基础框架来实现iOS设备上图文事件驱
 | CoreFoundation.framework |2.0| CF |包含软件服务基本原理，包括基本数据类型、字符串工具、集合工具、资源管理以及系统设置相关类|
 | CoreGraphics.framework |2.0| CG |包含封装Quartz 2D的相关接口|
 | CoreImage.framework |5.0| CI |包含操纵视频和静态图片的相关接口|
+| CoreLocation.framework |2.0| CL |包含用户定位的相关接口|
