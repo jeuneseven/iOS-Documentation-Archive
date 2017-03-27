@@ -251,3 +251,4 @@ UI基础框架提供了重要的基础框架来实现iOS设备上图文事件驱
 | CloudKit.framework |8.0| CK |包含OC接口的加载和保存iCloud数据相关类|
 | CoreAudio.framework |2.0| Audio |包含贯穿Core Audio数据类型相关类|
 | CoreAudioKit.framework |8.0| CA |包含贯穿Core Audio数据类型相关类|
+| CoreBluetooth.framework |5.0| CB |包含低功率蓝牙硬件相关类|
