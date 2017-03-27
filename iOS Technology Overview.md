@@ -252,3 +252,5 @@ UI基础框架提供了重要的基础框架来实现iOS设备上图文事件驱
 | CoreAudio.framework |2.0| Audio |包含贯穿Core Audio数据类型相关类|
 | CoreAudioKit.framework |8.0| CA |包含贯穿Core Audio数据类型相关类|
 | CoreBluetooth.framework |5.0| CB |包含低功率蓝牙硬件相关类|
+| CoreData.framework |3.0| NS |包含管理你的app数据模型相关类|
+| CoreFoundation.framework |2.0| CF |包含软件服务基本原理，包括基本数据类型、字符串工具、集合工具、资源管理以及系统设置相关类|
