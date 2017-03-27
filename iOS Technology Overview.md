@@ -254,3 +254,5 @@ UI基础框架提供了重要的基础框架来实现iOS设备上图文事件驱
 | CoreBluetooth.framework |5.0| CB |包含低功率蓝牙硬件相关类|
 | CoreData.framework |3.0| NS |包含管理你的app数据模型相关类|
 | CoreFoundation.framework |2.0| CF |包含软件服务基本原理，包括基本数据类型、字符串工具、集合工具、资源管理以及系统设置相关类|
+| CoreGraphics.framework |2.0| CG |包含封装Quartz 2D的相关接口|
+| CoreImage.framework |5.0| CI |包含操纵视频和静态图片的相关接口|
