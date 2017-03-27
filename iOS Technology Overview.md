@@ -249,3 +249,5 @@ UI基础框架提供了重要的基础框架来实现iOS设备上图文事件驱
 | AVKit.framework |8.0| AV |包含OC接口的播放和录制音视频相关类|
 | CFNetwork.framework |2.0| CF |包含通过Wi-Fi和蜂窝式数据访问网络相关类|
 | CloudKit.framework |8.0| CK |包含OC接口的加载和保存iCloud数据相关类|
+| CoreAudio.framework |2.0| Audio |包含贯穿Core Audio数据类型相关类|
+| CoreAudioKit.framework |8.0| CA |包含贯穿Core Audio数据类型相关类|
