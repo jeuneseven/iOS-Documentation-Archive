@@ -224,4 +224,10 @@ UI基础框架提供了重要的基础框架来实现iOS设备上图文事件驱
 * 近距离传感器（近场传输）
 * 通过附赠的耳机进行远程控制
 
-有关UI基础框架更多类的介绍，请参阅UIKit Framework Reference。
+有关UI基础框架更多类的介绍，请参阅UIKit Framework Reference。  
+
+# Media Layer（媒体层）
+# Core Services Layer（核心服务层）
+# Core OS Layer（核心系统层）
+# 附录A：iOS Frameworks（iOS系统框架）
+本附录包含了有关iOS系统框架的相关信息。
