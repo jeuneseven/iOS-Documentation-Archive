@@ -242,3 +242,9 @@ UI基础框架提供了重要的基础框架来实现iOS设备上图文事件驱
 | AddressBook.framework(地址簿) |2.0| AB |包含直接访问用户联系人数据库接口|
 | AddressBookUI.framework(地址簿界面) |2.0| AB |包含显示系统定义的联系人选择编辑界面相关类|
 | AdSupport.framework|6.0| AS |包含统计数据相关类|
+| AssetsLibrary.framework |4.0| AL |包含访问用户照片和视频相关类|
+| AudioToolbox.framework |2.0| AU, Audio |包含处理音频流以及播放和录音相关类|
+| AudioUnit.framework |2.0| AU, Audio |包含加载和使用音频组相关类|
+| AVFoundation.framework |2.2| AV |包含OC接口的播放和录制音视频相关类|
+| AVKit.framework |8.0| AV |包含OC接口的播放和录制音视频相关类|
+| CFNetwork.framework |2.0| CF |包含通过Wi-Fi和蜂窝式数据访问网络相关类|
