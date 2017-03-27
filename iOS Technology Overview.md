@@ -240,3 +240,5 @@ UI基础框架提供了重要的基础框架来实现iOS设备上图文事件驱
 | Accelerate.framework(加速器) |4.0|cblas, vDSP|包含加速器数学计算和数字信号函数|
 | Accounts.framework(账目) |5.0| AC |包含管理进入用户系统账户的权限接口|
 | AddressBook.framework(地址簿) |2.0| AB |包含直接访问用户联系人数据库接口|
+| AddressBookUI.framework(地址簿界面) |2.0| AB |包含显示系统定义的联系人选择编辑界面相关类|
+
