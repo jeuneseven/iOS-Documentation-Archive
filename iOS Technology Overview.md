@@ -279,6 +279,7 @@ UI基础框架提供了重要的基础框架来实现iOS设备上图文事件驱
 | IOKit.framework |2.0| N/A |包含设备使用的相关类，请不要直接使用本框架|
 | JavaScriptCore.framework | 7.0 | JS |包含OC封装的调用JS代码以及解析JSON相关|
 | LocalAuthentication.framework | 8.0 | LA |包含用户使用Touch ID验证相关接口|
+| MapKit.framework | 3.0 | MK |包含在你的app中嵌入地图以及反向地理坐标相关类|
 
 ## Simulator Frameworks
 
