@@ -257,3 +257,7 @@ UI基础框架提供了重要的基础框架来实现iOS设备上图文事件驱
 | CoreGraphics.framework |2.0| CG |包含封装Quartz 2D的相关接口|
 | CoreImage.framework |5.0| CI |包含操纵视频和静态图片的相关接口|
 | CoreLocation.framework |2.0| CL |包含用户定位的相关接口|
+| CoreMedia.framework |4.0| CM |包含低层级音视频相关接口|
+| CoreMIDI.framework |4.2| MIDI |包含低层级处理MIDI数据相关接口|
+| CoreMotion.framework |4.0| CM |包含重力加速度和陀螺仪相关接口|
+| CoreTelephony.framework |4.0| CT |包含电话相关信息相关接口|
