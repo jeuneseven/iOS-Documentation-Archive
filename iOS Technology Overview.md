@@ -272,6 +272,11 @@ UI基础框架提供了重要的基础框架来实现iOS设备上图文事件驱
 | GameKit.framework |3.0| GK |包含管理P2P连接的接口|
 | GLKit.framework |5.0| GLK |包含OC实用工具，用来构建复杂的OpenGL ES app相关接口|
 | GSS.framework |5.0| gss |包含一些安全相关的标准集合|
+| HealthKit.framework |8.0| HK |包含统计存储用户健康相关信息接口|
+| HomeKit.framework |8.0| HM |包含与家中智能设备沟通相关服务接口|
+| iAd.framework |4.0| AD |包含在展示广告相关类|
+| ImageIO.framework |4.0| CG |包含读写图片数据相关类|
+| IOKit.framework |2.0| N/A |包含设备使用的相关类，请不要直接使用本框架|
 
 ## Simulator Frameworks
 
