@@ -269,6 +269,9 @@ UI基础框架提供了重要的基础框架来实现iOS设备上图文事件驱
 | ExternalAccessory.framework |3.0| EA |包含与附带硬件配件交互的相关接口|
 | Foundation.framework |2.0| NS |包含管理字符串、集合以及底层数据类型的封装相关接口|
 | GameController.framework |7.0| GC |包含与游戏相关硬件交互的接口|
+| GameKit.framework |3.0| GK |包含管理P2P连接的接口|
+| GLKit.framework |5.0| GLK |包含OC实用工具，用来构建复杂的OpenGL ES app相关接口|
+| GSS.framework |5.0| gss |包含一些安全相关的标准集合|
 
 ## Simulator Frameworks
 
