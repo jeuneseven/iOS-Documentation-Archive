@@ -269,3 +269,7 @@ UI基础框架提供了重要的基础框架来实现iOS设备上图文事件驱
 想查看模拟器和真机的框架的接口区别，请查看模拟器使用指南。
 
 ## System Libraries
+
+请知晓，在Core OS和Core Services层有一些特殊库代码是没有被封装成框架的。iOS在系统的**/usr/lib**路径下包含了很多动态库。动态库以它们的**.dylib**扩展作为分享的标示。这些库的头文件存放在  **/usr/include**路径下。  
+每个班的iOS SDK都包含了一份本地分享库的备份而无须安装在系统上。这些拷贝存在你正在开发的系统中以便你能够从你Xcode工程中链接到。如果想查看一个iOS系统特殊版本的库列表的话，在这个路径下可以查看到：**<Xcode.app>/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/<iOS_SDK>/usr/lib**，**<Xcode.app>**代表你Xcode所在目录，**<iOS_SDK>**代表你当前target的特殊版本的SDK。例如，iOS8 SDK版本的将会存在**/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk/usr/lib**目录下，相应的头文件存放在**/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk/usr/include**。  
+iOS使用符号链接来指定大部分库的当前版本。当链接到一个动态分享库时，使用符号链接而不是普通链接来指向一个库特殊版本。库的版本在iOS系统当中是可能改变的；如果你的软件链接到了一个固定版本，那个版本不一定会在用户的系统中一直存在。
