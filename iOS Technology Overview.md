@@ -267,6 +267,8 @@ UI基础框架提供了重要的基础框架来实现iOS设备上图文事件驱
 | EventKit.framework |4.0| EK |包含管理用户日历事件数据接口|
 | EventKitUI.framework |4.0| EK |包含显示标准系统日历界面相关接口|
 | ExternalAccessory.framework |3.0| EA |包含与附带硬件配件交互的相关接口|
+| Foundation.framework |2.0| NS |包含管理字符串、集合以及底层数据类型的封装相关接口|
+| GameController.framework |7.0| GC |包含与游戏相关硬件交互的接口|
 
 ## Simulator Frameworks
 
