@@ -232,7 +232,8 @@ UI基础框架提供了重要的基础框架来实现iOS设备上图文事件驱
 # 附录A：iOS Frameworks（iOS系统框架）
 本附录包含了有关iOS系统框架的相关信息。这些系统框架提供了你所在开发平台的相关接口。在适用的情况下，本附录中的列表包含了所有类、方法、函数、类型或者常量的前缀。请避免在你的代码中使用这些前缀。   
 ## Device Frameworks（设备框架）  
-
+列表A－1描述了基于iOS设备的标准类库框架。你可以在这个目录下找到这些类库：**<Xcode.app>Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/<iOS_SDK>/System/Library/Frameworks** **<Xcode.app>**在你的Xcode所在目录，**<iOS_SDK>**是你的target的指定SDK版本。"可使用最低版本"列出了该框架首次在哪个版本的iOS系统中出现。
+  
 **列表 A－1 设备框架**  
 
 | 框架名称  | 可使用的最低版本  | 前缀 | 描述 |
@@ -261,3 +262,7 @@ UI基础框架提供了重要的基础框架来实现iOS设备上图文事件驱
 | CoreMIDI.framework |4.2| MIDI |包含低层级处理MIDI数据相关接口|
 | CoreMotion.framework |4.0| CM |包含重力加速度和陀螺仪相关接口|
 | CoreTelephony.framework |4.0| CT |包含电话相关信息相关接口|
+
+## Simulator Frameworks
+
+## System Libraries
