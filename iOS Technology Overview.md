@@ -235,7 +235,7 @@ UI基础框架提供了重要的基础框架来实现iOS设备上图文事件驱
 
 | 技术名称  | 描述 |
 |:------------- |:---------------:|
-| UIKit graphics ||
+| UIKit graphics |UIKit定义了高层级的API以供支持图片的绘制以及贝塞尔曲线和view的动画的展现。此外，还提供了实现绘图的支持，UIKit中的view控件提供了一种快速有效的方式来渲染图片和基于文字的内容。view还可以支持动画，直接使用UIKit动力学框架可以提供更好的交互和反馈效果。 想查看更多UIKit框架相关信息，请参看UIKit框架索引。|
 | Core Graphics framework ||
 | Core Animation ||
 | Core Image ||
