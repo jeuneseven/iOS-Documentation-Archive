@@ -279,10 +279,10 @@ iOS视频处理技术对你的app中的静态视频内容以及网上的视频�
 
 | 技术名称  | 描述 |
 |:------------- |:---------------:|
-| UIImagePickerController ||
-| AVKit ||
-| AV Foundation ||
-| Core Media ||
+| UIImagePickerController | UIImagePickerController 是UIKit中的一个VC，用来选择用户的多媒体文件。你可以使用该类展示用户已经存在的照片、视频或让用户拍摄新的内容。想了解更多内容，请查阅iOS摄像头编程话题。|
+| AVKit |AVKit框架提供了一组容易入手的接口来展示视频。对于全屏幕或部分屏幕播放视频以及回放功能，该框架都能很好的支持。想了解更多信息，请参阅AVKit框架。|
+| AV Foundation |AV Foundation提供了视频播放和录制更高级的功能。在你想更好的控制视频展示和录制的情况下，可以使用这个框架。例如，增强现实类的app可以使用该框架与其他app提供的内容进行实时展示。想了解更多信息，请参阅AV Foundation框架。|
+| Core Media |Core Media框架定义了一套底层接口数据类型来操作多媒体数据。大多数情况下你无需直接使用这个框架，单数如果你觉得无法更好的控制你的视频内容时，可以使用该框架。想了解更多内容，请查阅Core Media框架。|
 
 iOS支持很多工业标准的视频以及压缩标准，包括以下：  
 
@@ -301,6 +301,54 @@ iOS还提供以下额外选项支持使用Airplay传送数据：
 * 对于基于网络的音视频，你可以在airplay属性中添加一个embed标签来标注，使得这些内容经由airplay播放。UIWebView类同样支持在AirPlay上使用媒体的回放功能。
 
 想了解如何你的app中使用Airplay，请参阅Airplay概览。
+
+## Media Layer Frameworks (多媒体层相关框架)
+以下段落对媒体层和它们提供的服务进行了阐述。  
+### Assets Library Framework (资源库框架)
+
+### AV Foundation Framework
+
+### AVKit Framework
+
+### Core Audio
+
+### CoreAudioKit Framework
+
+### Core Graphics Framework
+
+### Core Image Framework
+
+### Core Text Framework
+
+### Core Video Framework
+
+### Game Controller Framework
+
+### GLKit Framework
+
+### Image I/O Framework
+
+### Media Accessibility Framework
+
+### Media Player Framework
+
+### Metal Framework
+
+### OpenAL Framework
+
+### OpenGL ES Framework
+
+### Photos Framework
+
+### Photos UI Framework
+
+### Quartz Core Framework
+
+### SceneKit Framework
+
+### SpriteKit Framework
+
+
 
 # Core Services Layer（核心服务层）
 # Core OS Layer（核心系统层）
