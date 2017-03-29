@@ -292,6 +292,16 @@ iOS支持很多工业标准的视频以及压缩标准，包括以下：
 * 多种音频格式，包括在**音频相关技术**的列表中
 
 ## AirPlay (无线播放技术)
+AirPlay技术能够让你的app中的音视频流通过Apple TV与第三方的接受者或播放者链接。AirPlay由大量的框架构成，UIKit、Media Player、AV Foundation、Core Audio等，所以大部分情况下，你几乎什么都不需要做就能够使用。任何你使用这些框架播放的内容都自动的经过Airplay发布认证。当用户选择使用Airplay播放你的内容时，系统会自动的接管。  
+iOS还提供以下额外选项支持使用Airplay传送数据：  
+
+* 扩展显示iOS设备上的内容，额外创建一个window对象，并赋值给任何通过Airplay链接到设备的UIScreen对象。当你的iOS设备上展示的内容与附加的屏幕上展示的内容不一致时，可以使用这项技术。
+* Media Player框架中的回放相关的类自动支持AirPlay功能。你还可以使用Airplay播放当前正在播放的内容到Apple TV上。
+* 使用AV Foundation框架中的AVPlayer类来管理你app中的音视频内容。当用户准许时，使用这个类可以将流量内容经由AirPlay播放。
+* 对于基于网络的音视频，你可以在airplay属性中添加一个embed标签来标注，使得这些内容经由airplay播放。UIWebView类同样支持在AirPlay上使用媒体的回放功能。
+
+想了解如何你的app中使用Airplay，请参阅Airplay概览。
+
 # Core Services Layer（核心服务层）
 # Core OS Layer（核心系统层）
 # 附录A：iOS Frameworks（iOS系统框架）
