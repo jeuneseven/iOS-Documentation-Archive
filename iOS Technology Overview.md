@@ -305,7 +305,8 @@ iOS还提供以下额外选项支持使用Airplay传送数据：
 ## Media Layer Frameworks (多媒体层相关框架)
 以下段落对媒体层和它们提供的服务进行了阐述。  
 ### Assets Library Framework (资源库框架)
-
+AssetsLibrary.framework提供了由用户设备上照片app管理的音视频接口。使用该框架可以访问用户保存的图片集或任何倒入设备的专辑。你还可以保存新的音视频到用户的图片库中。  
+想查看更多的关于该框架的类和方法，请查阅资源库框架索引。
 ### AV Foundation Framework
 
 ### AVKit Framework
