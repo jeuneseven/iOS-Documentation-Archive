@@ -227,6 +227,25 @@ UI基础框架提供了重要的基础框架来实现iOS设备上图文事件驱
 有关UI基础框架更多类的介绍，请参阅UIKit Framework Reference。  
 
 # Media Layer（媒体层）
+媒体层包含了图形、音频和视频技术，你可以使用这些技术来实现你app的多媒体功能。使用这个层级的技术会增加你的app的视觉听觉体验。  
+## Graphics Technologies （图形技术）
+高质量的图片对所有的app来说都是很重要的一方面，iOS系统提供了很多的技术来帮助你来将它们显示在屏幕上。iOS图形技术提供很广泛的支持，与UIKit层的view结构无缝衔接来交付内容。你可以直接使用标准的view控件来交付高质量的界面，或者你也可以使用任何列表2-1中的技术来自定义你的view，使之更富有图片感。  
+
+**列表2-1 iOS中的图片技术**  
+
+| 技术名称  | 描述 |
+|:------------- |:---------------:|
+| UIKit graphics ||
+| Core Graphics framework ||
+| Core Animation ||
+| Core Image ||
+| OpenGL ES and GLKit ||
+| Metal ||
+| TextKit and Core Text ||
+| Image I/O ||
+| Photos Library ||
+
+iOS对运行在高清分辨率或者标准分辨率的app都提供内置的支持。对于基于矢量的绘制，系统的框架会自动的使用高清显示的额外像素去提升你的内容的顺滑感。如果你在你的app中使用图片的话，UIKit对于加载高清版本的图片自动提供支持。想了解更多如何支持高清屏幕的信息，请参见iOS app编程指南中的**app资源相关内容**  
 # Core Services Layer（核心服务层）
 # Core OS Layer（核心系统层）
 # 附录A：iOS Frameworks（iOS系统框架）
