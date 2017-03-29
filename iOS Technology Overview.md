@@ -236,14 +236,14 @@ UI基础框架提供了重要的基础框架来实现iOS设备上图文事件驱
 | 技术名称  | 描述 |
 |:------------- |:---------------:|
 | UIKit graphics |UIKit定义了高层级的API以供支持图片的绘制以及贝塞尔曲线和view的动画的展现。此外，还提供了实现绘图的支持，UIKit中的view控件提供了一种快速有效的方式来渲染图片和基于文字的内容。view还可以支持动画，直接使用UIKit动力学框架可以提供更好的交互和反馈效果。 想查看更多UIKit框架相关信息，请参看UIKit框架索引。|
-| Core Graphics framework ||
-| Core Animation ||
-| Core Image ||
-| OpenGL ES and GLKit ||
-| Metal ||
-| TextKit and Core Text ||
-| Image I/O ||
-| Photos Library ||
+| Core Graphics framework |Core Graphics (又名Quartz)是为iOS app提供主要绘图渲染的引擎，并且提供了定制的2D矢量图和基于图片渲染的支持。尽管性能不及OpenGL ES渲染的更为迅速，该框架更为适合你用来渲染定制的2D图形和动态图片。想查阅更多信息，请参阅Core Graphics框架|
+| Core Animation |Core Animation (Quartz Core框架的一部分)是优化你的app动画体验的基础技术。UIKit中的view使用Core Animation提供view层级的动画支持。当你想要更好的控制动画的行为时，你可以直接使用Core Animation。想查看更多信息，请查阅Quartz Core框架 |
+| Core Image |Core Image对于操纵视频以及存储图片用一种更无损的方式提供更高级的支持|
+| OpenGL ES and GLKit |OpenGL ES使用硬件加速接口对2D和3D提供更高级别的渲染。该框架一般被游戏开发者使用，或者想实现沉浸式图片渲染体验的开发者。该框架给予你对渲染的完全控制权，并且提供了想要实现丝滑般动画所需的帧率控制。想查更多信息，请查阅OpenGL ES框架。GLKit提供了一组OpenGL ES的OC级别的面向对象封装，想了解更多信息，请查阅GLKit框架|
+| Metal |Metal通过A7 GPU提供了极低开销，但是极高能力去渲染图片和计算工作。Metal消除了很多性能瓶颈，例如传统图形API中计算代价高昂的状态确认。想了解更多信息，请参阅Metal框架|
+| TextKit and Core Text |TextKit与UIKit的关联类库，它提供了文字排版和文字管理的很好的功能。如果你的app需要比较高级的文字操作的话，TextKit为view提供了无缝集成的API以供调用，想了解更多信息，请参阅TextKit框架。Core Text是底层的基于C的一套框架，使用它可以更好的控制排版和布局。想了解更多信息，请参阅Core Text框架。|
+| Image I/O |Image I/O提供了读写大部分格式图片的接口。想了解更多信息，请参阅Image I/O看看框架。|
+| Photos Library |Photos和PhotosUI两个框架使用用户图片、视频和多媒体的接口。在你想整合用户自己的内容到你的app中时，你可以使用该框架。想了解更多信息请参阅Photos和PhotosUI两个框架。|
 
 iOS对运行在高清分辨率或者标准分辨率的app都提供内置的支持。对于基于矢量的绘制，系统的框架会自动的使用高清显示的额外像素去提升你的内容的顺滑感。如果你在你的app中使用图片的话，UIKit对于加载高清版本的图片自动提供支持。想了解更多如何支持高清屏幕的信息，请参见iOS app编程指南中的**app资源相关内容**  
 # Core Services Layer（核心服务层）
