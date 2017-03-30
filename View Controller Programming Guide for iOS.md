@@ -1,0 +1,1 @@
+[View Controller Programming Guide for iOS 原文链接](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/index.html#//apple_ref/doc/uid/TP40007457)
