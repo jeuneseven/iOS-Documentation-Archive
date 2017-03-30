@@ -349,11 +349,13 @@ CoreAudioKit.framework提供了标准的view来管理app之间共享的的音频
 CoreGraphics.framework包含了Quartz 2D绘制的API接口。Quartz是OS X上一个高级的基于矢量绘制的引擎。它支持基于路径的绘制，抗锯齿渲染，渐变的，图片类型的，颜色类型的，坐标系转换以及PDF生成，展示和解析。尽管接口是C语言的，但是它经过基于对象的封装来展示呈现基本的绘制对象，使得存储和重用你的图形内容更为容易。  
 更多如何使用Quartz来绘制内容的信息请查阅Quartz 2D编程指南以及Core Graphics框架索引。
 ### Core Image Framework
-
+CoreImage.framework提供了一组强大功能的嵌入式滤镜，用来操作视频以及静态图片。你可以使用这套嵌入式的滤镜来润色或修正脸部图片、特写以及二维码扫描。这套滤镜的优势是它们以一种无损的方式操作，而不是直接操作你的原图，这使得原图毫无改变。这是因为这套滤镜是基于底层硬件优化的，这样更快并且有效率。  
+更多有关滤镜的类和信息请参见Core Image框架。
 ### Core Text Framework
-
+CoreText.framework提供了一套简单但是高性能的基于C封装的接口，你可以用它来对文字进行布局以及控制字体。那些不想使用TextKit但又相对文字处理能力要求很高的app可以使用这个框架。这套框架提供了一套复杂的文字布局引擎，包括文字环绕能力。它还支持高级的使用多种字体和渲染属性的文字样式。  
+更多有关CoreText接口的信息，清参阅CoreText编程指南以及CoreText索引集合。
 ### Core Video Framework
-
+CoreVideo.framework提供了缓冲以及缓冲池来支持Core Media框架（Core Media框架中提及）。大部分的app都不用直接使用这个库。
 ### Game Controller Framework
 
 ### GLKit Framework
