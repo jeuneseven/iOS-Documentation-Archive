@@ -305,17 +305,49 @@ iOS还提供以下额外选项支持使用Airplay传送数据：
 ## Media Layer Frameworks (多媒体层相关框架)
 以下段落对媒体层和它们提供的服务进行了阐述。  
 ### Assets Library Framework (资源库框架)
-
+AssetsLibrary.framework提供了由用户设备上照片app管理的音视频接口。使用该框架可以访问用户保存的图片集或任何倒入设备的专辑。你还可以保存新的音视频到用户的图片库中。  
+想查看更多的关于该框架的类和方法，请查阅资源库框架索引。
 ### AV Foundation Framework
+AVFoundation.framework提供了OC封装的接口，可以用来播放、录制和管理音视频内容。使用该框架可以将多媒体功能无缝的介入你的app界面中。你还可以使用该框架对媒体更好的控制。例如，你可以使用该框架播放多条音频，或者控制回放和录音过程的多个方面。  
+该框架提供的服务包含以下方面：  
+
+* 管理Audio session，包含向系统注册你的app具有音频能力
+* 管理app的媒体库
+* 支持编辑媒体内容
+* 拍摄音视频能力
+* 回放音视频能力
+* 音轨管理
+* 媒体项元数据管理
+* 立体声管理
+* 声音之间的精准同步
+* OC封装的接口展示声音文件的属性细节，例如数据格式类型，采样率，以及信道个数
+* 通过Airplay传递的流媒体
+
+想了解更多有关AV Foundation的信息，请参见AV Foundation编程指南。有关AV Foundation框架的类文件，请参见AV Foundation框架索引。
 
 ### AVKit Framework
-
+AVKit.framework利用AV Foundation框架中的对象来管理设备上视频的展示效果。当你想展示视频内容时，你可以将其当作Media Player库的替代品。  
+想了解更多关于该框架的信息，请参看其头文件。
 ### Core Audio
+Core Audio是一组框架的集合（列表2－4），它提供了对音频的原生控制。这些框架支持在你的app中生成、录制、混淆以及播放音频。你还可以使用这些框架操纵MIDI媒体内容或流媒体或MIDI内容到其它的app中。  
+**列表2-4 Core Audio框架**  
+
+| 框架名称  | 提供的服务 |
+|:------------- |:---------------:|
+| CoreAudio.framework | 通过CoreAudio定义音频数据类型。了解更多信息请查阅CoreAudio框架索引 |
+| AudioToolbox.framework | 为音频文件和音频流提供回放以及录制服务。该框架还提供管理音频文件，播放系统警告声音以及触发某些设备的震动等功能。更多信息请参见AudioToolbox框架索引。 |
+| AudioUnit.framework | 为使用内置的音频单元提供服务，即音频处理模块。该框架还提供将你的音频以组件的形式显示给可见的其它app。更多信息请参阅AudioUnit框架索引。 |
+| CoreMIDI.framework | 提供一种标准的方式与MIDI设备交互，包括键盘和合成器。你可以使用该框架发送或接收MIDI信息，或者与周边的MIDI设备通过基于iOS的设备使用dock转接头或网络进行沟通。更多信息请参见CoreMIDI框架索引。 |
+| MediaToolbox.framework | 提供audio tap相关接口 |
+
+想了解更多关于Core Audio的信息，请参看Core Audio概览。想了解如何使用Audio Toolbox 框架播放音频，请参看Audio Queue Services编程指南。
 
 ### CoreAudioKit Framework
-
+CoreAudioKit.framework提供了标准的view来管理app之间共享的的音频。一个view上显示其他链接的app的icon，另一个view上显示传输的控制，用户可以使用它来操纵由主app提供的音频。  
+更多框架中的接口相关信息请参阅框架中的头文件。
 ### Core Graphics Framework
-
+CoreGraphics.framework包含了Quartz 2D绘制的API接口。Quartz是OS X上一个高级的基于矢量绘制的引擎。它支持基于路径的绘制，抗锯齿渲染，渐变的，图片类型的，颜色类型的，坐标系转换以及PDF生成，展示和解析。尽管接口是C语言的，但是它经过基于对象的封装来展示呈现基本的绘制对象，使得存储和重用你的图形内容更为容易。  
+更多如何使用Quartz来绘制内容的信息请查阅Quartz 2D编程指南以及Core Graphics框架索引。
 ### Core Image Framework
 
 ### Core Text Framework
@@ -347,8 +379,6 @@ iOS还提供以下额外选项支持使用Airplay传送数据：
 ### SceneKit Framework
 
 ### SpriteKit Framework
-
-
 
 # Core Services Layer（核心服务层）
 # Core OS Layer（核心系统层）
