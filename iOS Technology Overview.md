@@ -326,8 +326,21 @@ AVFoundation.framework提供了OC封装的接口，可以用来播放、录制�
 想了解更多有关AV Foundation的信息，请参见AV Foundation编程指南。有关AV Foundation框架的类文件，请参见AV Foundation框架索引。
 
 ### AVKit Framework
-
+AVKit.framework利用AV Foundation框架中的对象来管理设备上视频的展示效果。当你想展示视频内容时，你可以将其当作Media Player库的替代品。  
+想了解更多关于该框架的信息，请参看其头文件。
 ### Core Audio
+Core Audio是一组框架的集合（列表2－4），它提供了对音频的原生控制。这些框架支持在你的app中生成、录制、混淆以及播放音频。你还可以使用这些框架操纵MIDI媒体内容或流媒体或MIDI内容到其它的app中。  
+**列表2-4 Core Audio框架**  
+
+| 框架名称  | 提供的服务 |
+|:------------- |:---------------:|
+| CoreAudio.framework | 通过CoreAudio定义音频数据类型。了解更多信息请查阅CoreAudio框架索引 |
+| AudioToolbox.framework | 为音频文件和音频流提供回放以及录制服务。该框架还提供管理音频文件，播放系统警告声音以及触发某些设备的震动等功能。更多信息请参见AudioToolbox框架索引。 |
+| AudioUnit.framework | 为使用内置的音频单元提供服务，即音频处理模块。该框架还提供将你的音频以组件的形式显示给可见的其它app。更多信息请参阅AudioUnit框架索引。 |
+| CoreMIDI.framework | 提供一种标准的方式与MIDI设备交互，包括键盘和合成器。你可以使用该框架发送或接收MIDI信息，或者与周边的MIDI设备通过基于iOS的设备使用dock转接头或网络进行沟通。更多信息请参见CoreMIDI框架索引。 |
+| MediaToolbox.framework | 提供audio tap相关接口 |
+
+想了解更多关于Core Audio的信息，请参看Core Audio概览。想了解如何使用Audio Toolbox 框架播放音频，请参看Audio Queue Services编程指南。
 
 ### CoreAudioKit Framework
 
@@ -364,8 +377,6 @@ AVFoundation.framework提供了OC封装的接口，可以用来播放、录制�
 ### SceneKit Framework
 
 ### SpriteKit Framework
-
-
 
 # Core Services Layer（核心服务层）
 # Core OS Layer（核心系统层）
