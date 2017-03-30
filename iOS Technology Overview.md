@@ -435,6 +435,13 @@ CoreVideo.framework提供了缓冲以及缓冲池来支持Core Media框架（Cor
 | JavaScriptCore.framework | 7.0 | JS |包含OC封装的调用JS代码以及解析JSON相关|
 | LocalAuthentication.framework | 8.0 | LA |包含用户使用Touch ID验证相关接口|
 | MapKit.framework | 3.0 | MK |包含在你的app中嵌入地图以及反向地理坐标相关类|
+| MediaAccessibility.framework | 7.0 | MA |管理媒体文件中的隐藏字幕的显示，参见MediaAccessibility框架|
+| MediaPlayer.framework | 2.0 | MP |包含用来展示全屏视频的接口，参见MediaPlayer框架|
+| MediaToolbox.framework | 6.0 | MT |包含播放音频内容的接口|
+| MessageUI.framework | 3.0 | MF |包含组合排序email信息的接口，参见MessageUI框架|
+| Metal.framework | 8.0 | MTL |为app提供低开销的图片渲染引擎，参见Metal框架|
+| MobileCoreServices.framework | 3.0 | UT |由系统提供统一的类型识别标识符。参见 Mobile Core 服务框架|
+| MultipeerConnectivity.framework | 7.0 | MC |为实现设备间的P2P网络通信提供接口，参见MultipeerConnectivity框架|
 
 ## Simulator Frameworks
 
