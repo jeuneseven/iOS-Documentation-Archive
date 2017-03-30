@@ -343,9 +343,11 @@ Core Audio是一组框架的集合（列表2－4），它提供了对音频的�
 想了解更多关于Core Audio的信息，请参看Core Audio概览。想了解如何使用Audio Toolbox 框架播放音频，请参看Audio Queue Services编程指南。
 
 ### CoreAudioKit Framework
-
+CoreAudioKit.framework提供了标准的view来管理app之间共享的的音频。一个view上显示其他链接的app的icon，另一个view上显示传输的控制，用户可以使用它来操纵由主app提供的音频。  
+更多框架中的接口相关信息请参阅框架中的头文件。
 ### Core Graphics Framework
-
+CoreGraphics.framework包含了Quartz 2D绘制的API接口。Quartz是OS X上一个高级的基于矢量绘制的引擎。它支持基于路径的绘制，抗锯齿渲染，渐变的，图片类型的，颜色类型的，坐标系转换以及PDF生成，展示和解析。尽管接口是C语言的，但是它经过基于对象的封装来展示呈现基本的绘制对象，使得存储和重用你的图形内容更为容易。  
+更多如何使用Quartz来绘制内容的信息请查阅Quartz 2D编程指南以及Core Graphics框架索引。
 ### Core Image Framework
 
 ### Core Text Framework
