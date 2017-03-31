@@ -394,7 +394,7 @@ MediaPlayer.framework为你的app播放音视频内容提供了高层级的支�
 ### Photos Framework
 
 ### Photos UI Framework
-
+PhotosUI.framework让你能够在照片app中生成app扩展来编辑图片和视频资源。更多信息关于如何生成图片编辑扩展，请参阅app扩展编程指南。
 ### Quartz Core Framework
 
 ### SceneKit Framework
