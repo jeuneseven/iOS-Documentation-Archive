@@ -451,6 +451,8 @@ CoreVideo.framework提供了缓冲以及缓冲池来支持Core Media框架（Cor
 | Photos.framework | 8.0 | PH |包括访问和操作照片视频的接口。参见Photos框架。|
 | PhotosUI.framework | 8.0 | PH |包括生成app扩展程序来访问和操作照片视频的接口。参见PhotosUI框架。|
 | PushKit.framework | 8.0 | PK |提供了VoIP类的app注册的功能。参见PushKit框架。|
+| QuartzCore.framework | 2.0 | CA |提供了Core Animation的接口。参见QuartzCore框架。|
+| QuickLook.framework | 4.0 | QL |提供了预览文件相关接口。参见QuickLook框架。|
 
 ## Simulator Frameworks
 
