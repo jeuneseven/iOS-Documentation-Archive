@@ -360,6 +360,14 @@ CoreVideo.framework提供了缓冲以及缓冲池来支持Core Media框架（Cor
 GameController.framework让你能在你的app中发掘和配置为iPhone／iPod／iPad制作的GameController类的硬件。GameController可以设备之间进行物理连接或者通过蓝牙无线连接。当有VC可用的时候GameController框架会通知你的app，并且指定哪个VC作为你的app的输入源。  
 更多关于GameController的信息，请参阅GameController编程指南。
 ### GLKit Framework
+GLKit.framework包含了一套基于OC的实用工具类，它大大简化了生成一个OpenGL ES app的工作量。GLKit支持app开发的四个关键方面：  
+
+* GLKView 和 GLKViewController提供了一个OpenGL ES化的view的标准实现，并且与渲染循环相关联。这个view替你的app管理着底层的帧缓存区对象，你只需要在它上面进行绘制即可。
+* GLKTextureLoader类为你的app提供图片的转换以及加载程序，使用它能够自动的加载纹理图片到你的上下文中。它能够进行同步或异步的加载图片。在异步加载的情况下，当纹理加载完到你的上下文中时，你的app要提供一个block以供完成时回调。
+* GLKit框架提供矢量、矩阵以及四元体的实现，和矩阵的堆栈操作一样，提供相同的函数功能在OpenGL ES 1.1中。
+* GLKBaseEffect, GLKSkyboxEffect和GLKReflectionMapEffect提供了已经存在的，可配置的图片着色器，它实现了通用的图片操作。特别是GLKBaseEffect类实现了OpenGL ES 1.1标准中提到的高亮和材料模型功能，大大简化了从 OpenGL ES 1.1迁移到 OpenGL ES新版本的工作量。
+
+更多GLKit相关信息，请参阅GLKit框架索引。
 
 ### Image I/O Framework
 
