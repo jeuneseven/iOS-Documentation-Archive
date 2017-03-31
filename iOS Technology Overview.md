@@ -444,6 +444,7 @@ CoreVideo.framework提供了缓冲以及缓冲池来支持Core Media框架（Cor
 | MultipeerConnectivity.framework | 7.0 | MC |为实现设备间的P2P网络通信提供接口，参见MultipeerConnectivity框架|
 | NetworkExtension.framework | 8.0 | NE |为配置使用VPN提供接口支持，参见NetworkExtension框架|
 | NewsstandKit.framework | 5.0 | NK |为在后台下载杂志或报纸等内容提供接口支持，参见NewsstandKit框架|
+| NotificationCenter.framework | 2.0 | AL |提供接口来实现通知中心小工具，参见NotificationCenter框架|
 
 ## Simulator Frameworks
 
