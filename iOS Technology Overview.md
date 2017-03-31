@@ -376,7 +376,15 @@ ImageIO.framework提供了导入导出图片数据以及图片元数据的接口
 MediaAccessibility.framework管理着你的媒体文件中的隐藏字幕的内容展示。该框架与设置共同管理着字幕的隐藏与显示工作。  
 更多关于MediaAccessibility内容的信息，请参见该框架的头文件。
 ### Media Player Framework
+MediaPlayer.framework为你的app播放音视频内容提供了高层级的支持。你可以使用该框架做以下事情：  
 
+* 在用户的屏幕上播放视频或者通过AirPlay在其它设备上播放。你可以选择全屏或部分屏幕播放。
+* 访问用户的iTunes音乐媒体库。你可以播放音频或者专辑，搜索歌曲，为用户展示媒体选择器界面。
+* 配置和管理影片的回放。
+* 显示正在播放的影片的信息到锁定屏幕上以及展示app切换界面。当内容通过AirPlay传输时，你还可以展示这些信息到Apple TV上。
+* 检测视频内容已经通过AirPlay传输的状态。
+
+更多MediaPlayer类的信息，请参见MediaPlayer框架索引，更多如何使用这些类来访问用户的iTunes媒体库，请参见iPod媒体库访问编程指南。
 ### Metal Framework
 
 ### OpenAL Framework
