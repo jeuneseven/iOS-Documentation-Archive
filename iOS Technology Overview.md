@@ -373,7 +373,8 @@ GLKit.framework包含了一套基于OC的实用工具类，它大大简化了生
 ImageIO.framework提供了导入导出图片数据以及图片元数据的接口。该框架利用了所有在iOS中的 Core Graphics数据类型和函数，以及所有可用的标准图片类型。你还可以使用这个框架访问图片的Exif和IPTC等元数据属性。   
 更多关于该框架的函数和数据类型信息，请参见 Image I/O索引集合。
 ### Media Accessibility Framework
-
+MediaAccessibility.framework管理着你的媒体文件中的隐藏字幕的内容展示。该框架与设置共同管理着字幕的隐藏与显示工作。  
+更多关于MediaAccessibility内容的信息，请参见该框架的头文件。
 ### Media Player Framework
 
 ### Metal Framework
