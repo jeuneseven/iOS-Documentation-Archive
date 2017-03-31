@@ -453,6 +453,17 @@ CoreVideo.framework提供了缓冲以及缓冲池来支持Core Media框架（Cor
 | PushKit.framework | 8.0 | PK |提供了VoIP类的app注册的功能。参见PushKit框架。|
 | QuartzCore.framework | 2.0 | CA |提供了Core Animation的接口。参见QuartzCore框架。|
 | QuickLook.framework | 4.0 | QL |提供了预览文件相关接口。参见QuickLook框架。|
+| SafariServices.framework | 7.0 | SS |支持在Safari中生成待阅读列表。参见SafariServices框架。|
+| SceneKit.framework | 8.0 | SCN |支持生成3D图片接口。参见SceneKit框架。|
+| Security.framework | 2.0 | CSSM, Sec |包含管理证书、公私钥以及信任文件的接口。参见Security框架。|
+| Social.framework | 6.0 | SL |包含与社交媒体账户相关接口。参见Social框架。|
+| SpriteKit.framework | 7.0 | SK |简化基于精灵的动画和渲染生成框架。参见SpriteKit框架。|
+| StoreKit.framework | 3.0 | SK |包含控制应用内购买的交易相关的接口。参见StoreKit框架。|
+| SystemConfiguration.framework | 2.0 | SC |测定设备网络配置相关接口。参见SystemConfiguration框架。|
+| Twitter.framework | 5.0 | TW |包含通过twitter服务器发送推文相关接口。参见Twitter框架。|
+| UIKit.framework | 2.0 | UI |包含构建iOS app用户界面层的类和方法。参见UIKit框架。|
+| VideoToolbox.framework | 6.0 | VT |包含底层的常用压缩解压缩视频帧相关功能。|
+| WebKit.framework | 8.0 | WK |为集成web页面浏览功能到app中提供支持。参见WebKit框架。|
 
 ## Simulator Frameworks
 
