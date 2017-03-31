@@ -357,7 +357,8 @@ CoreText.framework提供了一套简单但是高性能的基于C封装的接口�
 ### Core Video Framework
 CoreVideo.framework提供了缓冲以及缓冲池来支持Core Media框架（Core Media框架中提及）。大部分的app都不用直接使用这个库。
 ### Game Controller Framework
-
+GameController.framework让你能在你的app中发掘和配置为iPhone／iPod／iPad制作的GameController类的硬件。GameController可以设备之间进行物理连接或者通过蓝牙无线连接。当有VC可用的时候GameController框架会通知你的app，并且指定哪个VC作为你的app的输入源。  
+更多关于GameController的信息，请参阅GameController编程指南。
 ### GLKit Framework
 
 ### Image I/O Framework
