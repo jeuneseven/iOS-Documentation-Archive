@@ -443,6 +443,7 @@ CoreVideo.framework提供了缓冲以及缓冲池来支持Core Media框架（Cor
 | MobileCoreServices.framework | 3.0 | UT |由系统提供统一的类型识别标识符。参见 Mobile Core 服务框架|
 | MultipeerConnectivity.framework | 7.0 | MC |为实现设备间的P2P网络通信提供接口，参见MultipeerConnectivity框架|
 | NetworkExtension.framework | 8.0 | NE |为配置使用VPN提供接口支持，参见NetworkExtension框架|
+| NewsstandKit.framework | 5.0 | NK |为在后台下载杂志或报纸等内容提供接口支持，参见NewsstandKit框架|
 
 ## Simulator Frameworks
 
