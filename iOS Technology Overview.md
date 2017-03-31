@@ -446,6 +446,11 @@ CoreVideo.framework提供了缓冲以及缓冲池来支持Core Media框架（Cor
 | NewsstandKit.framework | 5.0 | NK |为在后台下载杂志或报纸等内容提供接口支持，参见NewsstandKit框架|
 | NotificationCenter.framework | 2.0 | NK |提供接口来实现通知中心小工具，参见NotificationCenter框架|
 | OpenAL.framework | 2.0 | AL |包括OpenAL相关接口，OpenAL是一个跨平台的音频库。参加OpenAL框架。|
+| OpenGLES.framework | 2.0 | EAGL, GL |包括OpenGLES相关接口，OpenGLES是OpenGL跨2D和3D图片渲染库平台的一个嵌入式版本。参见OpenGLES框架。|
+| PassKit.framework | 6.0 | PK |包括生成票据、登记证、会员卡等物的数码版本功能的接口。参见PassKit框架。|
+| Photos.framework | 8.0 | PH |包括访问和操作照片视频的接口。参见Photos框架。|
+| PhotosUI.framework | 8.0 | PH |包括生成app扩展程序来访问和操作照片视频的接口。参见PhotosUI框架。|
+| PushKit.framework | 8.0 | PK |提供了VoIP类的app注册的功能。参见PushKit框架。|
 
 ## Simulator Frameworks
 
