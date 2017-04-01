@@ -388,7 +388,8 @@ MediaPlayer.framework为你的app播放音视频内容提供了高层级的支�
 ### Metal Framework
 
 ### OpenAL Framework
-
+开放音频资源库（简称OpenAL）接口是一组跨平台的标准交付音频接口。你可以使用该框架在需要定位音频输出的游戏或者其他程序中实现高性能、高质量的音频。由于OpenAL是一套跨平台的标准，你使用OpenAL在iOS上所编写的代码模块可以很容易的一知道其他平台上。  
+更多有关OpenAL的信息，包括如何使用，请参见：http://www.openal.org
 ### OpenGL ES Framework
 
 ### Photos Framework
