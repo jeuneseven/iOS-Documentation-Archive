@@ -405,7 +405,10 @@ QuartzCore.framework包含了Core Animation的相关接口。Core Animation是�
 ### SceneKit Framework
 
 ### SpriteKit Framework
-
+SpriteKit.framework为2D和2.5D的游戏提供了硬件加速动画。SpriteKit为大部分游戏提供了基础功能，包括图片渲染，动画系统，声音回放支持，物理模拟引擎。使用SpriteKit将你从自己创建事物中解放出来，并且让你能够将精力集中在设计你的内容以及高水平的交互上。  
+在SpriteKit开发的app中，内容是被组织称为场景的。场景会包括有纹路的对象、视频、基于路径的形状，核心图片过滤，以及其他特殊效果。SpriteKit将持有这些对象，并且决定如何以最高效的方式将其渲染到屏幕上。当到了你的场景动画渲染时间时，你可以使用SpriteKit指定显示的你想表达的内容或者使用物理模拟引擎来为你的对象定义物理行为（例如重力，引力，排斥等）。
+除SpriteKit框架之外，还有Xcode提供的工具来生成颗粒状的发射效果以及纹理地图集。你可以使用Xcode工具来管理app的资源，快速更新SpriteKit场景。
+更多关于如何使用SpriteKit的信息，清参阅SpriteKit编程指南。有关如何使用SpriteKit构建一个app的示例，请查看代码：Explained Adventure。
 # Core Services Layer（核心服务层）
 # Core OS Layer（核心系统层）
 # 附录A：iOS Frameworks（iOS系统框架）
