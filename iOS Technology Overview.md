@@ -388,7 +388,7 @@ MediaPlayer.framework为你的app播放音视频内容提供了高层级的支�
 ### Metal Framework
 
 ### OpenAL Framework
-开放音频资源库（简称OpenAL）接口是一组跨平台的标准交付音频接口。你可以使用该框架在需要定位音频输出的游戏或者其他程序中实现高性能、高质量的音频。由于OpenAL是一套跨平台的标准，你使用OpenAL在iOS上所编写的代码模块可以很容易的一知道其他平台上。  
+开源音频资源库（简称OpenAL）接口是一组跨平台的标准交付音频接口。你可以使用该框架在需要定位音频输出的游戏或者其他程序中实现高性能、高质量的音频。由于OpenAL是一套跨平台的标准，你使用OpenAL在iOS上所编写的代码模块可以很容易的一知道其他平台上。  
 更多有关OpenAL的信息，包括如何使用，请参见：http://www.openal.org
 ### OpenGL ES Framework
 
@@ -398,7 +398,8 @@ Photos.framework提供了一组新的API与照片和视频库进行交互，包
 ### Photos UI Framework
 PhotosUI.framework让你能够在照片app中生成app扩展来编辑图片和视频资源。更多信息关于如何生成图片编辑扩展，请参阅app扩展编程指南。
 ### Quartz Core Framework
-
+QuartzCore.framework包含了Core Animation的相关接口。Core Animation是一套高级影像合成技术，它使得生成基于view的动画这个过程变得高速且有效。影像合成引擎利用底层的硬件高效且实时的操纵你的view的内容。你只需要指定动画开始和结束的两个时间点，其他的由Core Animation去做就好了。由于Core Animation是嵌入到UIView的底层架构中的，所以它是一直可用的。  
+更多如何在你的app中使用Core Animation的相关信息，请查看Core Animation编程指南以及Core Animation索引集合。
 ### SceneKit Framework
 
 ### SpriteKit Framework
