@@ -392,7 +392,8 @@ MediaPlayer.framework为你的app播放音视频内容提供了高层级的支�
 ### OpenGL ES Framework
 
 ### Photos Framework
-
+Photos.framework提供了一组新的API与照片和视频库进行交互，包括iCloud图片库，这些都是由“照片”app管理的。这个框架是替代资源库框架的更好的选择。核心功能包括线程安全的加载和缓存缩略图和全尺寸图片的架构，请求更改资源库，检测被其他app变更的资源项，以及恢复资源库的编辑内容等功能。  
+更多有关该框架接口等相关信息，请查看Photos框架索引。
 ### Photos UI Framework
 PhotosUI.framework让你能够在照片app中生成app扩展来编辑图片和视频资源。更多信息关于如何生成图片编辑扩展，请参阅app扩展编程指南。
 ### Quartz Core Framework
