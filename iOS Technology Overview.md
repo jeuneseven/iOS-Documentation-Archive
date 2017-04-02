@@ -349,43 +349,119 @@ CoreAudioKit.framework提供了标准的view来管理app之间共享的的音频
 CoreGraphics.framework包含了Quartz 2D绘制的API接口。Quartz是OS X上一个高级的基于矢量绘制的引擎。它支持基于路径的绘制，抗锯齿渲染，渐变的，图片类型的，颜色类型的，坐标系转换以及PDF生成，展示和解析。尽管接口是C语言的，但是它经过基于对象的封装来展示呈现基本的绘制对象，使得存储和重用你的图形内容更为容易。  
 更多如何使用Quartz来绘制内容的信息请查阅Quartz 2D编程指南以及Core Graphics框架索引。
 ### Core Image Framework
-
+CoreImage.framework提供了一组强大功能的嵌入式滤镜，用来操作视频以及静态图片。你可以使用这套嵌入式的滤镜来润色或修正脸部图片、特写以及二维码扫描。这套滤镜的优势是它们以一种无损的方式操作，而不是直接操作你的原图，这使得原图毫无改变。这是因为这套滤镜是基于底层硬件优化的，这样更快并且有效率。  
+更多有关滤镜的类和信息请参见Core Image框架。
 ### Core Text Framework
-
+CoreText.framework提供了一套简单但是高性能的基于C封装的接口，你可以用它来对文字进行布局以及控制字体。那些不想使用TextKit但又相对文字处理能力要求很高的app可以使用这个框架。这套框架提供了一套复杂的文字布局引擎，包括文字环绕能力。它还支持高级的使用多种字体和渲染属性的文字样式。  
+更多有关CoreText接口的信息，清参阅CoreText编程指南以及CoreText索引集合。
 ### Core Video Framework
-
+CoreVideo.framework提供了缓冲以及缓冲池来支持Core Media框架（Core Media框架中提及）。大部分的app都不用直接使用这个库。
 ### Game Controller Framework
-
+GameController.framework让你能在你的app中发掘和配置为iPhone／iPod／iPad制作的GameController类的硬件。GameController可以设备之间进行物理连接或者通过蓝牙无线连接。当有VC可用的时候GameController框架会通知你的app，并且指定哪个VC作为你的app的输入源。  
+更多关于GameController的信息，请参阅GameController编程指南。
 ### GLKit Framework
+GLKit.framework包含了一套基于OC的实用工具类，它大大简化了生成一个OpenGL ES app的工作量。GLKit支持app开发的四个关键方面：  
+
+* GLKView 和 GLKViewController提供了一个OpenGL ES化的view的标准实现，并且与渲染循环相关联。这个view替你的app管理着底层的帧缓存区对象，你只需要在它上面进行绘制即可。
+* GLKTextureLoader类为你的app提供图片的转换以及加载程序，使用它能够自动的加载纹理图片到你的上下文中。它能够进行同步或异步的加载图片。在异步加载的情况下，当纹理加载完到你的上下文中时，你的app要提供一个block以供完成时回调。
+* GLKit框架提供矢量、矩阵以及四元体的实现，和矩阵的堆栈操作一样，提供相同的函数功能在OpenGL ES 1.1中。
+* GLKBaseEffect, GLKSkyboxEffect和GLKReflectionMapEffect提供了已经存在的，可配置的图片着色器，它实现了通用的图片操作。特别是GLKBaseEffect类实现了OpenGL ES 1.1标准中提到的高亮和材料模型功能，大大简化了从 OpenGL ES 1.1迁移到 OpenGL ES新版本的工作量。
+
+更多GLKit相关信息，请参阅GLKit框架索引。
 
 ### Image I/O Framework
-
+ImageIO.framework提供了导入导出图片数据以及图片元数据的接口。该框架利用了所有在iOS中的 Core Graphics数据类型和函数，以及所有可用的标准图片类型。你还可以使用这个框架访问图片的Exif和IPTC等元数据属性。   
+更多关于该框架的函数和数据类型信息，请参见 Image I/O索引集合。
 ### Media Accessibility Framework
-
+MediaAccessibility.framework管理着你的媒体文件中的隐藏字幕的内容展示。该框架与设置共同管理着字幕的隐藏与显示工作。  
+更多关于MediaAccessibility内容的信息，请参见该框架的头文件。
 ### Media Player Framework
+MediaPlayer.framework为你的app播放音视频内容提供了高层级的支持。你可以使用该框架做以下事情：  
 
+* 在用户的屏幕上播放视频或者通过AirPlay在其它设备上播放。你可以选择全屏或部分屏幕播放。
+* 访问用户的iTunes音乐媒体库。你可以播放音频或者专辑，搜索歌曲，为用户展示媒体选择器界面。
+* 配置和管理影片的回放。
+* 显示正在播放的影片的信息到锁定屏幕上以及展示app切换界面。当内容通过AirPlay传输时，你还可以展示这些信息到Apple TV上。
+* 检测视频内容已经通过AirPlay传输的状态。
+
+更多MediaPlayer类的信息，请参见MediaPlayer框架索引，更多如何使用这些类来访问用户的iTunes媒体库，请参见iPod媒体库访问编程指南。
 ### Metal Framework
-
+Metal通过A7 GPU卓越的高性能提供了极低开销但极高渲染和计算能力。Metal消除了很多的性能瓶颈，例如消耗巨大的状态确认，这在传统的图形API中是开销很大的。Metal旨在将高开销的状态转换以及编译操作与高消耗的敏感的关键路径计算渲染代码分离开。Metal提供了预编译着色，状态对象，以及明确的命令调度来确保你的app为GPU图片和计算任务提供最大的功效。这一设计原则延伸至过去你用来构建你的app所使用的工具上。当你的app构建时，Xcode将工程中的Metal着色对象编译至一个默认的库中，以减少这些着色对象在运行时的开销。  
+制图、计算以及位传递命令被有效的无缝的结合起来工作。Metal被特别设计用来开发构建现代的架构，例如多任务处理、共享内存等，将这些与GPU的命令生成并行。  
+使用Metal，你将会得到流式的API、统一的绘图和计算纹理的语言，以及基于Xcode的工具，所以你无需学习更多的框架、语言以及工具就能最大限度的为你的app或者游戏利用GPU。  
+更多关于如何使用Metal，请参见Metal编程指南，Metal框架索引，以及Metal纹理语言指南。
 ### OpenAL Framework
-
+开源音频资源库（简称OpenAL）接口是一组跨平台的标准交付音频接口。你可以使用该框架在需要定位音频输出的游戏或者其他程序中实现高性能、高质量的音频。由于OpenAL是一套跨平台的标准，你使用OpenAL在iOS上所编写的代码模块可以很容易的一知道其他平台上。  
+更多有关OpenAL的信息，包括如何使用，请参见：http://www.openal.org
 ### OpenGL ES Framework
-
+OpenGLES.framework提供接口来绘制2D和3D内容。这是一套基于C的框架，它与底层设备硬件合作，提供细颗粒度的图片控制以及高帧率的全屏幕沉浸式体验，例如游戏类app。你可以将OpenGL ES框架与EAGL接口结合使用，这在OpenGL ES 绘制回调和UIKit的窗口对象中提供接口。  
+该框架支持OpenGL ES 1.1，2.0和3.0版本。规范2.0版本添加了碎片化和顶点着色功能，规范3.0版本添加了更多的功能，包括多重目标渲染以及转换反馈。  
+更多如何在你的app中使用OpenGL ES，参见OpenGL ES编程指南。有关参考信息，请参见OpenGL ES 框架索引。
 ### Photos Framework
-
+Photos.framework提供了一组新的API与照片和视频库进行交互，包括iCloud图片库，这些都是由“照片”app管理的。这个框架是替代资源库框架的更好的选择。核心功能包括线程安全的加载和缓存缩略图和全尺寸图片的架构，请求更改资源库，检测被其他app变更的资源项，以及恢复资源库的编辑内容等功能。  
+更多有关该框架接口等相关信息，请查看Photos框架索引。
 ### Photos UI Framework
-
+PhotosUI.framework让你能够在照片app中生成app扩展来编辑图片和视频资源。更多信息关于如何生成图片编辑扩展，请参阅app扩展编程指南。
 ### Quartz Core Framework
-
+QuartzCore.framework包含了Core Animation的相关接口。Core Animation是一套高级影像合成技术，它使得生成基于view的动画这个过程变得高速且有效。影像合成引擎利用底层的硬件高效且实时的操纵你的view的内容。你只需要指定动画开始和结束的两个时间点，其他的由Core Animation去做就好了。由于Core Animation是嵌入到UIView的底层架构中的，所以它是一直可用的。  
+更多如何在你的app中使用Core Animation的相关信息，请查看Core Animation编程指南以及Core Animation索引集合。
 ### SceneKit Framework
-
+SceneKit是一套OC的框架，使用它能够构建简单的游戏以及使用3D效果丰富app的用户界面，这是一套结合了高性能渲染的引擎以及高层级的描述性的API。SceneKit在OS X 10.8版本上可用，现在在iOS上首次可用。底层的API（例如OpenGL ES）需要你去实现一套渲染算法，并且以一种严格的细节来展示一个场景。相比之下，SceneKit让你基于内容描述你的场景，通过几何结构、材料、彩光、摄像头等对象改变的描述来使得场景更为鲜活。  
+SceneKit的3D物理引擎使用模拟重力、压力、刚性碰撞、连接等功能使得你的app或游戏更为鲜活。也使得添加以下高等行为更为容易，例如在场景中添加一辆汽车，或者为在一个场景中的对象添加支持半径重力的物理区域，电磁场或者干扰因素。  
+使用OpenGL ES为一个场景添加一个额外的渲染内容，或者提供光影反射来替代或者增加SceneKit的渲染。你也可以添加基于着色的加工技术到SceneKit的渲染中，例如颜色分级或者屏幕区域的环境遮蔽。  
+更多关于该框架的接口，请参见SceneKit框架索引。
 ### SpriteKit Framework
-
+SpriteKit.framework为2D和2.5D的游戏提供了硬件加速动画。SpriteKit为大部分游戏提供了基础功能，包括图片渲染，动画系统，声音回放支持，物理模拟引擎。使用SpriteKit将你从自己创建事物中解放出来，并且让你能够将精力集中在设计你的内容以及高水平的交互上。  
+在SpriteKit开发的app中，内容是被组织称为场景的。场景会包括有纹路的对象、视频、基于路径的形状，核心图片过滤，以及其他特殊效果。SpriteKit将持有这些对象，并且决定如何以最高效的方式将其渲染到屏幕上。当到了你的场景动画渲染时间时，你可以使用SpriteKit指定显示的你想表达的内容或者使用物理模拟引擎来为你的对象定义物理行为（例如重力，引力，排斥等）。
+除SpriteKit框架之外，还有Xcode提供的工具来生成颗粒状的发射效果以及纹理地图集。你可以使用Xcode工具来管理app的资源，快速更新SpriteKit场景。
+更多关于如何使用SpriteKit的信息，清参阅SpriteKit编程指南。有关如何使用SpriteKit构建一个app的示例，请查看代码：Explained Adventure。
 # Core Services Layer（核心服务层）
+核心服务层为app提供基础的系统服务。在这些服务中最重要的是Core Foundation 和 Foundation 两个框架，这两个框架定义了所有app需要用到的基本类型。这个层级的服务业包含一些单项技术支持，例如定位、iCloud、社交媒体以及网络层等。
+## High-Level Features（高级功能）
+以下段落介绍了一些核心服务层可用的高级功能。
+### Peer-to-Peer Services (P2P服务)
+### iCloud Storage （iCloud存储）
+### Block Objects (Block对象)
+### Data Protection （数据保护）
+### File-Sharing Support (文件分享支持)
+### Grand Central Dispatch (GCD)
+### In-App Purchase (应用内支付)
+### SQLite
+### XML Support（XML支持）
+
+##  Core Services Frameworks (核心服务层相关类库)
+### Accounts Framework (账户)
+### Address Book Framework （地址簿)
+### Ad Support Framework （广告）
+### CFNetwork Framework
+### CloudKit Framework
+### Core Data Framework
+### Core Foundation Framework
+### Core Location Framework
+### Core Media Framework
+### Core Motion Framework
+### Core Telephony Framework
+### EventKit Framework
+### Foundation Framework
+### HealthKit Framework
+### HomeKit Framework
+### JavaScript Core Framework
+### Mobile Core Services Framework
+### Multipeer Connectivity Framework
+### NewsstandKit Framework
+### PassKit Framework
+### Quick Look Framework
+### Safari Services Framework
+### Social Framework
+### StoreKit Framework
+### System Configuration Framework
+### WebKit Framework
+
 # Core OS Layer（核心系统层）
 # 附录A：iOS Frameworks（iOS系统框架）
 本附录包含了有关iOS系统框架的相关信息。这些系统框架提供了你所在开发平台的相关接口。在适用的情况下，本附录中的列表包含了所有类、方法、函数、类型或者常量的前缀。请避免在你的代码中使用这些前缀。   
 ## Device Frameworks（设备框架）  
-列表A－1描述了基于iOS设备的标准类库框架。你可以在这个目录下找到这些类库：**<Xcode.app>Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/<iOS_SDK>/System/Library/Frameworks** **<Xcode.app>**在你的Xcode所在目录，**<iOS_SDK>**是你的target的指定SDK版本。"可使用最低版本"列出了该框架首次在哪个版本的iOS系统中出现。
+列表A－1描述了基于iOS设备的标准类库框架。你可以在这个目录下找到这些类库：**<Xcode.app>Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/<iOS_SDK>/System/Library/Frameworks** "Xcode.app"是你的Xcode所在目录，"<iOS_SDK>""是你的target的指定SDK版本。"可使用最低版本"列出了该框架首次在哪个版本的iOS系统中出现。
   
 **列表 A－1 设备框架**  
 
@@ -433,6 +509,35 @@ CoreGraphics.framework包含了Quartz 2D绘制的API接口。Quartz是OS X上一
 | JavaScriptCore.framework | 7.0 | JS |包含OC封装的调用JS代码以及解析JSON相关|
 | LocalAuthentication.framework | 8.0 | LA |包含用户使用Touch ID验证相关接口|
 | MapKit.framework | 3.0 | MK |包含在你的app中嵌入地图以及反向地理坐标相关类|
+| MediaAccessibility.framework | 7.0 | MA |管理媒体文件中的隐藏字幕的显示，参见MediaAccessibility框架|
+| MediaPlayer.framework | 2.0 | MP |包含用来展示全屏视频的接口，参见MediaPlayer框架|
+| MediaToolbox.framework | 6.0 | MT |包含播放音频内容的接口|
+| MessageUI.framework | 3.0 | MF |包含组合排序email信息的接口，参见MessageUI框架|
+| Metal.framework | 8.0 | MTL |为app提供低开销的图片渲染引擎，参见Metal框架|
+| MobileCoreServices.framework | 3.0 | UT |由系统提供统一的类型识别标识符。参见 Mobile Core 服务框架|
+| MultipeerConnectivity.framework | 7.0 | MC |为实现设备间的P2P网络通信提供接口，参见MultipeerConnectivity框架|
+| NetworkExtension.framework | 8.0 | NE |为配置使用VPN提供接口支持，参见NetworkExtension框架|
+| NewsstandKit.framework | 5.0 | NK |为在后台下载杂志或报纸等内容提供接口支持，参见NewsstandKit框架|
+| NotificationCenter.framework | 2.0 | NK |提供接口来实现通知中心小工具，参见NotificationCenter框架|
+| OpenAL.framework | 2.0 | AL |包括OpenAL相关接口，OpenAL是一个跨平台的音频库。参加OpenAL框架。|
+| OpenGLES.framework | 2.0 | EAGL, GL |包括OpenGLES相关接口，OpenGLES是OpenGL跨2D和3D图片渲染库平台的一个嵌入式版本。参见OpenGLES框架。|
+| PassKit.framework | 6.0 | PK |包括生成票据、登记证、会员卡等物的数码版本功能的接口。参见PassKit框架。|
+| Photos.framework | 8.0 | PH |包括访问和操作照片视频的接口。参见Photos框架。|
+| PhotosUI.framework | 8.0 | PH |包括生成app扩展程序来访问和操作照片视频的接口。参见PhotosUI框架。|
+| PushKit.framework | 8.0 | PK |提供了VoIP类的app注册的功能。参见PushKit框架。|
+| QuartzCore.framework | 2.0 | CA |提供了Core Animation的接口。参见QuartzCore框架。|
+| QuickLook.framework | 4.0 | QL |提供了预览文件相关接口。参见QuickLook框架。|
+| SafariServices.framework | 7.0 | SS |支持在Safari中生成待阅读列表。参见SafariServices框架。|
+| SceneKit.framework | 8.0 | SCN |支持生成3D图片接口。参见SceneKit框架。|
+| Security.framework | 2.0 | CSSM, Sec |包含管理证书、公私钥以及信任文件的接口。参见Security框架。|
+| Social.framework | 6.0 | SL |包含与社交媒体账户相关接口。参见Social框架。|
+| SpriteKit.framework | 7.0 | SK |简化基于精灵的动画和渲染生成框架。参见SpriteKit框架。|
+| StoreKit.framework | 3.0 | SK |包含控制应用内购买的交易相关的接口。参见StoreKit框架。|
+| SystemConfiguration.framework | 2.0 | SC |测定设备网络配置相关接口。参见SystemConfiguration框架。|
+| Twitter.framework | 5.0 | TW |包含通过twitter服务器发送推文相关接口。参见Twitter框架。|
+| UIKit.framework | 2.0 | UI |包含构建iOS app用户界面层的类和方法。参见UIKit框架。|
+| VideoToolbox.framework | 6.0 | VT |包含底层的常用压缩解压缩视频帧相关功能。|
+| WebKit.framework | 8.0 | WK |为集成web页面浏览功能到app中提供支持。参见WebKit框架。|
 
 ## Simulator Frameworks
 
@@ -441,6 +546,6 @@ CoreGraphics.framework包含了Quartz 2D绘制的API接口。Quartz是OS X上一
 
 ## System Libraries
 
-请知晓，在Core OS和Core Services层有一些特殊库代码是没有被封装成框架的。iOS在系统的**/usr/lib**路径下包含了很多动态库。动态库以它们的**.dylib**扩展作为分享的标示。这些库的头文件存放在  **/usr/include**路径下。  
-每个班的iOS SDK都包含了一份本地分享库的备份而无须安装在系统上。这些拷贝存在你正在开发的系统中以便你能够从你Xcode工程中链接到。如果想查看一个iOS系统特殊版本的库列表的话，在这个路径下可以查看到：**<Xcode.app>/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/<iOS_SDK>/usr/lib**，**<Xcode.app>**代表你Xcode所在目录，**<iOS_SDK>**代表你当前target的特殊版本的SDK。例如，iOS8 SDK版本的将会存在**/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk/usr/lib**目录下，相应的头文件存放在**/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk/usr/include**。  
+请知晓，在Core OS和Core Services层有一些特殊库代码是没有被封装成框架的。iOS在系统的 **/usr/lib** 路径下包含了很多动态库。动态库以它们的".dylib"扩展作为分享的标示。这些库的头文件存放在  **/usr/include** 路径下。  
+每个班的iOS SDK都包含了一份本地分享库的备份而无须安装在系统上。这些拷贝存在你正在开发的系统中以便你能够从你Xcode工程中链接到。如果想查看一个iOS系统特殊版本的库列表的话，在这个路径下可以查看到：<Xcode.app>/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/<iOS_SDK>/usr/lib，<Xcode.app>代表你Xcode所在目录，<iOS_SDK>代表你当前target的特殊版本的SDK。例如，iOS8 SDK版本的将会存在 /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk/usr/lib 目录下，相应的头文件存放在 /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk/usr/include。  
 iOS使用符号链接来指定大部分库的当前版本。当链接到一个动态分享库时，使用符号链接而不是普通链接来指向一个库特殊版本。库的版本在iOS系统当中是可能改变的；如果你的软件链接到了一个固定版本，那个版本不一定会在用户的系统中一直存在。
