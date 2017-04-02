@@ -416,6 +416,9 @@ SpriteKit.framework为2D和2.5D的游戏提供了硬件加速动画。SpriteKit�
 除SpriteKit框架之外，还有Xcode提供的工具来生成颗粒状的发射效果以及纹理地图集。你可以使用Xcode工具来管理app的资源，快速更新SpriteKit场景。
 更多关于如何使用SpriteKit的信息，清参阅SpriteKit编程指南。有关如何使用SpriteKit构建一个app的示例，请查看代码：Explained Adventure。
 # Core Services Layer（核心服务层）
+核心服务层为app提供基础的系统服务。在这些服务中最重要的是Core Foundation 和 Foundation 两个框架，这两个框架定义了所有app需要用到的基本类型。这个层级的服务业包含一些单项技术支持，例如定位、iCloud、社交媒体以及网络层等。
+## High-Level Features（高级功能）
+以下段落介绍了一些核心服务层可用的高级功能。
 # Core OS Layer（核心系统层）
 # 附录A：iOS Frameworks（iOS系统框架）
 本附录包含了有关iOS系统框架的相关信息。这些系统框架提供了你所在开发平台的相关接口。在适用的情况下，本附录中的列表包含了所有类、方法、函数、类型或者常量的前缀。请避免在你的代码中使用这些前缀。   
