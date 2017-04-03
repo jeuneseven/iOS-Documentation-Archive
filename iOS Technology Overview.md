@@ -462,6 +462,7 @@ Block对象是一套C语言的数据结构，你可以将它并入你的C或OC�
 ### PassKit Framework
 ### Quick Look Framework
 ### Safari Services Framework
+SafariServices.framework为以编程方式添加URL到用户的Safari阅读列表这一功能提供了支持。更多关于这个框架的类的信息，请参见该框架头文件。
 ### Social Framework
 ### StoreKit Framework
 ### System Configuration Framework
