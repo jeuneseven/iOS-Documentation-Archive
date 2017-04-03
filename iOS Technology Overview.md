@@ -451,6 +451,8 @@ Block对象是一套C语言的数据结构，你可以将它并入你的C或OC�
 ### Core Foundation Framework
 ### Core Location Framework
 ### Core Media Framework
+CoreMedia.framework通过AV Foundation框架提供了底层的媒体类型。大部分app无须使用这个框架，对于那些需要对音视频内容的创建和展示需要进行精准控制的开发者提供支持。  
+更多关于该框架的函数和数据类型，请参见CoreMedia框架索引。
 ### Core Motion Framework
 ### Core Telephony Framework
 ### EventKit Framework
