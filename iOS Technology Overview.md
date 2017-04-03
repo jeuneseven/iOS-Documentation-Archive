@@ -418,6 +418,8 @@ SpriteKit.framework为2D和2.5D的游戏提供了硬件加速动画。SpriteKit�
 ## High-Level Features（高级功能）
 以下段落介绍了一些核心服务层可用的高级功能。
 ### Peer-to-Peer Services (P2P服务)
+多点链接框架通过蓝牙技术提供了P2P的连通。你可以使用P2P连接技术实现与近场设备进行通信会话。尽管P2P连接一般用在游戏中，你依旧可以将这一功能用在其他类型的app中。  
+更多关于如何在你的app中使用P2P连接功能，请参见多点链接框架索引。
 ### iCloud Storage （iCloud存储）
 ### Block Objects (Block对象)
 Block对象是一套C语言的数据结构，你可以将它并入你的C或OC代码中。一个block对象本质上来说就是一个匿名的函数，并且本身是携带数据的，在一些其他的编程语言中，有时这被称作closure或者lambda。block通常被用在回调或者在代码执行和关联数据的地方使用。  
