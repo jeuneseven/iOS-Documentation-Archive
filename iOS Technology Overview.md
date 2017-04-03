@@ -457,6 +457,7 @@ Block对象是一套C语言的数据结构，你可以将它并入你的C或OC�
 ### HomeKit Framework
 ### JavaScript Core Framework
 ### Mobile Core Services Framework
+MobileCoreServices.framework定义了一套在同一类型标示中使用的底层类型。更多关于这些类型的信息，请参见同一类型标示索引。
 ### Multipeer Connectivity Framework
 ### NewsstandKit Framework
 ### PassKit Framework
