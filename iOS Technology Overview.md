@@ -439,6 +439,7 @@ Block对象是一套C语言的数据结构，你可以将它并入你的C或OC�
 ### XML Support（XML支持）
 
 ##  Core Services Frameworks (核心服务层相关类库)
+以下章节描述了核心服务层以及它提供的服务。
 ### Accounts Framework (账户)
 ### Address Book Framework （地址簿)
 ### Ad Support Framework （广告）
@@ -465,6 +466,8 @@ Block对象是一套C语言的数据结构，你可以将它并入你的C或OC�
 ### StoreKit Framework
 ### System Configuration Framework
 ### WebKit Framework
+WebKit.framework让你能够在你的app中显示HTML内容。除了显示HTML外，你还可以提供基本的编辑支持，这样用户就能够替换文本以及操作文档内容以及属性，包括CSS属性。WebKit同样支持在一个HTML文档中生成和编辑DOM层的内容。例如，你可以提取一篇文章中的链接，修改它们，在它们显示到一个web view的文档中之前替换它们。  
+更多关于这个框架的接口信息，请参见WebKit接口索引。
 
 # Core OS Layer（核心系统层）
 核心服务层包含了其他大部分技术所依赖的底层功能。即使你不会直接使用到这些技术在你的app中，大部分的框架都会使用到这些技术。当你需要与安全或者与硬件配件进行交互时，你应该使用这一层的框架。
