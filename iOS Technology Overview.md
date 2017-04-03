@@ -420,6 +420,17 @@ SpriteKit.framework为2D和2.5D的游戏提供了硬件加速动画。SpriteKit�
 ### Peer-to-Peer Services (P2P服务)
 ### iCloud Storage （iCloud存储）
 ### Block Objects (Block对象)
+Block对象是一套C语言的数据结构，你可以将它并入你的C或OC代码中。一个block对象本质上来说就是一个匿名的函数，并且本身是携带数据的，在一些其他的编程语言中，有时这被称作closure或者lambda。block通常被用在回调或者在代码执行和关联数据的地方使用。  
+在iOS中，block通常用在以下几种情景下：  
+
+* 作为delegate或者delegate方法的替代品
+* 作为回调函数使用
+* 作为一次性的操作的实现体
+* 为一个集合中的所有元素执行一项任务
+* 与队列一起使用，执行异步任务等
+
+对于block对象的介绍以及使用，请参见“一篇简短的block使用手册”。更多关于block的信息，请参见block编程主题。
+
 ### Data Protection （数据保护）
 ### File-Sharing Support (文件分享支持)
 ### Grand Central Dispatch (GCD)
