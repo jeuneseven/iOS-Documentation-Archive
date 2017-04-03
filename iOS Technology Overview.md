@@ -467,6 +467,15 @@ Block对象是一套C语言的数据结构，你可以将它并入你的C或OC�
 ### WebKit Framework
 
 # Core OS Layer（核心系统层）
+## Accelerate Framework (加速器框架)
+## Core Bluetooth Framework (核心蓝牙模块)
+## External Accessory Framework （外部配件模块）
+## Generic Security Services Framework （通用安全服务模块）
+## Local Authentication Framework (本地鉴定模块)
+## Network Extension Framework （网络扩展模块）
+## Security Framework （安全模块）
+## System （系统层）
+## 64-Bit Support（64位支持）
 # 附录A：iOS Frameworks（iOS系统框架）
 本附录包含了有关iOS系统框架的相关信息。这些系统框架提供了你所在开发平台的相关接口。在适用的情况下，本附录中的列表包含了所有类、方法、函数、类型或者常量的前缀。请避免在你的代码中使用这些前缀。   
 ## Device Frameworks（设备框架）  
