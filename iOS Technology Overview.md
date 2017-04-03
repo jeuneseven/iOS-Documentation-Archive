@@ -465,6 +465,8 @@ Block对象是一套C语言的数据结构，你可以将它并入你的C或OC�
 ### Social Framework
 ### StoreKit Framework
 ### System Configuration Framework
+SystemConfiguration.framework提供了一套可达性的接口，你可以使用它来判断一台设备的网络配置。你还可以使用它来判断是Wi-Fi还是蜂窝网络连接在使用，并且判断一个特定的主机服务器能否被访问。    
+更多关于该框架的信息，请参见SystemConfiguration框架索引。关于如何使用这个框架去获取网络信息，请查看Reachability这个示例工程的代码。
 ### WebKit Framework
 WebKit.framework让你能够在你的app中显示HTML内容。除了显示HTML外，你还可以提供基本的编辑支持，这样用户就能够替换文本以及操作文档内容以及属性，包括CSS属性。WebKit同样支持在一个HTML文档中生成和编辑DOM层的内容。例如，你可以提取一篇文章中的链接，修改它们，在它们显示到一个web view的文档中之前替换它们。  
 更多关于这个框架的接口信息，请参见WebKit接口索引。
