@@ -467,6 +467,7 @@ Block对象是一套C语言的数据结构，你可以将它并入你的C或OC�
 ### WebKit Framework
 
 # Core OS Layer（核心系统层）
+核心服务层包含了其他大部分技术所依赖的底层功能。即使你不会直接使用到这些技术在你的app中，大部分的框架都会使用到这些技术。当你需要与安全或者与硬件配件进行交互时，你应该使用这一层的框架。
 ## Accelerate Framework (加速器框架)
 ## Core Bluetooth Framework (核心蓝牙模块)
 ## External Accessory Framework （外部配件模块）
