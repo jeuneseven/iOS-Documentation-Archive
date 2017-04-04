@@ -439,6 +439,8 @@ Block对象是一套C语言的数据结构，你可以将它并入你的C或OC�
 更多关于如何添加保护的数据到你的app中，请参见iOS app编程指南。
 ### File-Sharing Support (文件分享支持)
 ### Grand Central Dispatch (GCD)
+GCD是一套BSD级别的技术，你可以用它来管理你app中的任务执行。GCD提供了一套异步的编程模型，它高度优化了CPU核心，提供了简洁高效的支持，你可以用它来替代线程管理。GCD同样为很多底层的任务提供了简洁的替代品，例如读写文件操作符，实现timer，以及检测信号量和过程事件。  
+更多关于如何在app中使用GCD，参见并发编程指南。更多关于GCD函数的使用，参见GCD索引。
 ### In-App Purchase (应用内支付)
 ### SQLite
 ### XML Support（XML支持）
