@@ -455,6 +455,8 @@ CoreMedia.framework通过AV Foundation框架提供了底层的媒体类型。大
 更多关于该框架的函数和数据类型，请参见CoreMedia框架索引。
 ### Core Motion Framework
 ### Core Telephony Framework
+CoreTelephony.framework提供接口与移动式蜂窝设备的基于电话的信息进行交互。app可以使用这个框架查询有关用户移动服务提供商的相关信息。对于网络电话相关的app，例如VoIP类的app，也可以注册相关监听信息来检测相关信息。  
+更多关于如何使用该框架类和方法的信息，请参见CoreTelephony框架索引。
 ### EventKit Framework
 ### Foundation Framework
 ### HealthKit Framework
