@@ -444,7 +444,8 @@ GCD是一套BSD级别的技术，你可以用它来管理你app中的任务执�
 ### In-App Purchase (应用内支付)
 ### SQLite
 ### XML Support（XML支持）
-
+Foundation框架提供了NSXMLParser类来检索XML文档中的元素。并且由**libxml2**库提供操作XML内容的支持。这个开源的类库能够让你快速的解析或写入任意的XML数据，并且能够转换XML内容到HTML。  
+访问libxml2库的头文件存放在`<iOS_SDK>/usr/include/libxml2/`目录下，`<iOS_SDK>`代表你Xcode安装的target SDK目录。更多关于如何使用**libxml2**库的信息，请查看libxml2文档。
 ##  Core Services Frameworks (核心服务层相关类库)
 以下章节描述了核心服务层以及它提供的服务。
 ### Accounts Framework (账户)
