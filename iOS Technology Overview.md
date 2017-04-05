@@ -502,6 +502,18 @@ CloudKit.framework为你的app和iCloud之间传输数据提供了支持。不�
 使用CloudKit的app能够直接将用户分享的数据存储到仓库中。这个公共的仓库是与app本身捆绑的，即使设备没有已经注册的iCloud账户都是可用的。作为app的开发者，你可以直接从这个容器中管理数据，并且能够从CloudKit提供的操作界面中看到所有用户做出的修改。  
 更多关于该框架的类的信息，请查看CloudKit框架索引。
 ### Core Data Framework
+CoreData.framework是一套管理MVC类app的数据模型的技术。Core Data用在那些数据模型已经高度结构化的app中的。你无需编码定义数据结构，使用Xcode中的图形界面工具就可以构建展现你的数据模型。在运行时，你的数据模型的实力对象会被创建、管理并且通过Core Data变得可用。  
+通过为你管理你的app的数据模型，Core Data大大减少了你的app的代码量。Core Data还提供以下功能：  
+
+* 对于存储对象数据到SQLite数据库中进行了优化
+* NSFetchedResultsController类用来管理表视图结构
+* 无需基本的文字编辑就能管理撤销／重做的操作
+* 支持校验属性值
+* 支持增量变化以及确保对象之间的固有关系
+* 支持在内存中分组、筛选和管理数据
+
+如果你打算开发一款新的app或者打算为一个已经存在的app提供重大升级的话，你应该考虑使用Core Data。关于在iOS app中使用Core Data的示例，请查看iOS Core Data指导。更多关于Core Data类的相关信息，请查看Core Data框架索引。
+
 ### Core Foundation Framework
 ### Core Location Framework
 ### Core Media Framework
