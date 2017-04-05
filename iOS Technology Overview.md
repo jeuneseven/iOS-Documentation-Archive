@@ -474,6 +474,8 @@ Foundation框架提供了NSXMLParser类来检索XML文档中的元素。并且�
 ## Core Services Frameworks (核心服务层相关类库)
 以下章节描述了核心服务层以及它提供的服务。
 ### Accounts Framework (账户)
+Accounts.framework为用户提供了一个单点登录的模型。单点登录提升了用户体验，它减少了用户多个账户的必要性。并且它为你简化了开发模型，你可以用它来管理账户的授权过程。你可以与社交框架一起使用这个框架。  
+更多关于Accounts框架的信息，请参见Accounts框架索引。
 ### Address Book Framework （地址簿)
 ### Ad Support Framework （广告）
 ### CFNetwork Framework
