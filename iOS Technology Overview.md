@@ -498,6 +498,9 @@ CFNetwork.framework是一套高性能的使用面向对象抽象的基于C语言
 CFNetwork无论从理论还是物理上都是基于BSD sockets的。更多关于如何使用CFNetwork的信息，请查看CFNetwork编程指南以及CFNetwork框架索引。
 
 ### CloudKit Framework
+CloudKit.framework为你的app和iCloud之间传输数据提供了支持。不像iCloud技术传输数据那么明显，CloudKit在传输发生的时候给予你控制权。你可以使用CloudKit管理所有数据类型。  
+使用CloudKit的app能够直接将用户分享的数据存储到仓库中。这个公共的仓库是与app本身捆绑的，即使设备没有已经注册的iCloud账户都是可用的。作为app的开发者，你可以直接从这个容器中管理数据，并且能够从CloudKit提供的操作界面中看到所有用户做出的修改。  
+更多关于该框架的类的信息，请查看CloudKit框架索引。
 ### Core Data Framework
 ### Core Foundation Framework
 ### Core Location Framework
