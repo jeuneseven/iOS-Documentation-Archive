@@ -443,10 +443,12 @@ GCD是一套BSD级别的技术，你可以用它来管理你app中的任务执�
 更多关于如何在app中使用GCD，参见并发编程指南。更多关于GCD函数的使用，参见GCD索引。
 ### In-App Purchase (应用内支付)
 ### SQLite
+SQLite库能够让你嵌入一个轻量级的SQL数据库到你的app中，而无需运行一个分离的远程服务器数据库进程。在你的app中你就可以生成本地数据库文件，管理表以及记录到这些文件中。虽然这个库是通用设计的，但是依然经过优化了，并且提供快速访问数据库内容的能力。  
+访问SQLite库的头文件存放在`<iOS_SDK>/usr/include/sqlite3.h`目录中，`<iOS_SDK>`代表你Xcode安装的target SDK目录。更多如何使用SQLite的相关信息，请查看SQLite软件库。
 ### XML Support（XML支持）
 Foundation框架提供了NSXMLParser类来检索XML文档中的元素。并且由**libxml2**库提供操作XML内容的支持。这个开源的类库能够让你快速的解析或写入任意的XML数据，并且能够转换XML内容到HTML。  
 访问libxml2库的头文件存放在`<iOS_SDK>/usr/include/libxml2/`目录下，`<iOS_SDK>`代表你Xcode安装的target SDK目录。更多关于如何使用**libxml2**库的信息，请查看libxml2文档。
-##  Core Services Frameworks (核心服务层相关类库)
+## Core Services Frameworks (核心服务层相关类库)
 以下章节描述了核心服务层以及它提供的服务。
 ### Accounts Framework (账户)
 ### Address Book Framework （地址簿)
