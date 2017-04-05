@@ -477,7 +477,13 @@ Foundation框架提供了NSXMLParser类来检索XML文档中的元素。并且�
 Accounts.framework为用户提供了一个单点登录的模型。单点登录提升了用户体验，它减少了用户多个账户的必要性。并且它为你简化了开发模型，你可以用它来管理账户的授权过程。你可以与社交框架一起使用这个框架。  
 更多关于Accounts框架的信息，请参见Accounts框架索引。
 ### Address Book Framework （地址簿)
+AddressBook.framework为程序提供了访问用户通讯录数据库的权限。如果你的app使用到了联系人相关的信息的话，你可以使用这个框架来访问和修改相关信息。例如，一个聊天类的app可能用这个框架来检索可能的联系人列表，并且生成一个聊天对话，然后把这些联系人展示在一个自定义的界面上。  
+> 重要：访问用户的通讯录数据需要显示的向用户索取允许权限。因此app必须对于用户拒绝访问时有所准备。app最好在Info.plist文件中阐述为何需要访问通讯录的原因。  
+
+更多关于地址簿框架的函数信息，请参见地址簿框架索引。
+
 ### Ad Support Framework （广告）
+
 ### CFNetwork Framework
 ### CloudKit Framework
 ### Core Data Framework
