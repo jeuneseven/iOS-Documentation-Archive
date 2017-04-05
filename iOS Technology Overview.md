@@ -483,8 +483,20 @@ AddressBook.framework为程序提供了访问用户通讯录数据库的权限�
 更多关于地址簿框架的函数信息，请参见地址簿框架索引。
 
 ### Ad Support Framework （广告）
-
+AdSupport.framework框架提供一个有广告需求的app使用的标识。该框架还会为用户是否退出了广告追踪提供一个标记。app需要在访问广告标识之前读取这个标记。  
+更多关于该框架的信息，请查看AdSupport框架索引。
 ### CFNetwork Framework
+CFNetwork.framework是一套高性能的使用面向对象抽象的基于C语言的接口，使用它来与网络协议交互。这些抽象让你能够通过协议栈来控制，并且使得使用底层的结构（例如BSD sockets）更为简单。你可以使用该框架简化各种操作，例如鱼FTP和HTTP服务器的交互，或者解决DNS主机方案。使用CFNetwork框架，你可以：  
+
+* 使用BSD sockets
+* 使用SSL或者TLS生成加密连接
+* 提供DNS主机方案
+* 与HTTP服务器交互，验证HTTP服务器以及HTTPS服务
+* 与FTP服务器交互
+* 发布、解决、浏览Bonjour服务
+
+CFNetwork无论从理论还是物理上都是基于BSD sockets的。更多关于如何使用CFNetwork的信息，请查看CFNetwork编程指南以及CFNetwork框架索引。
+
 ### CloudKit Framework
 ### Core Data Framework
 ### Core Foundation Framework
