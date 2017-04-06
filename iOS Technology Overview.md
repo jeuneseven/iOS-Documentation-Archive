@@ -543,7 +543,8 @@ CoreLocation.framework为app提供定位和标题信息。对于定位信息，�
 CoreMedia.framework通过AV Foundation框架提供了底层的媒体类型。大部分app无须使用这个框架，对于那些需要对音视频内容的创建和展示需要进行精准控制的开发者提供支持。  
 更多关于该框架的函数和数据类型，请参见CoreMedia框架索引。
 ### Core Motion Framework
-CoreMotion.framework
+CoreMotion.framework提供了一批接口来访问所有设备上基于运动的数据。该框架对于原始数据还是经过处理的加速器相关数据都使用一套基于block的接口来支持。对于内嵌陀螺仪的设备，你可以像处理那些经过处理的数据反射属性和自转速率数据来处理原始陀螺仪数据。你可以使用加速计和基于陀螺仪等数据嵌入到你的app的运动数据中以此来提升用户体验。对于带有计步器的硬件，你可以访问那些数据并且追踪健身相关的运动。  
+更多关于该框架的类和方法相关信息，参见Core Motion框架索引。
 ### Core Telephony Framework
 CoreTelephony.framework提供接口与移动式蜂窝设备的基于电话的信息进行交互。app可以使用这个框架查询有关用户移动服务提供商的相关信息。对于网络电话相关的app，例如VoIP类的app，也可以注册相关监听信息来检测相关信息。  
 更多关于如何使用该框架类和方法的信息，请参见CoreTelephony框架索引。
