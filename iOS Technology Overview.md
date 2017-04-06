@@ -580,12 +580,16 @@ Foundation.framework提供了诸多在Core Foundation框架中的功能的OC封�
 更多关于该框架类的信息，参见Foundation框架索引。
 
 ### HealthKit Framework
+HealthKit.framework是一套管理用户健康相关信息的全新框架。随着app数量的增加，设备对于健康和运动相关信息的追踪，很难为用户呈现他们正在做的事情。HealthKit框架使得app分享健康相关的数据更为容易，不论该数据是从连接到iOS设备的其他设备上传输过来还是用户自己输入的。用户的健康信息存储在一个集中且安全的区域。用户可以在健康app中看到这些数据。  
+若你的app实现了对于HealthKit的支持，它将会为用户访问健康相关的信息，并将这些关于用户的信息提供给用户，而无需对特定的运动设备的追踪实现支持。用户将会决定哪些数据应该从你的app中分享。一旦数据被从你的app中分享了，你的app就可以注册数据变更相关的监听；当你的app被通知到时，你将会有很细粒度的控制权。例如，你可以要求当用户检测到血压的时候通知你的app，或者仅当用户的血压达到一个特殊的值时才通知你的app。  
+更多关于该框架接口的信息，参见HealthKit框架索引。
 ### HomeKit Framework
 ### JavaScript Core Framework
 JavaScriptCore.framework为很多标准的JS对象提供了一套OC包装的类。使用这个框架来评估JS代码以及解析JSON数据。  
 更多该框架的类的信息，请参看该框架的头文件。
 ### Mobile Core Services Framework
-MobileCoreServices.framework定义了一套在同一类型标示中使用的底层类型。更多关于这些类型的信息，请参见同一类型标示索引。
+MobileCoreServices.framework定义了一套在同一类型标示中使用的底层类型。  
+更多关于这些类型的信息，请参见同一类型标示索引。
 ### Multipeer Connectivity Framework
 ### NewsstandKit Framework
 ### PassKit Framework
