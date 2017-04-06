@@ -610,7 +610,8 @@ QuickLook.framework提供了一个直观的界面来预览那些你的app可能�
 更多关于该框架类和方法的相关信息，参见iOS预览框架索引。
 ### Safari Services Framework
 SafariServices.framework为以编程方式添加URL到用户的Safari阅读列表这一功能提供了支持。更多关于这个框架的类的信息，请参见该框架头文件。
-### Social Framework
+### Social Framework (社交媒体框架)
+Social.framework提供了一个简单的界面来访问用户的社交媒体账户。该框架替代了Twitter框架，添加了更多的社交媒体账户支持，包括Facebook，新浪微博以及其他的账户。app可以使用这个框架来上传状态更新以及图片到用户的账户中。该框架与账户框架协作，为用户提供了一个单点登录模型，并且确保
 ### StoreKit Framework
 ### System Configuration Framework
 SystemConfiguration.framework提供了一套可达性的接口，你可以使用它来判断一台设备的网络配置。你还可以使用它来判断是Wi-Fi还是蜂窝网络连接在使用，并且判断一个特定的主机服务器能否被访问。    
