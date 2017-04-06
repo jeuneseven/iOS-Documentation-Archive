@@ -515,6 +515,21 @@ CoreData.framework是一套管理MVC类app的数据模型的技术。Core Data�
 如果你打算开发一款新的app或者打算为一个已经存在的app提供重大升级的话，你应该考虑使用Core Data。关于在iOS app中使用Core Data的示例，请查看iOS Core Data指导。更多关于Core Data类的相关信息，请查看Core Data框架索引。
 
 ### Core Foundation Framework
+CoreFoundation.framework是一套基于C的接口，它为iOS app提供了基本数据管理和服务的功能。该框架包含以下支持：  
+
+* 集合类数据（数组、集合等等）
+* 捆绑包
+* 字符串管理
+* 日期和时间管理
+* block原始数据管理
+* 参数配置管理
+* URL和流操作
+* 线程和run loop
+* 端口和socket交互
+
+Core Foundation框架与Foundation框架紧密相关，后者提供了相同基本功能的OC封装接口。当你需要混合Core Foundation类型和Foundation对象时，你可以使用在两个框架之间存在的"toll-free bridging(桥接)"技术。桥接意味着你可以在这两个框架的方法或函数中交换数据类型。桥接支持多种数据类型，包括集合和字符串数据类型。如果有对象关联的话，不论哪个框架的类和类型描述都能桥接。  
+更多关于该框架的信息，请参见Core Foundation框架索引。
+
 ### Core Location Framework
 ### Core Media Framework
 CoreMedia.framework通过AV Foundation框架提供了底层的媒体类型。大部分app无须使用这个框架，对于那些需要对音视频内容的创建和展示需要进行精准控制的开发者提供支持。  
