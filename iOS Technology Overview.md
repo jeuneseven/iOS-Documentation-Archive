@@ -531,10 +531,19 @@ Core Foundation框架与Foundation框架紧密相关，后者提供了相同基�
 更多关于该框架的信息，请参见Core Foundation框架索引。
 
 ### Core Location Framework
+CoreLocation.framework为app提供定位和标题信息。对于定位信息，该框架利用车载GPS、移动网络或者Wi-Fi收音机查询到用户当前的经纬度。你可以将这个技术应用到你的app中，为用户提供基于位置的信息。例如，你可以提供一项查询附近宾馆、商店或者运输设施的服务，基于用户当前的位置。Core Location还提供以下功能：  
+
+* 在包含磁力计的iOS设备上提供访问基于指南针相关信息的能力
+* 基于地理定位或者蓝牙指示提供区域检索能力
+* 使用移动信号塔提供低功耗的位置监控服务
+* 结合MapKit框架提升特殊情况下定位数据的质量，例如在开车过程中
+
+更多关于使用Core Location收集位置信息以及标题信息的相关信息请参见定位和地图编程指南以及Core Location框架索引。
 ### Core Media Framework
 CoreMedia.framework通过AV Foundation框架提供了底层的媒体类型。大部分app无须使用这个框架，对于那些需要对音视频内容的创建和展示需要进行精准控制的开发者提供支持。  
 更多关于该框架的函数和数据类型，请参见CoreMedia框架索引。
 ### Core Motion Framework
+CoreMotion.framework
 ### Core Telephony Framework
 CoreTelephony.framework提供接口与移动式蜂窝设备的基于电话的信息进行交互。app可以使用这个框架查询有关用户移动服务提供商的相关信息。对于网络电话相关的app，例如VoIP类的app，也可以注册相关监听信息来检测相关信息。  
 更多关于如何使用该框架类和方法的信息，请参见CoreTelephony框架索引。
