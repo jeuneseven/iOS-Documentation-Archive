@@ -561,6 +561,24 @@ EventKit.framework提供接口来访问用户设备上的日历事件。你可�
 更多关于如何使用该框架类和方法的信息，请参见EventKit框架索引以及EventKit UI框架。
 
 ### Foundation Framework
+Foundation.framework提供了诸多在Core Foundation框架中的功能的OC封装，这在Core Foundation框架中有所阐述。Foundation提供了如下功能：  
+
+* 集合类数据（数组、集合等等）
+* 捆绑包
+* 字符串管理
+* 日期和时间管理
+* block原始数据管理
+* 参数配置管理
+* URL和流操作
+* 线程和run loop
+* Bonjour
+* 连接端口管理
+* 国际化
+* 正则表达式
+* 缓存支持
+
+更多关于该框架类的信息，参见Foundation框架索引。
+
 ### HealthKit Framework
 ### HomeKit Framework
 ### JavaScript Core Framework
