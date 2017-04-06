@@ -1,4 +1,4 @@
-[iOS Technology Overview 原文链接] (https://developer.apple.com/library/content/documentation/Miscellaneous/Conceptual/iPhoneOSTechOverview/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007898)
+[iOS Technology Overview 原文链接]  (https://developer.apple.com/library/content/documentation/Miscellaneous/Conceptual/iPhoneOSTechOverview/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007898)
 # iOS技术相关
 
 iOS是运行在iPad，iPhone和iPod touch等设备上的操作系统。操作系统负责管理硬件设备以及提供实现app所需要的技术。操作系统也搭载了各种系统app，例如Phone，Mail，Safari等，用来提供一些标准系统服务给用户。  
