@@ -601,8 +601,11 @@ MultipeerConnectivity.framework提供了发现附近的设备并且能够无需�
 ### NewsstandKit Framework（报刊框架）
 报刊app提供了一个集中的地方让用户浏览杂志和报纸。希望发表杂志和报纸的出版商可以通过报刊框架来生成他们自己的iOS app，这让你能够在后台生成新的杂志和报纸的下载。当你开始下载之后，系统会管理下载的进程，并且在下载完成后通知你的app。  
 更多关于如何使用报刊框架来管理下载的相关内容，参见NewsstandKit框架索引。更多关于如何推送信息导你的app，参见本地和远程通知编程指南。
-### PassKit Framework
-### Quick Look Framework
+### PassKit Framework （钱包框架）
+Passbook app为用户提供了一个存储优惠券、登记证、票据以及银行卡的地方。用户无需将物理的上述物品放置在此，只需将他们的电子版本存储在iOS设备中就能像以往那样使用了。PassKit.framework为你的app提供了OC的接口来整合这些项目。你可以使用该框架结合网络接口以及文件格式信息来生成和管理你的公司为你提供的执照。  
+由你的公司通过网络服务器生成的这些执照将通过邮件、Safari浏览器或者你自己的app传送给用户的设备。对于执照本身，将会使用一种特殊的文件格式，在传输之前经过加密。文件格式ID相关信息已经由服务器提供，所以用户知晓该项服务是做什么的。很有可能还会包含一个二维码或者其他的你可以用来验证银行卡的找回或使用的相关信息。  
+更多关于PassKit的相关信息以及如何将其添加进你的app，参见钱包开发者指南。
+### Quick Look Framework（预览框架）
 ### Safari Services Framework
 SafariServices.framework为以编程方式添加URL到用户的Safari阅读列表这一功能提供了支持。更多关于这个框架的类的信息，请参见该框架头文件。
 ### Social Framework
@@ -615,7 +618,7 @@ WebKit.framework让你能够在你的app中显示HTML内容。除了显示HTML�
 更多关于这个框架的接口信息，请参见WebKit接口索引。
 
 # Core OS Layer（核心系统层）
-核心服务层包含了其他大部分技术所依赖的底层功能。即使你不会直接使用到这些技术在你的app中，大部分的框架都会使用到这些技术。当你需要与安全或者与硬件配件进行交互时，你应该使用这一层的框架。
+核心服务层包含了其他大部分技术所依赖的底层功能。即使你不会直接使用到这些技术在你的app中，大部分的框架都会使用到这些技术。当你需要与安全或者与硬件配件进行交互时，你应该使用这一层框架。
 ## Accelerate Framework (加速器框架)
 ## Core Bluetooth Framework (核心蓝牙模块)
 ## External Accessory Framework （外部配件模块）
