@@ -549,6 +549,17 @@ CoreMotion.framework提供了一批接口来访问所有设备上基于运动的
 CoreTelephony.framework提供接口与移动式蜂窝设备的基于电话的信息进行交互。app可以使用这个框架查询有关用户移动服务提供商的相关信息。对于网络电话相关的app，例如VoIP类的app，也可以注册相关监听信息来检测相关信息。  
 更多关于如何使用该框架类和方法的信息，请参见CoreTelephony框架索引。
 ### EventKit Framework
+EventKit.framework提供接口来访问用户设备上的日历事件。你可以使用该框架做以下事情：  
+
+* 获取已经存在的时间，并且在用户的日历上标示
+* 添加事件到用户的日历上
+* 为用户添加提醒事项，并且将之显示在提醒事项app上
+* 为日历事件配置提醒闹钟，包括设置何时该闹钟应该响起
+
+`重要：访问用户的日历和提醒事项需要提前向用户申请。所以app必须要做好用户不同意该权限的准备。我们也建议在Info.plist中添加说明你为什么需要该权限。`
+
+更多关于如何使用该框架类和方法的信息，请参见EventKit框架索引以及EventKit UI框架。
+
 ### Foundation Framework
 ### HealthKit Framework
 ### HomeKit Framework
