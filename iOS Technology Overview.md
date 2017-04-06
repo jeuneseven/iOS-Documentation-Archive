@@ -598,7 +598,9 @@ MobileCoreServices.framework定义了一套在同一类型标示中使用的底�
 MultipeerConnectivity.framework提供了发现附近的设备并且能够无需互联网就能与这些设备通讯的功能。该框架使得生成多个会话更为容易，并且支持安全的有序的数据传输和实时的数据传输。使用这个框架，你的app能够与附近的设备进行无缝的数据交换。  
 该框架提供编码和基于UI的选项来发现和管理网络服务。app可以嵌入MCBrowserViewController类到UI界面展示用户选择的对接的设备列表。同时还可以使用MCNearbyServiceBrowser类来编码查看管理对接设备。  
 更多关于该框架的接口信息，参看MultipeerConnectivity框架索引。
-### NewsstandKit Framework
+### NewsstandKit Framework（报刊框架）
+报刊app提供了一个集中的地方让用户浏览杂志和报纸。希望发表杂志和报纸的出版商可以通过报刊框架来生成他们自己的iOS app，这让你能够在后台生成新的杂志和报纸的下载。当你开始下载之后，系统会管理下载的进程，并且在下载完成后通知你的app。  
+更多关于如何使用报刊框架来管理下载的相关内容，参见NewsstandKit框架索引。更多关于如何推送信息导你的app，参见本地和远程通知编程指南。
 ### PassKit Framework
 ### Quick Look Framework
 ### Safari Services Framework
