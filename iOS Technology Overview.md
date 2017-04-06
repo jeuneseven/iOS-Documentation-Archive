@@ -594,7 +594,10 @@ JavaScriptCore.framework为很多标准的JS对象提供了一套OC包装的类�
 ### Mobile Core Services Framework
 MobileCoreServices.framework定义了一套在同一类型标示中使用的底层类型。  
 更多关于这些类型的信息，请参见同一类型标示索引。
-### Multipeer Connectivity Framework
+### Multipeer Connectivity Framework（多点连接框架）
+MultipeerConnectivity.framework提供了发现附近的设备并且能够无需互联网就能与这些设备通讯的功能。该框架使得生成多个会话更为容易，并且支持安全的有序的数据传输和实时的数据传输。使用这个框架，你的app能够与附近的设备进行无缝的数据交换。  
+该框架提供编码和基于UI的选项来发现和管理网络服务。app可以嵌入MCBrowserViewController类到UI界面展示用户选择的对接的设备列表。同时还可以使用MCNearbyServiceBrowser类来编码查看管理对接设备。  
+更多关于该框架的接口信息，参看MultipeerConnectivity框架索引。
 ### NewsstandKit Framework
 ### PassKit Framework
 ### Quick Look Framework
