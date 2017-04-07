@@ -156,10 +156,10 @@ app能对UIview的对象的制定动态行为进行定制，这些对象必须�
 以下段落对Cocoa Touch层的框架以及提供的服务进行了介绍。
 ### Address Book UI Framework(地址簿UI框架)
 本框架对外暴露OC代码接口，你可以调用它来展示系统界面，并可在展示的界面中新增联系人，编辑和选定已经存在的联系人。本框架简化了从你的app中展示联系人相关信息的大量工作，并且确保了其它app与你的app使用的都是同样的接口，从而保证了平台的一致性。  
-有关如何使用本框架的类和使用方法，请参阅iOS地址簿编程指南，以及iOS地址簿UI框架索引。
+有关如何使用本框架的类和使用方法，请参阅iOS地址簿编程指南，以及iOS地址簿UI框架参考。
 ### EventKit UI Framework(活动事件UI框架)
 活动事件UI框架提供了标准的系统界面展示、编辑日历相关的事件。本框架基于事件相关的数据进行封装的，详情请参阅Event Kit Framework。  
-有关本框架的更多类和方法信息，请参阅活动事件UI框架索引。
+有关本框架的更多类和方法信息，请参阅活动事件UI框架参考。
 ### GameKit Framework(游戏相关框架)
 游戏相关框架实现了对游戏中心的支持，这能够让用户在线分享他们与游戏相关的信息。游戏中心提供了以下功能支持：  
 
@@ -170,20 +170,20 @@ app能对UIview的对象的制定动态行为进行定制，这些对象必须�
 * Challenges（挑战）能够让玩家与另一个好友玩家进行积分或成就的比拼（iOS6及以后更高版本支持）
 * Turn-based gaming，能够生成将状态信息存储在iCloud中的拉锯战。
   
-有关如何使用游戏相关框架，请参阅游戏中心编程指南以及游戏相关框架索引。
+有关如何使用游戏相关框架，请参阅游戏中心编程指南以及游戏相关框架参考。
 ### iAd Framework(广告框架)
 广告框架能够让你实现基于横幅图片展示的广告。广告以标准空间展示，这使得你能够随意的按照你的意愿展示你的用户界面。这些控件与苹果的广告服务器交互，并且已经将处理副文本的广告媒体加载、展示和响应广告的点击等功能封装好以供你调用。  
-想了解更多如何在你的app中使用广告，请参阅广告编程指南以及广告框架索引。
+想了解更多如何在你的app中使用广告，请参阅广告编程指南以及广告框架参考。
 ### MapKit Framework(地图框架)
 地图框架提供了一张能够随意移动的地图，让你能够将其嵌入你app的用户界面。除了提供基本的地图展示功能，你还可以通过框架提供的接口对地图界面以及展示进行定制。你可以使用大头针对感兴趣的位置进行标注，你还可以使用覆盖物点缀地图上的区域。例如，你可以使用覆盖物去绘制公共汽车线路，或者高亮标注附近的商店和宾馆。  
 除了展示地图之外，地图框架与苹果的地图服务器相结合，使得导航更为容易。任何支持导航的app都可以将系统自带的地图app设置为代理。例如地铁线路导航这种提供特殊导航功能的app，可以在使用导航功能前就进行注册。app还可以想苹果的服务器请求步行或驾驶的导航信息，合并到他们自定义的导航信息中，来提供完整的点到点的用户体验。  
-想了解更多地图框架的类，请参阅定位和地图编程指南，以及地图框架索引。
+想了解更多地图框架的类，请参阅定位和地图编程指南，以及地图框架参考。
 ### Message UI Framework(短信UI框架)
 短信UI框架为email和短信服务提供了支持。它由一个模态化展示在你的app中的VC界面构成。你可将邮件接收者、主题、内容以及任意的附件或你想包括在信息当中的内容都展示在这个VC中。当这个VC被展示出来后，用户在发送信息前可以通过该界面对信息进行编辑。  
-想了解更多短信框架的类，请查阅短信UI框架索引。想了解更多如何使用该框架的类，请查阅iOS系统短信编程话题。
+想了解更多短信框架的类，请查阅短信UI框架参考。想了解更多如何使用该框架的类，请查阅iOS系统短信编程话题。
 ### Notification Center Framework(通知中心框架)
 通知中心框架为生成在通知中心中可以浏览的小工具提供了支持。  
-想了解更多如何生成通知中心小工具的相关信息，请查阅app扩展编程指南以及通知中心框架索引。
+想了解更多如何生成通知中心小工具的相关信息，请查阅app扩展编程指南以及通知中心框架参考。
 ### PushKit Framework(推送框架)
 PushKit为网络电话的app提供了注册支持。该框架替换了早期的网络电话app。想了解更多该框架的接口信息。与以往长链接造成的增加用户设备电量流失不同，当有电话接入时，你的app可以使用本框架来接收推送信息。请查阅该框架的头文件。
 ### Twitter Framework（社交分享框架）
@@ -233,7 +233,7 @@ UI基础框架提供了重要的基础框架来实现iOS设备上图文事件驱
 
 | 技术名称  | 描述 |
 |:------------- |:---------------:|
-| UIKit graphics |UIKit定义了高层级的API以供支持图片的绘制以及贝塞尔曲线和view的动画的展现。此外，还提供了实现绘图的支持，UIKit中的view控件提供了一种快速有效的方式来渲染图片和基于文字的内容。view还可以支持动画，直接使用UIKit动力学框架可以提供更好的交互和反馈效果。 想查看更多UIKit框架相关信息，请参看UIKit框架索引。|
+| UIKit graphics |UIKit定义了高层级的API以供支持图片的绘制以及贝塞尔曲线和view的动画的展现。此外，还提供了实现绘图的支持，UIKit中的view控件提供了一种快速有效的方式来渲染图片和基于文字的内容。view还可以支持动画，直接使用UIKit动力学框架可以提供更好的交互和反馈效果。 想查看更多UIKit框架相关信息，请参看UIKit框架参考。|
 | Core Graphics framework |Core Graphics (又名Quartz)是为iOS app提供主要绘图渲染的引擎，并且提供了定制的2D矢量图和基于图片渲染的支持。尽管性能不及OpenGL ES渲染的更为迅速，该框架更为适合你用来渲染定制的2D图形和动态图片。想查阅更多信息，请参阅Core Graphics框架|
 | Core Animation |Core Animation (Quartz Core框架的一部分)是优化你的app动画体验的基础技术。UIKit中的view使用Core Animation提供view层级的动画支持。当你想要更好的控制动画的行为时，你可以直接使用Core Animation。想查看更多信息，请查阅Quartz Core框架 |
 | Core Image |Core Image对于操纵视频以及存储图片用一种更无损的方式提供更高级的支持|
@@ -304,7 +304,7 @@ iOS还提供以下额外选项支持使用Airplay传送数据：
 以下段落对媒体层和它们提供的服务进行了阐述。  
 ### Assets Library Framework (资源库框架)
 AssetsLibrary.framework提供了由用户设备上照片app管理的音视频接口。使用该框架可以访问用户保存的图片集或任何倒入设备的专辑。你还可以保存新的音视频到用户的图片库中。  
-想查看更多的关于该框架的类和方法，请查阅资源库框架索引。
+想查看更多的关于该框架的类和方法，请查阅资源库框架参考。
 ### AV Foundation Framework
 AVFoundation.framework提供了OC封装的接口，可以用来播放、录制和管理音视频内容。使用该框架可以将多媒体功能无缝的介入你的app界面中。你还可以使用该框架对媒体更好的控制。例如，你可以使用该框架播放多条音频，或者控制回放和录音过程的多个方面。  
 该框架提供的服务包含以下方面：  
@@ -321,7 +321,7 @@ AVFoundation.framework提供了OC封装的接口，可以用来播放、录制�
 * OC封装的接口展示声音文件的属性细节，例如数据格式类型，采样率，以及信道个数
 * 通过Airplay传递的流媒体
 
-想了解更多有关AV Foundation的信息，请参见AV Foundation编程指南。有关AV Foundation框架的类文件，请参见AV Foundation框架索引。
+想了解更多有关AV Foundation的信息，请参见AV Foundation编程指南。有关AV Foundation框架的类文件，请参见AV Foundation框架参考。
 
 ### AVKit Framework
 AVKit.framework利用AV Foundation框架中的对象来管理设备上视频的展示效果。当你想展示视频内容时，你可以将其当作Media Player库的替代品。  
@@ -332,10 +332,10 @@ Core Audio是一组框架的集合（列表2－4），它提供了对音频的�
 
 | 框架名称  | 提供的服务 |
 |:------------- |:---------------:|
-| CoreAudio.framework | 通过CoreAudio定义音频数据类型。了解更多信息请查阅CoreAudio框架索引 |
-| AudioToolbox.framework | 为音频文件和音频流提供回放以及录制服务。该框架还提供管理音频文件，播放系统警告声音以及触发某些设备的震动等功能。更多信息请参见AudioToolbox框架索引。 |
-| AudioUnit.framework | 为使用内置的音频单元提供服务，即音频处理模块。该框架还提供将你的音频以组件的形式显示给可见的其它app。更多信息请参阅AudioUnit框架索引。 |
-| CoreMIDI.framework | 提供一种标准的方式与MIDI设备交互，包括键盘和合成器。你可以使用该框架发送或接收MIDI信息，或者与周边的MIDI设备通过基于iOS的设备使用dock转接头或网络进行沟通。更多信息请参见CoreMIDI框架索引。 |
+| CoreAudio.framework | 通过CoreAudio定义音频数据类型。了解更多信息请查阅CoreAudio框架参考 |
+| AudioToolbox.framework | 为音频文件和音频流提供回放以及录制服务。该框架还提供管理音频文件，播放系统警告声音以及触发某些设备的震动等功能。更多信息请参见AudioToolbox框架参考。 |
+| AudioUnit.framework | 为使用内置的音频单元提供服务，即音频处理模块。该框架还提供将你的音频以组件的形式显示给可见的其它app。更多信息请参阅AudioUnit框架参考。 |
+| CoreMIDI.framework | 提供一种标准的方式与MIDI设备交互，包括键盘和合成器。你可以使用该框架发送或接收MIDI信息，或者与周边的MIDI设备通过基于iOS的设备使用dock转接头或网络进行沟通。更多信息请参见CoreMIDI框架参考。 |
 | MediaToolbox.framework | 提供audio tap相关接口 |
 
 想了解更多关于Core Audio的信息，请参看Core Audio概览。想了解如何使用Audio Toolbox 框架播放音频，请参看Audio Queue Services编程指南。
@@ -345,13 +345,13 @@ CoreAudioKit.framework提供了标准的view来管理app之间共享的的音频
 更多框架中的接口相关信息请参阅框架中的头文件。
 ### Core Graphics Framework
 CoreGraphics.framework包含了Quartz 2D绘制的API接口。Quartz是OS X上一个高级的基于矢量绘制的引擎。它支持基于路径的绘制，抗锯齿渲染，渐变的，图片类型的，颜色类型的，坐标系转换以及PDF生成，展示和解析。尽管接口是C语言的，但是它经过基于对象的封装来展示呈现基本的绘制对象，使得存储和重用你的图形内容更为容易。  
-更多如何使用Quartz来绘制内容的信息请查阅Quartz 2D编程指南以及Core Graphics框架索引。
+更多如何使用Quartz来绘制内容的信息请查阅Quartz 2D编程指南以及Core Graphics框架参考。
 ### Core Image Framework
 CoreImage.framework提供了一组强大功能的嵌入式滤镜，用来操作视频以及静态图片。你可以使用这套嵌入式的滤镜来润色或修正脸部图片、特写以及二维码扫描。这套滤镜的优势是它们以一种无损的方式操作，而不是直接操作你的原图，这使得原图毫无改变。这是因为这套滤镜是基于底层硬件优化的，这样更快并且有效率。  
 更多有关滤镜的类和信息请参见Core Image框架。
 ### Core Text Framework
 CoreText.framework提供了一套简单但是高性能的基于C封装的接口，你可以用它来对文字进行布局以及控制字体。那些不想使用TextKit但又相对文字处理能力要求很高的app可以使用这个框架。这套框架提供了一套复杂的文字布局引擎，包括文字环绕能力。它还支持高级的使用多种字体和渲染属性的文字样式。  
-更多有关CoreText接口的信息，清参阅CoreText编程指南以及CoreText索引集合。
+更多有关CoreText接口的信息，清参阅CoreText编程指南以及CoreText参考集合。
 ### Core Video Framework
 CoreVideo.framework提供了缓冲以及缓冲池来支持Core Media框架（Core Media框架中提及）。大部分的app都不用直接使用这个库。
 ### Game Controller Framework
@@ -365,11 +365,11 @@ GLKit.framework包含了一套基于OC的实用工具类，它大大简化了生
 * GLKit框架提供矢量、矩阵以及四元体的实现，和矩阵的堆栈操作一样，提供相同的函数功能在OpenGL ES 1.1中。
 * GLKBaseEffect, GLKSkyboxEffect和GLKReflectionMapEffect提供了已经存在的，可配置的图片着色器，它实现了通用的图片操作。特别是GLKBaseEffect类实现了OpenGL ES 1.1标准中提到的高亮和材料模型功能，大大简化了从 OpenGL ES 1.1迁移到 OpenGL ES新版本的工作量。
 
-更多GLKit相关信息，请参阅GLKit框架索引。
+更多GLKit相关信息，请参阅GLKit框架参考。
 
 ### Image I/O Framework
 ImageIO.framework提供了导入导出图片数据以及图片元数据的接口。该框架利用了所有在iOS中的 Core Graphics数据类型和函数，以及所有可用的标准图片类型。你还可以使用这个框架访问图片的Exif和IPTC等元数据属性。   
-更多关于该框架的函数和数据类型信息，请参见 Image I/O索引集合。
+更多关于该框架的函数和数据类型信息，请参见 Image I/O参考集合。
 ### Media Accessibility Framework
 MediaAccessibility.framework管理着你的媒体文件中的隐藏字幕的内容展示。该框架与设置共同管理着字幕的隐藏与显示工作。  
 更多关于MediaAccessibility内容的信息，请参见该框架的头文件。
@@ -382,32 +382,32 @@ MediaPlayer.framework为你的app播放音视频内容提供了高层级的支�
 * 显示正在播放的影片的信息到锁定屏幕上以及展示app切换界面。当内容通过AirPlay传输时，你还可以展示这些信息到Apple TV上。
 * 检测视频内容已经通过AirPlay传输的状态。
 
-更多MediaPlayer类的信息，请参见MediaPlayer框架索引，更多如何使用这些类来访问用户的iTunes媒体库，请参见iPod媒体库访问编程指南。
+更多MediaPlayer类的信息，请参见MediaPlayer框架参考，更多如何使用这些类来访问用户的iTunes媒体库，请参见iPod媒体库访问编程指南。
 ### Metal Framework
 Metal通过A7 GPU卓越的高性能提供了极低开销但极高渲染和计算能力。Metal消除了很多的性能瓶颈，例如消耗巨大的状态确认，这在传统的图形API中是开销很大的。Metal旨在将高开销的状态转换以及编译操作与高消耗的敏感的关键路径计算渲染代码分离开。Metal提供了预编译着色，状态对象，以及明确的命令调度来确保你的app为GPU图片和计算任务提供最大的功效。这一设计原则延伸至过去你用来构建你的app所使用的工具上。当你的app构建时，Xcode将工程中的Metal着色对象编译至一个默认的库中，以减少这些着色对象在运行时的开销。  
 制图、计算以及位传递命令被有效的无缝的结合起来工作。Metal被特别设计用来开发构建现代的架构，例如多任务处理、共享内存等，将这些与GPU的命令生成并行。  
 使用Metal，你将会得到流式的API、统一的绘图和计算纹理的语言，以及基于Xcode的工具，所以你无需学习更多的框架、语言以及工具就能最大限度的为你的app或者游戏利用GPU。  
-更多关于如何使用Metal，请参见Metal编程指南，Metal框架索引，以及Metal纹理语言指南。
+更多关于如何使用Metal，请参见Metal编程指南，Metal框架参考，以及Metal纹理语言指南。
 ### OpenAL Framework
 开源音频资源库（简称OpenAL）接口是一组跨平台的标准交付音频接口。你可以使用该框架在需要定位音频输出的游戏或者其他程序中实现高性能、高质量的音频。由于OpenAL是一套跨平台的标准，你使用OpenAL在iOS上所编写的代码模块可以很容易的一知道其他平台上。  
 更多有关OpenAL的信息，包括如何使用，请参见：http://www.openal.org
 ### OpenGL ES Framework
 OpenGLES.framework提供接口来绘制2D和3D内容。这是一套基于C的框架，它与底层设备硬件合作，提供细颗粒度的图片控制以及高帧率的全屏幕沉浸式体验，例如游戏类app。你可以将OpenGL ES框架与EAGL接口结合使用，这在OpenGL ES 绘制回调和UIKit的窗口对象中提供接口。  
 该框架支持OpenGL ES 1.1，2.0和3.0版本。规范2.0版本添加了碎片化和顶点着色功能，规范3.0版本添加了更多的功能，包括多重目标渲染以及转换反馈。  
-更多如何在你的app中使用OpenGL ES，参见OpenGL ES编程指南。有关参考信息，请参见OpenGL ES 框架索引。
+更多如何在你的app中使用OpenGL ES，参见OpenGL ES编程指南。有关参考信息，请参见OpenGL ES 框架参考。
 ### Photos Framework
 Photos.framework提供了一组新的API与照片和视频库进行交互，包括iCloud图片库，这些都是由“照片”app管理的。这个框架是替代资源库框架的更好的选择。核心功能包括线程安全的加载和缓存缩略图和全尺寸图片的架构，请求更改资源库，检测被其他app变更的资源项，以及恢复资源库的编辑内容等功能。  
-更多有关该框架接口等相关信息，请查看Photos框架索引。
+更多有关该框架接口等相关信息，请查看Photos框架参考。
 ### Photos UI Framework
 PhotosUI.framework让你能够在照片app中生成app扩展来编辑图片和视频资源。更多信息关于如何生成图片编辑扩展，请参阅app扩展编程指南。
 ### Quartz Core Framework
 QuartzCore.framework包含了Core Animation的相关接口。Core Animation是一套高级影像合成技术，它使得生成基于view的动画这个过程变得高速且有效。影像合成引擎利用底层的硬件高效且实时的操纵你的view的内容。你只需要指定动画开始和结束的两个时间点，其他的由Core Animation去做就好了。由于Core Animation是嵌入到UIView的底层架构中的，所以它是一直可用的。  
-更多如何在你的app中使用Core Animation的相关信息，请查看Core Animation编程指南以及Core Animation索引集合。
+更多如何在你的app中使用Core Animation的相关信息，请查看Core Animation编程指南以及Core Animation参考集合。
 ### SceneKit Framework
 SceneKit是一套OC的框架，使用它能够构建简单的游戏以及使用3D效果丰富app的用户界面，这是一套结合了高性能渲染的引擎以及高层级的描述性的API。SceneKit在OS X 10.8版本上可用，现在在iOS上首次可用。底层的API（例如OpenGL ES）需要你去实现一套渲染算法，并且以一种严格的细节来展示一个场景。相比之下，SceneKit让你基于内容描述你的场景，通过几何结构、材料、彩光、摄像头等对象改变的描述来使得场景更为鲜活。  
 SceneKit的3D物理引擎使用模拟重力、压力、刚性碰撞、连接等功能使得你的app或游戏更为鲜活。也使得添加以下高等行为更为容易，例如在场景中添加一辆汽车，或者为在一个场景中的对象添加支持半径重力的物理区域，电磁场或者干扰因素。  
 使用OpenGL ES为一个场景添加一个额外的渲染内容，或者提供光影反射来替代或者增加SceneKit的渲染。你也可以添加基于着色的加工技术到SceneKit的渲染中，例如颜色分级或者屏幕区域的环境遮蔽。  
-更多关于该框架的接口，请参见SceneKit框架索引。
+更多关于该框架的接口，请参见SceneKit框架参考。
 ### SpriteKit Framework
 SpriteKit.framework为2D和2.5D的游戏提供了硬件加速动画。SpriteKit为大部分游戏提供了基础功能，包括图片渲染，动画系统，声音回放支持，物理模拟引擎。使用SpriteKit将你从自己创建事物中解放出来，并且让你能够将精力集中在设计你的内容以及高水平的交互上。  
 在SpriteKit开发的app中，内容是被组织称为场景的。场景会包括有纹路的对象、视频、基于路径的形状，核心图片过滤，以及其他特殊效果。SpriteKit将持有这些对象，并且决定如何以最高效的方式将其渲染到屏幕上。当到了你的场景动画渲染时间时，你可以使用SpriteKit指定显示的你想表达的内容或者使用物理模拟引擎来为你的对象定义物理行为（例如重力，引力，排斥等）。
@@ -419,7 +419,7 @@ SpriteKit.framework为2D和2.5D的游戏提供了硬件加速动画。SpriteKit�
 以下段落介绍了一些核心服务层可用的高级功能。
 ### Peer-to-Peer Services (P2P服务)
 多点链接框架通过蓝牙技术提供了P2P的连通。你可以使用P2P连接技术实现与近场设备进行通信会话。尽管P2P连接一般用在游戏中，你依旧可以将这一功能用在其他类型的app中。  
-更多关于如何在你的app中使用P2P连接功能，请参见多点链接框架索引。
+更多关于如何在你的app中使用P2P连接功能，请参见多点链接框架参考。
 ### iCloud Storage （iCloud存储）
 iCloud存储技术能够让你app在一个集中的地方写入用户的数据和文档。用户能够通过他们的电脑或者iOS设备访问这些数据。使用iCloud能够让用户的文档无所不在，这意味着用户能够从任何他们的设备访问或者编辑这些文档，而无需同步或者传输这些文件。在用户的iCloud账户中保存文档还为用户提供了更多一层保护。即使用户丢了一台设备，只要文档在iCloud中存储了文档，那么这些文档就不会丢失。  
 有两种方法能够使用iCloud存储，每一种都有不同的使用方式：  
@@ -457,11 +457,11 @@ Block对象是一套C语言的数据结构，你可以将它并入你的C或OC�
 * 用户可以添加文件到这个目录或者移动文件到桌面上。
 
 当有文件添加到Documents目录下时，支持分享功能的app应该能够识别到，并且在适当的时机反馈。例如，你的app应该在界面上展示任何新添加的可用文件。永远不要在这个目录下给用户列出一堆文件，然后让他们决定应该怎么处理这些文件。  
-更多关于UIFileSharingEnabled这个key的信息，请参见属性key列表信息相关索引。
+更多关于UIFileSharingEnabled这个key的信息，请参见属性key列表信息相关参考。
 
 ### Grand Central Dispatch (GCD)
 GCD是一套BSD级别的技术，你可以用它来管理你app中的任务执行。GCD提供了一套异步的编程模型，它高度优化了CPU核心，提供了简洁高效的支持，你可以用它来替代线程管理。GCD同样为很多底层的任务提供了简洁的替代品，例如读写文件操作符，实现timer，以及检测信号量和过程事件。  
-更多关于如何在app中使用GCD，参见并发编程指南。更多关于GCD函数的使用，参见GCD索引。
+更多关于如何在app中使用GCD，参见并发编程指南。更多关于GCD函数的使用，参见GCD参考。
 ### In-App Purchase (应用内支付)
 应用内支付功能让你能够在你的app中出售特定的内容和服务，或者iTunes内容。这个功能应使用StoreKit框架实现，该框架能够让你通过用户的iTunes账户来发生金融相关的交易。你的app应处理所有交易的用户体验和服务展现内容。对于可下载的内容，你可以自己设置主机管理，或者由Apple来为你提供服务。  
 对于支持应用内支付的相关信息，请查看应用内支付编程指南。关于StoreKit的额外信息，请参见StoreKit框架。
@@ -475,16 +475,16 @@ Foundation框架提供了NSXMLParser类来检索XML文档中的元素。并且�
 以下章节描述了核心服务层以及它提供的服务。
 ### Accounts Framework (账户)
 Accounts.framework为用户提供了一个单点登录的模型。单点登录提升了用户体验，它减少了用户多个账户的必要性。并且它为你简化了开发模型，你可以用它来管理账户的授权过程。你可以与社交框架一起使用这个框架。  
-更多关于Accounts框架的信息，请参见Accounts框架索引。
+更多关于Accounts框架的信息，请参见Accounts框架参考。
 ### Address Book Framework （地址簿)
 AddressBook.framework为程序提供了访问用户通讯录数据库的权限。如果你的app使用到了联系人相关的信息的话，你可以使用这个框架来访问和修改相关信息。例如，一个聊天类的app可能用这个框架来检索可能的联系人列表，并且生成一个聊天对话，然后把这些联系人展示在一个自定义的界面上。  
 > 重要：访问用户的通讯录数据需要显示的向用户索取允许权限。因此app必须对于用户拒绝访问时有所准备。app最好在Info.plist文件中阐述为何需要访问通讯录的原因。  
 
-更多关于地址簿框架的函数信息，请参见地址簿框架索引。
+更多关于地址簿框架的函数信息，请参见地址簿框架参考。
 
 ### Ad Support Framework （广告）
 AdSupport.framework框架提供一个有广告需求的app使用的标识。该框架还会为用户是否退出了广告追踪提供一个标记。app需要在访问广告标识之前读取这个标记。  
-更多关于该框架的信息，请查看AdSupport框架索引。
+更多关于该框架的信息，请查看AdSupport框架参考。
 ### CFNetwork Framework
 CFNetwork.framework是一套高性能的使用面向对象抽象的基于C语言的接口，使用它来与网络协议交互。这些抽象让你能够通过协议栈来控制，并且使得使用底层的结构（例如BSD sockets）更为简单。你可以使用该框架简化各种操作，例如鱼FTP和HTTP服务器的交互，或者解决DNS主机方案。使用CFNetwork框架，你可以：  
 
@@ -495,12 +495,12 @@ CFNetwork.framework是一套高性能的使用面向对象抽象的基于C语言
 * 与FTP服务器交互
 * 发布、解决、浏览Bonjour服务
 
-CFNetwork无论从理论还是物理上都是基于BSD sockets的。更多关于如何使用CFNetwork的信息，请查看CFNetwork编程指南以及CFNetwork框架索引。
+CFNetwork无论从理论还是物理上都是基于BSD sockets的。更多关于如何使用CFNetwork的信息，请查看CFNetwork编程指南以及CFNetwork框架参考。
 
 ### CloudKit Framework
 CloudKit.framework为你的app和iCloud之间传输数据提供了支持。不像iCloud技术传输数据那么明显，CloudKit在传输发生的时候给予你控制权。你可以使用CloudKit管理所有数据类型。  
 使用CloudKit的app能够直接将用户分享的数据存储到仓库中。这个公共的仓库是与app本身捆绑的，即使设备没有已经注册的iCloud账户都是可用的。作为app的开发者，你可以直接从这个容器中管理数据，并且能够从CloudKit提供的操作界面中看到所有用户做出的修改。  
-更多关于该框架的类的信息，请查看CloudKit框架索引。
+更多关于该框架的类的信息，请查看CloudKit框架参考。
 ### Core Data Framework
 CoreData.framework是一套管理MVC类app的数据模型的技术。Core Data用在那些数据模型已经高度结构化的app中的。你无需编码定义数据结构，使用Xcode中的图形界面工具就可以构建展现你的数据模型。在运行时，你的数据模型的实力对象会被创建、管理并且通过Core Data变得可用。  
 通过为你管理你的app的数据模型，Core Data大大减少了你的app的代码量。Core Data还提供以下功能：  
@@ -512,7 +512,7 @@ CoreData.framework是一套管理MVC类app的数据模型的技术。Core Data�
 * 支持增量变化以及确保对象之间的固有关系
 * 支持在内存中分组、筛选和管理数据
 
-如果你打算开发一款新的app或者打算为一个已经存在的app提供重大升级的话，你应该考虑使用Core Data。关于在iOS app中使用Core Data的示例，请查看iOS Core Data指导。更多关于Core Data类的相关信息，请查看Core Data框架索引。
+如果你打算开发一款新的app或者打算为一个已经存在的app提供重大升级的话，你应该考虑使用Core Data。关于在iOS app中使用Core Data的示例，请查看iOS Core Data指导。更多关于Core Data类的相关信息，请查看Core Data框架参考。
 
 ### Core Foundation Framework
 CoreFoundation.framework是一套基于C的接口，它为iOS app提供了基本数据管理和服务的功能。该框架包含以下支持：  
@@ -528,7 +528,7 @@ CoreFoundation.framework是一套基于C的接口，它为iOS app提供了基本
 * 端口和socket交互
 
 Core Foundation框架与Foundation框架紧密相关，后者提供了相同基本功能的OC封装接口。当你需要混合Core Foundation类型和Foundation对象时，你可以使用在两个框架之间存在的"toll-free bridging(桥接)"技术。桥接意味着你可以在这两个框架的方法或函数中交换数据类型。桥接支持多种数据类型，包括集合和字符串数据类型。如果有对象关联的话，不论哪个框架的类和类型描述都能桥接。  
-更多关于该框架的信息，请参见Core Foundation框架索引。
+更多关于该框架的信息，请参见Core Foundation框架参考。
 
 ### Core Location Framework
 CoreLocation.framework为app提供定位和标题信息。对于定位信息，该框架利用车载GPS、移动网络或者Wi-Fi收音机查询到用户当前的经纬度。你可以将这个技术应用到你的app中，为用户提供基于位置的信息。例如，你可以提供一项查询附近宾馆、商店或者运输设施的服务，基于用户当前的位置。Core Location还提供以下功能：  
@@ -538,16 +538,16 @@ CoreLocation.framework为app提供定位和标题信息。对于定位信息，�
 * 使用移动信号塔提供低功耗的位置监控服务
 * 结合MapKit框架提升特殊情况下定位数据的质量，例如在开车过程中
 
-更多关于使用Core Location收集位置信息以及标题信息的相关信息请参见定位和地图编程指南以及Core Location框架索引。
+更多关于使用Core Location收集位置信息以及标题信息的相关信息请参见定位和地图编程指南以及Core Location框架参考。
 ### Core Media Framework
 CoreMedia.framework通过AV Foundation框架提供了底层的媒体类型。大部分app无须使用这个框架，对于那些需要对音视频内容的创建和展示需要进行精准控制的开发者提供支持。  
-更多关于该框架的函数和数据类型，请参见CoreMedia框架索引。
+更多关于该框架的函数和数据类型，请参见CoreMedia框架参考。
 ### Core Motion Framework
 CoreMotion.framework提供了一批接口来访问所有设备上基于运动的数据。该框架对于原始数据还是经过处理的加速器相关数据都使用一套基于block的接口来支持。对于内嵌陀螺仪的设备，你可以像处理那些经过处理的数据反射属性和自转速率数据来处理原始陀螺仪数据。你可以使用加速计和基于陀螺仪等数据嵌入到你的app的运动数据中以此来提升用户体验。对于带有计步器的硬件，你可以访问那些数据并且追踪健身相关的运动。  
-更多关于该框架的类和方法相关信息，参见Core Motion框架索引。
+更多关于该框架的类和方法相关信息，参见Core Motion框架参考。
 ### Core Telephony Framework
 CoreTelephony.framework提供接口与移动式蜂窝设备的基于电话的信息进行交互。app可以使用这个框架查询有关用户移动服务提供商的相关信息。对于网络电话相关的app，例如VoIP类的app，也可以注册相关监听信息来检测相关信息。  
-更多关于如何使用该框架类和方法的信息，请参见CoreTelephony框架索引。
+更多关于如何使用该框架类和方法的信息，请参见CoreTelephony框架参考。
 ### EventKit Framework
 EventKit.framework提供接口来访问用户设备上的日历事件。你可以使用该框架做以下事情：  
 
@@ -558,7 +558,7 @@ EventKit.framework提供接口来访问用户设备上的日历事件。你可�
 
 `重要：访问用户的日历和提醒事项需要提前向用户申请。所以app必须要做好用户不同意该权限的准备。我们也建议在Info.plist中添加说明你为什么需要该权限。`
 
-更多关于如何使用该框架类和方法的信息，请参见EventKit框架索引以及EventKit UI框架。
+更多关于如何使用该框架类和方法的信息，请参见EventKit框架参考以及EventKit UI框架。
 
 ### Foundation Framework
 Foundation.framework提供了诸多在Core Foundation框架中的功能的OC封装，这在Core Foundation框架中有所阐述。Foundation提供了如下功能：  
@@ -577,56 +577,58 @@ Foundation.framework提供了诸多在Core Foundation框架中的功能的OC封�
 * 正则表达式
 * 缓存支持
 
-更多关于该框架类的信息，参见Foundation框架索引。
+更多关于该框架类的信息，参见Foundation框架参考。
 
 ### HealthKit Framework
 HealthKit.framework是一套管理用户健康相关信息的全新框架。随着app数量的增加，设备对于健康和运动相关信息的追踪，很难为用户呈现他们正在做的事情。HealthKit框架使得app分享健康相关的数据更为容易，不论该数据是从连接到iOS设备的其他设备上传输过来还是用户自己输入的。用户的健康信息存储在一个集中且安全的区域。用户可以在健康app中看到这些数据。  
 若你的app实现了对于HealthKit的支持，它将会为用户访问健康相关的信息，并将这些关于用户的信息提供给用户，而无需对特定的运动设备的追踪实现支持。用户将会决定哪些数据应该从你的app中分享。一旦数据被从你的app中分享了，你的app就可以注册数据变更相关的监听；当你的app被通知到时，你将会有很细粒度的控制权。例如，你可以要求当用户检测到血压的时候通知你的app，或者仅当用户的血压达到一个特殊的值时才通知你的app。  
-更多关于该框架接口的信息，参见HealthKit框架索引。
+更多关于该框架接口的信息，参见HealthKit框架参考。
 ### HomeKit Framework
 HomeKit.framework是一套全新的框架，用它可以与用户家中的设备进行交互和控制。新的设备将会被介绍给家庭，提供更好的连接性以及更好的用户体验。HomeKit提供了一套标注的方式与那些设备进行交互。  
 你的app可以使用HomeKit和用户家中的设备进行交互。使用你的app，用户可以发现他们家中的设备并且对其进行配置。他们还可以生成行为来控制那些设备。用户可以通过Siri组织行为和激活它。一旦配置生成，用户可以邀请其他的用户分享使用该设备。例如，用户可能会临时邀请一位客人访问。  
 使用HomeKit配件模拟器来测试你的HomeKitapp和设备之间的联系。  
-更多关于该框架接口的信息，参见HomeKit框架索引。
+更多关于该框架接口的信息，参见HomeKit框架参考。
 ### JavaScript Core Framework
 JavaScriptCore.framework为很多标准的JS对象提供了一套OC包装的类。使用这个框架来评估JS代码以及解析JSON数据。  
 更多该框架的类的信息，请参看该框架的头文件。
 ### Mobile Core Services Framework
 MobileCoreServices.framework定义了一套在同一类型标示中使用的底层类型。  
-更多关于这些类型的信息，请参见同一类型标示索引。
+更多关于这些类型的信息，请参见同一类型标示参考。
 ### Multipeer Connectivity Framework（多点连接框架）
 MultipeerConnectivity.framework提供了发现附近的设备并且能够无需互联网就能与这些设备通讯的功能。该框架使得生成多个会话更为容易，并且支持安全的有序的数据传输和实时的数据传输。使用这个框架，你的app能够与附近的设备进行无缝的数据交换。  
 该框架提供编码和基于UI的选项来发现和管理网络服务。app可以嵌入MCBrowserViewController类到UI界面展示用户选择的对接的设备列表。同时还可以使用MCNearbyServiceBrowser类来编码查看管理对接设备。  
-更多关于该框架的接口信息，参看MultipeerConnectivity框架索引。
+更多关于该框架的接口信息，参看MultipeerConnectivity框架参考。
 ### NewsstandKit Framework（报刊框架）
 报刊app提供了一个集中的地方让用户浏览杂志和报纸。希望发表杂志和报纸的出版商可以通过报刊框架来生成他们自己的iOS app，这让你能够在后台生成新的杂志和报纸的下载。当你开始下载之后，系统会管理下载的进程，并且在下载完成后通知你的app。  
-更多关于如何使用报刊框架来管理下载的相关内容，参见NewsstandKit框架索引。更多关于如何推送信息导你的app，参见本地和远程通知编程指南。
+更多关于如何使用报刊框架来管理下载的相关内容，参见NewsstandKit框架参考。更多关于如何推送信息导你的app，参见本地和远程通知编程指南。
 ### PassKit Framework （钱包框架）
 Passbook app为用户提供了一个存储优惠券、登记证、票据以及银行卡的地方。用户无需将物理的上述物品放置在此，只需将他们的电子版本存储在iOS设备中就能像以往那样使用了。PassKit.framework为你的app提供了OC的接口来整合这些项目。你可以使用该框架结合网络接口以及文件格式信息来生成和管理你的公司为你提供的执照。  
 由你的公司通过网络服务器生成的这些执照将通过邮件、Safari浏览器或者你自己的app传送给用户的设备。对于执照本身，将会使用一种特殊的文件格式，在传输之前经过加密。文件格式ID相关信息已经由服务器提供，所以用户知晓该项服务是做什么的。很有可能还会包含一个二维码或者其他的你可以用来验证银行卡的找回或使用的相关信息。  
 更多关于PassKit的相关信息以及如何将其添加进你的app，参见钱包开发者指南。
 ### Quick Look Framework（预览框架）
 QuickLook.framework提供了一个直观的界面来预览那些你的app可能不支持的格式的文件内容。该框架是为那些从网上下载文件的app或从未知源得到的文件准备的。获取到文件后，你就可以在你的用户界面中使用该框架提供的VC来直接展示该文件的内容了。  
-更多关于该框架类和方法的相关信息，参见iOS预览框架索引。
+更多关于该框架类和方法的相关信息，参见iOS预览框架参考。
 ### Safari Services Framework
 SafariServices.framework为以编程方式添加URL到用户的Safari阅读列表这一功能提供了支持。更多关于这个框架的类的信息，请参见该框架头文件。
 ### Social Framework (社交媒体框架)
 Social.framework提供了一个简单的界面来访问用户的社交媒体账户。该框架替代了Twitter框架，添加了更多的社交媒体账户支持，包括Facebook，新浪微博以及其他的账户。app可以使用这个框架来上传状态更新以及图片到用户的账户中。该框架与账户框架协作，为用户提供了一个单点登录模型，并且确保访问用户的账户是经过验证的。  
-更多关于社交媒体框架的相关信息，参见社交媒体框架索引。
+更多关于社交媒体框架的相关信息，参见社交媒体框架参考。
 ### StoreKit Framework
 StoreKit.framework为在你的iOS app中采购内容和服务提供支持，这被称作应用内支付。例如，你可以使用这一功能，让用户解锁一些额外的app功能。如果你是个游戏开发者的话，你可以使用它来提供额外的游戏等级。在各种情况下，StoreKit都会管理关于金融交易的各个方面，处理支付的请求需要通过用户的iTunes Store账户，并且会提供给你的app有关支付的相关信息。
 StoreKit关注金融交易的方方面面，确保该项交易安全可靠的发生。你的app需要处理除了金融交易的方面，包括展示支付界面、下载（或解锁）适当的内容。这种分工给予了你对于交易界面用户体验的控制权。你决定何时何地展示什么交易内容给用户。你还要决定以何种方式传输才是对于你的app最佳。  
-更多关于如何使用StoreKit框架的信息，参见应用内支付编程指南以及StoreKit框架索引。
+更多关于如何使用StoreKit框架的信息，参见应用内支付编程指南以及StoreKit框架参考。
 ### System Configuration Framework
 SystemConfiguration.framework提供了一套可达性的接口，你可以使用它来判断一台设备的网络配置。你还可以使用它来判断是Wi-Fi还是蜂窝网络连接在使用，并且判断一个特定的主机服务器能否被访问。    
-更多关于该框架的信息，请参见SystemConfiguration框架索引。关于如何使用这个框架去获取网络信息，请查看Reachability这个示例工程的代码。
+更多关于该框架的信息，请参见SystemConfiguration框架参考。关于如何使用这个框架去获取网络信息，请查看Reachability这个示例工程的代码。
 ### WebKit Framework
 WebKit.framework让你能够在你的app中显示HTML内容。除了显示HTML外，你还可以提供基本的编辑支持，这样用户就能够替换文本以及操作文档内容以及属性，包括CSS属性。WebKit同样支持在一个HTML文档中生成和编辑DOM层的内容。例如，你可以提取一篇文章中的链接，修改它们，在它们显示到一个web view的文档中之前替换它们。  
-更多关于这个框架的接口信息，请参见WebKit接口索引。
+更多关于这个框架的接口信息，请参见WebKit接口参考。
 
 # Core OS Layer（核心系统层）
 核心服务层包含了其他大部分技术所依赖的底层功能。即使你不会直接使用到这些技术在你的app中，大部分的框架都会使用到这些技术。当你需要与安全或者与硬件配件进行交互时，你应该使用这一层框架。
 ## Accelerate Framework (加速器框架)
+Accelerate.framework包含接口来执行数字信号处理、线性代数以及图片计算处理。你可以通过重写你自己版本的该框架的接口来实现优化展现在iOS设备上的所有硬件配置。所以一旦你重写了，你要保证你的代码在所有设备上都能良好运行。  
+更多关于加速器框架的相关函数信息，参见加速器框架参考。
 ## Core Bluetooth Framework (核心蓝牙模块)
 ## External Accessory Framework （外部配件模块）
 ## Generic Security Services Framework （通用安全服务模块）
