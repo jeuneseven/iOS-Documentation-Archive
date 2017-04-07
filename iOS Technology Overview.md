@@ -635,6 +635,8 @@ CoreBluetooth.framework
 ExternalAccessory.framework对与iOS设备的硬件附件进行通讯提供了支持。附件可以通过30针的连接坞或者使用蓝牙无线连接。ExternalAccessory.framework提供了获取所有可用附件的信息的渠道以及创建会话的功能。连接后，你就可以自由的使用该配件支持的命令直接操作附件了。  
 更多关于如何使用该框架的信息，参见外部配件编程话题，关于开发基于iOS设备的配件，请查看苹果开发者网站。
 ## Generic Security Services Framework （通用安全服务模块）
+GSS.framework为iOS app提供了一套安全相关的服务。一些基础接口在IETF RFC 2743 和 RFC 4401有详细阐述。此外，还提供了标准接口，iOS包含额外的管理证书能力，虽然这并不标准，但这在很多app上都有需求。  
+更多关于GSS.framework相关信息，参见头文件。
 ## Local Authentication Framework (本地鉴定模块)
 LocalAuthentication.framework让你能够通过Touch ID来验证用户。有些app需要安全的访问它们所有的内容，有些其他的app需要安全的访问特定区域或者选定区域。不论哪种情况，你都可以要求用户在开始使用前进行验证。使用该框架会展示一个带有app特定原因的警告框给用户，警告框中会展示为什么用户需要验证。当你的app得到回应后，用户成功验证后你就可以做出反应了。  
 更多关于该框架的接口信息，参见本地鉴定模块参考。
