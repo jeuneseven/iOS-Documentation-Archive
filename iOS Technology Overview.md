@@ -630,10 +630,13 @@ WebKit.framework让你能够在你的app中显示HTML内容。除了显示HTML�
 Accelerate.framework包含接口来执行数字信号处理、线性代数以及图片计算处理。你可以通过重写你自己版本的该框架的接口来实现优化展现在iOS设备上的所有硬件配置。所以一旦你重写了，你要保证你的代码在所有设备上都能良好运行。  
 更多关于加速器框架的相关函数信息，参见加速器框架参考。
 ## Core Bluetooth Framework (核心蓝牙模块)
+CoreBluetooth.framework
 ## External Accessory Framework （外部配件模块）
 ## Generic Security Services Framework （通用安全服务模块）
 ## Local Authentication Framework (本地鉴定模块)
 ## Network Extension Framework （网络扩展模块）
+NetworkExtension.framework对配置和控制VPN虚拟专用网络渠道提供了支持。使用该框架来生成VPN配置。你可以稍后手动打开VPN，也可以根据相应的规则在接收到特定事件后打开VPN。  
+更多关于该框架的接口，参见该框架头文件。
 ## Security Framework （安全模块）
 ## System （系统层）
 ## 64-Bit Support（64位支持）
