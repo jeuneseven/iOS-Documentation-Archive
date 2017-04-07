@@ -634,6 +634,8 @@ CoreBluetooth.framework
 ## External Accessory Framework （外部配件模块）
 ## Generic Security Services Framework （通用安全服务模块）
 ## Local Authentication Framework (本地鉴定模块)
+LocalAuthentication.framework让你能够通过Touch ID来验证用户。有些app需要安全的访问它们所有的内容，有些其他的app需要安全的访问特定区域或者选定区域。不论哪种情况，你都可以要求用户在开始使用前进行验证。使用该框架会展示一个带有app特定原因的警告框给用户，警告框中会展示为什么用户需要验证。当你的app得到回应后，用户成功验证后你就可以做出反应了。  
+更多关于该框架的接口信息，参见本地鉴定模块参考。
 ## Network Extension Framework （网络扩展模块）
 NetworkExtension.framework对配置和控制VPN虚拟专用网络渠道提供了支持。使用该框架来生成VPN配置。你可以稍后手动打开VPN，也可以根据相应的规则在接收到特定事件后打开VPN。  
 更多关于该框架的接口，参见该框架头文件。
