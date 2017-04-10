@@ -34,3 +34,11 @@ Number是一个父类，它声明了一些公有方法以供子类调用。但�
 如果概念比较简单的话（生成一个类来管理多种值），这会很容易扩展成很多的类。类簇的结构展现了一种设计模式大大简化了概念。
 
 ## 使用类簇的情况：概念简单接口也简单
+使用类簇设计模式来解决这个问题，简化了类的层级，见图1-3（私有类以灰色显示）
+
+图1-3 使用类簇的number类
+![](https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaEncyclopedia/Art/cluster3.gif)
+
+使用这个类的用户将会只看到一个公开的类，Number，那么它是如何实例化子类的属性呢？答案在于抽象了父类的实例化方法。
+
+## 生成实例化
