@@ -1,0 +1,1 @@
+[A Short Practical Guide to Blocks 原文链接](https://developer.apple.com/library/content/featuredarticles/Short_Practical_Guide_Blocks/index.html#//apple_ref/doc/uid/TP40009758)
