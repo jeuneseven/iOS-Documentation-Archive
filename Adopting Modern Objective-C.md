@@ -1,0 +1,1 @@
+[Adopting Modern Objective-C 原文链接](https://developer.apple.com/library/content/releasenotes/ObjectiveC/ModernizationObjC/AdoptingModernObjective-C/AdoptingModernObjective-C.html#//apple_ref/doc/uid/TP40014150)
