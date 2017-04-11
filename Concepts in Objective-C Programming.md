@@ -25,7 +25,7 @@
 图1-1 一个简单的number类的层级  
 ![](https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaEncyclopedia/Art/cluster1.gif)
 
-Number是一个父类，它声明了一些公有方法以供子类调用。但是它没有声明一个实例变量来保存一个数字。字类声明了接口变量并实现了被Number定义的接口。  
+Number是一个父类，它声明了一些公有方法以供子类调用。但是它没有声明一个实例变量来保存一个数字。子类声明了接口变量并实现了被Number定义的接口。  
 看上去这个设计似乎很简单。但是，如果用一种通用的方式修改这些基于C的数据类型到一个地方的话，这个类的结构看上去要像这样（见图1-2）：
 
 图1-2 一个复杂的的number类的层级  
@@ -53,3 +53,20 @@ NSNumber *aDouble = [NSNumber numberWithDouble:1.0];
 每个返回的对象（aChar, anInt, aFloat, 和aDouble等）都有可能属于一个不同的私有子类（事实上也是如此）。尽管每个对象的类的从属关系已经隐藏了，在公有的接口中，存着被抽象父类生命的接口，NSNumber。可能没那么精确，但是这方便了aChar, anInt, aFloat, 和aDouble等对象成为NSNumber类等一个实例，因为他们通过NSNumber类方法初始化，并且通过NSNumber类声明的实例方法来存取。
 
 ## 类簇具有多个公开的父类
+在上面的例子中，一个抽象的父类为很多私有的子类声明了很多公有的接口。这种属于类簇最纯粹的用法。很有可能（通常也是常有的情况），有两个（或者多个）抽象的公开类为类簇声明接口。这种情况在Foundation框架中很常见，列表1－1列出了包含类簇的清单：  
+
+列表1-1 类簇和它们的公开超类  
+
+| 类簇 | 公开超类 |
+|:------------- |:---------------:|
+| NSData | NSData/NSMutableData |
+| NSArray | NSArray/NSMutableArray |
+| NSDictionary | NSDictionary/NSMutableDictionary |
+| NSString | NSString/NSMutableString |
+
+其它类似这种情况的类簇也是存在的，但这清楚的阐述了两个抽象的节点如何以编程的形式在一个类簇中声明接口。在每个类簇中，一个公开的节点声明的方法，所有的类簇的对象都可以响应，另一个节点声明的方法智能被该类簇的对象访问和修改。  
+类簇接口的分解性帮助面向对象的框架在编程上更为丰富。例如，想象一个对象表示一本书，声明了以下方法：  
+> - (NSString *)title;
+
+一个book对象可以反悔它本身的实例变量或者生成一个新的字符串对象然后返回它（这无所谓）。这清楚的表达了这个返回的字符串是无法被修改的。任何企图修改这个返回的对象都会引起编译器的报错。
+
