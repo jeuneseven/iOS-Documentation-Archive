@@ -1,0 +1,1 @@
+[LLDB Quick Start Guide 原文链接](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/gdb_to_lldb_transition_guide/document/Introduction.html#//apple_ref/doc/uid/TP40012917)
