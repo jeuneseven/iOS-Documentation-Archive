@@ -1,0 +1,1 @@
+[Runtime Configuration Guidelines 原文链接](https://developer.apple.com/library/content/documentation/MacOSX/Conceptual/BPRuntimeConfig/000-Introduction/introduction.html#//apple_ref/doc/uid/10000170i)
