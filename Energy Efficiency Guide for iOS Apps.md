@@ -1,0 +1,1 @@
+[Energy Efficiency Guide for iOS Apps 原文链接](https://developer.apple.com/library/content/documentation/Performance/Conceptual/EnergyGuide-iOS/index.html#//apple_ref/doc/uid/TP40015243)
