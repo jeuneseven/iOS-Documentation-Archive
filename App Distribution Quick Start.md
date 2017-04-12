@@ -1,0 +1,1 @@
+[App Distribution Quick Start 原文链接](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppStoreDistributionTutorial/Introduction/Introduction.html#//apple_ref/doc/uid/TP40013839)
