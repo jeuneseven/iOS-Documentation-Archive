@@ -1,0 +1,1 @@
+[Simulator User Guide 原文链接](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/iOS_Simulator_Guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40012848)
