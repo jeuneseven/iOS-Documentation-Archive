@@ -1,0 +1,1 @@
+[Advanced Memory Management Programming Guide 原文链接](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html#//apple_ref/doc/uid/10000011i)
