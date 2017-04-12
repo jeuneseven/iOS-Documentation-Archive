@@ -1,0 +1,1 @@
+[Event Handling Guide for UIKit Apps 原文链接](https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/index.html#//apple_ref/doc/uid/TP40009541)
