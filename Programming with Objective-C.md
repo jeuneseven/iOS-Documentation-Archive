@@ -61,3 +61,17 @@ OC的app使用引用计数功能来决定对象的生命周期。大部分情况
 有些不可变的类也提供可变的版本。如果你需要在运行时改变内容的话，例如，从网络上接收的字符串要追加到字符串后面，你可以使用NSMutableString类的实例对象。这种类型的对象和NSString类的对象表现的一样，只不过它还提供函数来改变对象表达的字符串。  
 尽管NSString和NSMutableString是不同的类，它们还是有很多相似的。无需从头构建两个完全分开的类且具有相似的行为，通常这种情况使用继承。
 ## 类从其他类继承
+在现实世界中，分类学将动物以属、种以及类进行分组。这些分组是分层级的，例如多个属都属于同一个种，多个种同属于同一个类。  
+例如大猩猩，人类以及猩猩都有很多明显的不同。尽管它们属于不同的种、不同的属、不同的部落以及不同的亚科，但是在分类学上它们属于同一个科（被称作人科）见图1-1。  
+
+图1-1 不同物种之间的分类学关系  
+
+![](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/humansgorillas.png)  
+
+在面向对象的编程世界中，对象也被以继承来分类成组。不像属和类那样有着严格的等级区分，对象被以类为组织区分。像人类从人科当中继承的主要特征那样，类可以从父类那里继承各种功能。  
+当一个类从另一个类继承时，父类的所有行为和属性都被子类继承。它还可以定义自己的特殊行为和属性，或者重写父类的行为。  
+在OC的字符串类当中，NSMutableString类的描述继承自NSString类，见图1-2。所有NSString类提供的函数在NSMutableString类当中都可以使用，比如查询特殊字符或者字符串大写，但NSMutableString  添加了方法让你能够追加、插入、替换或者删除子字符串或单个字符串。
+
+图1-2 NSMutableString类的继承。
+
+![](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/nsstringmutablestring.png)  
