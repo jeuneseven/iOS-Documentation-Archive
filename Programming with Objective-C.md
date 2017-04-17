@@ -75,3 +75,17 @@ OC的app使用引用计数功能来决定对象的生命周期。大部分情况
 图1-2 NSMutableString类的继承。
 
 ![](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/nsstringmutablestring.png)  
+
+## 根类提供基本的函数功能
+和所有的生命体共享“生命”这种基本特征一样，在OC中也有一些函数是所有的对象共用的。  
+当一个OC对象想要和其他类的实体对象一起工作时，最好其他的对象提供一些基本的特征和行为。出于这个原因，OC定义了一个根类让大量的类来继承，叫做NSObject类。当一个对象遇到另一个对象时，它期待最好能够使用一些NSObject类定义的基本行为。  
+当你定义你自己的类时，你最起码应该继承自NSObject。一般来讲，你应该从Cocoa 或 Cocoa Touch 类中找到一个具有你需要的最相近的功能的类来继承。  
+举个例子，如果你想在iOS app中自定义一个按钮的话（并且提供的UIButton类无法满足你订制需要），你最好创建一个继承自UIButton的类，而不是继承自NSObject。如果你直接从NSObject类继承的话，你需要做很多UIButton类已经做过的复杂的视觉交互工作，才能让你的按钮看上去像用户想要的一样。此外，从UIButton继承的话，你的子类自动继承了UIButton类的所有功能和行为。  
+UIButton类继承自UIControl类，后者定义了在iOS上的所有用户交互的基本行为。UIControl类继承自UIView类，后者定义了展现在屏幕上的对象的基本功能。UIView类继承自UIResponder类，后者定义了响应用户行为的功能，例如点击，手势或者晃动等。最终，UIResponder类继承自NSObject类，见图1-3。  
+
+图1-3 UIButton继承链
+
+![](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/buttoninheritance.png) 
+
+该继承链的意思是，任何继承自UIButton的类都会不尽继承了所有UIButton类定义的函数，也继承了所有其父类的函数。你定义的对象的行为可以表现的像一个button，可以将其本身展示在屏幕上，响应用户的点击，以及与其他基于Cocoa Touch类的对象交互。  
+记住这种继承者链条在你以后的开发当中是很重要的，这能让工作正常进行。例如，Cocoa 和 Cocoa Touch的开发文档当中很容易看到一个类继承自它的父类的声明。如果你在一个类中无法找到你需要的接口或者参考的话，你最好定义一个，或者在文档中查找它的父类。
