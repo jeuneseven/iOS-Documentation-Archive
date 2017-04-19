@@ -103,3 +103,22 @@ OC中声明一个类的头文件的语法如下：
 
 该示例声明了一个类，名叫SimpleClass，继承于NSObject。  
 公有的属性和行为都被定义在 @interface 中。在这个示例中，没有声明什么方法，所以在SimpleClass类的实例变量中中只能使用从NSObject类继承的方法。  
+
+### 属性控制了访问一个对象的值的渠道
+对象通常会有一些属性用于公开的访问。比如，你在一个记录类的app中定义了一个类表示人类的话，你可能需要一些字符串的属性来表示一个人的姓名。  
+定义这些属性需要将其添加到头文件中，像这样：  
+> @interface Person : NSObject
+>
+> @property NSString *firstName;  
+> @property NSString *lastName;
+> 
+> @end  
+
+在这个示例中，Person类声明了两个公开的属性，两个都是NSString类型的变量。  
+两个属性都是OC类型的对象，所以用星号来表示它们是C的指针。它们像其他在C中声明的变量一样，所以在句尾有个分号。  
+你可能还需要添加一个人的生日，用在根据年龄排序当中。你可以使用一个数字类型的对象属性来表示：  
+> @property NSNumber *yearOfBirth;
+
+但是如果仅仅是存储一个简单的数字值的话，这可能有点过于麻烦了。有一种方式是使用C提供的基本数据类型，可以存储标准值，例如integer：  
+> @property int yearOfBirth;
+
