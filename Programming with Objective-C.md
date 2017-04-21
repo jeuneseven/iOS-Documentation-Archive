@@ -169,7 +169,20 @@ OC的函数在概念上和标准的C或者其他编程语言中的函数类似�
 	- (void)someMethodWithFirstValue:(SomeType)info1 anotherValue:(AnotherType)info2;  
 	- (void)someMethodWithFirstValue:(SomeType)info1 secondValue:(YetAnotherType)info2;
 ### 类名必须是独一无二的
+要注意，在一个app当中，每个类名都是独一无二的，即使是通过包含一个第三方的类库或者框架。如果你想创建一个新的和已经存在的类相同的类名的话，你会收到一个来自编译器的error提示。  
+由于这个原因，你可以定义你自己类的一个前缀，前缀应该使用三个或者更多的字母。这些字母应该和你正在编写的app相关，或者和可重用的框架相关，或者就是你的姓名的首字母。  
+本文档其余的示例都会有类的前缀，类似这样：  
+> @interface XYZPerson : NSObject  
+> @property (readonly) NSString *firstName;  
+> @property (readonly) NSString *lastName;  
+> @end
 
+	历史原因：如果你好奇为什么那么多你遇到的类都是以NS作为开头的话，这是因为Cocoa 和 Cocoa Touch的原因。Cocoa当初作为NeXTStep操作系统的集合类框架。当苹果在1996年收购NeXT时，很多NeXTStep都被收入了 OS X 当中，包括很多已经存在的类。Cocoa Touch作为iOS上Cocoa的等价框架；很多类在 Cocoa 和 Cocoa Touch中都能够使用，还有很多类是这两个平台独有的。  
+	两个字母的前缀，比如NS和UI（用在iOS中的用户界面元素中）为Apple的保留关键字。
+	
+相比之下，函数和属性名称只需要在定义它们的类中唯一就可以了。尽管在一个app中，每个C函数都应该是唯一的命名，在OC中的多个不同类里定义相同的函数名是可以接受的。然而，你不能在同一个类中定义同样的方法超过一次，尽管你可能要从父类继承一个函数并重写它，你必须用原来那个函数同样的名称。  
+同函数一样，一个对象的属性和变量（在“大部分属性依赖实例变量”中有相关描述）在同一个类中必须是唯一的。然而，如果你使用全局变量的话，在一个app或者工程中，命名必须唯一。  
+更多命名规则和建议参见“命名规则”。
 ## 方法的实现体提供了它内部的行为
 
 ### 基本语法
