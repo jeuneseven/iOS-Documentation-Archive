@@ -145,7 +145,29 @@ OC的函数在概念上和标准的C或者其他编程语言中的函数类似�
 函数最前方的减号代表它是一个实例方法，该方法可以类的任意对象调用。这与类方法不同，类方法只能被类本身调用，这在“OC的类同样也是对象”中有所描述。  
 作为C的函数原型，一个函数在OC的头文件中声明，要像其他的C语句一样，句尾会有个分号。
 #### 函数可以携带参数
+如果你需要声明一个带一个或多个参数的函数，语法上会和标准的C函数有些不同。  
+对于C的函数，参数会放置在括号中，类似这样：  
+> void SomeFunction(SomeType value);
 
+一个OC的函数声明包含了参数的名称，使用冒号来修饰，像这样：
+> -(void)someMethodWithValue:(SomeType)value;
+
+像返回值那样，参数的类型也被放在括号当中，就像标准的C函数一样。  
+如果你需要提供多个参数的话，语法依旧和C不太一样。C函数中，多个参数会方在括号当中，然后用逗号隔开；在OC中，带有两个参数的函数会是这样：  
+> -(void)someMethodWithFirstValue:(SomeType)value1 secondValue:(AnotherType)value2;
+
+在这个示例中，value1 和 value2 是在实现体中当函数被调用时要用到的变量名，所以它们是变量。  
+在一些编程语言中，允许函数定义所谓的命名参数；这在OC当中可不是这样的。函数的参数必须和函数的声明相匹配，secondValue:是函数声明名称中的一部分：  
+> someMethodWithFirstValue:secondValue
+
+这是让OC变成一门可读性很强的语言的很重要的一个功能，因为通过一个函数传递的值是指定内联的，函数名相关的部分在“你可以为函数参数传递对象”中有所描述。  
+
+	注意：value1 和 value2这两个词严格来讲不算是函数声明的一部分，意思是在实现体当中，你无需使用相同的名称。唯一需要注意的是标签的匹配，意思是你必须确保函数的参数和返回值类型在头文件和实现体中完全相同。  
+	作为示例，这里有个同样标签的函数如下：
+	- (void)someMethodWithFirstValue:(SomeType)info1 secondValue:(AnotherType)info2;  
+	这是两个和上面的函数不同的标签的函数：  
+	- (void)someMethodWithFirstValue:(SomeType)info1 anotherValue:(AnotherType)info2;  
+	- (void)someMethodWithFirstValue:(SomeType)info1 secondValue:(YetAnotherType)info2;
 ### 类名必须是独一无二的
 
 ## 方法的实现体提供了它内部的行为
