@@ -230,5 +230,14 @@ OC继承了C的大小写敏感属性，所以函数：
 Xcode，Apple为OS X和iOS开发提供的集成开发环境（IDE），会根据定制的用户习惯自动为你的代码锁进。参见《改变缩进和tab宽度在Xcode工作空间指南》相关信息。  
 在下一章中，你将会看到很多的函数实现示例，“使用对象”。
 ## OC的类同样是个对象
+在OC当中，一个类作为对象有一个隐藏的类型叫做Class。类是不能够像实例变量那样，定义自己的属性语句的，但是它们可以接受消息。  
+类方法的典型用法是工厂方法，这是一种替代分配内存和初始化对象的方法，这在“对象是动态创建的”当中有所描述。例如，NSString类，包含了很多工厂方法来创建空字符串对象或者指定初始化的字符串，包括：  
+> +(id)string;  
+> +(id)stringWithString:(NSString *)aString;  
+> +(id)stringWithFormat:(NSString *)format, …;  
+> +(id)stringWithContentsOfFile:(NSString *)path encoding:(NSStringEncoding)enc error:(NSError **)error;  
+> +(id)stringWithCString:(const char *)cString encoding:(NSStringEncoding)enc;
 
+在这些示例中，类方法被标记为＋方法，这与实例方法的－方法不同。  
+类方法的原型一般会包含在一个类的头文件中，就像实例方法的原型那样。类方法的实现和实例方法一样，都放在类的@implementation括号中。
 ## 练习
