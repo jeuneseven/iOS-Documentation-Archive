@@ -255,3 +255,32 @@ Xcode，Apple为OS X和iOS开发提供的集成开发环境（IDE），会根据
 一个基于OC的app是一套对象之间来回发送消息的生态系统。其中一部分是Cocoa 或 Cocoa Touch类的对象，一部分是你自己自定义的对象。  
 之前的章节描述了一个类的接口和实现体的语法，包括实现一个函数的语法来响应调用信息。本章描述了如何发送消息给一个对象，包含了一些OC的动态特性，包括动态特性，以及决定在运行时哪个函数应该被调用的能力。  
 在一个对象被使用前，应该在适当的时机为它的属性分配内存，并且初始化它内部的值。本章描述了如何构造函数调用来配置一个对象的内存和初始化。
+## 对象发送和接收消息
+尽管在在OC中的对象之间发送消息有很多种方法，不过到目前为止，最通用的语句是使用中括号，类似这样：  
+>     [someObject doSomething];
+
+左边的someObject代表消息的接受者。右边的doSomething是消息接受者的函数名。换句话说，如果上述语句被执行的话，someObject将会发送doSomething消息。  
+之前的章节描述了如何创建一个类的头文件，类似这样：  
+> @interface XYZPerson : NSObject  
+> -(void)sayHello;  
+> @end
+
+以及如何创建一个类的实现文件，类似这样：  
+> @implementation XYZPerson   
+> -(void)sayHello {  
+>     NSLog(@"Hello, world!");  
+> }  
+> @end
+
+	注意：该示例使用了OC的字符串字面量@"Hello, world!"。字符串是众多OC类当中的一个，它可以使用一个简短的字面量语句就可以创建。 @"Hello, world!"可以概念性的等同于说“一个OC的字符串对象，表示了一个字符串 Hello, world!”
+	字面量以及对象的创建在“对象的动态创建”当中会有更深入的解释，在本章之后。
+
+我们假设你已经创建了一个XYZPerson类的对象，你可以给它发送sayHello消息，类似这样：  
+>     [somePerson sayHello];
+
+发送一个OC的消息概念上非常像调用C函数。图2-1展示了sayHello消息的程序流程。    
+
+图2-1基本的消息程序流  
+![](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/programflow1.png)  
+  
+为了指定消息的接受者，理解在OC中指针是如何指向一个对象是很重要的。  
