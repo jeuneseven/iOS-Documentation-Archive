@@ -308,6 +308,22 @@ C和OC和其他的编程语言一样，使用变量来跟踪值的变化。
 }  
 
 尽管指针变量myString（星号代表它是个指针）的作用域是在myMethod函数内的，但是内存中的指针指向的实际字符串对象在作用域之外具有更长的生命周期。比如你在其他的函数中給它传值的话，它可能还会存在。  
+### 你可以给函数的参数传递对象
+如果你在发送消息的时候传递对象的话，你可以将一个对象的指针赋給一个函数的参数。之前的章节我们描述了声明一个只带一个参数的函数语法：  
+> -(void)someMethodWithValue:(SomeType)value;
+
+所以，带有一个字符串对象的函数语法会是这样：  
+> -(void)saySomething:(NSString *)greeting;
+
+你需要实现saySomething:函数，像这样：  
+> -(void)saySomething:(NSString *)greeting {. 
+    NSLog(@"%@", greeting);  
+}  
+
+greeting指针表现的像一个局部变量，并且其作用域是在saySomething: 函数内，尽管在函数调用之前实际的字符串对象就已经存在，并且在函数结束后会持续存在。  
+	
+	注意：NSLog()使用了格式化说明符指代对应的内容，这很像C标准库当中的printf()函数。
+
 
 
 
