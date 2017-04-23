@@ -284,3 +284,53 @@ Xcode，Apple为OS X和iOS开发提供的集成开发环境（IDE），会根据
 ![](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/programflow1.png)  
   
 为了指定消息的接受者，理解在OC中指针是如何指向一个对象是很重要的。  
+###使用指针追踪对象
+C和OC和其他的编程语言一样，使用变量来跟踪值的变化。  
+这有一些标准C当中定义的标准变量类型，包括整型，浮点型以及字符型，它们声明和赋值类似这样：  
+> int someInteger = 42;  
+> float someFloatingPointNumber = 3.14f;
+
+局部变量，意思是变量声明在一个方法或函数中，类似这样：  
+> -(void)myMethod {  
+>     int someInteger = 42;  
+> }
+
+局部变量的作用于是在声明它们的方法中。  
+在这个示例中，someInteger是声明在myMethod函数中的一个局部变量；一旦执行到大括号的结束，someInteger就不能够被访问了。当一个局部的标准变量（例如int、float）销毁的时候，它的值也会跟着销毁了。  
+相比之下，OC的对象在分配内存时会有一些不同。对象通常比函数具有更长的生命周期。尤其是一个对象需要比它跟踪的原始变量有更长的生命周期，所以一个对象的内存初始化和销毁是动态的。  
+
+	注意：如果你经常操作堆栈的话，局部变量是分配在栈空间上的，而对象是分配在堆上的。
+
+这需要你用到C的指针（它会持有内存地址）追踪它们在内存中的地址，类似这样：  
+> -(void)myMethod {  
+    NSString *myString = // get a string from somewhere...  
+    [...]  
+}  
+
+尽管指针变量myString（星号代表它是个指针）的作用域是在myMethod函数内的，但是内存中的指针指向的实际字符串对象在作用域之外具有更长的生命周期。比如你在其他的函数中給它传值的话，它可能还会存在。  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
