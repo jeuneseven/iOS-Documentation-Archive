@@ -326,20 +326,39 @@ greeting指针表现的像一个局部变量，并且其作用域是在saySometh
 	此外，还有一个OC提供的替换符，%@，用来表示一个对象。在运行时，该替换符会输出指定对象的descriptionWithLocale:（如果存在该方法的话）或者description方法的结果。description函数是NSObject实现的，它返回类名以及对象的内存地址，不过很多Cocoa和Cocoa Touch类通过重写它来提供更多的有用的信息。比如NSString的description函数会返回它要表示的字符串集合。  
 	更多关于使用NSLog()的格式化符号和NSString类的相关信息，参见“字符串格式化说明”。
 
+### 函数能够有返回值
+同通过参数传递值的函数一样，一个函数有返回值也是可以的。到目前为止，本章展示的函数的返回值都是void类型。在C当中，void这个关键字的意思是该函数没有返回任何值。  
+指定一个返回值类型是int型意思是该函数会返回一个标准的整形数：  
+> -(int)magicNumber;
 
+该函数的实现使用了C的return语句，表明该函数执行完毕后，应该返回一个值，类似这样：  
+> -(int)magicNumber {  
+    return 42;  
+}
 
+在使用过程中忽略一个函数的返回值也是可以接受的。在这个示例中，magicNumber函数除了返回一个值之外，没有做什么有用的事情，但是这样去调用一个函数没有任何问题：  
+> [someObject magicNumber];
 
+如果你确实需要跟踪返回值的话，你可以定义一个变量，然后将函数的结果赋值给它，类似这样：  
+> int interestingNumber = [someObject magicNumber];
 
+你可以使用同样的方法返回一个对象。例如，NSString类提供了一个uppercaseString函数：  
+> -(NSString *)uppercaseString;
 
+就像一个函数返回一个整形值一样，你可以使用一个指针来跟踪函数的返回值：  
+> NSString *testString = @"Hello, world!";  
+  NSString *revisedString = [testString uppercaseString];
 
+当函数返回后，revisedString将指向一个NSString类的对象，该对象表示字符串HELLO WORLD!  
+记住，实现一个有返回值的函数时候，类似这样：  
+> -(NSString *)magicString {  
+    NSString *stringToReturn = // create an interesting string...  
+   
+    return stringToReturn;  
+}
 
-
-
-
-
-
-
-
+该字符串在返回一个值之后，依旧存在，即使是stringToReturn指针已经在作用域外。  
+有一些情况需要考虑内存管理问题：从堆上创建的对象类型的返回值需要存在足够长的时间，以供调用它的函数来使用，但是不会永远存在下去，因为这会造成内存泄漏。大部分情况下，OC编译器提供的ARC（自动引用计数器）功能会为你处理这些情况。
 
 
 
