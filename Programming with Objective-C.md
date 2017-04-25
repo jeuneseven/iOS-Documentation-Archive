@@ -359,7 +359,24 @@ greeting指针表现的像一个局部变量，并且其作用域是在saySometh
 
 该字符串在返回一个值之后，依旧存在，即使是stringToReturn指针已经在作用域外。  
 有一些情况需要考虑内存管理问题：从堆上创建的对象类型的返回值需要存在足够长的时间，以供调用它的函数来使用，但是不会永远存在下去，因为这会造成内存泄漏。大部分情况下，OC编译器提供的ARC（自动引用计数器）功能会为你处理这些情况。
+###对象可以給它们自己发送消息
+无论何时你去实现一个函数，你都可以访问一个隐藏的值，self。概念上来讲，self是一种“对象接受这个消息”的方式。就像上文提到的greeting值一样，它也是一个指针，并且可以用在当前接受的对象用来调用函数。  
+你可能打算重构XYZPerson类的实现，通过修改sayHello为saySomething:，然后将NSLog()的调用放置在不同的方法中。你还可以再添加一个函数，比如sayGoodbye，这会每次都通过调用saySomething函数来控制实际的打招呼过程。如果你以后需要显示一个打招呼的语句在用户界面上的一个输入框中的话，你就得改写saySomething:函数了，而不是通过去实现每个打招呼的函数。  
+新的实现方式是使用self来调用当前对象的函数，类似这样：  
+> @implementation XYZPerson  
+-(void)sayHello {  
+    [self saySomething:@"Hello, world!"];  
+}  
+-(void)saySomething:(NSString *)greeting {  
+    NSLog(@"%@", greeting);  
+}  
+@end  
 
+如果你使用这份更新过的实现的话，你给一个XYZPerson对象发送sayHello消息的时候，程序的运行效果是类似于图2-2一样。  
+
+图2-2 程序运行流程    
+
+![](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/programflow2.png)
 
 
 
