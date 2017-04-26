@@ -374,9 +374,51 @@ greeting指针表现的像一个局部变量，并且其作用域是在saySometh
 
 如果你使用这份更新过的实现的话，你给一个XYZPerson对象发送sayHello消息的时候，程序的运行效果是类似于图2-2一样。  
 
-图2-2 程序运行流程    
+图2-2 当给self发送消息时程序的运行流程    
 
 ![](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/programflow2.png)
+
+###对象可以调用它父类实现的函数
+在OC中，还为你保留了一个很重要的关键字，super。发送一个消息给super是一种通过继承链条调用父类实现的函数的方法。通常使用super的时机是在重写一个方法的时候。  
+我们假设你要实现一个新类型的person类，一个shouting person类，它显示的每个字母都是大写的。你可以创建一个重复的XYZPerson类，然后修改每个字符串为大写，不过最简单的方法应该是继承自XYZPerson类，然后重写saySomething:函数，这样你的每个显示的字母都能够大写了，类似这样：  
+>@interface XYZShoutingPerson : XYZPerson  
+@end
+
+> @implementation XYZShoutingPerson  
+- (void)saySomething:(NSString *)greeting {  
+    NSString *uppercaseGreeting = [greeting uppercaseString];  
+    NSLog(@"%@", uppercaseGreeting);  
+}  
+@end
+
+这个例子又定义了一个额外的字符串指针：uppercaseGreeting，并且调用greeting 的uppercaseString函数，然后将返回值赋值给它。就像你之前看到的那样，这会创建一个新的字符串，转换原字符串的所有字母为大写。  
+由于sayHello函数是被XYZPerson类实现的，XYZShoutingPerson类是继承自XYZPerson类，所以你也可以用XYZShoutingPerson的对象调用sayHello函数。当你调用XYZShoutingPerson 类的 sayHello函数时调用[self saySomething:...] 会使用重载的实现函数，并且展示的是全都是大写的字母，结果请看图2-3。  
+
+图2-3 调用重载函数的程序流程  
+
+![](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/programflow3.png)  
+
+然而，新的实现方法不太理想，因为如果你以后打算修改XYZPerson 类的 saySomething: 函数，来展示一个用户界面元素，而不是只是输出语句的话，你就需要再修改XYZShoutingPerson的实现了。  
+一个更好的方式是修改XYZShoutingPerson 类的 saySomething:函数实现，通过调用它的父类（XYZPerson）的实现来达到目的：  
+> @implementation XYZShoutingPerson  
+- (void)saySomething:(NSString *)greeting {  
+    NSString *uppercaseGreeting = [greeting uppercaseString];  
+    [super saySomething:uppercaseGreeting];  
+}  
+@end  
+
+现在，如果给一个XYZShoutingPerson类的对象发送sayHello消息的话，程序的运行流程如图2-4。  
+
+图2-4 当给super发送消息时的程序运行流程  
+
+![](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/programflow4.png)  
+
+
+
+
+
+
+
 
 
 
