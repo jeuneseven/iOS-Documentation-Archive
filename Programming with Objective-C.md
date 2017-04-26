@@ -413,15 +413,33 @@ greeting指针表现的像一个局部变量，并且其作用域是在saySometh
 
 ![](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/programflow4.png)  
 
+## 对象是动态创建的
+就像前文提到的，对于OC对象而言，内存是动态创建的。创建一个对象的第一步是要确定有足够的内存以供分配，而不是考虑定义对象的类的属性，但是还是要考虑继承链条上的父类的定义的属性的。  
+根类NSObject，提供了一个类方法，alloc，它将为你控制这个过程。  
+> +(id)alloc;
 
+要注意，它的返回类型是id类型的。这是OC中的一个很特殊的关键词，意思是“某种类型的对象”。它是指向一个对象的指针，类似（NSObject *），因为它比较特殊，所以无需使用一个星号修饰。在后面的“OC是一门动态的语言”当中会有相关的描述。  
+alloc函数有一个很重要的工作，就是为对象的属性清空内存，然后将他们设置为初始化的状态。这避免了可能存在的内存残留问题，但这还不足以将一个对象初始化。  
+你需要用alloc结合另一个NSObject的函数init：  
+> -(id)init;
 
+init函数是一个类应该去确保属性在创建的时候有合适的初始值使用的函数，后面的章节会有更详细的描述。  
+注意init函数同样返回id类型。  
+如果一个函数返回了一个对象指针，那么使用它作为一个函数的接受者然后调用另一个函数是可以的，所以可以在一个语句当中结合多个函数调用。正确的初始化一个对象的方法是在调用alloc之后，就调用init，类似这样：  
+> NSObject *newObject = [[NSObject alloc] init];
 
+这个例子将newObject指向了一个新创建的NSObject实例。  
+内层的调用先被执行，所以NSObject被发送了alloc消息，他将返回一个分配好内存的新的NSObject类的实例对象。这个返回的对象被用作init函数的接受者，它将返回的值赋值给了newObject指针，见图2-5。  
 
+图2-5 构建alloc和init函数  
 
+![](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/nestedallocinit.png)  
 
-
-
-
+	注意：init返回一个被alloc初始化的不同的对象是有可能的，所以如上文那样结合使用是最好的。  
+	永远不要初始化一个未再分配的指针给那个对象。作为示例，请不要这么做：  
+	NSObject *someObject = [NSObject alloc];  
+   [someObject init];
+	如果调用init将会返回其他的对象，你将会留下一个指针指向的对象，它被分配了内存空间，但是永远没有被初始化。
 
 
 
