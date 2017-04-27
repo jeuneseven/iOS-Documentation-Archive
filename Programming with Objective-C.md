@@ -511,6 +511,28 @@ id类型定义了一种通用的对象指针。当你声明一个变量的时候
     [secondPerson sayHello];  
 
 尽管firstPerson 和 secondPerson都是XYZPerson类的对象，在运行时，secondPerson会指向一个XYZShoutingPerson类的对象。当每个对象调用sayHello函数时，正确的实现将会被调用；对于secondPerson来说，是由XYZShoutingPerson实现的那个版本。  
+### 决定对象的相等
+如果你想确定一个对象和另一个对象是相同的，要记住，你是在和指针打交道。  
+标准C的操作符==，是用来测试两个值或者变量是否相等的，类似这样：  
+> if (someInteger == 42) {  
+        // someInteger has the value 42. 
+    }  
+
+当处理对象的时候，==操作符表示两个不同的指针是否指向的是同一个对象：  
+> if (firstPerson == secondPerson) {  
+        // firstPerson is the same object as secondPerson  
+    }  
+
+如果你需要确定两个对象是否表达的是相同的数据的话，你就要用到NSObject类提供的isEqual:函数了：  
+>  if ([firstPerson isEqual:secondPerson]) {  
+        // firstPerson is identical to secondPerson  
+    }  
+
+如果你要确定一个对象表达的值是否比另一个对象表达的要大或者小的话，你不可以使用标准C的比较运算符> 和 <。对于基本类型，类似于NSNumber, NSString 和 NSDate，我们提供了compare:函数：  
+> if ([someDate compare:anotherDate] == NSOrderedAscending) {  
+        // someDate is earlier than anotherDate  
+    }  
+
 
 
 
