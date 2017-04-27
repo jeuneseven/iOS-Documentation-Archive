@@ -452,11 +452,18 @@ NSNumber类定义了一些初始化方法，包括：
 初始化函数的参数的调用和init函数的调用一样简单，一个NSNumber对象的创建以及初始化会像这样：  
 > NSNumber *magicNumber = [[NSNumber alloc] initWithInt:42];
 
+### 类的工厂方法是创建和初始化的另一种替代方式
+就像前文中提到的那样，一个类也可以定义工厂方法。工厂方法为传统的alloc] init] 过程提供了另一种选择，它无需使用两个函数。  
+NSNumber类定义了一些类的工厂方法来匹配初始化，包括：  
+> +(NSNumber *)numberWithBool:(BOOL)value;  
++(NSNumber *)numberWithFloat:(float)value;  
++(NSNumber *)numberWithInt:(int)value;  
++(NSNumber *)numberWithLong:(long)value;
 
+一个工厂方法的使用类似这样：  
+> NSNumber *magicNumber = [NSNumber numberWithInt:42];
 
-
-
-
+这与之前提到的alloc] initWithInt:]示例的效果是一样的。为了方便起见，工厂方法其实是直接调用了alloc和相关的init方法。
 
 
 
