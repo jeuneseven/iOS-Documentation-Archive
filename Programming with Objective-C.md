@@ -491,7 +491,26 @@ NSNumber类同样提供了一些字面量：
 
 在这个示例中，表达式被估算，然后将结果赋值给一个NSNumber类的实例。  
 OC同样提供一些字面量语法来创建不可变的NSArray和NSDictionary类的实例对象，这在之后的“值和集合”当中有相关探讨。
+## OC是一门动态的语言
+就像之前提到的那样，你需要使用一个指针来跟踪对象在内存中的地址。由于OC的动态性，你无需指定你使用的指针的类的类型——对象的关联的函数在给它发送消息的时候将会一直被正确的调用。  
+id类型定义了一种通用的对象指针。当你声明一个变量的时候，你可以使用id来修饰，但是你丢掉了编译期间的对象的相关信息。  
+来看一下如下代码：  
+> id someObject = @"Hello, World!";  
+    [someObject removeAllObjects];
 
+在这个示例中，someObject将会指向一个NSString的实例，但是编译器不知道他是什么类型的对象。removeAllObjects函数是由Cocoa或者Cocoa Touch的对象（比如NSMutableArray）定义的，所以编译器不会报警，即使是在编译期间将会抛出error（由于NSString类是不会响应removeAllObjects函数的）。  
+我们重写一下这个代码，使用静态的类型：  
+> NSString *someObject = @"Hello, World!";  
+    [someObject removeAllObjects];
+
+这时编译器就会抛出error提示，因为没有一个公开的NSString类声明了removeAllObjects函数。  
+由于一个实例的类是在运行时才决定的，这在你创建一个对象的时候，将其赋值给一个什么类型的变量是没有区别的。使用本章之前提到的XYZPerson 和 XYZShoutingPerson类，如下所示：  
+>  XYZPerson *firstPerson = [[XYZPerson alloc] init];  
+    XYZPerson *secondPerson = [[XYZShoutingPerson alloc] init];  
+    [firstPerson sayHello];  
+    [secondPerson sayHello];  
+
+尽管firstPerson 和 secondPerson都是XYZPerson类的对象，在运行时，secondPerson会指向一个XYZShoutingPerson类的对象。当每个对象调用sayHello函数时，正确的实现将会被调用；对于secondPerson来说，是由XYZShoutingPerson实现的那个版本。  
 
 
 
