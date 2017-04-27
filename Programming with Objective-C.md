@@ -464,6 +464,37 @@ NSNumber类定义了一些类的工厂方法来匹配初始化，包括：
 > NSNumber *magicNumber = [NSNumber numberWithInt:42];
 
 这与之前提到的alloc] initWithInt:]示例的效果是一样的。为了方便起见，工厂方法其实是直接调用了alloc和相关的init方法。
+### 如果初始化方法没有参数的话，可以使用new创建对象
+你还可以使用类方法new来创建一个类的实例对象。该方法由NSObject类提供，并且无需在你的子类中重写。这和没有参数的alloc init方法的效果是一样的：  
+> XYZObject *object = [XYZObject new];  
+    // is effectively the same as:  
+    XYZObject *object = [[XYZObject alloc] init];  
+
+### 字面量为创建一个对象提供了简洁的语法
+有一些类允许你使用比较简洁的字面量语法来创建对象。  
+举例来说，你可以使用一个特殊的字面量语法来创建一个NSString对象，类似这样：  
+> NSString *someString = @"Hello, World!";
+
+这与使用NSString 类的 alloc init函数，或者使用它的工厂方法的效果是相同的：  
+> NSString *someString = [NSString stringWithCString:"Hello, World!"
+                                              encoding:NSUTF8StringEncoding];
+
+NSNumber类同样提供了一些字面量：  
+> NSNumber *myBOOL = @YES;  
+    NSNumber *myFloat = @3.14f;  
+    NSNumber *myInt = @42;  
+    NSNumber *myLong = @42L;
+
+同样的，这些例子与使用初始化方法或者工厂方法的效果是一样的。  
+你还可以使用括号表达式来创建一个NSNumber，类似这样：  
+> NSNumber *myInt = @(84 / 2);
+
+在这个示例中，表达式被估算，然后将结果赋值给一个NSNumber类的实例。  
+OC同样提供一些字面量语法来创建不可变的NSArray和NSDictionary类的实例对象，这在之后的“值和集合”当中有相关探讨。
+
+
+
+
 
 
 
