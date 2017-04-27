@@ -567,10 +567,23 @@ id类型定义了一种通用的对象指针。当你声明一个变量的时候
         // somePerson does not point to an object  
     }
 
+## 练习
+1. 打开上一章中练习的工程，找到main()函数。在任何C编写的可执行的文件当中，这个函数表示你的app的起点。  
+使用alloc和init创建XYZPerson类的实例，然后调用sayHello函数。 
+	
+		注意：如果编译器不自动提示的话，你需要蹈入头文件（包含XYZPerson类的接口）到main.m的头部。
 
+2. 实现本章之前提到的saySomething:函数，重写sayHello函数并使用它。添加大量的打招呼的函数，然后用你创建的调用它们。
+3. 创建XYZShoutingPerson类，继承自XYZPerson类。重写saySomething:函数来展示大写的打招呼，然后试试XYZShoutingPerson类的实例等行为。
+4. 实现之前章节你声明的XYZPerson类的person工厂方法，返回一个alloc和init正确的XYZPerson类的实例，然后替换你在main()函数中用到的alloc init方法。
+		
+		提示：在类的工厂方法中使用 [[self alloc] init]，而不是[[XYZPerson alloc] init]。  
+		在一个类的工厂方法当中使用self意思是指代类本身。  
+		这意味着你无需重写XYZShoutingPerson类的person方法来创建一个正确的实例。试试这么写：  
+		XYZShoutingPerson *shoutingPerson = [XYZShoutingPerson person];
+		创建一个正确的对象。
 
-
-
+5. 创建一个本地的XYZPerson指针，无需任何赋值。用一个分支（if条件句）来检查这个变量是否被赋值为了nil。
 
 
 
