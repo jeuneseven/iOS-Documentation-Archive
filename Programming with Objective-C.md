@@ -515,7 +515,7 @@ id类型定义了一种通用的对象指针。当你声明一个变量的时候
 如果你想确定一个对象和另一个对象是相同的，要记住，你是在和指针打交道。  
 标准C的操作符==，是用来测试两个值或者变量是否相等的，类似这样：  
 > if (someInteger == 42) {  
-        // someInteger has the value 42. 
+        // someInteger has the value 42   
     }  
 
 当处理对象的时候，==操作符表示两个不同的指针是否指向的是同一个对象：  
@@ -533,12 +533,39 @@ id类型定义了一种通用的对象指针。当你声明一个变量的时候
         // someDate is earlier than anotherDate  
     }  
 
+### 使用nil
+在声明变量的时候将其初始化是很好的习惯，否则它们有可能会携带着之前栈中的垃圾内存残留：  
+> BOOL success = NO;  
+    int magicNumber = 42;
 
+但这是无需用在对象指针上的，因为编译器会自动的给这些变量设置为nil，你无需制定任何其他的初始值：  
+> XYZPerson *somePerson;  
+    // somePerson is automatically set to nil
 
+如果你没有其他值要使用的话，一个nil值是初始化一个对象指针最保险的做法，因为在OC当中，给一个对象发送nil的消息是完全没问题的。如果你给一个nil对象发送消息的话，很显然，什么都不会发生。  
+	
+	注意：如果你需要给nil发送消息后得到一个返回值的话，那么返回值的类型会是nil、0或者其他的数字类型，对于BOOL类型来讲，是NO。返回的结构体拥有所有成员的初始值设置为0。
 
+如果你要确定一个对象不是nil的话（一个变量指针在内存中指向对象），你可以使用标准C当中的不等于操作符：  
+>  if (somePerson != nil) {  
+        // somePerson points to an object  
+    }
 
+或者直接使用该变量：  
+> if (somePerson) {  
+        // somePerson points to an object  
+    }
 
+如果somePerson变量是nil的话，那么它的逻辑值是0（假）。如果它有地址的话，那么它不是0，所以被认为是真。  
+简单来说，如果你要确定一个nil变量的话，你既可以使用等于操作符：  
+> if (somePerson == nil) {  
+        // somePerson does not point to an object  
+    }
 
+或者直接使用C的逻辑非操作符：  
+> if (!somePerson) {  
+        // somePerson does not point to an object  
+    }
 
 
 
