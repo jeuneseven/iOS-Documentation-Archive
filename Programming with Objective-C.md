@@ -629,6 +629,19 @@ OC的属性为一个类打算封装的数据提供了一种定义信息的方式
 
 	注意：通常来讲，属性合成方法要遵循键值编码（KVC），意思是它们必须显式的遵循命名规范。参考“键值编码编程指南”。
 
+### 点语法是存取器方法调用的简洁替换
+OC不但提供了显式的存取器方法，还提供了点语法作为访问一个对象属性的替代方法。  
+点语法允许你像这样来访问属性：  
+> NSString *firstName = somePerson.firstName;
+    somePerson.firstName = @"Johnny";
+
+点语法是存取器方法的一层包装。当你使用点语法的时候，属性依旧是通过上文提到的getter和setter方法来访问或修改的：  
+
+* 使用somePerson.firstName 来访问一个值与使用 [somePerson firstName]效果是一样的
+* 使用somePerson.firstName = @"Johnny" 来设置一个值与使用 [somePerson setFirstName:@"Johnny"]效果是一样
+
+这意味着属性通过点语法来访问是同样被属性特性控制的。如果一个属性被标记为readonly的话，如果你试图使用点语法来设置它的值，你会得到编译器的错误提示。
+
 
 
 
