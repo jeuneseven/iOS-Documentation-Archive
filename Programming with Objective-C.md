@@ -605,6 +605,32 @@ OC的属性为一个类打算封装的数据提供了一种定义信息的方式
 > NSString *firstName = [somePerson firstName];  
     [somePerson setFirstName:@"Johnny"];
 
+默认情况下，这些存取器会被你的编译器自动合成，所以你除了使用@property关键字在头文件中声明属性之外，什么都不用做。  
+合成方法遵循一下的命名规范：  
+
+* 访问方法的函数（getter方法）使用和属性一样的名称。属性叫做firstName 的 getter函数将还会叫做firstName。  
+* 设置方法的函数（setter方法）将使用“set”作为函数的开始，然后跟着使用大写字母的属性名。属性叫做“firstName”的setter函数将被叫做“setFirstName：”。
+
+如果你不想让一个属性通过setter方法来更改的话，你可以将他的属性设置为readonly：  
+> @property (readonly) NSString *fullName;
+
+就像之前展示的，其他的对象如何作用与属性那样，属性也能够告诉编译器如何合成相关的存取器方法。在本例当中，编译器会自动合成fullName这个getter方法，而不会生成setFullName:方法。  
+	
+	注意：readonly 的对立是 readwrite。你无需显式的指定readwrite属性，因为这是默认的属性。
+
+如果你想为你的存取器方法换一个名字的话，给你的属性添加一个自定义的名字是可以达到目的的。比如布尔类型的属性（属性具有YES 或 NO值），通常getter方法的函数开头都有“is”。举例来说，一个getter方法的属性名叫finished，他应该叫做isFinished。  
+给一个属性添加修饰是可以的：  
+> @property (getter=isFinished) BOOL finished;
+
+如果你要指定多个属性的话，只需要用逗号分隔它们就可以了，类似这样：  
+> @property (readonly, getter=isFinished) BOOL finished;
+
+在这个示例当中，编译器会自动合成isFinished 方法，但不会合成 setFinished:方法。
+
+	注意：通常来讲，属性合成方法要遵循键值编码（KVC），意思是它们必须显式的遵循命名规范。参考“键值编码编程指南”。
+
+
+
 
 
 
