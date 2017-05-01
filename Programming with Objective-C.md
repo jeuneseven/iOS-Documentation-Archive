@@ -641,6 +641,28 @@ OC不但提供了显式的存取器方法，还提供了点语法作为访问一
 * 使用somePerson.firstName = @"Johnny" 来设置一个值与使用 [somePerson setFirstName:@"Johnny"]效果是一样
 
 这意味着属性通过点语法来访问是同样被属性特性控制的。如果一个属性被标记为readonly的话，如果你试图使用点语法来设置它的值，你会得到编译器的错误提示。
+### 大部分的属性都是基于实例变量的
+默认的，一个readwrite的属性是基于一个实例变量的，意思是它会被编译器自动合成。  
+一个实例变量是一个保存和持有对象的属性的变量。实例变量的内存是当对象被创建的时候（通过alloc）分配内存的，当对象被释放的时候它才释放的。  
+除非你特殊指定，否则自动合成的实例对象和属性的名称是相同的，不过它有一个下划线前缀。例如，属性名叫做firstName，那么它合成的实例变量将叫做_firstName。  
+尽管通过存取器或者点语法来访问一个对象的属性是最佳实践，但是在类的实现体中，通过直接访问任意实例方法的实例变量也是可以的。下划线前缀让你知道你访问的是一个实例变量而不是一个局部变量：  
+> -(void)someMethod {  
+    NSString *myString = @"An interesting string";  
+   _someString = myString;  
+}  
+
+在这个示例中，很明显myString是一个局部变量，而_someString是一个实例变量。  
+通常来讲，你都应该使用存取器或者点语法来访问属性，即使是在一个对象的实现当中，不过，在这种情况下，你应该使用self：  
+> -(void)someMethod {  
+    NSString *myString = @"An interesting string";  
+    self.someString = myString;  
+  // or  
+    [self setSomeString:myString];  
+}  
+
+这种情况的例外是在写初始化、释放或者自定义存取方法的时候，本章后面会提到。
+
+
 
 
 
