@@ -679,6 +679,22 @@ OC不但提供了显式的存取器方法，还提供了点语法作为访问一
 	实例变量将会和属性具有相同的名称。  
 	在这个示例当中，实例变量同样叫做firstName，而没有下划线。
 
+### 你可以不通过属性来定义实例变量
+任何时候，通过一个对象的属性来跟踪一个值或者其他对象都是最好的做法。  
+如果你确实需要定义你自己的实例变量，而不要声明属性的话，你可以将其用大括号括住，放在头文件或者实现体的头部，类似这样：  
+> @interface SomeClass : NSObject {  
+    NSString *_myNonPropertyInstanceVariable;  
+}  
+...  
+@end  
+@implementation SomeClass {  
+    NSString *_anotherCustomInstanceVariable;  
+}  
+...  
+@end  
+
+	注意：你还可以添加实例变量到顶部的类的延展中，这在“类的延展扩展了类的实现”中有相关描述。
+
 
 
 
