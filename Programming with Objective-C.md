@@ -661,6 +661,28 @@ OC不但提供了显式的存取器方法，还提供了点语法作为访问一
 }  
 
 这种情况的例外是在写初始化、释放或者自定义存取方法的时候，本章后面会提到。
+### 你可以自定义合成的实例变量名称
+就像前文提到的，一个可写的属性的默认行为是使用一个名为_propertyName的实例变量。  
+如果你想用一个不一样的名称的实例变量的话，你得使用以下的语句在你的实现体中，让编译器直接合成变量：  
+> @implementation YourClass   
+@synthesize propertyName = instanceVariableName;  
+...  
+@end  
+
+例如：
+> @synthesize firstName = ivar_firstName;
+
+在这个示例中，属性依旧叫做firstName，同时可以被firstName 和 setFirstName:以及点语法访问，但是它是基于一个叫做ivar_firstName实例变量的。  
+	
+	重要：如果你使用@synthesize关键字，没有指定实例变量名称的话，类似这样：
+	@synthesize firstName;  
+	实例变量将会和属性具有相同的名称。  
+	在这个示例当中，实例变量同样叫做firstName，而没有下划线。
+
+
+
+
+
 
 
 
