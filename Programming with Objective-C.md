@@ -695,7 +695,38 @@ OC不但提供了显式的存取器方法，还提供了点语法作为访问一
 
 	注意：你还可以添加实例变量到顶部的类的延展中，这在“类的延展扩展了类的实现”中有相关描述。
 
+### 在构造方法中直接访问实例变量
+setter方法会产生一些额外的副作用。它们会触发KVC通知，当你编写你自己的定制方法时，还有可能执行更进一步的任务。  
+你应该在构造方法当中直接访问实例变量，因为当属性被设置的时候，对象的其余部分还没有被初始化。即使你不提供自定义的合成方法，或者知道在你自己的类当中存在的副作用，子类化是重写行为的很好的方法。  
+一个典型的init方法类似这样：  
+> -(id)init {  
+    self = [super init];  
+    if (self) {  
+        // initialize instance variables here  
+    }  
+    return self;  
+}  
 
+在创建它自己的构造方法之前，init方法应该先调用父类的构造方法，然后将结果赋值给self。父类的初始化可能会失败，并且返回nil，所以你在执行你自己的初始化方法之前，永远都应该先检查self不是nil。  
+在方法的第一行，［self init］，一个对象的初始化是通过继承者链条，它的父类逐级初始化构成的。图3-1展现了XYZShoutingPerson对象的初始化过程。  
+
+图3-1 初始化过程  
+
+![](file:///Users/lizhankun/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.iOS.docset/Contents/Resources/Documents/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/initflow.png)  
+
+就像你在前面的章节看到的那样，一个对象的初始化是要早于调用init的，或者它会调用一个带有特殊值的初始化的对象。  
+以XYZPerson类举例来说，你可以提供一个初始化方法，设置人的姓名：  
+> -(id)initWithFirstName:(NSString *)aFirstName lastName:(NSString *)aLastName;
+
+你实现这个初始化方法类似这样：  
+> -(id)initWithFirstName:(NSString *)aFirstName lastName:(NSString *)aLastName {  
+    self = [super init];  
+    if (self) {  
+        _firstName = aFirstName;  
+        _lastName = aLastName;  
+    }  
+    return self;  
+}  
 
 
 
