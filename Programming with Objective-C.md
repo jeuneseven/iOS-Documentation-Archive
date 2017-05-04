@@ -755,8 +755,25 @@ setter方法会产生一些额外的副作用。它们会触发KVC通知，当�
     return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];  
 }
 
+这段代码展示了一个格式化的字符串通过批配符（前文有相关描述）来构建包含一个人的姓和名的字符串，并且用空格分隔。  
+	
+	注意：尽管这是一段示例代码，但是意识到一些本地特性还是很有必要的，这只适合哪些将人的名放在姓之前的国家。
 
+如果你需要为一个属性（使用实例变量）写一个自定义的合成方法的话，你必须将该实例变量直接写在方法之中。例如，通常我们应该延迟一个属性的初始化，直到它第一次被需要初始化的时候，这称作“懒加载”，类似这样：  
+> -(XYZObject *)someImportantObject {  
+    if (!_someImportantObject) {  
+        _someImportantObject = [[XYZObject alloc] init];  
+    }  
+    return _someImportantObject;  
+}
 
+在使用之前，这个方法首先检查了_someImportantObject变量是否为nil，如果它为空的话，那么创建一个对象。  
+
+	注意：编译器会在任何情况下自动合成一个实例变量的存取方法，哪怕它只需要一个存取方法。如果你为一个readwrite的属性实现了getter和setter方法，或者为一个readonly的属性实现了getter方法的话，编译器会假设你会全权控制该属性，而不回再为你自动实现该属性的合成方法了。  
+	如果你依旧需要一个实例变量的话，那么你必须要请求一个合成方法：  
+	@synthesize property = _property;
+
+### 属性默认是原子性的
 
 
 
