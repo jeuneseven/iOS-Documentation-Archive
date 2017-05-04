@@ -728,11 +728,23 @@ setter方法会产生一些额外的副作用。它们会触发KVC通知，当�
     return self;  
 }  
 
+#### 构造方法是最主要的初始化方法
+如果一个对象声明了一个活着多个初始化方法，你应该决定哪个方法才是构造方法。这些方法通常为初始化提供了多种选择（例如带有多个参数的初始化方法），并且为了方便起见，这些方法会被你所写的其他方法调用。你也应该重写init方法来调用你的构造方法，并匹配适当的默认值。  
+如果一个XYZPerson类有一个属性是生日，那么构造方法应该类似这样：  
+> -(id)initWithFirstName:(NSString *)aFirstName lastName:(NSString *)aLastName
+                                            dateOfBirth:(NSDate *)aDOB;
 
+如上所述，这个方法应该设置相关的实例变量。如果你想为姓名提供一个更为简便的初始化方法的话，你应该实现该方法，然后调用这个构造方法，类似这样：  
+> -(id)initWithFirstName:(NSString *)aFirstName lastName:(NSString *)aLastName {  
+    return [self initWithFirstName:aFirstName lastName:aLastName dateOfBirth:nil];  
+}
 
+你还应该实现一个标准的init方法，并携带适当的默认值：  
+> -(id)init {  
+    return [self initWithFirstName:@"John" lastName:@"Doe" dateOfBirth:nil];  
+}
 
-
-
+如果你在子类化一个类的时候要使用多个init方法，你应该重写父类的构造方法来执行你自己的初始化，活着添加你自己的额外的初始化方法。不论哪种方式，你都应该在调用自己的初始化方法之前，调用父类的构造方法（代替[super init];）。
 
 
 
