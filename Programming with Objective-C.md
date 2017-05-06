@@ -774,11 +774,28 @@ setter方法会产生一些额外的副作用。它们会触发KVC通知，当�
 	@synthesize property = _property;
 
 ### 属性默认是原子性的
+默认的，一个OC的属性是原子性的。  
+> @interface XYZObject : NSObject  
+@property NSObject *implicitAtomicObject;          // atomic by default  
+@property (atomic) NSObject *explicitAtomicObject; // explicitly marked atomic  
+@end
 
+意思是自动合成器确保一个值会被getter方法完全恢复或者通过setter方法设置，即使合成方法被不同的线程同时调用。  
+由于内部的实现以及原子性的合成方法的同步性是私有的，所以无法将自动合成器和你自己实现的的合成方法结合起来。比如，如果你为一个atomic, readwrite的属性提供一个自定义的setter方法，并且让编译器合成getter方法的话，你会得到一个编译器的警告。  
+你可以使用nonatomic修饰一个属性，指定它的合成方法只设置或者直接返回值，而不保证不同的线程同时访问同一个值的时候要发生的事。由于这个原因，使用nonatomic访问一个属性要比使用atomic要快，并且，你还可以结合合成的setter方法与你自己的getter方法实现：  
+> @interface XYZObject : NSObject  
+@property (nonatomic) NSObject *nonatomicObject;  
+@end  
+@implementation XYZObject  
+- (NSObject *)nonatomicObject {  
+    return _nonatomicObject;  
+}  
+// setter will be synthesized automatically  
+@end
 
-
-
-
+	注意：属性的原子性与对象的线程安全是不同的意思。  
+	假设一个XYZPerson类的对象，它的姓名属性在一个线程中使用原子性的合成方法被修改了。如果其它的线程在同一时间访问它的姓名属性的话，原子性的getter方法会返回完整的字符串（不会崩溃），但是不保证该值是正确的相关的姓名。如果它的姓在被改变之前就被访问的话，但是名是改变之后被访问的，那么你最终得到的是一个不一致的不匹配的姓名。  
+	这个例子很简单，但是线程安全问题在涉及到网络相关的对象时变得很复杂了。线程安全问题在“并发编程指南”中有相关的描述。
 
 
 
