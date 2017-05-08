@@ -798,7 +798,44 @@ setter方法会产生一些额外的副作用。它们会触发KVC通知，当�
 	这个例子很简单，但是线程安全问题在涉及到网络相关的对象时变得很复杂了。线程安全问题在“并发编程指南”中有相关的描述。
 
 ### 通过所有权和依赖管理对象
+就像你之前看到的那样，OC对象的内存是在栈上动态创建的，这意味着你必须使用指针来跟踪对象的地址。跟标准值不同，你不能在指针变量的使用范围内就确定对象的生命周期。反而对象必须存在的足够久，以供其他对象来调用。  
+你倒不用担心需要手动管理每个对象的生命周期，反倒是应该多思考一下对象之间的关系。  
+举例来说，在XYZPerson类的对象中，firstName 和 lastName两个字符串属性是被XYZPerson实例来持有的。这意味着他们应该和XYZPerson类的对象在内存中的生命周期一样长。  
+当一个对象以这种方式依赖其他对象的时候，那么这些对象之间的关系是有效的，第一个对象被称作“强引用”其他对象。在OC当中，一个对象只要与其他对象有强引用关系的话，就会一直存在。XYZPerson实例对象和它两个字符串属性的关系见图3-2。  
 
+图3-2 强引用关系  
+
+![](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/strongpersonproperties.png)  
+
+当一个XYZPerson对象从内存中释放的时候，两个字符串对象也会被释放，当然前提是没有其他的强引用指向他们。  
+给这个示例加点难度，考虑一下图3-3这样的一个app的对象之间的关系。  
+
+图3-3 姓名牌制作app  
+
+![](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/namebadgemaker.png)  
+
+当用户点击更新按钮的话，姓名牌会更新到相关的信息。  
+当一个人的姓氏信息已经被输入，并且更新按钮被点击的话，对象之间的关系会像图3-4那样。  
+
+图3-4 XYZPerson对象的初始化  
+
+![](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/simplifiedobjectgraph1.png)
+
+当用户修改一个人的姓氏，对象改变后的关系类似图3-5。  
+
+图3-5 对象改变后的关系
+
+![](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/simplifiedobjectgraph2.png)
+
+姓名牌展示了维持一个强引用到@"John"字符串对象，即使XYZPerson 对象有了一个不一样firstName。这意味着@"John"对象还是在内存中的，并且被姓名牌展示来打印姓名。  
+一旦用户第二次点击更新按钮，姓名牌会被告知要更新它内部的属性来匹配person对象，所以对象之间的关系会类似图3-6那样。  
+
+图3-6 对象更新后的关系
+
+![](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/simplifiedobjectgraph3.png)
+
+在这个时候，原来的@"John"对象不再被强引用，所以它会从内存中释放。  
+默认的，OC的属性和变量对于其他对象是维持强引用的。这适用于很多情况，但这会带来一个潜在的强引用循环的问题。
 #### 避免强引用
 
 #### 通过强弱声明来管理所有权
