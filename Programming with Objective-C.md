@@ -838,7 +838,40 @@ setter方法会产生一些额外的副作用。它们会触发KVC通知，当�
 默认的，OC的属性和变量对于其他对象是维持强引用的。这适用于很多情况，但这会带来一个潜在的强引用循环的问题。
 #### 避免强引用
 尽管对象之间的单向的强引用关系运行良好，你还是要小心那些一组组的有关联的对象之间的关系。如果一组对象之间被强引用循环链接的话，即使是外部没有引用了，他们内部的强引用关系也会让它们一直存在下去。  
-一个比较明显的例子是tableview（iOS的UITableView和OS X的NSTableView）和它的delegate之间的潜在引用循环。
+一个比较明显的例子是tableview（iOS的UITableView和OS X的NSTableView）和它的delegate之间的潜在引用循环。为了能够让tableview在尽可能多的场景下使用，它的delegates会被交给外部对象。这意味着它将以来外部对象来决定展示什么内容，或者当用户在上面进行点击的时候决定要做什么。  
+一个比较通用的方案是tableview对delegate强引用，并且delegate对tableview也是，就像图3-7展示的那样。  
+
+图3-7 tableview和delegate之间的强引用
+
+![](file:///Users/lizhankun/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.iOS.docset/Contents/Resources/Documents/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/strongreferencecycle1.png)
+
+当其它的对象放弃它对于tableview和delegate的强引用关系的时候，问题就发生了，见图3-8。  
+
+图3-8 强引用循环
+
+![](file:///Users/lizhankun/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.iOS.docset/Contents/Resources/Documents/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/strongreferencecycle2.png)
+
+即使现在已经没有必要将两个对象还保存在内存中了——外部对于tableview或者delegate已经没有强引用关系了——但是两个对象之间剩下的强引用关系还是会一直存在。这就叫做“强引用循环”。  
+解决这种问题的办法就是要替换一个强引用为弱引用。一个弱引用并不意味着两个对象之间的关系或者持有性，它不会让一个对象一直存活。  
+如果一个tableview对于它的delegate的关系被修改为弱引用的话（UITableView和NSTableView就是这么解决的），那么一开始的对象之间的关系会像图3-9那样。  
+
+图3-9 正确的tableview和它的delegate之间的关系
+
+![](file:///Users/lizhankun/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.iOS.docset/Contents/Resources/Documents/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/strongreferencecycle3.png)
+
+当外部的对象放弃对tableview和delegate的强引用的时候，这样对于delegate就没有强引用的关系了，就像图3-10那样。  
+
+图3-10 避免强引用循环
+
+![](file:///Users/lizhankun/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.iOS.docset/Contents/Resources/Documents/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/strongreferencecycle4.png)  
+
+这意味着delegate对象将要被释放，意思就是释放强引用的tabelview，见图3-11。  
+
+图3-11 释放delegate
+
+![](file:///Users/lizhankun/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.iOS.docset/Contents/Resources/Documents/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/strongreferencecycle5.png)  
+
+一旦delegate被释放，那么tableview也就没有强引用了，所以它也会被释放。
 #### 通过强弱声明来管理所有权
 默认的，一个对象的属性声明是这样的：  
 > @property id delegate;
