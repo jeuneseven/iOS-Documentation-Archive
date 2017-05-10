@@ -881,7 +881,19 @@ setter方法会产生一些额外的副作用。它们会触发KVC通知，当�
 
 	注意：weak的反义词是strong。但是你无需声明strong关键字，因为它是默认的。
 	
-	  
+局部变量（非属性的实例变量）默认同样对于对象是强引用的。这意味着以下的代码会按照你所想的那样运行：  
+> NSDate *originalDate = self.lastModificationDate;  
+    self.lastModificationDate = [NSDate date];  
+    NSLog(@"Last modification date changed from %@ to %@", originalDate, self.lastModificationDate);  
+                        
+在这个示例中，局部变量originalDate对一开始的lastModificationDate对象强引用。当lastModificationDate属性改变的时候，属性将对于原来的日期不再强引用，但是日期依旧会被originalDate强引用而存在。  	  
+	
+	注意：一个变量只在它的作用域范围内对于对象强引用，或者直到重新赋值给其它对象或者nil的时候。
+
+如果你不想一个局部变量维持强引用的话，你可以使用__weak关键字修饰，类似这样：  
+> NSObject * __weak weakVariable;
+
+	
 #### 为某些类使用不安全、不持有的引用
 
 #### 拷贝属性维持了它们自身的拷贝
