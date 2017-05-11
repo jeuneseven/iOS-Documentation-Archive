@@ -893,6 +893,19 @@ setter方法会产生一些额外的副作用。它们会触发KVC通知，当�
 如果你不想一个局部变量维持强引用的话，你可以使用__weak关键字修饰，类似这样：  
 > NSObject * __weak weakVariable;
 
+由于一个弱引用无法维持一个对象，那么即使是你对某个对象还有一个引用，而对象已经释放了也是没问题的。为了避免由释放的对象引起的野指针，一个弱引用会在对象被释放的时候设置为nil。  
+这意味着，如果你在之前的示例当中使用弱引用的话：  
+> NSDate * __weak originalDate = self.lastModificationDate;  
+    self.lastModificationDate = [NSDate date];
+
+originalDate变量可能会被设置为nil。当self.lastModificationDate重新赋值之后，属性对于原来的日期持有强引用。如果没有了强引用，原来的日期将会释放，并且originalDate会被设置为nil。  
+weak变量还会引起困惑，尤其以下这段代码：  
+> NSObject * __weak someObject = [[NSObject alloc] init];
+
+在这段代码中，新创建的对象没有强引用，那么它会被立刻释放，并且someObject会被设置为nil。  
+
+	注意：__weak的反义词是__strong。同样的，你无需显式的声明__strong，因为它是默认的。
+
 	
 #### 为某些类使用不安全、不持有的引用
 
