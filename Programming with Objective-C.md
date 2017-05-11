@@ -906,7 +906,35 @@ weak变量还会引起困惑，尤其以下这段代码：
 
 	注意：__weak的反义词是__strong。同样的，你无需显式的声明__strong，因为它是默认的。
 
-	
+考虑一些隐含的需要访问weak属性的方法也是很重要的，类似这样：  
+> -(void)someMethod {  
+    [self.weakProperty doSomething];  
+    ...  
+    [self.weakProperty doSomethingElse];  
+}  
+
+在这种情况下，你需要用一个强引用的变量来保存weak的属性，以便在你用到它的时候，它还在内存里：  
+> -(void)someMethod {  
+    NSObject *cachedObject = self.weakProperty;  
+    [cachedObject doSomething];  
+    ...  
+    [cachedObject doSomethingElse];  
+}  
+
+在这个示例当中，cachedObject变量对于原来的weak的属性强引用了，所以在cachedObject的生命周期当中（大括号中，并且没有被其他的值重新赋值）不会被释放。  
+记住，在使用一个weak的属性之前，要确保它不为nil是非常重要的，这不仅仅是检测一下这么简单，类似这样：  
+> if (self.someWeakProperty) {  
+        [someObject doSomethingImportantWith:self.someWeakProperty];  
+    }  
+
+因为app是一个多线程的大学，属性很有可能在你测试它或者函数调用的时候就已经释放了，这会导致测试毫无用处。所以，你需要声明一个强引用的局部变量来持有它，类似这样：  
+> NSObject *cachedObject = self.someWeakProperty;           // 1  
+    if (cachedObject) {                                       // 2  
+        [someObject doSomethingImportantWith:cachedObject];   // 3  
+    }                                                         // 4  
+    cachedObject = nil;                                       // 5  
+    
+在这个示例当中，第一行创建了强引用，意思是对象被确保了能够存活，为了让你测试和函数调用。在第五行，cachedObject被设置为nil，所以放弃了强引用。如果原来的对象在这个时候没有其他的强引用的话，它将会被释放，并且someWeakProperty会被设置为nil。
 #### 为某些类使用不安全、不持有的引用
 
 #### 拷贝属性维持了它们自身的拷贝
