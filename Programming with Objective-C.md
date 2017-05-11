@@ -945,7 +945,48 @@ weak变量还会引起困惑，尤其以下这段代码：
 
 一个unsafe的引用比较像一个weak的引用，所以它和对象的生命周期无关，但是当目标对象被释放的时候，它不会被设置为nil。这意味着你将会为当前已经释放的对象在内存中留下一个野指针。给一个野指针发送消息的话，会引起崩溃。
 #### 拷贝属性维持了它们自身的拷贝
+在某些情况下，对象可能会想要一份它自己的拷贝，作为它自己的属性。  
+举例来说，XYZBadgeView类的接口在之前的图3-4当中已经展示过了，类似这样：  
+> @interface XYZBadgeView : NSView  
+@property NSString *firstName;  
+@property NSString *lastName;  
+@end  
 
+这声明了两个NSString类型的属性，这暗示了它对于它的对象的强引用关系。  
+假设有这么一种情况，一个其他的对象声明了一个字符串，想要设置它们两个属性，类似这样：  
+> NSMutableString *nameString = [NSMutableString stringWithString:@"John"];  
+    self.badgeView.firstName = nameString;  
+
+这是非常正常的一种情况，由于NSMutableString类是NSString类的子类。尽管badge view 处理了一个NSString实例，它也会同样处理一个NSMutableString实例。  
+这意味着改字符串可以被改变：  
+> [nameString appendString:@"ny"];
+
+在这种情况下，尽管原来的 badge view 的firstName属性是“John”，现在也变为了“Johnny”，因为可变字符串改变了。  
+你可能会选择badge view应该对firstName 和 lastName 属性维持它自己的一份拷贝，这样就能在属性被设置的时候有效的响应了。在两个属性的声明时候添加copy关键字：  
+> @interface XYZBadgeView : NSView  
+@property (copy) NSString *firstName;  
+@property (copy) NSString *lastName;  
+@end     
+
+这样，view就对于两个字符串有了自己的拷贝。即使是一个可变的字符串被设置了，或者之后改变了，badge view都会在它设置的时候响应改变。例如：  
+> NSMutableString *nameString = [NSMutableString stringWithString:@"John"];  
+    self.badgeView.firstName = nameString;  
+    [nameString appendString:@"ny"];  
+    
+这个时候，firstName被badge view的一份不受影响的拷贝持有，所以它的值还是原来的字符串“John”。  
+copy属性意味着改属性会被使用强引用，因为它会被新创建的对象持有。  
+
+	注意：任何你想声明copy的属性必须支持NSCopying协议，意思是你必须遵守NSCopying协议。  
+	协议的概念在“协议定义了消息的契约”中会有相关介绍，关于NSCopying的更多信息，参见“NSCopying”或者“高级内存管理编程指南”。
+
+如果你想立刻声明一个copy类型的属性实例的话，比如在构造方法当中，不要忘了为原对象设置一份拷贝：  
+> -(id)initWithSomeOriginalString:(NSString *)aString {  
+    self = [super init];  
+    if (self) {  
+        _instanceVariableForCopyProperty = [aString copy];  
+    }  
+    return self;  
+}
 ### 练习
 
 
