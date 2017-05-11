@@ -936,10 +936,23 @@ weak变量还会引起困惑，尤其以下这段代码：
     
 在这个示例当中，第一行创建了强引用，意思是对象被确保了能够存活，为了让你测试和函数调用。在第五行，cachedObject被设置为nil，所以放弃了强引用。如果原来的对象在这个时候没有其他的强引用的话，它将会被释放，并且someWeakProperty会被设置为nil。
 #### 为某些类使用不安全、不持有的引用
+在Cocoa 和 Cocoa Touch当中，还有一部分类不支持弱引用，所以你无法声明一个弱的属性或者使用weak局部变量来跟踪它们。这些类包括NSTextView, NSFont 和 NSColorSpace，想查看全部列表的话，请参见“过渡到ARC”。  
+如果你想对这些类使用weak来修饰的话，你必须使用unsafe修饰。对于一个属性来说，你得使用unsafe_unretained来修饰：  
+> @property (unsafe_unretained) NSObject *unsafeProperty;
 
+对于局部变量来说，你得使用__unsafe_unretained修饰：  
+> NSObject * __unsafe_unretained unsafeReference;
+
+一个unsafe的引用比较像一个weak的引用，所以它和对象的生命周期无关，但是当目标对象被释放的时候，它不会被设置为nil。这意味着你将会为当前已经释放的对象在内存中留下一个野指针。给一个野指针发送消息的话，会引起崩溃。
 #### 拷贝属性维持了它们自身的拷贝
 
 ### 练习
+
+
+
+
+
+
 
 
 
