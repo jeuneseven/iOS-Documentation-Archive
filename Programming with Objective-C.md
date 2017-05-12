@@ -1082,6 +1082,16 @@ Warwick, Kate
 
 ## 类的扩展扩展了类的内部实现
 
+### 使用类的扩展来隐藏私有的信息
+
+## 思考一下其他的类的定制化的方法
+
+### 通过OC的runtime相互直接作用
+
+## 练习
+1. 添加一个XYZPerson类的分类，声明一个额外的实现，类似于以不同的方式来展示一个人的姓名。
+2. 给NSString添加一个分类，功能是为字符串提供一个大写字母的版本，调用NSStringDrawing类的一个方法来执行。该方法在“iOS 字符串 UIKit 参考”和“OS X 字符串 Application Kit 参考”中有相关描述。
+3. 为XYZPerson 类 添加两个readonly的属性，用它来展示一个人的身高和体重，连同measureWeight 和 measureHeight。使用类的扩展来重新声明这两个属性为readwrite的，然后实现它们的方法，并且设置合适的值。
 
 
 
