@@ -1007,6 +1007,67 @@ copy属性意味着改属性会被使用强引用，因为它会被新创建的�
 
 * 修改XYZPerson类的描述以便你能够跟踪一个配偶或者搭档。你要决定如何更好的处理各个model之间的关系，好好考虑对象之间的从属关系。
 
+# 定制已经存在的类
+对象应该有着明确定义的任务，例如构造特殊的信息，展示内容或者控制信息流。就像你见到的那样，一个类的接口定义了其他类可以访问的功能，来帮助这个类的对象完成它的任务。  
+有的时候，你可能会需要通过添加一些仅仅在某些地方用到的特殊的行为来扩展一个已经存在的类。举例来说，你的app可能需要展示一个字符串到界面上。与其添加一个字符串渲染的对象，每次调用它来展示一个字符串，还不如扩展NSString类本身来达到这一目的。  
+在这种情况下，为原始的类添加通用的行为可不是一个好的方法。绘制字符串这个功能大部分时间都不会用到，而对于NSString来说，你是无法修改它的原始接口或者实现的，因为它是框架的一部分。  
+此外，对于已经存在的类采取继承的方式可能也不妥，因为你需要给NSString类添加绘制行为，并且希望它所有的子类也有这个功能，例如NSMutableString。并且，尽管NSString在OS X和iOS上都是可用的，绘制的代码可能需要区分不同的平台，所以你需要在不同的平台上使用不同的子类。  
+所以，OC允许你通过分类和扩展来为已经存在的类添加自己的方法。
+## 分类为已经存在的类添加方法
+如果你需要为一个已经存在的类添加方法的话，通过分类是最简单的方式。  
+声明一个分类的语法是使用@interface关键字，就像标准的OC类的描述一样，但是它不会继承于任何类，它会将分类的名称放在括号中，类似这样：  
+> @interface ClassName (CategoryName)  
+@end
+
+任何类都可以有分类，即使你没有原类的实现源代码（比如标准的 Cocoa 或者 Cocoa Touch类）。所有你添加到分类当中的方法，都可以被原类的所有实例使用，同样，原类的子类也的实例也可以使用。在运行时，原类的方法和添加到分类中的方法是没有区别的。  
+考虑到之前章节的XYZPerson类，拥有一个人的姓名两个属性。如果你在编写一个记录类的app时，你可能需要频繁的展示一组人的名字，类似这样：  
+> Appleseed, John  
+Doe, Jane  
+Smith, Bob  
+Warwick, Kate  
+
+你不用为适配lastName, firstName编写代码来展示它，你只需要为XYZPerson类添加一个分类就可以了，类似这样：  
+> 	#import "XYZPerson.h"  
+@interface XYZPerson (XYZPersonNameDisplayAdditions)  
+- (NSString *)lastNameFirstNameString;  
+@end
+
+在这个示例当中，分类XYZPersonNameDisplayAdditions添加了一个额外的方法来返回需要的字符串。  
+分类通常定义和实现在不同的文件当中。以XYZPerson为例，你可能要声明一个分类在一个叫做XYZPerson+XYZPersonNameDisplayAdditions.h的文件中。  
+即使所有添加到分类的方法都能被它的实例对象和子类的对象使用，你还是需要将你要用到的方法的分类的头文件导入到你需要的地方，否则你会收到一个编译器的警告和错误提示。  
+分类的实现类似这样：  
+> 	#import "XYZPerson+XYZPersonNameDisplayAdditions.h"  
+@implementation XYZPerson (XYZPersonNameDisplayAdditions)  
+- (NSString *)lastNameFirstNameString {  
+    return [NSString stringWithFormat:@"%@, %@", self.lastName, self.firstName];  
+}  
+@end  
+
+一旦你声明并实现了一个分类的方法，你可以在任何地方使用它，就像它本来就是原来的类的一部分那样：  
+>	#import "XYZPerson+XYZPersonNameDisplayAdditions.h"
+@implementation SomeObject  
+- (void)someMethod {  
+    XYZPerson *person = [[XYZPerson alloc] initWithFirstName:@"John"
+                                                    lastName:@"Doe"];
+    XYZShoutingPerson *shoutingPerson =
+                        [[XYZShoutingPerson alloc] initWithFirstName:@"Monica"
+                                                            lastName:@"Robinson"];		
+    NSLog(@"The two people are %@ and %@",
+         [person lastNameFirstNameString], [shoutingPerson lastNameFirstNameString]);	
+}	
+@end	
+
+就像为一个已经存在的类添加方法那样，你可以使用分类来分离一个比较复杂的类的实现到不同的实现文件当中。比如，你可以将绘制一个界面元素的代码放到一个分类中，包括几何计算、颜色、渐变等。与此同时，你还可以提供为分类的方法提供不同的实现，取决于你是为OS X还是iOS编写app。  
+分类可以被用来声明实例方法和类方法，但是对于声明一个额外的属性就不太合适了。在分类的头文件中声明一个属性从语法上是合法的，但是你无法为一个分类声明一个额外的实例变量。这意味着编译器不会自动合成任何实例变量，意思是它不会为任何属性合成方法。你可以在分类的实现中编写你自己的合成方法，但是你不可能跟踪到任何值，除非它本来就存在在原来的类当中。  
+唯一的添加一个标准的属性——基于一个新的变量——是使用类的扩展，这在“类的扩展”中有相关描述。  
+	
+	注意：Cocoa 和 Cocoa Touch的框架当中包含了大量的分类。  
+	本章之前提到的字符串渲染的方法已经被NSString的NSStringDrawing分类在OS X上提供了，它包含drawAtPoint:withAttributes: 和 drawInRect:withAttributes:方法。对于iOS而言，UIStringDrawing分类包含了drawAtPoint:withFont: 和 drawInRect:withFont:类似的方法。
+
+
+
+
+
 
 
 
