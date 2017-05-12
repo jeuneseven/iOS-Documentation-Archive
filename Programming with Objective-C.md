@@ -1064,8 +1064,23 @@ Warwick, Kate
 	注意：Cocoa 和 Cocoa Touch的框架当中包含了大量的分类。  
 	本章之前提到的字符串渲染的方法已经被NSString的NSStringDrawing分类在OS X上提供了，它包含drawAtPoint:withAttributes: 和 drawInRect:withAttributes:方法。对于iOS而言，UIStringDrawing分类包含了drawAtPoint:withFont: 和 drawInRect:withFont:类似的方法。
 
+### 避免分类方法的名称冲突
+由于方法被声明在了一个已经存在的类的分类当中，所以你必须非常小心方法的名称。  
+如果声明在一个分类当中的方法是和原来类当中的方法名一样的话，在你自己的类当中使用这个方法可能还没什么大问题，但是如果这个分类是Cocoa 或者 Cocoa Touch类的分类的话，可能就会有问题了。  
+举例来说，一个app和远端的服务器合作，可能会使用一个比较简单的Base64的方法来编码字符串。很可能你定义了一个NSString的分类来添加一个实例方法，返回一个base64编码的字符串，所以很容易想到这个方法的名字就叫base64EncodedString。  
+当你链接到其他的框架，并且该框架也有NSString的分类的时候，问题就会发生了，该框架也有base64EncodedString这个方法。在运行时，只有一个方法的实现会被最终添加到NSString当中，但是到底是哪个方法，这是未知的。  
+同样的，你添加Cocoa 或者 Cocoa Touch的分类也会发生类似情况。举例来说，NSSortDescriptor类定义了一个集合类应该如何排序，它已经有了一个方法叫做initWithKey:ascending:，但是它没有在早期的OS X和iOS版本中提供相应的工厂方法。  
+按照惯例，工厂方法应该叫做sortDescriptorWithKey:ascending:，所以你可能会选择添加一个NSSortDescriptor的分类来提供这个方法。这在早期的OS X和iOS版本当中可能有用，但是在10.6的OS X和4.0的iOS版本之后，sortDescriptorWithKey:ascending:方法已经被添加到了NSSortDescriptor类当中，那么这时候你就造成了命名的冲突。  
+为避免这种情况，在给系统类框架添加分类的时候，最好加一个前缀，就像你添加自己的类的前缀那样。你可能选择同样的三个字母的前缀，但最好使用小写字母来遵循函数的命名规则，并且添加下划线在你的方法名前。以NSSortDescriptor类来举例，你自己的分类应该类似这样：  
+> @interface NSSortDescriptor (XYZAdditions)  
++ (id)xyz_sortDescriptorWithKey:(NSString *)key ascending:(BOOL)ascending;  
+@end  
 
+这样的话，你就可以在运行的时候使用自己的方法了。明明冲突造成的歧义就不存在了，因为你的代码会是这样的：  
+> NSSortDescriptor *descriptor =
+               [NSSortDescriptor xyz_sortDescriptorWithKey:@"name" ascending:YES];
 
+## 类的扩展扩展了类的内部实现
 
 
 
