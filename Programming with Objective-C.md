@@ -1081,6 +1081,25 @@ Warwick, Kate
                [NSSortDescriptor xyz_sortDescriptorWithKey:@"name" ascending:YES];
 
 ## 类的扩展扩展了类的内部实现
+一个类的扩展很像一个分类，但是它只能添加到在运行时你拥有源代码的类当中（类同类的扩展一起编译）。举例来说，类的扩展当中声明的函数，只能在原类的@implementation当中实现，所以你无法为系统框架，例如Cocoa 或者 Cocoa Touch 的 NSString类添加扩展。  
+类的扩展的语法很像一个分类的语法，类似这样：  
+> @interface ClassName ()  
+@end
+
+由于括号中没有名字，所以类的扩展经常被称作匿名分类。  
+不像常规的分类那样，一个类的扩展是可以添加其自己的属性和实例变量到一个类的。如果你声明一个属性到类的扩展当中，类似这样：  
+> @interface XYZPerson ()  
+@property NSObject *extraProperty;  
+@end
+
+编译器会自动合成相关的存取方法，同样的，实例变量也一样，在类的实现当中。  
+如果你添加了函数到类的扩展的话，那么你必须在类的实现体当中将其实现。  
+你同样可以使用类的扩展来添加自定义的实例变量。在类的扩展的接口的大括号中：  
+> @interface XYZPerson () {  
+    id _someCustomInstanceVariable;  
+}  
+...  
+@end  
 
 ### 使用类的扩展来隐藏私有的信息
 
