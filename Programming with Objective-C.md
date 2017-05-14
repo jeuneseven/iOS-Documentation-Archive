@@ -1102,6 +1102,32 @@ Warwick, Kate
 @end  
 
 ### 使用类的扩展来隐藏私有的信息
+原始的类的接口是用来定义向其他类进行交互的。换句话说，是一个类的公共接口。  
+类的扩展通畅用来扩展公共接口，通过添加私有的方法和属性在实现体当中。举例来说，通常来讲，在接口当中定义一个只读的属性，但是在类的扩展当中定义一个可读写的属性，这样类的内部的函数是可以直接对该值进行修改。  
+作为示例，XYZPerson类将要添加一个属性，叫做uniqueIdentifier，被设计用来跟踪类似于美国的社会保险号的相关信息。  
+在现实世界中，通常需要填写大量的表格才能拥有一个个人的独一无二的账号，所以XYZPerson类的接口的属性会被设计为readonly的，并且提供一些方法来请求授予ID，类似这样：  
+> @interface XYZPerson : NSObject
+...
+@property (readonly) NSString *uniqueIdentifier;
+- (void)assignUniqueIdentifier;
+@end
+
+这意味着uniqueIdentifier不能被其它的对象直接设置。如果一个人没有这个ID的话，那么必须先调用assignUniqueIdentifier方法来赋值一个ID。  
+为了XYZPerson类能够修改内部的属性，那么在类的实现的顶部的类的扩展当中重新声明属性是很合理的：  
+> @interface XYZPerson ()  
+@property (readwrite) NSString *uniqueIdentifier;  
+@end  
+@implementation XYZPerson  
+...  
+@end  
+
+	注意：readwrite属性是可选的，因为它是默认值。只是在重新声明一个属性的时候显式使用。
+
+这意味着编译器也会自动生成一个setter方法了，所以在XYZPerson内部无论是用setter还是点语法都可以对该属性进行设置了。  
+通过在XYZPerson类的实现体当中声明一个类的扩展，它保护了XYZPerson的私有信息。如果其它的对象试图对该属性进行设置的话，将会得到一个编译器的错误提示。  
+
+	注意：通过上面添加的类的扩展，重新声明uniqueIdentifier属性为readwrite类型，那么在运行时XYZPerson类的对象将会有一个setUniqueIdentifier:方法，不论其它的源代码文件是否有类的扩展。  
+	
 
 ## 思考一下其他的类的定制化的方法
 
