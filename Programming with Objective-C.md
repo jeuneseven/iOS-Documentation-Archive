@@ -1145,7 +1145,21 @@ OC通过OC的runtime机制提供动态特性。
 2. 给NSString添加一个分类，功能是为字符串提供一个大写字母的版本，调用NSStringDrawing类的一个方法来执行。该方法在“iOS 字符串 UIKit 参考”和“OS X 字符串 Application Kit 参考”中有相关描述。
 3. 为XYZPerson 类 添加两个readonly的属性，用它来展示一个人的身高和体重，连同measureWeight 和 measureHeight。使用类的扩展来重新声明这两个属性为readwrite的，然后实现它们的方法，并且设置合适的值。
 
+# 使用协议
 
+## 协议定义了消息的合同
+
+### 协议可以有可选的方法
+
+#### 在运行时检查可选方法是否实现
+
+### 协议从其他协议继承
+
+## 遵循协议
+
+### Cocoa 和 Cocoa Touch定义了大量的协议
+
+## 协议可以用于匿名
 
 
 
