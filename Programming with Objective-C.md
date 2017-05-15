@@ -1151,7 +1151,41 @@ OC通过OC的runtime机制提供动态特性。
 数据源可以是任何类的实例，例如视图控制器（NSViewController OS X 或者 UIViewController iOS）或者一个专门的处理数据源的继承自NSObject的类。为了让tableview知道一个对象是否适合作为一个数据源，声明一些对象必须实现的方法是很重要的。  
 OC允许你定义“协议”，协议定义了在某些特殊情况下需要用到的方法。本章介绍了定义一个正式的协议的语法，解释了一个类的接口如何声明它遵循了一项协议，意思是该类必须实现协议当中必须实现的方法。
 ## 协议定义了消息的合同
+一个类的接口定义了和类相关联的方法和属性。相比之下，一个协议定义了一些不依赖于任何类的方法和属性。  
+定义一个协议的基本语法是这样的：  
+> @protocol ProtocolName  
+// list of methods and properties  
+@end
 
+协议可以包括实例方法、类方法、属性。  
+举例来说，假设我们要定义一个类来展示饼状图，见图5-1。  
+
+图5-1 自定义的饼状图  
+
+![](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/piechartsim_2x.png)  
+
+为了让这个视图尽可能的复用，所有的相关信息都应该由一个数据源对象来决定。这意味着同一个view可以根据不同的数据源来展示不同的内容。  
+需要饼状图展示的最小信息应该包括数据段的数量，每个段的大小，以及每段的标题。所以饼状图的协议应该看上去类似这样：  
+> @protocol XYZPieChartViewDataSource  
+- (NSUInteger)numberOfSegments;  
+- (CGFloat)sizeOfSegmentAtIndex:(NSUInteger)segmentIndex;  
+- (NSString *)titleForSegmentAtIndex:(NSUInteger)segmentIndex;  
+@end  
+
+	注意：协议使用了NSUInteger类型来表示i 无符号整型数据，这种类型在下一章节有更深入的讨论。
+
+饼状图的类的接口应该需要一个属性来跟踪数据源对象。这个对象可以是任何类，所以该属性的类型应该是id类型。所有有关对象的信息应该是该对象遵循了相关协议。  
+为view声明一个数据源属性的语法类似这样：  
+> @interface XYZPieChartView : UIView  
+@property (weak) id <XYZPieChartViewDataSource> dataSource;  
+...  
+@end
+
+OC使用一对尖括号来指出遵循协议。这个例子声明了一个weak类型的属性，它是通用的指针类型，遵循XYZPieChartViewDataSource协议。  
+
+	注意：代理和数据源属性通常为weak类型，原因在之前章节当中描述过，参见“避免强引用循环”。
+
+通过指定必须遵循的协议的属性，如果你要想设置该属性給一个对象的话，你将会得到一个编译器的警告，即使这个基本属性是通用指针类型的。不论该对象是UIViewController 或者 NSObject对象的一个实例。最重要的是遵循协议，意思是饼状图知道它需要的信息是可以被提供的。
 ### 协议可以有可选的方法
 
 #### 在运行时检查可选方法是否实现
