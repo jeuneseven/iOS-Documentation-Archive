@@ -1258,8 +1258,15 @@ respondsToSelector:方法使用了选择器，选择器在编译后引用了一�
 	提示：定义在协议当中的方法跟定义在其他地方的方法一样。在实现的时候，函数名和参数必须和协议当中的相比配。
 
 ### Cocoa 和 Cocoa Touch定义了大量的协议
-
+Cocoa 和 Cocoa Touch的对象在很多种情况下都使用了协议。举例来说，table view类（NSTableView OS X 和 UITableView iOS）都使用了数据源来展示必要的信息。它们都定义了自己的数据源协议，这跟之前的XYZPieChartViewDataSource协议的例子是一样的使用方式。table view类同样允许你设置delegate对象，这需要遵守NSTableViewDelegate 或 UITableViewDelegate 协议。delegate是用来响应用户交互或者定制入口显示的。  
+有些协议是用来指定类之间非层级的相同之处的。一些协议用来关联Cocoa 或 Cocoa Touch当中的一些不关联的类的。  
+举例来说，很多框架中的模型对象（比如集合类对象NSArray 和 NSDictionary）支持NSCoding协议，意思是它可以支持它们的属性通过编解码归解档为原始数据。NSCoding协议大大简化了编写整个对象到硬盘的工作，它为每个对象提供了协议。  
+有一些OC语言级别的功能同样依靠协议。举例来说，为了能够使用快速枚举，集合类必须遵守NSFastEnumeration协议，这在“快速枚举能够更快的枚举一个集合类”中有相关描述。同样的，有些对象可以被拷贝，就像“拷贝属性管理它们自己的拷贝”中描述的一个属性使用copy修饰的时候。所有你试图拷贝的对象必须实现NSCopying协议，否则你将会在运行时得到一个异常。
 ## 协议可以用于匿名
+
+
+
+
 
 
 
