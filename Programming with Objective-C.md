@@ -1212,14 +1212,37 @@ OC使用一对尖括号来指出遵循协议。这个例子声明了一个weak�
 
 这个示例定义了拥有三个必须实现的方法和两个可选方法的协议。
 #### 在运行时检查可选方法是否实现
+如果一个方法被标记为可选的，你必须在调用它之前检查对象是否实现了该方法。  
+举例来说，饼状图应该监测分段的标题方法是否实现了，类似这样：  
+> NSString *thisSegmentTitle;  
+    if ([self.dataSource respondsToSelector:@selector(titleForSegmentAtIndex:)]) {  
+        thisSegmentTitle = [self.dataSource titleForSegmentAtIndex:index];  
+    }  
 
+respondsToSelector:方法使用了选择器，选择器在编译后引用了一个方法的标识。你可以通过使用@selector()指令来提供正确的标识符，并且确定方法的名称。  
+如果这个示例当中的数据源实现了该方法的话，那么标题将被使用，否则的话，标题默认为nil。  
+
+	记住：局部变量将自动初始化为nil。
+
+如果你尝试使用respondsToSelector: 方法判断一个id类型的是否遵守上面定义的协议的话，你将会得到编译器的报错“没有已知的实例方法”。一旦你确定了id类型的协议，所有的静态类型检查将恢复原状；如果你想要调用一个协议当中未定义的方法的话，也会得到编译器的报错。唯一避免编译器报错的方式是将自定义的协议遵守NSObject协议。
 ### 协议从其他协议继承
+就像OC的类从父类继承一样，你同样可以指定一个协议继承另一个。  
+举例来说，你最好定义你的协议遵守NSObject协议（一些NSObject的行为已经被从类的接口分离到了协议中；NSObject类也遵循了NSObject协议）。  
+为了表明你自己的协议遵循NSObject协议，你应该将任何遵循自定义协议的对象实现NSObject协议的方法。由于你几本书使用的都是NSObject类的子类，所以你无需担心提供自己的类的关于NSObject协议的实现。不过遵守这些协议是很有用的，这在之前描述过。  
+想要指定一个协议遵守另一个，你需要将另一个协议的名字放在尖括号中，类似这样：  
+> @protocol MyProtocol <NSObject>  
+...  
+@end  
 
+在这个示例当中，任何遵守MyProtocol协议的对象同样遵守了NSObject协议当中声明的方法。
 ## 遵循协议
 
 ### Cocoa 和 Cocoa Touch定义了大量的协议
 
 ## 协议可以用于匿名
+
+
+
 
 
 
