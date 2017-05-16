@@ -1339,6 +1339,20 @@ NSRange结构体持有location 和 length。在这个示例当中，substringRan
 ## 对象可以表示原始类型的值
 如果你想把基本类型的值表达为对象的话，比如下个段落当中提到的集合类，你可以使用Cocoa 和 Cocoa Touch框架提供的基本值类。
 ### 字符串可以被NSString类的实例对象表示
+就像你在之前的章节当中看到的那样，NSString被用来表示一组字符串，比如Hello World。有很多种创建字符串的方法，比如标准的alloc init，类工厂方法或者字面量语法：  
+>NSString *firstString = [[NSString alloc] initWithCString:"Hello World!" encoding:NSUTF8StringEncoding];  
+    NSString *secondString = [NSString stringWithCString:"Hello World!"
+                                                encoding:NSUTF8StringEncoding];  
+    NSString *thirdString = @"Hello World!";
+
+所有示例的方法的效果都是一样的——创建一个要求展现的字符串。  
+NSString类本身是不可变的，意思是它的值在创建的时候就被设置了，并且随后不可以被更改。如果你想表达一个不同的字符串的话，你得创建一个新的字符串，类似这样：  
+> NSString *name = @"John";  
+    name = [name stringByAppendingString:@"ny"];    // returns a new string object  
+
+NSMutableString类是NSString类的可变子类，它允许你在运行时通过appendString: 或 appendFormat:方法更改字符串，类似这样：  
+> NSMutableString *name = [NSMutableString stringWithString:@"John"];  
+    [name appendString:@"ny"];   // same object, but now represents "Johnny"
 
 #### 格式化字符串通常用来使用其他对象或者值来构建字符串
 
