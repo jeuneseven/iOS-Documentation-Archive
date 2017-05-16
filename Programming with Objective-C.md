@@ -1337,7 +1337,7 @@ NSRange结构体持有location 和 length。在这个示例当中，substringRan
 同样的，如果你需要编写定制的绘图代码的话，你需要和Quartz框架进行交互，它需要的结构体基于CGFloat数据类型，例如OS X上的NSPoint 和 NSSize 以及iOS上的 CGPoint 和 CGSize。同样的，CGFloat在不同的架构上定义是不同的。  
 更多关于Quartz 2D绘制引擎的相关信息，参见“Quartz 2D编程指南”。
 ## 对象可以表示原始类型的值
-
+如果你想把基本类型的值表达为对象的话，比如下个段落当中提到的集合类，你可以使用Cocoa 和 Cocoa Touch框架提供的基本值类。
 ### 字符串可以被NSString类的实例对象表示
 
 #### 格式化字符串通常用来使用其他对象或者值来构建字符串
