@@ -1328,8 +1328,14 @@ BOOL类型定义了OC当中的布尔类型的值，它的类型是yes或者no。
 类似NSInteger 和 NSUInteger这种类型是根据不同的框架来定义的。挡在32位的环境当中构建时（例如iOS），它们分别表示32位的有符号和无符号整型变量；当在64位环境上构建时（例如现代的OS X运行时），它们分别表示64位的有符号和无符号整型变量。  
 在你通过API传递值的时候（内部或者外部都可能）比如参数或者返回值，或者你的app和一个框架之间的函数调用，你最好使用这些平台特定的类型。  
 对于局部变量，例如一个循环当中的计数器，如果你能确定该值实在标准之内的话，你可以使用C基本类型。
-### C的结构支持原始值
+### C的结构体持有原始值
+有些Cocoa 和 Cocoa Touch的API使用C的结构来持有值。例如，你可以查询一个字符串对象的子串，类似这样：  
+> NSString *mainString = @"This is a long string";  
+    NSRange substringRange = [mainString rangeOfString:@"long"];
 
+NSRange结构体持有location 和 length。在这个示例当中，substringRange将会得到{10,4}范围内的子串，@"long"开头的l字母是主字符串当中从0开始的下标到10的字母，@"long"是一个四个字符长度的子串。  
+同样的，如果你需要编写定制的绘图代码的话，你需要和Quartz框架进行交互，它需要的结构体基于CGFloat数据类型，例如OS X上的NSPoint 和 NSSize 以及iOS上的 CGPoint 和 CGSize。同样的，CGFloat在不同的架构上定义是不同的。  
+更多关于Quartz 2D绘制引擎的相关信息，参见“Quartz 2D编程指南”。
 ## 对象可以表示原始类型的值
 
 ### 字符串可以被NSString类的实例对象表示
