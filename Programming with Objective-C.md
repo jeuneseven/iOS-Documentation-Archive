@@ -1280,7 +1280,10 @@ Cocoa 和 Cocoa Touch的对象在很多种情况下都使用了协议。举例�
 即使你不知道sectionInfo对象的类，NSFetchedResultsSectionInfo协议规定了它是可以响应numberOfObjects方法的。
 
 # 值和集合
-
+尽管OC是一个面向对象的编程语言，它还是C的一个超集，意思是你可以在OC当中使用任何标准C的标准（非对象）类型，例如int, float 和 char等类型。此外，还有一些标准类型在Cocoa 和 Cocoa Touch的app当中使用，例如NSInteger, NSUInteger 和 CGFloat等，不同的定义取决于目标框架的不同。  
+标准类型通常在你不需要一个对象表现一个值的时候使用（或者关联开支）。而字符串通常由NSString类的实例表示，数字形的值通常保存在标准的局部变量或者属性当中。  
+在OC当中你可以声明一个C语言类型的数组，不过你会发现，在Cocoa 和 Cocoa Touch中的集合通常使用NSArray 或 NSDictionary来表现。这些类只能用来装载OC的对象，意思是你得创建类似于NSValue、NSNumber 或 NSString类这样的实例添加到集合当中才能够正常表达值。  
+本文档之前的章节频繁的使用了NSString类，以及他的初始化和类的工厂方法，还有他的OC的字面量语法@"string"，字面量语法是创建一个NSString实例的简洁语法。本章讲述了如何创建NSValue 和 NSNumber对象，同样的，会用到方法调用或者字面量语法。
 ## OC支持基本的C语言类型
 
 ### OC定义了额外的基本类型
