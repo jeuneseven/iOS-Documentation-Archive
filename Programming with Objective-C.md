@@ -1317,7 +1317,17 @@ Cocoa 和 Cocoa Touch的对象在很多种情况下都使用了协议。举例�
 
 点语法是对于存储器方法的语法封装，所以在这个例子当中的每个操作符都等同于先使用get方法来访问值，在执行操作符之后，再使用set方法设置值。
 ### OC定义了额外的基本类型
+BOOL类型定义了OC当中的布尔类型的值，它的类型是yes或者no。你可以认为，yes逻辑上等同于true和1，而no等同于false和0。  
+很多Cocoa 和 Cocoa Touch对象的方法都使用了特殊的基本数字类型作为参数，比如NSInteger 或 CGFloat。  
+举例来说，NSTableViewDataSource 和 UITableViewDataSource协议（之前章节有相关描述）都有请求显示行数的方法：  
+> @protocol NSTableViewDataSource <NSObject>  
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView;  
+...  
+@end
 
+类似NSInteger 和 NSUInteger这种类型是根据不同的框架来定义的。挡在32位的环境当中构建时（例如iOS），它们分别表示32位的有符号和无符号整型变量；当在64位环境上构建时（例如现代的OS X运行时），它们分别表示64位的有符号和无符号整型变量。  
+在你通过API传递值的时候（内部或者外部都可能）比如参数或者返回值，或者你的app和一个框架之间的函数调用，你最好使用这些平台特定的类型。  
+对于局部变量，例如一个循环当中的计数器，如果你能确定该值实在标准之内的话，你可以使用C基本类型。
 ### C的结构支持原始值
 
 ## 对象可以表示原始类型的值
