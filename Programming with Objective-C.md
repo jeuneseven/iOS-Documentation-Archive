@@ -1285,7 +1285,37 @@ Cocoa 和 Cocoa Touch的对象在很多种情况下都使用了协议。举例�
 在OC当中你可以声明一个C语言类型的数组，不过你会发现，在Cocoa 和 Cocoa Touch中的集合通常使用NSArray 或 NSDictionary来表现。这些类只能用来装载OC的对象，意思是你得创建类似于NSValue、NSNumber 或 NSString类这样的实例添加到集合当中才能够正常表达值。  
 本文档之前的章节频繁的使用了NSString类，以及他的初始化和类的工厂方法，还有他的OC的字面量语法@"string"，字面量语法是创建一个NSString实例的简洁语法。本章讲述了如何创建NSValue 和 NSNumber对象，同样的，会用到方法调用或者字面量语法。
 ## OC支持基本的C语言类型
+所有标准C的标准变量类型在OC当中都可以使用：  
+> int someInteger = 42;  
+    float someFloatingPointNumber = 3.1415;  
+    double someDoublePrecisionFloatingPointNumber = 6.02214199e23;
 
+同样的，操作符也是：  
+> int someInteger = 42;  
+    someInteger++;            // someInteger == 43. 
+    int anotherInteger = 64;  
+    anotherInteger--;         // anotherInteger == 63   
+    anotherInteger *= 2;      // anotherInteger == 126
+
+如果你在OC的属性当中使用的C的基本类型的话，类似这样：  
+> @interface XYZCalculator : NSObject  
+@property double currentValue;  
+@end
+
+同样的，在属性当中通过点语法访问属性使用C的操作符也是可以的，类似这样：  
+> @implementation XYZCalculator  
+- (void)increment {   
+    self.currentValue++;  
+}  
+- (void)decrement {  
+    self.currentValue--;  
+}  
+- (void)multiplyBy:(double)factor {  
+    self.currentValue *= factor;  
+}   
+@end
+
+点语法是对于存储器方法的语法封装，所以在这个例子当中的每个操作符都等同于先使用get方法来访问值，在执行操作符之后，再使用set方法设置值。
 ### OC定义了额外的基本类型
 
 ### C的结构支持原始值
