@@ -1355,7 +1355,11 @@ NSMutableString类是NSString类的可变子类，它允许你在运行时通过
     [name appendString:@"ny"];   // same object, but now represents "Johnny"
 
 #### 格式化字符串通常用来使用其他对象或者值来构建字符串
+如果你想要构建一个包含多个值的字符串的话，你需要用到**格式化字符串**。这让你能够使用格式化符号指定哪些值应该被插入：  
+> int magicNumber = ...  
+    NSString *magicString = [NSString stringWithFormat:@"The magic number is %i", magicNumber];
 
+可用的格式化符号在“字符串格式符”中有相关描述。更多关于字符串的使用，参见字符串编程指南。
 ### 数字可以被NSNumber类的实例对象表示
 
 ### 其他类型的值可以被NSValue类的实例对象表示
