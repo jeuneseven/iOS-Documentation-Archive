@@ -1361,6 +1361,46 @@ NSMutableString类是NSString类的可变子类，它允许你在运行时通过
 
 可用的格式化符号在“字符串格式符”中有相关描述。更多关于字符串的使用，参见字符串编程指南。
 ### 数字可以被NSNumber类的实例对象表示
+NSNumber类被用来展示任何基于C的基本类型，包括char, double, float, int, long, short和 它们的无符号版本，同样支持OC的布尔类型，BOOL。  
+同NSString类一样，你在创建NSNumber实例的时候有着大量的选择，包括alloc init或者类工厂方法：    
+>  NSNumber *magicNumber = [[NSNumber alloc] initWithInt:42];  
+    NSNumber *unsignedNumber = [[NSNumber alloc] initWithUnsignedInt:42u];  
+    NSNumber *longNumber = [[NSNumber alloc] initWithLong:42l];  
+    NSNumber *boolNumber = [[NSNumber alloc] initWithBOOL:YES];  
+    NSNumber *simpleFloat = [NSNumber numberWithFloat:3.14f];  
+    NSNumber *betterDouble = [NSNumber numberWithDouble:3.1415926535];  
+    NSNumber *someChar = [NSNumber numberWithChar:'T'];
+
+同样的，使用OC的字面量语法创建NSNumber的实例也是可以的：  
+> NSNumber *magicNumber = @42;  
+    NSNumber *unsignedNumber = @42u;  
+    NSNumber *longNumber = @42l;  
+    NSNumber *boolNumber = @YES;  
+    NSNumber *simpleFloat = @3.14f;  
+    NSNumber *betterDouble = @3.1415926535;  
+    NSNumber *someChar = @'T';  
+
+这些示例等同于使用NSNumber的类工厂方法。  
+一旦你创建了NSNumber对象，你就可以使用存取方法来访问它的标准值：  
+> int scalarMagic = [magicNumber intValue];  
+    unsigned int scalarUnsigned = [unsignedNumber unsignedIntValue];  
+    long scalarLong = [longNumber longValue];  
+    BOOL scalarBool = [boolNumber boolValue];  
+    float scalarSimpleFloat = [simpleFloat floatValue];  
+    double scalarBetterDouble = [betterDouble doubleValue];  
+    char scalarChar = [someChar charValue];
+
+NSNumber类同样为额外的OC的基本类型提供了方法。比如，如果你想要创建一个对象来表示NSInteger 和 NSUInteger的话，请确保你使用的是正确的方法：  
+> NSInteger anInteger = 64;  
+    NSUInteger anUnsignedInteger = 100;  
+    NSNumber *firstInteger = [[NSNumber alloc] initWithInteger:anInteger];  
+    NSNumber *secondInteger = [NSNumber numberWithUnsignedInteger:anUnsignedInteger];  
+    NSInteger integerCheck = [firstInteger integerValue];  
+    NSUInteger unsignedCheck = [secondInteger unsignedIntegerValue];  
+
+所有的NSNumber实例都是不可变的，并且没有可变的子类；如果你需要另一个不一样的数字的话，请直接使用另一个NSNumber实例。  
+
+	注意：NSNumber实际上是一个类簇。意思是当你在运行时创建一个实例的时候，你将会得到一个合适的混合子类持有给予的值。只需要将创建的对象视作NSNumber的实例即可。
 
 ### 其他类型的值可以被NSValue类的实例对象表示
 
