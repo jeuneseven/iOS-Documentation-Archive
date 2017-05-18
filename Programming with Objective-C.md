@@ -1424,8 +1424,16 @@ NSValue类提供了大量的工厂方法来根据标准结构创建一个值，�
 
 标准C当中的引用操作符（&）被用来为value参数提供aStruct的地址。
 ## 大部分的集合都是对象
+尽管使用一个C的数组来持有基本类型的数据是可以的，或者对象的指针也可以，但是大部分OC当中的集合都是Cocoa 和 Cocoa Touch集合类的实例之一，比如NSArray, NSSet 和 NSDictionary。  
+这些类用来管理一组对象，意思是任何你想添加到一个集合当中的元素都必须是一个OC的类的实例。如果你想添加一个基本类型的话，你必须先创建一个合适的NSNumber 或 NSValue的实例变量来表达它。  
 
 ### 数组是有序的集合
+NSArray是用来表示一组有序的对象的集合。唯一的要求是每个元素都必须是一个OC对象——无需每个对象都是同一个类的实例。  
+为了在数组当中维持顺序，每个元素都是存储在基于0的索引的，见图6-1。  
+
+图6-1 一个OC对象的数组  
+
+![](file:///Users/lizhankun/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.iOS.docset/Contents/Resources/Documents/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/orderedarrayofobjects.png)
 
 #### 生成数组
 
