@@ -1426,14 +1426,17 @@ NSValue类提供了大量的工厂方法来根据标准结构创建一个值，�
 ## 大部分的集合都是对象
 尽管使用一个C的数组来持有基本类型的数据是可以的，或者对象的指针也可以，但是大部分OC当中的集合都是Cocoa 和 Cocoa Touch集合类的实例之一，比如NSArray, NSSet 和 NSDictionary。  
 这些类用来管理一组对象，意思是任何你想添加到一个集合当中的元素都必须是一个OC的类的实例。如果你想添加一个基本类型的话，你必须先创建一个合适的NSNumber 或 NSValue的实例变量来表达它。  
-
+集合类对于它的元素是使用强引用的，而不是以某种方法再拷贝一份。意思是任何你添加到集合当中的元素，将会和集合的生命周期一样长，这在“通过持有和引用管理对象”中有相关描述。  
+为了能够跟踪它的对象元素，每个Cocoa 和 Cocoa Touch集合类做了某些事情来使跟踪变得简单，例如枚举，访问具体的元素或者查找一个特殊的对象是否是集合的一部分。  
+基本的NSArray, NSSet 和 NSDictionary类是不可变的，意思是他们的内容在创建的时候就被设置了。每个类都有一个可变的子类来让你能够随意的添加或者移除对象。  
+有关Cocoa 和 Cocoa Touch中不同的集合的相关信息，参见“集合编程主题”。
 ### 数组是有序的集合
 NSArray是用来表示一组有序的对象的集合。唯一的要求是每个元素都必须是一个OC对象——无需每个对象都是同一个类的实例。  
 为了在数组当中维持顺序，每个元素都是存储在基于0的索引的，见图6-1。  
 
 图6-1 一个OC对象的数组  
 
-![](file:///Users/lizhankun/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.iOS.docset/Contents/Resources/Documents/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/orderedarrayofobjects.png)
+![](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/orderedarrayofobjects.png)
 
 #### 生成数组
 
