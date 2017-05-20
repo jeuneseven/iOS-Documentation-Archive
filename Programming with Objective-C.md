@@ -1439,7 +1439,25 @@ NSArray是用来表示一组有序的对象的集合。唯一的要求是每个�
 ![](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/orderedarrayofobjects.png)
 
 #### 生成数组
+就像本章之前提到的封装值的类一样，你可以通过alloc init 、类工厂方法或者字面量语法来生成一个数组。  
+创建数组的时候有大量的初始化和工厂方法供使用，取决于对象的数量：  
+> +(id)arrayWithObject:(id)anObject;  
++(id)arrayWithObjects:(id)firstObject, ...;  
+-(id)initWithObjects:(id)firstObject, ...;
 
+arrayWithObjects: 和 initWithObjects:方法都包含了以nil为休止符，可跟多个变量参数，意思是你必须在最后一个变量参数的位置填上nil，类似这样：  
+> NSArray *someArray =
+  [NSArray arrayWithObjects:someObject, someString, someNumber, someValue, nil];
+
+这个示例创建了一个类似之前图6-1中提到的数组。第一个对象，someObject将拥有一个数组下标0；最后一个对象someValue将拥有数组下标3。  
+如果不小心在一组数组元素当中插入了一个nil的话，类似这样：  
+> id firstObject = @"someString";  
+    id secondObject = nil;  
+    id thirdObject = @"anotherString";  
+    NSArray *someArray =
+  [NSArray arrayWithObjects:firstObject, secondObject, thirdObject, nil];
+
+在这个示例当中，someArray将只包含firstObject一个元素，因为secondObject为nil，它被当作了数组的最后一个元素。
 ##### 字面语法
 
 #### 查询数组对象
