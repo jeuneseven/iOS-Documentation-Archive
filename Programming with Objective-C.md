@@ -1459,7 +1459,16 @@ arrayWithObjects: 和 initWithObjects:方法都包含了以nil为休止符，可
 
 在这个示例当中，someArray将只包含firstObject一个元素，因为secondObject为nil，它被当作了数组的最后一个元素。
 ##### 字面语法
+同样的，使用OC的字面量语法也可以创建一个数组，类似这样：  
+> NSArray *someArray = @[firstObject, secondObject, thirdObject];
 
+在使用字面量语法创建数组的时候，你不应该在末尾再添加nil了，事实上，nil是一个无效值。如果你执行以下代码的话，你将在运行的时候得到一个异常，例如：  
+> id firstObject = @"someString";  
+    id secondObject = nil;  
+    NSArray *someArray = @[firstObject, secondObject];  
+    // exception: "attempt to insert nil object"
+
+如果你确实需要在一个集合里面表现一个nil值的话，你应该使用NSNull的单例，这在“使用NSNull来表达nil”中有相关描述。
 #### 查询数组对象
 
 ##### 添加下标
