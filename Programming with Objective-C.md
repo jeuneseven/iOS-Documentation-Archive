@@ -1501,7 +1501,33 @@ arrayWithObjects: 和 initWithObjects:方法都包含了以nil为休止符，可
 
 ### 大部分集合支持基于Block的枚举
 
+# 使用Block
 
+## Block语法
+
+### Block能够带参数和返回值
+
+### Block能够从闭包中获取值
+
+#### 使用__block变量来共享存储
+
+### 你可以将Block作为函数或者消息的参数
+
+#### Block应该永远在一个函数的最后一个参数的位置
+
+### 使用类型定义来简化Block语法
+
+### 对象可以使用属性来跟踪Block
+
+### 当持有self的时候，避免强引用循环
+
+## Block能够简化枚举
+
+## Block能够简化并发任务
+
+### 使用Block操作队列
+
+### 在GCD中使用Block安排作业
 
 
 
