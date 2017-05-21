@@ -1529,6 +1529,20 @@ arrayWithObjects: 和 initWithObjects:方法都包含了以nil为休止符，可
 
 ### 在GCD中使用Block安排作业
 
+# 处理error
+
+## 大部分error情况下使用NSError 
+
+### 一些代理方法会警告你使用error
+
+### 一些方法通过引用来传递error
+
+### 尽可能的恢复或者展示error给用户
+
+### 生成你自己的error
+
+## 异常用于处理程序的error情况
+
 
 
 
