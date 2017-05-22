@@ -1487,7 +1487,14 @@ arrayWithObjects: 和 initWithObjects:方法都包含了以nil为休止符，可
 > if ([someArray count] > 0) {  
         NSLog(@"First item is: %@", someArray[0]);  
     }
+
 #### 排序数据对象
+NSArray类同样还提供了大量的方法来对元素进行排序。由于NSArray是不可变的，这些方法都会返回一个新的包含排序好了的元素的数组。  
+举个例子，你可以将一个字符串数组当中的元素通过调用compare:函数来进行排序，类似这样：  
+> NSArray *unsortedStrings = @[@"gammaString", @"alphaString", @"betaString"];  
+    NSArray *sortedStrings =
+                 [unsortedStrings sortedArrayUsingSelector:@selector(compare:)];
+
 
 #### 可变性
 
