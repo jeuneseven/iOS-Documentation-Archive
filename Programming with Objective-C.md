@@ -1483,7 +1483,10 @@ arrayWithObjects: 和 initWithObjects:方法都包含了以nil为休止符，可
 
 这个示例判断了数组元素个数是否大于零。如果是的话，那么它打印第一个元素的内容，第一个元素的下标是0。
 ##### 添加下标
-
+还有一种替代objectAtIndex:的下标的方法，就像C当中访问一个数组的元素那样。之前的示例可以被重写为这样：  
+> if ([someArray count] > 0) {  
+        NSLog(@"First item is: %@", someArray[0]);  
+    }
 #### 排序数据对象
 
 #### 可变性
