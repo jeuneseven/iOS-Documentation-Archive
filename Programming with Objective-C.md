@@ -1470,7 +1470,18 @@ arrayWithObjects: 和 initWithObjects:方法都包含了以nil为休止符，可
 
 如果你确实需要在一个集合里面表现一个nil值的话，你应该使用NSNull的单例，这在“使用NSNull来表达nil”中有相关描述。
 #### 查询数组对象
+一旦你创建了一个数组，你可以查询元素的数量或者判断它是否包含一个元素：  
+> NSUInteger numberOfItems = [someArray count];  
+    if ([someArray containsObject:someString]) {. 
+        ...  
+    }  
+ 
+你还可以使用给定的元素的索引来查询数组。如果你试图请求一个无效的索引的话，你将会在运行时得到一个越界的异常，所以你应该永远先检测数组元素的个数：  
+> if ([someArray count] > 0) {   
+        NSLog(@"First item is: %@", [someArray objectAtIndex:0]);  
+    }
 
+这个示例判断了数组元素个数是否大于零。如果是的话，那么它打印第一个元素的内容，第一个元素的下标是0。
 ##### 添加下标
 
 #### 排序数据对象
