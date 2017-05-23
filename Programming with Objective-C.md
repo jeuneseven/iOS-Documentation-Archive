@@ -1597,7 +1597,26 @@ NSNull是一个单例类，意思是null方法会永远返回同样的一个实�
     }
 
 ## 使用集合保存你的对象
+NSArray 和 NSDictionary类都提供了方法来将他们持有的对象直接写入到磁盘当中，类似这样：  
+> NSURL *fileURL = ...  
+    NSArray *array = @[@"first", @"second", @"third"];  
+    BOOL success = [array writeToURL:fileURL atomically:YES];  
+    if (!success) {  
+        // an error occured...  
+    }
 
+如果包含的对象是属性列表类型当中的一种的话（NSArray, NSDictionary, NSString, NSData, NSDate 和 NSNumber），你可以重新创建整个存储的层级，类似这样：  
+> NSURL *fileURL = ...  
+    NSArray *array = [NSArray arrayWithContentsOfURL:fileURL];  
+    if (!array) {  
+        // an error occurred...  
+    }
+
+更多关于属性列表的信息，参见“属性列表编程指南”。  
+如果你的对象的属性不是上面列出的属性列表当中的一种的话，你可以使用归档对象，例如NSKeyedArchiver，来创建归档一组对象的集合。  
+唯一需要注意的地方是，创建一个归档的时候，每个对象都要实现NSCoding协议。意思是每个对象都要知道如何编码它本身（实现 encodeWithCoder: 方法）来归档以及从一个归档的文件读取它本身然后解码来解档（initWithCoder: 方法）。  
+NSArray, NSSet 和 NSDictionary类，以及他们的可变的子类都支持NSCoding协议，意思是你可以使用归档来保存一个非常复杂的层级。举例来说，如果你使用IB来布局windwos和view的话，最终的nib文件就是一个你通过可视化创建的归档后的层级文件。在运行时，nib文件被解档为与之相关的层级对象。
+更多关于归档的信息，参见“归档和序列化编程指南”。
 ## 使用高效的集合枚举技术
 
 ### 快速枚举能够让枚举一个集合更简单
