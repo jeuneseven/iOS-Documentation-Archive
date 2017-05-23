@@ -1581,6 +1581,10 @@ OC同样为创建字典提供了字面量语法，类似这样：
 > NSNumber *storedNumber = dictionary[@"magicNumber"];
 
 #### 可变性
+如果你需要从创建的字典中添加或删除对象的话，你需要使用NSMutableDictionary子类，类似这样：  
+> [dictionary setObject:@"another string" forKey:@"secondString"];  
+    [dictionary removeObjectForKey:@"anObject"];
+
 
 ### 使用NSNull来表示nil
 
