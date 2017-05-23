@@ -1542,7 +1542,16 @@ NSSet很像一个数组，但是它管理着一组无序的唯一的对象，见
 
 更多关于集合的信息，参见”Set：无序的元素集合“
 ### 字典包含了键值对
+与简单的维护一组有序或者无序的元素不同，一个NSDictionary通过key来存储对象，可以用于之后的检索。  
+使用字符串来作为字典的key是很好的一种方法，见图6-3 。
 
+图6-3 字典中的对象
+
+![](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/dictionaryofobjects.png)  
+
+	注意：使用其他的对象也可以作为字典的key，但是要注意，每个key都是被字典拷贝使用的，所以作为key的对象要实现NSCopying协议。  
+	如果你想使用KVC的话，这在“KVC变成指南”中有相关描述，你必须使用字符串作为字典中对象的key。
+	
 #### 生成字典
 
 ##### 字面语法
