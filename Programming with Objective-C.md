@@ -1627,7 +1627,33 @@ OC以及Cocoa 或 Cocoa Touch提供了大量的方法来枚举集合中的内容
 
 最好还是使用本段当中描述的相关技术来做这件事。
 ### 快速枚举能够让枚举一个集合更简单
+大部分集合类都遵循了NSFastEnumeration协议，包括NSArray, NSSet 和 NSDictionary。这意味着你可以使用OC语言级别的功能——快速枚举。  
+一个数组或者集合的快速枚举语法类似这样：  
+> for (<Type> <variable> in <collection>) {  
+        ...  
+    }
 
+举个例子，你可能需要使用快速枚举打印数组当中的每个元素，类似这样：  
+>  for (id eachObject in array) {  
+        NSLog(@"Object: %@", eachObject);  
+    }
+
+eachObject变量被循环设置为当前的对象，所以打印语句对于每个对象都会执行。  
+如果你对一个字典使用快速枚举的话，你应该迭代字典的key，类似这样：  
+> for (NSString *eachKey in dictionary) {  
+        id object = dictionary[eachKey];  
+        NSLog(@"Object: %@ for key: %@", object, eachKey);  
+    }
+
+快速枚举表现的和标准C当中for循环很像，所以你可以使用break关键字来打断循环，或者continue关键字来直接跳过访问下一个元素。  
+如果你枚举一个有序的集合的时候，枚举的过程也是有序的。对于NSArray来讲，意味着下标为0的对象为第一个元素，第二个对象下标为1，等等。如果你需要获取到当前的下标索引，比较简单的方法是在循环中计算下标：  
+>  int index = 0;  
+    for (id eachObject in array) {  
+        NSLog(@"Object at index %i is: %@", index, eachObject);  
+        index++;  
+    }
+
+在快速枚举的时候，你是不可以改变一个集合的，即使是该集合是可变类型的。如果你试图在循环中添加或删除一个元素的话，你会在运行时得到一个异常。
 ### 大部分集合同样支持枚举对象
 
 ### 大部分集合支持基于Block的枚举
