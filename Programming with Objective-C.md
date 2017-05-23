@@ -1573,6 +1573,12 @@ OC同样为创建字典提供了字面量语法，类似这样：
 
 注意使用字典的字面量语法的时候，key必须在对象之前，并且无需使用nil为结尾。
 #### 查询字典
+一旦你创建了一个字典，你可以通过一个给定的key来查询对象，类似这样：  
+> NSNumber *storedNumber = [dictionary objectForKey:@"magicNumber"];  
+
+如果对象没有找到的话，objectForKey:方法会返回nil。  
+同样的，你可以使用下标语法来替代objectForKey:方法，类似这样：  
+> NSNumber *storedNumber = dictionary[@"magicNumber"];
 
 #### 可变性
 
