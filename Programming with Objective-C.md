@@ -1585,8 +1585,16 @@ OC同样为创建字典提供了字面量语法，类似这样：
 > [dictionary setObject:@"another string" forKey:@"secondString"];  
     [dictionary removeObjectForKey:@"anObject"];
 
-
 ### 使用NSNull来表示nil
+你是无法讲nil加入到本段当中提到的集合类当中的，因为nil在OC当中意味着“没有对象”。如果你需要在集合当中表达“没有对象”的概念的话，你应该用到NSNull类：  
+>  NSArray *array = @[ @"string", @42, [NSNull null] ];  
+
+NSNull是一个单例类，意思是null方法会永远返回同样的一个实例对象。这意味着你可以通过判断一个数组当中的对象是否是NSNull的实例对象：  
+> for (id object in array) {  
+        if (object == [NSNull null]) {  
+            NSLog(@"Found a null object");  
+        }  
+    }
 
 ## 使用集合保存你的对象
 
