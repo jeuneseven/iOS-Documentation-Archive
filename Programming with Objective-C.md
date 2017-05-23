@@ -1522,7 +1522,25 @@ NSArray *immutableArray = @[mutableString];
 
 这样的话，这个数组将会被以降序、不区分大小写的顺序来排列为：@"alpha", @"beta", @"epsilon"。
 ### 集合是无序的集合
+NSSet很像一个数组，但是它管理着一组无序的唯一的对象，见图6-2.  
 
+图6-2 一组对象的集合   
+
+![](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Art/unorderedsetofobjects.png)
+
+由于集合不关心顺序，所以它在检测内部元素的时候，比数组更高效。  
+基本的NSSet同样是不可变的，所以它的内容必须是在创建的时候就指定好，使用alloc init或者类工厂方法都可以，类似这样：  
+> NSSet *simpleSet =
+      [NSSet setWithObjects:@"Hello, World!", @42, aValue, anObject, nil];
+
+就像NSArray一样，initWithObjects: 和 setWithObjects:方法都以nil结尾，可带有多个参数。NSSet 的可变子类是 NSMutableSet。  
+即使你向一个集合添加超过一次的同样的一个元素的话，集合也只保存唯一的一个引用：  
+> NSNumber *number = @42;  
+    NSSet *numberSet =
+      [NSSet setWithObjects:number, number, number, number, nil];  
+    // numberSet only contains one object
+
+更多关于集合的信息，参见”Set：无序的元素集合“
 ### 字典包含了键值对
 
 #### 生成字典
