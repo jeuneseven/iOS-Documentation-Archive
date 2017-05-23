@@ -1553,9 +1553,25 @@ NSSet很像一个数组，但是它管理着一组无序的唯一的对象，见
 	如果你想使用KVC的话，这在“KVC变成指南”中有相关描述，你必须使用字符串作为字典中对象的key。
 	
 #### 生成字典
+你可以通过alloc init方法或者类工厂方法来创建字典，类似这样：  
+> NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                   someObject, @"anObject",
+             @"Hello, World!", @"helloString",
+                          @42, @"magicNumber",
+                    someValue, @"aValue",
+                             nil];
 
+注意dictionaryWithObjectsAndKeys: 和 initWithObjectsAndKeys:方法，每个方法都是对象在key的前面，并且在一组对象和key的最后以nil为结尾。  
 ##### 字面语法
+OC同样为创建字典提供了字面量语法，类似这样：  
+> NSDictionary *dictionary = @{
+                  @"anObject" : someObject,
+               @"helloString" : @"Hello, World!",
+               @"magicNumber" : @42,
+                    @"aValue" : someValue
+    };
 
+注意使用字典的字面量语法的时候，key必须在对象之前，并且无需使用nil为结尾。
 #### 查询字典
 
 #### 可变性
