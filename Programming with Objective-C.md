@@ -1497,7 +1497,30 @@ NSArray类同样还提供了大量的方法来对元素进行排序。由于NSAr
 
 
 #### 可变性
+尽管NSArray是不可变的，这对每个元素都没有影响。举个例子，如果你将一个可变的字符串添加到一个不可变的数组当中的话，类似这样：  
+> NSMutableString *mutableString = [NSMutableString stringWithString:@"Hello"];  
+NSArray *immutableArray = @[mutableString];
 
+你改变字符串的话，是没有任何问题的：  
+> if ([immutableArray count] > 0) {  
+	id string = immutableArray[0];   
+	if ([string isKindOfClass:[NSMutableString class]]) {  
+		[string appendString:@" World!"];  
+	}    
+	}
+
+如果你想在数组创建完成后添加或删除元素的话，你就得用到NSMutableArray了，它提供了大量的方法来添加、删除或者替换更多的元素：  
+> NSMutableArray *mutableArray = [NSMutableArray array];  
+    [mutableArray addObject:@"gamma"];  
+    [mutableArray addObject:@"alpha"];  
+    [mutableArray addObject:@"beta"];  
+    [mutableArray replaceObjectAtIndex:0 withObject:@"epsilon"];  
+
+这个示例创建的数组最终由@"epsilon", @"alpha", @"beta"元素组成。  
+直接通过对可变数组内的元素进行排序而不创建一个新的数组也是可以的：  
+> [mutableArray sortUsingSelector:@selector(caseInsensitiveCompare:)];
+
+这样的话，这个数组将会被以降序、不区分大小写的顺序来排列为：@"alpha", @"beta", @"epsilon"。
 ### 集合是无序的集合
 
 ### 字典包含了键值对
