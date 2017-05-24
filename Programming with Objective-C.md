@@ -1655,7 +1655,31 @@ eachObject变量被循环设置为当前的对象，所以打印语句对于每�
 
 在快速枚举的时候，你是不可以改变一个集合的，即使是该集合是可变类型的。如果你试图在循环中添加或删除一个元素的话，你会在运行时得到一个异常。
 ### 大部分集合同样支持枚举对象
+使用NSEnumerator对象来枚举大部分的Cocoa 和 Cocoa Touch集合类也是可以的。  
+举例来说，你可以对一个数组调用objectEnumerator 或者是 reverseObjectEnumerator方法。使用这些对象来对它进行快速枚举，类似这样：  
+> for (id eachObject in [array reverseObjectEnumerator]) {  
+        ...  
+    }
 
+在这个示例当中，将以倒序循环来遍历数组元素，所以最后一个元素将会第一个被遍历。  
+你还可以通过不停的调用枚举类的nextObject方法来枚举对象，类似这样：  
+> id eachObject;  
+    while ( (eachObject = [enumerator nextObject]) ) {  
+        NSLog(@"Current object is: %@", eachObject);  
+    }
+
+在这个示例当中，while循环被用来循环设置eachObject变量为集合中的下一个元素。当没有元素的时候，nextObject方法将返回nil，那么判断将会为false，所以循环终止。  
+
+	注意：程序员经常犯的一个错误是使用C的赋值运算符（＝），而实际是想使用等号运算符（＝＝），当你在条件判断语句或者循环当中给一个变量赋值的时候，编译器会警告你，类似这样：  
+	if (someVariable = YES) {  
+    ...  
+	}  
+	如果你确实是想重新赋值给变量的话（赋值语句的最终逻辑值是赋值后的左边的值），你可以将赋值语句放置在括号当中，类似这样：  
+	if ( (someVariable = YES) ) {  
+    ...  
+	}
+
+同快速枚举一样，你在枚举的时候不可以改变一个集合。你从名字也应该能够看出来使用快速枚举会比使用枚举迭代器的速度要快。
 ### 大部分集合支持基于Block的枚举
 
 # 使用Block
