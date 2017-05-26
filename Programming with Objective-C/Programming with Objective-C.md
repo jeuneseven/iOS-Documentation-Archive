@@ -1692,6 +1692,24 @@ Blocks是C、OC、C++的语言级别的功能，它能够让你创建一块单�
          NSLog(@"This is a block");  
     }
 
+就像函数的定义一样，大括号表示了block的开始和结束。在这个例子中，block没有返回任何值，并且没有携带任何参数。  
+在C函数当中，你可以使用函数指针来表示一个函数，你可以声明一个变量来持有block，类似这样：  
+> void (^simpleBlock)(void);
+
+如果你对C的函数指针不太熟悉的话，这个语法可能看起来有点不一样。这个例子声明了一个变量叫做simpleBlock，它指向一个block不太任何参数并且没有返回值，这意味着变量可以被上面的block代码块赋值，类似这样：  
+> simpleBlock = ^{  
+        NSLog(@"This is a block");  
+    };
+
+这跟其他的变量赋值一样，所以改语句的末尾必须跟着一个分号。你还可以把变量的声明和赋值写到一起：  
+> void (^simpleBlock)(void) = ^{   
+        NSLog(@"This is a block");  
+    };
+
+一旦你声明并且赋值了一个block变量，你可以通过它来调用block：  
+> simpleBlock();
+
+	注意：如果你使用一个未赋值的变量调用block的话（一个为nil的block变量），你的app将会崩溃。
 
 ### Block能够带参数和返回值
 
