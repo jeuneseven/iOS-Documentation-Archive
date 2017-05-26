@@ -1712,6 +1712,28 @@ Blocks是C、OC、C++的语言级别的功能，它能够让你创建一块单�
 	注意：如果你使用一个未赋值的变量调用block的话（一个为nil的block变量），你的app将会崩溃。
 
 ### Block能够带参数和返回值
+block可以像函数那样带有参数和返回值。  
+举个例子，假设有一个block会返回两个数的乘积：  
+> double (^multiplyTwoValues)(double, double);
+
+那么相应的，block的语法会是这样：  
+> ^ (double firstValue, double secondValue) {  
+        return firstValue * secondValue;  
+    }
+
+firstValue和secondValue是在block被调用时的两个值，就像函数定义的那样。在这个例子中，可以从在block的返回语句中推断出返回值的类型。  
+如果你愿意的话，你还可以将返回值类型放置在脱字符和参数列表之间：  
+> ^ double (double firstValue, double secondValue) {  
+        return firstValue * secondValue;  
+    }
+
+一旦你声明并定义了一个block，你可以像调用一个函数那样调用它：  
+> double (^multiplyTwoValues)(double, double) =
+                              ^(double firstValue, double secondValue) {
+                                  return firstValue * secondValue;
+                              };  
+    double result = multiplyTwoValues(2,4);  
+    NSLog(@"The result is %f", result);
 
 ### Block能够从闭包中获取值
 
