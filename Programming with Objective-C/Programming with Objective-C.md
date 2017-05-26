@@ -1683,8 +1683,15 @@ eachObject变量被循环设置为当前的对象，所以打印语句对于每�
 ### 大部分集合支持基于Block的枚举
 使用block也可以对NSArray, NSSet 和 NSDictionary类进行枚举。block将在下个章节讲述。
 # 使用Block
-
+OC的类定义的对象包含数据和相应行为。有的时候，仅仅表现一个简单的任务或者一组行为也是可能的（而不是一组函数）。  
+Blocks是C、OC、C++的语言级别的功能，它能够让你创建一块单独的代码在函数之间就像传递值一样的传递。Blocks是OC的对象，这意味着它们可以被添加到集合当中，例如NSArray或者NSDictionary。它还可以从闭包当中获取值，就像其他编程语言当中的closures 或者 lambdas一样。  
+本章介绍了block相关的内容和语法，并且展示了如何使用block来简化任务，例如集合的枚举。更多的相关内容，参见“Blocks编程指南”。  
 ## Block语法
+定义一个block的字面语法是使用脱字符，类似这样：  
+> ^{  
+         NSLog(@"This is a block");  
+    }
+
 
 ### Block能够带参数和返回值
 
