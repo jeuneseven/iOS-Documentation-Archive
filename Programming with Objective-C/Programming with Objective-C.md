@@ -1736,7 +1736,29 @@ firstValue和secondValue是在block被调用时的两个值，就像函数定义
     NSLog(@"The result is %f", result);
 
 ### Block能够从闭包中获取值
+就像包含可执行的代码一样，block也可以从闭包当中获取状态信息。  
+举例来说，如果你在一个函数当中声明了一个block，block可以获取任何可能在函数当中获取的值，类似这样：  
+> - (void)testMethod {      
+    int anInteger = 42;  
+    void (^testBlock)(void) = ^{  
+        NSLog(@"Integer is: %i", anInteger);  
+    };  
+    testBlock();  
+}
 
+在这个例子中，anInteger是在block之外声明的，但是当block被定义的时候，它的值被block捕获了。  
+除非你有其他的需求，否则block只会捕获值。这意味着如果你在定义block和调用block之间的这段时间想去改变外部变量的值的话，类似这样：  
+> int anInteger = 42;  
+    void (^testBlock)(void) = ^{ 
+        NSLog(@"Integer is: %i", anInteger);
+    };  
+    anInteger = 84;  
+    testBlock();
+
+被block捕获的值是不受影响的。这意味着输出依旧是显示：  
+> Integer is: 42
+
+这也意味着block无法改变原有变量的值，或者说是捕获的值（它持有的是一个const变量）。
 #### 使用__block变量来共享存储
 
 ### 你可以将Block作为函数或者消息的参数
