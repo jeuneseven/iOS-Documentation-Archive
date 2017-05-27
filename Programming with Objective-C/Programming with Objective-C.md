@@ -1760,6 +1760,30 @@ firstValue和secondValue是在block被调用时的两个值，就像函数定义
 
 这也意味着block无法改变原有变量的值，或者说是捕获的值（它持有的是一个const变量）。
 #### 使用__block变量来共享存储
+如果你想改变block当中持有的变量，你可以使用__block存储类型修饰符放在原变量的声明之前。这意味着该变量会在原变量的词法范围和任何声明block的范围内进行共享。  
+举个例子，你可以将之前的示例重写，类似这样：  
+> __block int anInteger = 42;  
+    void (^testBlock)(void) = ^{   
+        NSLog(@"Integer is: %i", anInteger);  
+    };  
+    anInteger = 84;  
+    testBlock();
+
+由于anInteger被声明为了一个__block变量，它的存储被block声明分享了。这意味着最终的输出将会是：  
+> Integer is: 84
+
+这也意味着block可以改变原有的值，类似这样：  
+> __block int anInteger = 42;  
+    void (^testBlock)(void) = ^{  
+        NSLog(@"Integer is: %i", anInteger);  
+        anInteger = 100;  
+    };  
+    testBlock();  
+    NSLog(@"Value of original variable is now: %i", anInteger);  
+
+这时候，输出将会是：  
+> Integer is: 42  
+Value of original variable is now: 100  
 
 ### 你可以将Block作为函数或者消息的参数
 
