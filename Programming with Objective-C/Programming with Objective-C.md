@@ -1786,6 +1786,18 @@ firstValue和secondValue是在block被调用时的两个值，就像函数定义
 Value of original variable is now: 100  
 
 ### 你可以将Block作为函数或者消息的参数
+在本章之前的例子当中，都是在block定义之后，立刻就调用了。在实际当中，经常将block在函数之间的调用当中进行传递。举例来说，你可能在后台使用GCD来调用一个block，或者定义一个block表示一个要反复调用的任务，例如集合当中的枚举事件。并发性和枚举事件将在本章稍后介绍。  
+block也同样用于回调，当一个任务结束的时候被执行的代码。举例来说，你的app可能要通过创建一个对象执行一个完成任务的事件来响应用户的行为，例如从服务器请求信息。由于任务很可能会持续很久，你应该在任务执行的过程当中显示类似进度条之类的东西，然后在任务完成的时候隐藏它。  
+你可以用delegate来完成这个功能：你需要生成一组delegate协议，实现必须实现的方法，将你的对象设置为delegate的任务，然后等待它执行完毕后调用代理方法。  
+然而，block将这件事变得简单了，因为你在任务开始的时候就可以定义回调行为，类似这样：  
+> -(IBAction)fetchRemoteInformation:(id)sender {  
+    [self showProgressIndicator];  
+    XYZWebTask *task = ...  
+    [task beginTaskWithCallbackBlock:^{  
+        [self hideProgressIndicator];  
+    }];  
+}
+
 
 #### Block应该永远在一个函数的最后一个参数的位置
 
