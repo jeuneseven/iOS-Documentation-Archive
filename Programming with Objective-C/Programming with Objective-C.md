@@ -1798,6 +1798,22 @@ block也同样用于回调，当一个任务结束的时候被执行的代码。
     }];  
 }
 
+这个例子调用了一个方法来展示进度条，然后创建了一个人任务告诉他要开始了。回调block指定了一旦任务完成就要执行的代码；在这个例子中，调用隐藏进度条的方法是很简单的。注意，这个回调的block持有了self，以便在需要调用hideProgressIndicator方法的时候进行调用。当持有self的时候需要特别关注，因为这很容易引起强引用循环，这在之后的“在持有self时避免强引用循环”章节中有相关描述。  
+在代码的可读性方面，block在一个地方将任务开始前喝结束后都简单的表达了出来，避免了通过代理方法来跟踪到底发生了什么。  
+在这个例子当中的beginTaskWithCallbackBlock:方法的声明应该类似这样：  
+> -(void)beginTaskWithCallbackBlock:(void (^)(void))callbackBlock;
+
+(void (^)(void))表明这个block不带任何参数和返回值。该方法的实现可以通过常用的方法来调用block：  
+> -(void)beginTaskWithCallbackBlock:(void (^)(void))callbackBlock {  
+    ...  
+    callbackBlock();  
+}
+
+想要带有一个或者多个参数的block可以以同样的声明block变量的方式：  
+> -(void)doSomethingWithBlock:(void (^)(double, double))block {  
+    ...  
+    block(21.0, 2.0);  
+}
 
 #### Block应该永远在一个函数的最后一个参数的位置
 
