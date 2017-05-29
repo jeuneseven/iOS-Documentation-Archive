@@ -1816,6 +1816,13 @@ block也同样用于回调，当一个任务结束的时候被执行的代码。
 }
 
 #### Block应该永远在一个函数的最后一个参数的位置
+一个比较好的习惯是在一个方法当中只使用一个block。如果该方法需要无block的参数的话，block应该放置在最后：  
+> -(void)beginTaskWithName:(NSString *)name completion:(void(^)(void))callback;
+
+这让函数的调用者在调用block的时候更简单的阅读代码，类似这样：  
+>  [self beginTaskWithName:@"MyTask" completion:^{  
+        NSLog(@"The task is complete");  
+    }];
 
 ### 使用类型定义来简化Block语法
 
