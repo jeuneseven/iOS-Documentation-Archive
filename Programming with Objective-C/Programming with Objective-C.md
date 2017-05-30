@@ -1825,6 +1825,36 @@ block也同样用于回调，当一个任务结束的时候被执行的代码。
     }];
 
 ### 使用类型定义来简化Block语法
+如果你在同一个签名当中要定义超过一个block的话，你可以为那个签名定义你自己的类型。  
+举个例子，你可以定义一种简单类型的block，没有参数和返回值，类似这样：  
+> typedef void (^XYZSimpleBlock)(void);
+
+你可以在方法当中使用自定义的类型或者在创建block变量的时候使用：  
+>  XYZSimpleBlock anotherBlock = ^{  
+        ...  
+    };  
+
+> -(void)beginFetchWithCallbackBlock:(XYZSimpleBlock)callbackBlock {  
+    ...  
+    callbackBlock();  
+}
+
+在处理block的返回值是block或者其他的block作为参数的时候，自定义的类型是很有用的。假设有如下的情况：  
+> void (^(^complexBlock)(void (^)(void)))(void) = ^ (void (^aBlock)(void)) {  
+    ...  
+    return ^{  
+        ...  
+    };  
+};
+
+complexBlock变量引用了一个block，这个block又用另一个block作为参数（aBlock），并且它的返回值还是另一个block。  
+使用自定义类型来重写的话，就变得更加可读了：  
+> XYZSimpleBlock (^betterBlock)(XYZSimpleBlock) = ^ (XYZSimpleBlock aBlock) {  
+    ...  
+    return ^{  
+        ...  
+    };  
+};
 
 ### 对象可以使用属性来跟踪Block
 
