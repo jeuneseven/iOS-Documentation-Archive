@@ -2042,8 +2042,24 @@ error对象同样包含了一些本地化的描述，比如“服务器指定的
     return NO;  
 }
 
-## 异常用于处理程序的error情况
+## 异常用于处理程序猿造成的error
+OC对于异常的支持和其他的编程语言基本类似，与Java或者C++的语法相似。和NSError一样，异常在Cocoa 和 Cocoa Touch中也是对象，表现为NSException类的实例。  
+如果你写的代码可能会抛出异常的话，你可以将它放在一个try-catch代码块当中：  
+> @try {  
+        // do something that might throw an exception  
+    }  
+    @catch (NSException *exception) {  
+        // deal with the exception  
+    }  
+    @finally {  
+        // optional block of clean-up code  
+        // executed whether or not an exception occurred  
+    }
 
+如果@try块当中的代码抛出了异常，它会被@catch代码块接住，然后你可以处理它。举个例子，如果你使用了一个底层的C++库，它使用异常来处理error，你可以接住这些异常来生成适当的NSError对象来展示给用户。  
+如果一个异常被抛出但是没有被接住的话，默认的未捕获异常将在控制台输出一条语句，然后终止app。  
+你不应该在标准的编程当中使用try-catch代码块来监测OC方法。举个例子，比如NSArray，你应该在试图访问给定的数组下标元素之前判断数组的count方法，来决定元素的个数。如果你请求了一个超过数组个数的下标的话，objectAtIndex:方法将会抛出异常，那么你在开发阶段就可以找到这个bug——你应该避免将异常抛出展示给用户。
+更多关于OC app的异常欣喜，参见“异常编程话题”。
 # 惯例
 
 ## 一些名字必须是贯穿你的app的唯一的
