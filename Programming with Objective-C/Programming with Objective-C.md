@@ -1990,6 +1990,25 @@ NSError对象包含了一些错误代码，域名和描述，还有一些其他�
 Cocoa 和 Cocoa Touch 的error被以域名区分，而不是为每个可能发生的error配置一个唯一的错误代码。举例来说，如果一个NSURLConnection当中发生了error，那么connection:didFailWithError:方法将会从NSURLErrorDomain提供一个error。  
 error对象同样包含了一些本地化的描述，比如“服务器指定的主机名无法发现”。
 ### 一些方法通过引用来传递error
+一些Cocoa 和 Cocoa Touch API通过引用来传递error。举个例子，你可能想保存你从服务器获取到的数据，将它写入到磁盘当中，使用NSData的writeToURL:options:error:方法。该方法的最后一个参数是NSError指针的引用：    
+> -(BOOL)writeToURL:(NSURL *)aURL  
+           options:(NSDataWritingOptions)mask. 
+             error:(NSError **)errorPtr;  
+
+在你调用这个方法之前，你需要创建一个适当的指针来传递它的地址：  
+> NSError *anyError;  
+    BOOL success = [receivedData writeToURL:someLocalFileURL  
+                                    options:0  
+                                      error:&anyError];  
+    if (!success) {  
+        NSLog(@"Write failed with error: %@", anyError);  
+        // present error to user  
+    }
+
+当error发生的时候，writeToURL:...方法将会返回NO，然后它会更新你的anyError指针指向一个error对象描述问题。  
+当处理这种引用的error的时候，一定要像上面一样检查函数的返回值，看看error是否发生了。不要仅仅检测error指针是否被指向了一个error。
+
+	提示：如果你不关心error的话，传递NULL给error：参数就可以了。
 
 ### 尽可能的恢复或者展示error给用户
 
