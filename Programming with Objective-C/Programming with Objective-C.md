@@ -1957,7 +1957,17 @@ NSOperationQueue *queue = [[NSOperationQueue alloc] init];
 如果你使用了操作队列，你可以配置优先级和操作之间的依赖性，比如你可以指定一个操作必需在其他一组操作都执行完毕之后才能执行。你还可以通过KVO来监听你的操作任务的状态改变，例如，当你的任务完成的时候，你可以很容易的更新你的进度条。  
 更多关于操作队列的信息，参见“操作队列”。
 ### 在GCD中使用Block安排作业
+如果你需要安排一组任意的block代码来执行的话，你可以直接使用GCD控制的调度队列。调度队列大大简化了同步或者异步的执行任务，不论是调用者还是先进先出的执行任务。  
+你可以使用你自己创建的调度队列，或者直接使用GCD提供的队列。举例来说，如果你想要执行一组并行任务的话，你可以通过使用dispatch_get_global_queue()函数来得到一个已经存在的队列的引用，然后指定队列的优先级，类似这样：  
+> dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 
+为了将block分发到队列当中，你可以使用dispatch_async() 或者 dispatch_sync()函数。dispatch_async()函数将会立即返回，不会等待block被调用：  
+> dispatch_async(queue, ^{  
+    NSLog(@"Block for asynchronous execution");  
+});
+
+而dispatch_sync()函数会等到block被执行完毕后才会返回；例如，你可以在一个并行的block需要等待主线程一个任务执行完毕后才继续执行这种情况下使用它。  
+更多关于GCD的分发队列信息，参见“分发队列”。
 # 处理error
 
 ## 大部分error情况下使用NSError 
