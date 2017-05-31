@@ -1973,9 +1973,22 @@ NSOperationQueue *queue = [[NSOperationQueue alloc] init];
 如果你是从其他平台或者开发语言转到这里的开发者，你很可能已经能够使用异常来处理大部分的error了。当你使用OC来编写代码的时候，异常只用来单独处理开发者造成的error，比如数组越界或者无效的函数参数。这些问题应该在测试过程中由你自己发现并修复，然后才能发布的你app。  
 而其他的所有的error都被表示为了NSError类的实例对象。本章简单介绍了NSError对象，包括如何使用框架当中的函数的调用失败以及返回error。更深入的研究，参见“error处理编程指南”。
 ## 大部分error情况下使用NSError 
+error是app生命周期当中无法避免的问题。例如，如果你从远端服务器请求数据，将会有大量的潜在问题会发生，包括：  
 
-### 一些代理方法会警告你使用error
+* 没有网络连接
+* 远端服务器无法访问
+* 远端服务器无法提供你需要的信息
+* 你接受的信息可能不是你需要的
 
+可悲的是，你是无法为可能存在的问题构建应急计划和解决方案的。你只能尽你所能处理error然后提供最好的用户体验。
+### 一些代理方法会提醒你使用error
+如果你实现了一个代理对象用来和系统框架类一起执行一些工作的话，比如从远端服务器下载信息，你会发现你需要实现一些至少带有一个error相关的方法。例如，NSURLConnectionDelegate协议，包含了connection:didFailWithError:方法：  
+> -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
+
+当error发生的时候，这个代理方法将会被调用，然后会提供给你一个NSError对象来描述问题。  
+NSError对象包含了一些错误代码，域名和描述，还有一些其他的相关信息封装在了一个userInfo字典当中。  
+Cocoa 和 Cocoa Touch 的error被以域名区分，而不是为每个可能发生的error配置一个唯一的错误代码。举例来说，如果一个NSURLConnection当中发生了error，那么connection:didFailWithError:方法将会从NSURLErrorDomain提供一个error。  
+error对象同样包含了一些本地化的描述，比如“服务器指定的主机名无法发现”。
 ### 一些方法通过引用来传递error
 
 ### 尽可能的恢复或者展示error给用户
