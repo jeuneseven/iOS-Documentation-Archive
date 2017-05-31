@@ -1940,7 +1940,22 @@ block代表了一组独立的工作任务，它将可执行的代码和持有上
 OS X和iOS都提供了大量的技术来处理并发，包括两种任务调度机制：队列和GCD。这些机制围绕着一组等待被调用的任务。你将你的block以你需要它们被调用的顺序添加到一个队列当中，系统将会在处理器和资源可用的时候对他们进行调用。  
 一个串行队列一次只能允许执行一个任务——下一个任务只能等到上一个任务执行完毕后才会被调用。一个并行的队列会调用它可以调用的任意多个任务，而无需等待前一个任务完成。
 ### 使用Block操作队列
+操作队列是Cocoa 和 Cocoa Touch中类似任务调度的方法。你可以创建一个NSOperation对象，封装一组数据，然后将它添加到NSOperationQueue当中来执行。  
+尽管你可以创建你自己的自定义的NSOperation子类来实现更复杂的任务，你也可以使用NSBlockOperation来创建一个使用block的操作队列，类似这样：  
+> NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{  
+    ...  
+}];
 
+你可以手动的执行操作队列，但是操作队列一般被添加到一个已经存在的队列当中或者你创建的队列当中，准备好被调用：  
+> // schedule task on main queue:  
+NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];  
+[mainQueue addOperation:operation];  
+// schedule task on background queue:  
+NSOperationQueue *queue = [[NSOperationQueue alloc] init];  
+[queue addOperation:operation];  
+
+如果你使用了操作队列，你可以配置优先级和操作之间的依赖性，比如你可以指定一个操作必需在其他一组操作都执行完毕之后才能执行。你还可以通过KVO来监听你的操作任务的状态改变，例如，当你的任务完成的时候，你可以很容易的更新你的进度条。  
+更多关于操作队列的信息，参见“操作队列”。
 ### 在GCD中使用Block安排作业
 
 # 处理error
