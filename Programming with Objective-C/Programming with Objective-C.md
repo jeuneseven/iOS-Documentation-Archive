@@ -1904,7 +1904,37 @@ block对它持有的对象都维持了一个强引用，包括self，这意味�
 
 通过使用weak指针指向self，block就不会维持了一个强引用指向XYZBlockKeeper对象了。如果该对象在block调用之前就释放了的话，那么weakSelf指针将会直接被设置为nil。
 ## Block能够简化枚举
+除了常用的回调之外，很多Cocoa 和 Cocoa Touch 的 API 都使用了block来简化任务，比如集合当中的枚举。举个例子，NSArray类就提供了三个基于block的方法，包括：  
+> -(void)enumerateObjectsUsingBlock:(void (^)(id obj, NSUInteger idx, BOOL *stop))block;  
 
+这个函数只有一个参数，它可以一次调用每个数组当中的元素：  
+> NSArray *array = ...  
+    [array enumerateObjectsUsingBlock:^ (id obj, NSUInteger idx, BOOL *stop) {  
+        NSLog(@"Object at index %lu is %@", idx, obj);  
+    }]; 
+
+block本身带有三个参数，前两个代表当前的对象和数组的下标。第三个参数是一个指向布尔变量的指针，你可以用它来停止枚举，类似这样：  
+> [array enumerateObjectsUsingBlock:^ (id obj, NSUInteger idx, BOOL *stop) {  
+        if (...) {  
+            *stop = YES;  
+        }  
+    }];
+
+你还可以通过使用enumerateObjectsWithOptions:usingBlock:方法来定制枚举。举个例子，你可以指定NSEnumerationReverse选项，这样可以倒序的访问集合元素。  
+如果在枚举block当中的代码是处理器加强（并且是并行安全的），你可以使用NSEnumerationConcurrent选项：  
+> [array enumerateObjectsWithOptions:NSEnumerationConcurrent
+                            usingBlock:^ (id obj, NSUInteger idx, BOOL *stop) {  
+        ...  
+    }];
+
+这个选项表明枚举的block调用有可能是分散在多个线程当中的，它为block代码的执行提供了处理器加速的潜在性能。要注意，在使用这个选项的时候枚举的顺序是未知的。  
+NSDictionary类同样也提供了基于block的方法，包括：  
+> NSDictionary *dictionary = ...  
+    [dictionary enumerateKeysAndObjectsUsingBlock:^ (id key, id obj, BOOL *stop) {  
+        NSLog(@"key: %@, value: %@", key, obj);  
+    }];
+
+这提供了更简单的方法来枚举键值对。
 ## Block能够简化并发任务
 
 ### 使用Block操作队列
