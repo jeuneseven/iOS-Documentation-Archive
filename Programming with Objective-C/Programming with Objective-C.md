@@ -2015,6 +2015,32 @@ error对象同样包含了一些本地化的描述，比如“服务器指定的
 如果无法从error恢复的话，你应该提示用户。如果你在使用Cocoa Touch为iOS开发的话，你应该创建UIAlertView，然后配置好展示给用户的error。如果你在用Cocoa为OS X开发的话，你可以在任何NSResponder对象当中（比如view, window 甚至 app 对象本身）调用presentError:方法，并且error将响应链传递的更远，并且会被配置和恢复。当它到达app对象的时候，app将会通过一个警告版展示error给用户。  
 更多关于展示error给用户的信息，参见“从error对象展示信息”。
 ### 生成你自己的error
+为了能够生成你自己的NSError对象，你必须定义你自己的error域名，应该遵循下面的格式：  
+> com.companyName.appOrFrameworkName.ErrorDomain
+
+你还应该为每个在这个域名下可能发生的error选择一个唯一的错误代码，然后匹配一个适当的描述，将它存储在用户信息字典当中，类似这样：  
+> NSString *domain = @"com.MyCompany.MyApplication.ErrorDomain";  
+    NSString *desc = NSLocalizedString(@"Unable to…", @"");  
+    NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };  
+    NSError *error = [NSError errorWithDomain:domain  
+                                         code:-101  
+                                     userInfo:userInfo];  
+
+这个例子用到了NSLocalizedString函数，它将从Localizable.strings文件当中查找本地化的error描述，这被称为本地化的字符串资源。  
+如果你想像之前那样回传error的引用的话，你的函数签名应该包含一个参数，这个参数应该是一个指向NSError对象的指针的指针。你还应该使用返回值来指出是否成功，类似这样：  
+> -(BOOL)doSomethingThatMayGenerateAnError:(NSError **)errorPtr;
+
+一旦error发生了，你应该先开始监测是否有一个非空的指针指向error参数，然后将error解引用设置它，然后返回NO表示失败了，类似这样：  
+> -(BOOL)doSomethingThatMayGenerateAnError:(NSError **)errorPtr {  
+    ...  
+    // error occurred  
+    if (errorPtr) {  
+        *errorPtr = [NSError errorWithDomain:...  
+                                        code:...  
+                                    userInfo:...];  
+    }  
+    return NO;  
+}
 
 ## 异常用于处理程序的error情况
 
