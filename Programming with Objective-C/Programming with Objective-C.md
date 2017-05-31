@@ -1877,7 +1877,32 @@ complexBlock变量引用了一个block，这个block又用另一个block作为�
 @end  
 
 ### 当持有self的时候，避免强引用循环
+如果你在一个block当中持有了self，比如当你定义了一个回调的block，这时要特别注意隐藏的内存管理问题。  
+block对它持有的对象都维持了一个强引用，包括self，这意味着你非常容易就会在结束的时候造成强引用循环，举个例子，一个对象对一个持有self的block维持了一个copy的属性:  
+> @interface XYZBlockKeeper : NSObject  
+@property (copy) void (^block)(void);  
+@end  
+@implementation XYZBlockKeeper  
+- (void)configureBlock {   
+    self.block = ^{  
+        [self doSomething];    // capturing a strong reference to self  
+                               // creates a strong reference cycle  
+    };  
+}  
+...  
+@end
 
+如果是像这样比较简单的例子的话，编译器会警告你，但是如果是比较复杂的例子的话（对象之间会创建引用循环造成强引用），也就更难断定了。  
+为了避免这种情况，最好的方式是对self使用弱引用，类似这样：  
+> -(void)configureBlock {  
+    XYZBlockKeeper * __weak weakSelf = self;  
+    self.block = ^{  
+        [weakSelf doSomething];   // capture the weak reference  
+                                  // to avoid the reference cycle  
+    }   
+}
+
+通过使用weak指针指向self，block就不会维持了一个强引用指向XYZBlockKeeper对象了。如果该对象在block调用之前就释放了的话，那么weakSelf指针将会直接被设置为nil。
 ## Block能够简化枚举
 
 ## Block能够简化并发任务
