@@ -2090,7 +2090,24 @@ OC的类名不仅仅在你编写的工程当中，而且是相关的类库或者
 #### 在类库的分类的方法当中应该始终使用前缀
 
 ### 局部变量在同一个作用域范围内必须唯一
+由于OC是C的一个超集，C的变量范围规则同样可以应用在OC当中。一个局部变量名不能够和同一作用域范围内的其他变量冲突：  
+> -(void)someMethod {  
+    int interestingNumber = 42;  
+    ...  
+    int interestingNumber = 44; // not allowed  
+}
 
+尽管C语言允许你在一个封闭的作用域当中声明一个同样名称的局部变量，类似这样：  
+> -(void)someMethod {  
+    int interestingNumber = 42;  
+    ...  
+    for (NSNumber *eachNumber in array) {  
+        int interestingNumber = [eachNumber intValue]; // not advisable  
+        ...  
+    }  
+}
+
+这会让代码变的迷惑和不可读，所以最好尽可能避免这种情况。
 ## 一些方法名必须遵从惯例
 
 ### 存取器方法必须遵从惯例 
