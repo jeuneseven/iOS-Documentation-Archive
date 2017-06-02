@@ -11,12 +11,12 @@ iOS软件开发套件（简称SDK）包含大量的工具以及接口用来开�
 iOS SDK提供了你开发iOS apps所需资源。多了解一些这些在SDK中的开发技术和工具有助于你更好的设计和实现你的app。
 
 ### iOS系统架构是以层级划分的
-在高层级中，iOS在底层硬件和你开发的app之间扮演着一个调度者的角色。app不是直接与底层硬件直接对话的。而是通过一系列定义好的系统接口。这些接口能够保证即使在硬件能力不同的设备上，你的app依然能够同样运行。  
-iOS技术的实现可以用层级来展示，如下图。底层包含了基本的服务和技术。高层级依赖于底层建立，并且提供了更为复杂的服务和技术。  
+在高层级中，iOS在底层硬件和你开发的app之间扮演着一个调度者的角色。app不是直接与底层硬件直接对话的。而是通过一系列定义好的系统接口。这些接口能够保证即使在硬件能力不同的设备上，你的app依然能够同样的运行。  
+iOS技术的实现可以用层级来展示，如下图。底层包含了基本的服务和技术。高层依赖于底层建立，并且提供了更为复杂的服务和技术。  
 
 ![Figure I-1  Layers of iOS](https://developer.apple.com/library/content/documentation/Miscellaneous/Conceptual/iPhoneOSTechOverview/Art/SystemLayers_2x.png)  
 
-就像你构建你的代码一样，我们推荐你无论何时都尽量使用高层级的framework，而不是底层的。高层级的framework对于底层提供了更为面向对象的抽象封装。这些抽象的封装使得编码更容易。因为它减少了大量的你必须写的代码并将可能存在的复杂功能进行了封装，例如sockets和threads。你也可能会用到底层的API，不过这应该是高层的API没有暴露相关功能接口的时候。
+就像你构建你的代码一样，我们推荐你无论何时都尽量使用高层级的framework，而不是底层的。高层级的framework对于底层提供了更为面向对象的抽象封装。这些抽象的封装使得编码更容易。因为它减少了大量的你必须写的代码，并将可能存在的复杂功能进行了封装，例如sockets和threads。你也可能会用到底层的API，不过这应该是高层的API没有暴露相关功能接口的时候。
 > 相关章节：Cocoa Touch Layer, Media Layer, Core Services Layer, Core OS Layer  
 
 ### iOS 的开发技术是被封装为Framework的
@@ -24,8 +24,8 @@ Apple提供的大部分系统的接口都被封装为一个被称作Framework的
 > 相关段落：iOS Frameworks
 
 ### 开发者文库是用来帮助你的
-iOS开发者文库在开发过程中是很重要的资源。它包含了API参考文献，编程指南，发行说明，技术文档，示例代码以及很多其他的资源提供，这可以让你能够用最好的方式去开发你的app。  
-你可以通过网页访问iOS开发文档口。也可以通过Xcode中的Documentation and API 在窗口中显示，使用Xcode可以浏览，搜索以及对文档添加书签。
+iOS开发者文库在开发过程中是很重要的资源。它包含了API参考文献，编程指南，发行说明，技术文档，示例代码以及很多其他的资源，这可以让你能够用最好的方式去开发你的app。  
+你可以通过网页访问iOS开发文档。也可以通过Xcode中的Documentation and API 在窗口中显示，使用Xcode可以浏览，搜索以及对文档添加书签。
 
 ## 如何使用这篇文档
 《iOS技术相关》文档对于任何刚刚进入iOS开发的人来说都是一个引导。它提供了iOS开发技术、iOS开发过程中对于开发有用的工具、相关链接等等。你应该这样使用这篇文档：  
@@ -43,12 +43,12 @@ iOS开发者文库在开发过程中是很重要的资源。它包含了API参�
 
 * 开始使用swift开发iOS app提供了开发过程的指导，从如何设置你的系统，到如何提交你的app到App Store都有所涉猎。如果你是个iOS开发新手的话，这篇文章是个不错的开始。
 * iOS人机交互指南提供了如何设计你的app的交互界面的相关信息。
-* app发布指南从工具的角度描述了iOS开发的过程。这篇文档包含配置设备以及使用Xcode构建、运行、测 试你的app的介绍。  
+* app发布指南从工具的角度描述了iOS开发的过程。这篇文档包含配置设备以及使用Xcode构建、运行、测 试你的app的相关介绍。  
 
 如果你已经支付了iOS开发者计划的相应产品，你就可以在一台设备上开始开发了。当你登录后，你可以在iOS开发者中心获得Xcode以及iOS SDK的一份拷贝。  
 
 # Cocoa Touch 层
-Cocoa Touch 层包含了构件iOS app的很多重要的framework。这些framework决定了你的app如何表现。并且提供构件app的基础，以及一些关键技术的支持，例如多任务处理（并行），屏幕上的输入，推送通知，和很多高层级的系统服务。当你设计你的app时，你应该多研究这一层的相关技术以供满足你的需要。  
+Cocoa Touch 层包含了构件iOS app的很多重要的framework。这些framework决定了你的app如何表现。并且提供构建app的基础，以及一些关键技术的支持，例如多任务处理（并行），屏幕上的输入，推送通知，和很多高层级的系统服务。当你设计你的app时，你应该多研究这一层的相关技术以供满足你的需要。  
 ## 高层级的功能
 以下段落描述了Cocoa Touch 层的一些重要相关技术。  
 ### App Extensions （app扩展）
@@ -93,7 +93,7 @@ TextKit包含了一些新的UIKit类，扩展了一些已经存在的类，包�
 
 想了解更多关于TextKit的信息，请查看Text变成指南。  
 ### UIKit Dynamics(UIKit动力学)
-app能对UIview的对象的制定动态行为进行定制，这些对象必须要遵循UIDynamicItem协议。遵循这项协议的对象被称为动态对象。动态的特性与真实世界的行为特性相结合，增加了用户体验。UIKit动态性对以下几种行为提供支持：
+app能对UIView的对象的指定动态行为进行定制，这些对象必须要遵循UIDynamicItem协议。遵循这项协议的对象被称为动态对象。动态的特性与真实世界的行为特性相结合，增加了用户体验。UIKit动态性对以下几种行为提供支持：
 
 * UIAttachmentBehavior对象代表着两个动态对象或一个动态对象与一个点之间的连接。当一个对象或者一个点移动的时候，连带着另一个对象也会移动。但是这种连接不是完全线性的。一个联动的行为会具有阻尼和震动效果，这决定了在动画过程中的行为变化。
 * UICollisionBehavior对象能够让动态的对象在指定的边角发生碰撞效果。并且能够让对象本身响应碰撞效果。
@@ -114,7 +114,7 @@ app能对UIview的对象的制定动态行为进行定制，这些对象必须�
 
 关于如何辅助iOS多任务处理模型，请查看iOS app编程指南。
 ### Auto Layout(自动布局)
-自动布局帮助你使用很少的代码就能够构建动态的界面。使用自动布局，你要定义好如何渲染你的用户界面元素的规则。这些规则定义了比以往使用的springs and struts模式更为直观的关系。例如，你可以指定一个按钮与其父view的边一致相距20像素。  
+自动布局帮助你使用很少的代码就能够构建动态的界面。使用自动布局，你要定义好如何渲染你的用户界面元素的规则。这些规则定义了比以往使用的springs and struts模式更为直观的关系。例如，你可以指定一个按钮与其父view的边一直相距20像素。  
 使用自动布局的OC实体被称作约束。约束提供以下功能：
 
 * 约束能够通过交换字符串即可固定，而无需更新你的布局。
@@ -124,7 +124,7 @@ app能对UIview的对象的制定动态行为进行定制，这些对象必须�
 一个view对象通常都会持有它固定的大小，它在父view中的位置，以及它相对于兄弟view的位置等信息。VC能够在这些值不符合要求时对其进行重写。  
 关于自动布局的更多信息，请查看自动布局指南。
 ### Storyboards(故事版)
-故事版是iOS推荐的你设计你app用户界面的方式。故事版能够让你在一个界面中从整体上设计你的用户界面，在这个界面中，你可以看到你所有的view和VC，并且能够了解他们之间是如何协作的。故事版的一个重要功能是能够定义依赖，依赖代表着从一个VC到另一个VC的过渡。  
+故事版是iOS推荐的设计你的app用户界面的方式。故事版能够让你在一个界面中从整体上设计你的用户界面，在这个界面中，你可以看到你所有的view和VC，并且能够了解他们之间是如何协作的。故事版的一个重要功能是能够定义依赖，依赖代表着从一个VC到另一个VC的过渡。  
 你可以使用一个故事版文件来存储你所有的view和VC，你也可以使用多个故事版来组织部分界面。在编译阶段，Xcode会将故事版的内容分拆成单独的小文件加载，以此来提高性能。你的app不需要去管理这些小文件。UIKit提供了封装好的接口以供你的代码调用故事版的内容。  
 关于更多的使用故事版构建你的用户界面，请查看Xcode概览。关于如何通过代码来控制你的故事版，请查看UIStoryboard Class 参考。
 ### UI State Preservation(保留UI状态)
@@ -173,7 +173,7 @@ app能对UIview的对象的制定动态行为进行定制，这些对象必须�
   
 有关如何使用游戏相关框架，请参阅游戏中心编程指南以及游戏相关框架参考。
 ### iAd Framework(广告框架)
-广告框架能够让你实现基于横幅图片展示的广告。广告以标准空间展示，这使得你能够随意的按照你的意愿展示你的用户界面。这些控件与苹果的广告服务器交互，并且已经将处理副文本的广告媒体加载、展示和响应广告的点击等功能封装好以供你调用。  
+广告框架能够让你实现基于横幅图片展示的广告。广告以标准控件展示，这使得你能够随意的按照你的意愿展示你的用户界面。这些控件与苹果的广告服务器交互，并且已经将处理副文本的广告媒体加载、展示和响应广告的点击等功能封装好以供你调用。  
 想了解更多如何在你的app中使用广告，请参阅广告编程指南以及广告框架参考。
 ### MapKit Framework(地图框架)
 地图框架提供了一张能够随意移动的地图，让你能够将其嵌入你app的用户界面。除了提供基本的地图展示功能，你还可以通过框架提供的接口对地图界面以及展示进行定制。你可以使用大头针对感兴趣的位置进行标注，你还可以使用覆盖物点缀地图上的区域。例如，你可以使用覆盖物去绘制公共汽车线路，或者高亮标注附近的商店和宾馆。  
@@ -487,7 +487,7 @@ AddressBook.framework为程序提供了访问用户通讯录数据库的权限�
 AdSupport.framework框架提供一个有广告需求的app使用的标识。该框架还会为用户是否退出了广告追踪提供一个标记。app需要在访问广告标识之前读取这个标记。  
 更多关于该框架的信息，请查看AdSupport框架参考。
 ### CFNetwork Framework
-CFNetwork.framework是一套高性能的使用面向对象抽象的基于C语言的接口，使用它来与网络协议交互。这些抽象让你能够通过协议栈来控制，并且使得使用底层的结构（例如BSD sockets）更为简单。你可以使用该框架简化各种操作，例如鱼FTP和HTTP服务器的交互，或者解决DNS主机方案。使用CFNetwork框架，你可以：  
+CFNetwork.framework是一套高性能的使用面向对象抽象的基于C语言的接口，使用它来与网络协议交互。这些抽象让你能够通过协议栈来控制，并且使得使用底层的结构（例如BSD sockets）更为简单。你可以使用该框架简化各种操作，例如与FTP和HTTP服务器的交互，或者解决DNS主机方案。使用CFNetwork框架，你可以：  
 
 * 使用BSD sockets
 * 使用SSL或者TLS生成加密连接
@@ -765,5 +765,5 @@ iOS使用LP64模型，该模型被OS X和其他的64位UNIX操作系统所使用
 ## System Libraries
 
 请知晓，在Core OS和Core Services层有一些特殊库代码是没有被封装成框架的。iOS在系统的 **/usr/lib** 路径下包含了很多动态库。动态库以它们的".dylib"扩展作为分享的标示。这些库的头文件存放在  **/usr/include** 路径下。  
-每个班的iOS SDK都包含了一份本地分享库的备份而无须安装在系统上。这些拷贝存在你正在开发的系统中以便你能够从你Xcode工程中链接到。如果想查看一个iOS系统特殊版本的库列表的话，在这个路径下可以查看到：<Xcode.app>/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/<iOS_SDK>/usr/lib，<Xcode.app>代表你Xcode所在目录，<iOS_SDK>代表你当前target的特殊版本的SDK。例如，iOS8 SDK版本的将会存在 /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk/usr/lib 目录下，相应的头文件存放在 /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk/usr/include。  
+每个iOS SDK都包含了一份本地分享库的备份而无须安装在系统上。这些拷贝存在你正在开发的系统中以便你能够从你Xcode工程中链接到。如果想查看一个iOS系统特殊版本的库列表的话，在这个路径下可以查看到：<Xcode.app>/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/<iOS_SDK>/usr/lib，<Xcode.app>代表你Xcode所在目录，<iOS_SDK>代表你当前target的特殊版本的SDK。例如，iOS8 SDK版本的将会存在 /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk/usr/lib 目录下，相应的头文件存放在 /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk/usr/include。  
 iOS使用符号链接来指定大部分库的当前版本。当链接到一个动态分享库时，使用符号链接而不是普通链接来指向一个库特殊版本。库的版本在iOS系统当中是可能改变的；如果你的软件链接到了一个固定版本，那个版本不一定会在用户的系统中一直存在。
