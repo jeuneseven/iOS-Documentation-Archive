@@ -8,6 +8,13 @@
 
 #import "XYZPerson.h"
 
+@interface XYZPerson ()
+
+@property (assign, readwrite, nonatomic) float height;
+@property (assign, readwrite, nonatomic) float weight;
+
+@end
+
 @implementation XYZPerson
 
 - (instancetype)initWithFirstName:(NSString *)firstName lastName:(NSString *)lastName dateOfBirth:(NSDate *)birthDate {
@@ -44,6 +51,14 @@
 
 - (void)saySomething:(NSString *)greeting {
     NSLog(@"%@", greeting);
+}
+
+- (void)measureWeight:(float)personWeight {
+    self.weight = personWeight;
+}
+
+- (void)measureHeight:(float)personHeight {
+    self.height = personHeight;
 }
 
 @end

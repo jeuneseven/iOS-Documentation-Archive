@@ -10,6 +10,8 @@
 		D88768211EE204D90075D6D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D88768201EE204D90075D6D4 /* main.m */; };
 		D88768291EE205020075D6D4 /* XYZPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = D88768281EE205020075D6D4 /* XYZPerson.m */; };
 		D8D887811EE2C07C00AB78B1 /* XYZShoutingPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D887801EE2C07C00AB78B1 /* XYZShoutingPerson.m */; };
+		D8D887841EE428D300AB78B1 /* XYZPerson+OC.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D887831EE428D300AB78B1 /* XYZPerson+OC.m */; };
+		D8D887871EE4291A00AB78B1 /* NSString+OC.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D887861EE4291A00AB78B1 /* NSString+OC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +33,10 @@
 		D88768281EE205020075D6D4 /* XYZPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYZPerson.m; sourceTree = "<group>"; };
 		D8D8877F1EE2C07C00AB78B1 /* XYZShoutingPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYZShoutingPerson.h; sourceTree = "<group>"; };
 		D8D887801EE2C07C00AB78B1 /* XYZShoutingPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYZShoutingPerson.m; sourceTree = "<group>"; };
+		D8D887821EE428D300AB78B1 /* XYZPerson+OC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XYZPerson+OC.h"; sourceTree = "<group>"; };
+		D8D887831EE428D300AB78B1 /* XYZPerson+OC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XYZPerson+OC.m"; sourceTree = "<group>"; };
+		D8D887851EE4291A00AB78B1 /* NSString+OC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OC.h"; sourceTree = "<group>"; };
+		D8D887861EE4291A00AB78B1 /* NSString+OC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OC.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +72,12 @@
 				D88768201EE204D90075D6D4 /* main.m */,
 				D88768271EE205020075D6D4 /* XYZPerson.h */,
 				D88768281EE205020075D6D4 /* XYZPerson.m */,
+				D8D887821EE428D300AB78B1 /* XYZPerson+OC.h */,
+				D8D887831EE428D300AB78B1 /* XYZPerson+OC.m */,
 				D8D8877F1EE2C07C00AB78B1 /* XYZShoutingPerson.h */,
 				D8D887801EE2C07C00AB78B1 /* XYZShoutingPerson.m */,
+				D8D887851EE4291A00AB78B1 /* NSString+OC.h */,
+				D8D887861EE4291A00AB78B1 /* NSString+OC.m */,
 			);
 			path = "Objective-C Exercises";
 			sourceTree = "<group>";
@@ -128,6 +138,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8D887871EE4291A00AB78B1 /* NSString+OC.m in Sources */,
+				D8D887841EE428D300AB78B1 /* XYZPerson+OC.m in Sources */,
 				D88768291EE205020075D6D4 /* XYZPerson.m in Sources */,
 				D8D887811EE2C07C00AB78B1 /* XYZShoutingPerson.m in Sources */,
 				D88768211EE204D90075D6D4 /* main.m in Sources */,
