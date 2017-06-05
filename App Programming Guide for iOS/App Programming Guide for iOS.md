@@ -75,7 +75,19 @@ Ad hoc 发布 icon  | iTunesArtwork | 如果你想以ad hoc的方式发布你的
 
 有关iOS app bundle的结构信息，参见“bundle编程指南”。有关如何从你的bundle加载资源文件，参见“资源文件编程指南”。
 ### 信息属性列表文件
+Xcode通过你的工程的General, Capabilities, 和 Info等几个页签当中的信息在编译时为你的app生成信息属性列表文件（Info.plist）。Info.plist文件是一个结构性的文件，它包含了你的app配置的关键信息。它被iOS和App Store用来辨别你的app的功能以及定位关键资源。每个app都必须包含这个文件。  
+尽管Xcode提供的Info.plist文件包含了很多必须的条目，大部分app都需要对其更改或者添加。无论何时，请使用General 和 Capabilities页签来配置你的app的相关信息。这些页签包含了大部分app可选的通用配置选项。如果你没有在这些页签中找到特殊的选项，请使用Info页签。  
+对于那些Xcode没有在界面当中提供的定制化配置的选项，你必须使用Xcode属性列表编辑器来提供适当的key value值。在Info页签的自定义iOS target属性一段当中包含了Info.plist当中的条目摘要信息。默认的，Xcode展示的是打算实现的功能的可读版本描述，但是每个功能其实都是在Info.plist文件当中对应的一个唯一的key。大多数key是可选的或者很少用到的，但是有一小部分key是当你创建一个新的工程的时候应该考虑的：  
 
+* 在Info页签当中声明你的app所需的环境。需要的设备功能段落包含了你的app需要运行的设备级别的功能描述信息。App Store会使用这个条目当中的信息来决定你的app的运行环境，并且将这些信息展现在那些不符合你的app所需运行环境的设备上。更多信息参见“声明所需设备信息”。
+* 对于需要稳定Wi-Fi环境的app必须声明原因。如果你的app需要和服务器通过网络进行交互，你可以在你项目的Info页签当中添加Wi-Fi条目。这在Info.plist 文件中使用 UIRequiresPersistentWiFi key来表述。将这个key设置为YES可以将Wi-Fi从活跃状态转换到不活跃状态的时间延长一点。这个key对于那些需要使用网络和服务器进行交互的app建议使用。
+* 报刊杂志类的app必须声明其本身。包含UINewsstandApp key的app表示你的app将从报刊app当中展示信息。
+* 定义自定义文本类型的app必须声明那些文本类型。Info页签当中的文档类型段落指定了icons和你的app支持的文本格式的UTI信息。系统通过这个信息确认app能够处理指定的文件类型。更多关于为你的app添加文档支持的信息，参见“基于文档的iOS app编程指南”。
+* app可以声明任何支持的自定义的URL schemes。Info页签当中的URL类型段落指定了你的app支持的自定义的URL schemes类型。app可以使用自定义的URL schemes来和其他的app进行交流。更多关于如何实现支持这一功能的相关信息，参见“使用URL schemes来和其他的app进行交互”。
+* app在试图访问用户数据和某些app功能的时候必须提供使用描述（有时候称作“用途描述”）。当app涉及到访问用户隐私信息数据以及设备功能的时候，iOS将会为你的app向用户请求许可。app必须通过Info.plist当中的用途描述字段来向用户解释，为什么需要这个功能。如果你的app试图在没有提供用途描述的情况下获得访问权限的话，你的app将会终止运行。  
+有关获取用户许可的数据和功能在列表1-2当中有相关描述。用途描述在“信息属性列表key文献”的“cocoa keys”一章有相关描述。
+
+有关能够在Info.plist文件当中声明的键值对相关信息，参见“信息属性列表key文献”。
 ### 声明所需的设备功能
 
 ### app icon
