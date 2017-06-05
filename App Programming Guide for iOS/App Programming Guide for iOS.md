@@ -3,7 +3,7 @@
 # 关于iOS app的发布
 app应该和iOS结合的更好，确保为用户提供最佳的用户体验。除了为你的app提供更好的设计以及交互界面，更好的用户体验还包含很多其他因素。用户在使用app的时候，期望它消耗的电量更少、更快以及更具有交互性。app应该为所有最新发布的iOS设备做适配。实现所有的新功能看起来不太可能，但是iOS将对此对你提供帮助。  
 
-![](file:///Users/lizhankun/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.iOS.docset/Contents/Resources/Documents/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/ios_pg_intro_2x.png)  
+![](https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/ios_pg_intro_2x.png)  
 
 本文档所描述的核心行为能够让你的app更好的在iOS上运行。你可能不需要实现本文档当中提到的所有功能，但是你应该在你创建的所有项目当中都考虑这些功能。  
 
@@ -89,7 +89,7 @@ Xcode通过你的工程的General, Capabilities, 和 Info等几个页签当中�
 
 有关能够在Info.plist文件当中声明的键值对相关信息，参见“信息属性列表key文献”。
 ### 声明所需的设备功能
-
+所有的app都应该声明它对于运行的设备的性能需求。
 ### app icon
 
 ### app加载图（默认启动图）
