@@ -55,7 +55,25 @@ app应该和iOS结合的更好，确保为用户提供最佳的用户体验。�
 
 这些资源文件是所有app都必须要有的，但是你的app不仅仅要包含这些。你的app当中的Info.plist文件默认不包含很多的Xcode支持的key。很多很重要的key都是在你的app支持该功能的时候才需要添加的。举个例子，一个使用麦克风的app应该包含NSMicrophoneUsageDescription这个key，并且要提供给用户它为什么要使用麦克风的说明。
 ### app bundle
+当你打包你的app的时候，Xcode将其打包为一个bundle。一个bundle是将一组相关资源整合到一个位置的在文件系统当中的一个目录。一个iOS的app bundel包含app执行文件以及支持的资源文件，例如app icons，图片文件，以及本地化内容。列表1-1列出了一个典型的iOS app bundle当中的内容，出于示范的目的，它叫做MyApp。这个示例仅出于示范的目的。一些在这个列表当中的文件将不会出现在你的app当中。  
 
+列表1-1 一个典型的app bundle  
+
+文件  | 示例 | 描述
+------------- | ------------- | -------------
+app执行文件  | MyApp | 执行文件包含了你的app的编译代码，你的app的执行文件是和你的app的名字减去.app后缀后的名字是相同的。这个文件是必须的。
+信息属性列表文件  | Info.plist | Info.plist文件包含了你的app的配置信息。系统将根据该文件来决定如何和你的app进行交互。本文件是必须的，并且必须叫做Info.plist。更多相关信息，参见“信息属性列表文件”。
+app icons  | Icon.png Icon@2x.png Icon-Small.png Icon-Small@2x.png | 你的app icon是被用来展示在用户设备的首页上的。其他的icon是被系统用来展示在适当的位置的。icon文件名中带有@2x代表它是展示在那些高清屏幕设备上的。一个app的icon文件是必须的。更多关于各种icon图片文件的信息，参见“app icons”。
+加载图  | Default.png Default-Portrait.png Default-Landscape.png | 系统使用该文件作为加载你的app时临时的背景图。当你的app准备好展示它的内容给用户的时候，它将会被移除。至少需要一个启动图文件。更多关于指定的启动图文件的相关信息，参见“app启动图”。
+故事版文件（或nib文件）  | MainBoard.storyboard | 故事版包含了展示在app当中的view和vc。在故事版当中的view是根据相关的展示它们的VC来组织的。故事版还定义了转换（也被叫做segues）能够让用户从一组view转换到另一组。主故事版的文件名是在你创建你的项目的时候由Xcode生成的。你可以在Info.plist文件的UIMainStoryboardFile key对应的value设置不同的文件名。使用nib文件的app可以将 UIMainStoryboardFile key 替换为 NSMainNibFile来指定主要的nib文件。故事版文件或者nib文件是可选的，但是我们推荐你使用。
+Ad hoc 发布 icon  | iTunesArtwork | 如果你想以ad hoc的方式发布你的app的话，包括512 x 512像素的你的app icon的版本。这个icon通常从iTunes Connect提供给App Store。不过，由于ad hoc发布方式不是通过App Store，你的icon必须被你的app bundle代替。iTunes使用这个icon代表你的app。（你指定的文件必须和你提交到App Store的文件相同，如果你想以那种方式发布app到App Store的话）。这个icon的文件名必须是iTunesArtwork，并且没有文件名后缀。对于ad hoc发布方式来说，这个文件是必须的，对于其他方式来说是可选的。
+设置bundle  | Settings.bundle | 如果你想通过设置app来展示你的app的配置参数的话，你必须包含一个设置bundle。这个bundle包含了属性列表数据以及其他的你的app定义的配置参数资源文件。设置app将会使用这个bundle当中提供的信息来为你的app配置界面。这个bundle是可选的。更多关于配置信息以及指定设置bundle的相关信息，参见“配置和设置编程指南”。
+非局限资源文件  | sun.png mydata.plist | 非局限性的资源文件包含图片、声音文件、视频以及自定义的文件，这些文件都是你的app需要用到的。所有的这些文件都应该放置在你的app bundle的最上层。
+本地化资源文件子目录  | en.lproj fr.lproj es.lproj | 本地化的资源文件必须放置在指定的语言工程目录下，名字由ISO 639-1语言缩写加上.lproj后缀组成。（比如en.lproj, fr.lproj, 和 es.lproj目录分别代表英语、法语和西班牙语）。一个iOS app应该是国际化的，并且为每种语言都包含相应的.lproj目录支持。除了为你的app自定义资源文件提供本地化的版本之外，你还可以通过在指定的语言工程路径下放置相同名称的文件来本地化你的app icon、启动图以及设置icon。更多相关信息，参见“国家化你的app”。
+
+	注意：一个iOS app的bundle不能包含一个自定义的目录名字叫做“Resources”。
+
+有关iOS app bundle的结构信息，参见“bundle编程指南”。有关如何从你的bundle加载资源文件，参见“资源文件编程指南”。
 ### 信息属性列表文件
 
 ### 声明所需的设备功能
