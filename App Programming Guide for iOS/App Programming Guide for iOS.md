@@ -89,7 +89,9 @@ Xcode通过你的工程的General, Capabilities, 和 Info等几个页签当中�
 
 有关能够在Info.plist文件当中声明的键值对相关信息，参见“信息属性列表key文献”。
 ### 声明所需的设备功能
-所有的app都应该声明它对于运行的设备的性能需求。
+所有的app都应该声明它对于运行的设备的性能需求。Xcode在你的项目的Info页签中包含了所需设备能力的条目，并且以最低需求设备展示。你可以为你的app在这里添加额外的条目。所需设备能力的条目在Info.plist文件中相当于UIRequiredDeviceCapabilities 这个 key。  
+UIRequiredDeviceCapabilities key对应的值可以是一个数组或者是个字典，它包含了你的app定义的支持的功能的key（或者是不支持的功能的key）。如果你指定该key的value是一个数组的话，那么存在key的对应的功能是必须的；缺失的key表示该功能不是必须的，并且app可以没有该功能也能够运行。如果你指定value是一个字典的话，每个字典当中的key必须对应布尔类型的值，无论该功能是必须的还是禁止的。true代表该功能必须，false代表该功能绝对不能在设备上出现。如果你的app有可选的功能的话，请不要在字典当中使用对应的key。
+更多关于UIRequiredDeviceCapabilities key对应的可以包含的值的相关信息，参见“信息属性列表key参考文献”。
 ### app icon
 
 ### app加载图（默认启动图）
