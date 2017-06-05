@@ -69,7 +69,7 @@ app icons  | Icon.png Icon@2x.png Icon-Small.png Icon-Small@2x.png | 你的app i
 Ad hoc 发布 icon  | iTunesArtwork | 如果你想以ad hoc的方式发布你的app的话，包括512 x 512像素的你的app icon的版本。这个icon通常从iTunes Connect提供给App Store。不过，由于ad hoc发布方式不是通过App Store，你的icon必须被你的app bundle代替。iTunes使用这个icon代表你的app。（你指定的文件必须和你提交到App Store的文件相同，如果你想以那种方式发布app到App Store的话）。这个icon的文件名必须是iTunesArtwork，并且没有文件名后缀。对于ad hoc发布方式来说，这个文件是必须的，对于其他方式来说是可选的。
 设置bundle  | Settings.bundle | 如果你想通过设置app来展示你的app的配置参数的话，你必须包含一个设置bundle。这个bundle包含了属性列表数据以及其他的你的app定义的配置参数资源文件。设置app将会使用这个bundle当中提供的信息来为你的app配置界面。这个bundle是可选的。更多关于配置信息以及指定设置bundle的相关信息，参见“配置和设置编程指南”。
 非局限资源文件  | sun.png mydata.plist | 非局限性的资源文件包含图片、声音文件、视频以及自定义的文件，这些文件都是你的app需要用到的。所有的这些文件都应该放置在你的app bundle的最上层。
-本地化资源文件子目录  | en.lproj fr.lproj es.lproj | 本地化的资源文件必须放置在指定的语言工程目录下，名字由ISO 639-1语言缩写加上.lproj后缀组成。（比如en.lproj, fr.lproj, 和 es.lproj目录分别代表英语、法语和西班牙语）。一个iOS app应该是国际化的，并且为每种语言都包含相应的.lproj目录支持。除了为你的app自定义资源文件提供本地化的版本之外，你还可以通过在指定的语言工程路径下放置相同名称的文件来本地化你的app icon、启动图以及设置icon。更多相关信息，参见“国家化你的app”。
+本地化资源文件子目录  | en.lproj fr.lproj es.lproj | 本地化的资源文件必须放置在指定的语言工程目录下，名字由ISO 639-1语言缩写加上.lproj后缀组成。（比如en.lproj, fr.lproj, 和 es.lproj目录分别代表英语、法语和西班牙语）。一个iOS app应该是国际化的，并且为每种语言都包含相应的.lproj目录支持。除了为你的app自定义资源文件提供本地化的版本之外，你还可以通过在指定的语言工程路径下放置相同名称的文件来本地化你的app icon、启动图以及设置icon。更多相关信息，参见“国际化你的app”。
 
 	注意：一个iOS app的bundle不能包含一个自定义的目录名字叫做“Resources”。
 
