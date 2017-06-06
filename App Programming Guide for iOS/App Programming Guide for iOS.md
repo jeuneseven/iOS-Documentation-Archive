@@ -102,7 +102,60 @@ UIRequiredDeviceCapabilities key对应的值可以是一个数组或者是个字
 新的Xcode工程为你的app的启动图包含了图片集合条目。当需要添加启动图的时候，添加相关的图片到你的工程的图片集合的对应位置就可以了。在构建的时候，Xcode将添加相应的key到你的Info.plist文件当中，并且将启动图放置到你的app bundle当中。
 更多关于如何设计你的app的启动图以及这些图片的尺寸的相关信息，参见“iOS人机交互指南”。
 ## 支持用户隐私
+为用户隐私进行设计是非常重要的。大部分iOS设备都包含了用户不想展现在app或者外部设备上的隐私数据。如果你的app不太恰当的访问或者使用数据，用户很可能删除你的app。  
+访问用户或者设备的数据只能在用户知情同意之后。此外，还应该采用适当的步骤保护用户和设备的数据以及显式的告知用户你在使用它。有一些比较好的方式推荐你使用：  
 
+* 参阅政府或工业指导资料，包括以下文档：  
+	* 联邦贸易委员会关于移动设备的隐私：“移动设备隐私公开性原则：通过透明建立信任”
+	* EU数据保护委员会关于保护移动设备数据的报告：http://ec.europa.eu/justice/data-protection/article-29/documentation/opinion-recommendation/files/2013/wp202_en.pdf
+	* 日本内阁关于智慧型手机的隐私举措：  
+		* 智慧型手机隐私举措：  
+		  英文版：http://www.soumu.go.jp/main_sosiki/joho_tsusin/eng/presentation/pdf/Initiative.pdf  
+		  日文版：http://www.soumu.go.jp/main_content/000171225.pdf
+		* 智慧型手机隐私举措2：  
+		  英文版：http://www.soumu.go.jp/main_sosiki/joho_tsusin/eng/presentation/pdf/Summary_II.pdf  
+		  日文版：http://www.soumu.go.jp/main_content/000247654.pdf
+	* 加州州检察院推荐的关于移动设备的隐私：“隐私：推荐移动生态系统使用”    
+这些报告帮助保护了用户的隐私。你还应该查看你公司的法律顾问文档。
+* 对于敏感数据以及设备数据要取得用户的授权，当你的app需要这些数据的时候，这些数据被iOS系统授权设置。你必须提供一个描述性字符串（有时候称作使用说明）在你的app的Info.plist文件当中，该字符串用来解释为什么你的app需要这些你要试图访问的数据和资源。被iOS系统授权设置保护的数据包括：定位、联系人、日历事件、提醒事件、照片、媒体库以及很多其他类型的数据；参见列表1-2。在用户不同意访问这些数据的情况下，你应该提供合理的回调行为。
+* 应该为用户展示浅显易懂的该数据将会被如何使用的描述。举例来说，当你提交你的app到App Store的时候，应该提供一个URL作为你的隐私协议或者陈述，并且作为iTunes Connect 元数据的一部分。你还可以在你的app描述当中解释总结隐私协议。  
+更多关于在iTunes Connect当中提供你的app隐私协议的相关信息，参见“在iTunes Connect中添加一个app”。
+* 给予用户对于用户或设备数据的控制权。为用户提供设置选项，这样用户就可以决定那些敏感信息是否需要被访问。
+* 尽可能少的请求用户或者设备的信息来完成任务。不要由于一些不明显的原因或者不必要的原因或者仅仅是你觉得以后可能会用到这种原因请求或者收集数据。
+* 在你的app当中使用合理的步骤保护你收集的用户和设备的信息。当你在本地存储信息的时候，应当尝试使用iOS数据保护功能（在“使用磁盘加密功能保护用户数据”中有相关描述）将数据以加密格式存储。当你通过网络将用户或者设备的信息传输的时候，请使用app安全传输机制（在NSAppTransportSecurity中有相关描述）。
+* 如果你的app用到了ASIdentifierManager类的话，你必须对advertisingTrackingEnabled这个属性的值提起重视。如果该属性被用户设置为NO的话，那么ASIdentifierManager类只能用于有限的一些广告内容。“有限的广告内容”的意思是仅仅出于广告的目的使用频率统计、归属地、转换事件、独立用户估算、广告诈骗保护、以及调试功能，其他使用广告支持的API的将会被Apple允许。
+* 如果你还没有准备好这么做的话，请停止使用UIDevice类提供的uniqueIdentifier属性，它代表唯一设备标示。该属性在iOS5之后就被废除了，并且App Store不再接受使用该标示的新的app或者旧的app更新。取而代之的是，app应该视情况而定使用UIDevice类的identifierForVendor属性或者ASIdentifierManager类的advertisingIdentifier属性。
+* 如果你的app支持音频录入的话，请在你确实打算用到录制功能的时候才配置你的音频模块。不要在你还没准备好立刻使用录制功能的启动加载时就配置你的音频录制模块。系统将会在app配置音频录制模块的时候提示用户，并且为用户提供选项是否同意你的app录制音频。
+
+列表1-2列出了iOS上支持的授权资源和数据类型。对每个条目列表都展现了用途描述key以及用来检查授权状态的API。  
+
+	重要：当你的app试图使用被保护的内容时，系统将会通过一个提示框提示用户，并且获取用户的授权。从iOS10开始，你的Info.plist必需包含用途描述，用来展示在系统的提示框当中。如果你的app试图访问受保护的数据，而你并没有提供相应的用途描述的话，你的app将会推出。（这个行为同样适用于iMessage app，你必须在访问设备的摄像头和麦克风之前包含在列表1-2当中列出的相应的key）
+
+对于一些受保护的数据和资源，iOS的框架提供了专用的API来检查和请求授权，这也在列表1-2当中罗列出来了。  
+由于用户可以通过设置app随时改变授权，请在任何时候访问这些条目之前都检查授权状态（对于某些功能而言，比如运动类或者HomeKit，不要使用专用的API来检查系统授权状态，具体详见列表1-2）。  
+
+列表 1-2 被系统授权设置保护的数据和资源
+
+数据和资源  | Info.plist中的用途描述key | 系统授权API
+------------- | ------------- | -------------
+蓝牙外设  | NSBluetoothPeripheralUsageDescription | 使用蓝牙外设之前，请使用CBCentralManager类的state属性来检查系统授权状态。
+日历数据  | NSCalendarsUsageDescription | 在访问日历数据之前，使用EKEventStore类的authorizationStatusForEntityType: 方法来检查系统授权状态。
+相机  | NSCameraUsageDescription | 使用设备的相机之前，使用AVCaptureDeviceInput类的deviceInputWithDevice:error:方法来检查系统授权状态。
+联系人  | NSContactsUsageDescription | 访问联系人数据之前，使用CNContactStore类的authorizationStatusForEntityType:方法来检查系统授权状态。
+健康数据分享  | NSHealthShareUsageDescription | 访问健康类数据前，使用HKHealthStore类的authorizationStatusForType: 方法来检查系统授权状态。请求授权的话，使用requestAuthorizationToShareTypes:readTypes:completion:方法。
+健康数据更新  | NSHealthUpdateUsageDescription | 请求健康数据前，使用HKHealthStore类的authorizationStatusForType:方法来检查系统授权状态。请求授权的话，使用requestAuthorizationToShareTypes:readTypes:completion:方法。
+HomeKit  | NSHomeKitUsageDescription | 当你的app首次访问HMHomeManager类的属性时，系统会给用户展示一个请求授权的请求。
+定位  | NSLocationAlwaysUsageDescription, NSLocationWhenInUseUsageDescription | 访问地理位置数据前，使用CLLocationManager类的authorizationStatus方法来检查系统授权状态。请求授权的话，使用requestWhenInUseAuthorization 或者 requestAlwaysAuthorization 方法。
+麦克风 | NSMicrophoneUsageDescription | 使用设备的麦克风之前，使用AVAudioSession类的recordPermission方法来检测系统授权状态。请求授权的话，使用requestRecordPermission:方法。
+运动 | NSMotionUsageDescription | 访问加速器之前，使用CMMotionActivityManager类的queryActivityStartingFromDate:toDate:toQueue:withHandler:方法，并检测CMErrorNotAuthorized这个error来检测系统授权状态。
+音乐和媒体库 | NSAppleMusicUsageDescription | 访问媒体库之前，使用ALAssetsLibrary类的authorizationStatus方法来检测系统授权状态。
+照片 | NSPhotoLibraryUsageDescription | 访问照片库之前，使用PHPhotoLibrary类的authorizationStatus方法来检测系统授权状态。
+提醒事项 | NSRemindersUsageDescription | 访问提醒事项数据前，使用EKEventStore类的authorizationStatusForEntityType:方法来检查系统授权状态。
+Siri | NSSiriUsageDescription | 使用Siri前，使用INPreferences类的 siriAuthorizationStatus方法来检测系统授权状态。为你的app请求使用SiriKit，使用requestSiriAuthorization:方法。
+语音识别 | NSSpeechRecognitionUsageDescription | 使用语音识别前，使用SFSpeechRecognizer类的authorizationStatus方法来检测系统授权状态。为你的app请求使用语音识别授权，使用requestAuthorization方法。
+电视服务提供商 | NSVideoSubscriberAccountUsageDescription | 访问用户视频服务订阅信息之前，使用VSAccountManager类的checkAccessStatusWithOptions:completionHandler:方法来检测系统授权状态。请求授权的话，使用enqueueResourceAuthorizationRequest:completionHandler:方法。
+
+列表1-2的内容对于app的隐私访问行为只是一个开始，并不是一个完整的列表。这个列表将随着iOS系统的更新而更新。
 ## 国际化你的app
 
 # app生命周期
