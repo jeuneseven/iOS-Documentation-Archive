@@ -171,7 +171,20 @@ Siri | NSSiriUsageDescription | 使用Siri前，使用INPreferences类的 siriAu
 app是一个你自己的代码与系统框架相互调用的复杂的集合体。系统框架提供了基础的框架供所有的app运行，你的代码为你的app提供了定制化的基础架构，让你的app成为你想要的样子。为了能够有效的做到这一点，了解一些iOS的架构以及它是如何运作的是比较有帮助的。  
 iOS系统框架的实现是依赖于MVC以及代理模式这种设计模式的。了解这些设计模式对于成功构建一个app至关重要。这同样对于OC编程语言和功能也会更加熟悉。如果你是一个iOS开发新手，请阅读“开始开发iOS app（Swift）”，这是一篇iOS app和OC语言的介绍文章。
 ## main函数
+每个基于C的app的入口点都是一个main函数，iOS app也不例外。唯一的例外是对于iOS app而言，你无需自己编写main函数。Xcode将为你的基本工程创建该函数。清单2－1展示了该函数的例子。大多数情况下，你都不应该更改Xcode提供的main函数的实现。  
 
+清单 2-1 iOS app的main函数  
+
+>  #import <UIKit/UIKit.h>  
+  #import "AppDelegate.h"  
+int main(int argc, char * argv[])  
+{  
+    @autoreleasepool {  
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));  
+    }  
+}
+
+main函数当中做的唯一的一件事是它控制了UIKit框架。UIApplicationMain函数通过创建你的app的核心对象来控制这一过程，从可用的 storyboard文件加载你的app的用户界面，调用你自己的代码以便你能够做自己想要的初始化工作，然后将app放入运行循环。你唯一需要做的就是提供 storyboard文件以及自定义初始化代码。
 ## app的结构
 
 ## 主运行循环
