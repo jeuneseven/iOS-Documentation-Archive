@@ -186,7 +186,24 @@ int main(int argc, char * argv[])
 
 main函数当中做的唯一的一件事是它控制了UIKit框架。UIApplicationMain函数通过创建你的app的核心对象来控制这一过程，从可用的 storyboard文件加载你的app的用户界面，调用你自己的代码以便你能够做自己想要的初始化工作，然后将app放入运行循环。你唯一需要做的就是提供 storyboard文件以及自定义初始化代码。
 ## app的结构
+在启动期间，UIApplicationMain函数设置了几个关键的对象，然后开始app的运行。每个iOS app的核心都是一个UIApplication对象，它的作用是促进系统和app当中其他对象的沟通。图2-1展示了大部分app当中的通用对象，当列表2-1列出了每个对象扮演的角色。首先要注意的是，iOS app使用的是MVC架构。这个设计模式将app的数据与业务逻辑从展现它们的界面分离开来。这个架构对于创建能够运行在不同设备和不同屏幕尺寸上的app至关重要。  
 
+图2-1 iOS app当中的关键对象  
+
+![](https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/core_objects_2x.png)  
+
+列表2-1 iOS app当中的对象扮演的角色  
+
+对象  | 描述
+------------- | -------------
+UIApplication对象 | UIApplication对象管理着事件循环以及高层的app行为。当一些关键的app转换场景以及特殊的场景（比如收到推送通知）发生的时候，它还会将这些事件传达给它的代理，这个代理是你自己定义的对象。请直接使用UIApplication对象，不要继承它。
+App delegate对象 | app delegate是你的代码的核心。这个对象与UIApplication对象一起管理着app的初始化、状态转换和很多高层级的app行为。该对象在每个app当中仅出现一个，所以它被用来设置app的初始化数据结构。
+文档和数据模型对象 | 数据模型对象存储了你的app的内容，并且是针对你的app的。举个例子，一个银行类的app可能会有一个数据库用来包含金融交易数据，然而一个绘图类的app可能保存一个图片对象或者保留一系列的绘画操作命令来创建图片。（在后一种情况下，一个图片仍旧是一个数据对象，因为它仅仅是一个图片数据的容器）。app还可以使用文档对象（继承自 UIDocument类）来管理一些或者所有的数据模型对象。文档对象不是必需的，但是它提供了一种简便方式来组织属于一个文件或者文件夹的数据。更多关于文档的相关信息，参见“基于文档的app编程指南”。
+VC对象 | vc对象管理着你的app展示在屏幕上的内容。一个vc管理着一个单一的view以及一组子view。当展示出来的时候，vc通过初始化它的view到window上使之变得可用。UIViewController类是所有的vc对象的基类。它为加载view、展现view、旋转view以适应设备的旋转以及很多其他标准的系统行为提供了默认的实现。UIKit 以及其他的系统框架定义了额外的vc类来实现标准系统界面，比如图片选择器、页签界面以及导航界面。关于如何使用vc的相关信息，参见vc编程指南。
+UIWindow对象 | UIWindow对象是屏幕上一个或多个view的协调者。大部分app都只有一个window用来展示内容到主屏幕上，不过app可以拥有一个额外的window用来展示内容到外接设备上。当改变你的app的内容的时候，你应当使用一个vc来改变对应的window上的view的显示。你永远不应该替换window本身。除了管理view之外，window还与UIApplication对象合作为你的view和vc传递事件。
+view和control对象，以及layer对象 | view和control对象提供了你的app内容的可视化界面。view是一个在指定的矩形区域绘制内容以及在该区域响应事件的对象。Controls是一些响应实现常见的界面对象的view，包括按钮，输入框以及开关等。UIKit框架提供了标准的view来展示多种不同类型的内容。你还可以通过集成UIView或者它的子类来实现定制化的view。除了结合了view和control之外，app还可以将核心动画层加入到它们的view和control层级当中。Layer对象是数据对象的视觉展现表达。view使用layer对象在背后的场景当中渲染它们的内容。你还可以添加自定义的layer对象到你的界面来实现复杂的动画或者其他类型的复杂的视觉效果。
+
+一个iOS app与其他app的区别是它管理的数据（以及它关联的业务逻辑）以及它展现给用户的数据。大部分与UIKit对象的交流没有定义你的app，但是帮助你改善了它的行为。举例来说，你的app的代理方法让你能够知道你的app什么时候会改变状态，你的代码应该能够响应对应的状态。
 ## 主运行循环
 
 ## app的执行状态
