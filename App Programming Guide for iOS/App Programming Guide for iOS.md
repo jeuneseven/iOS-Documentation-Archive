@@ -360,7 +360,34 @@ Xcode后台模式 | UIBackgroundModes对应值 | 描述
 ### 与蓝牙配件进行交互
 
 ## 当在后台运行的时候获取用户的注意
+通知是在app被挂起、在后台或者没有运行的时候获取用户注意的一种方式。app可以使用本地的通知来展示提示框、播放声音、app icon上的未读提示或者三者都有。举个例子，一个闹钟类的app可能用本地通知来播放一个闹铃然后展示一个提示框来取消闹钟。当一个通知发送给用户之后，用户必须决定收到的信息是否要授权将app返回到前台。（如果app已经在前台运行的话，那么本地通知应该发送给app本身，而不是给用户。） 
+如果想按照预定时间展示本地通知的话，创建一个UILocalNotification类的实例对象，配置通知的相关参数，然后使用UIApplication类的方法来进行配置。本地通知对象包含了各种通知信息的内容（声音、提示或者红点）以及时间设置（合适的时机）来交付通知。UIApplication类的方法为立即展示通知还是预定展示提供了选项。  
+清单3-2展示了用户使用日期和时间设置一个闹铃的例子。该示例只设置了一个闹铃并且在设置一个新闹铃之前取消了之前的闹铃。（你的app可以在给定时间内设置展示128个本地通知，每个通知都可以在指定的间隔下重复。）闹铃本身由警示框和一个声音文件组成，声音文件可以在app没有运行或者在后台运行的时候由闹铃唤起。如果app在前台运行中，app的代理事件application:didReceiveLocalNotification:方法会被调用。  
 
+清单3-2 设置一个闹钟提醒  
+
+> - (void)scheduleAlarmForDate:(NSDate*)theDate  
+{. 
+    UIApplication* app = [UIApplication sharedApplication];  
+    NSArray*    oldNotifications = [app scheduledLocalNotifications];  
+    // Clear out the old notification before scheduling a new one.  
+    if ([oldNotifications count] > 0). 
+        [app cancelAllLocalNotifications];  
+    // Create a new notification.  
+    UILocalNotification* alarm = [[UILocalNotification alloc] init];  
+    if (alarm)  
+    {  
+        alarm.fireDate = theDate;  
+        alarm.timeZone = [NSTimeZone defaultTimeZone];  
+        alarm.repeatInterval = 0;  
+        alarm.soundName = @"alarmsound.caf";  
+        alarm.alertBody = @"Time to wake up!";  
+        [app scheduleLocalNotification:alarm];  
+    }  
+}  
+
+与本地通知一起使用的声音文件和推送通知的需求相同。自定义的声音文件必需包含在你的app主程序包当中，并且必需是以下格式的其中一种：Linear PCM, MA4, µ-Law, 或者 a-Law。你还可以指定UILocalNotificationDefaultSoundName为默认的设备播放警告声音。当通知被发送，声音播放的时候，系统会在支持震动的机型上发起震动。  
+你还可以使用UIApplication类的方法来取消设定好的通知或者一系列通知。更多关于这些方法的信息，参见“UIApplication类参考”。更多关于配置本地通知的相关信息，参见“本地和远程通知编程指南”。
 ## 理解当你的app加载到后台的时候
 
 ## 做一个能够在后台响应的app
