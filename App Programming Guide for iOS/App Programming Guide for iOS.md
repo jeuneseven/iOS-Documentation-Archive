@@ -366,8 +366,8 @@ Xcode后台模式 | UIBackgroundModes对应值 | 描述
 
 清单3-2 设置一个闹钟提醒  
 
-> - (void)scheduleAlarmForDate:(NSDate*)theDate  
-{. 
+> -(void)scheduleAlarmForDate:(NSDate*)theDate  
+{   
     UIApplication* app = [UIApplication sharedApplication];  
     NSArray*    oldNotifications = [app scheduledLocalNotifications];  
     // Clear out the old notification before scheduling a new one.  
