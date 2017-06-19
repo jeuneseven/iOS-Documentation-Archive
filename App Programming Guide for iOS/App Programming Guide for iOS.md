@@ -550,6 +550,10 @@ Instruments app包含了很多工具来收集电量相关的信息。你可以�
 * UIApplicationDidReceiveMemoryWarningNotification通知。
 * 分发来源类型DISPATCH_SOURCE_TYPE_MEMORYPRESSURE。这是唯一的一种你能够用来区分严重内存压力的技术。
 
+收到以上任何的一个警告，你处理的函数都应该立即响应，释放不需要的内存。使用警告信息来清理缓存和释放的图片。如果你有大量的数据结构没有使用的话，将这些数据写入磁盘并且释放在内存中的拷贝。  
+如果你的数据模型包含已知的可以清除的资源的话，你可以注册UIApplicationDidReceiveMemoryWarningNotification监听来管理对象，直接移除可以消除的资源的强引用。实现这个通知方法能够避免通过app delegate调用内存警告。
+
+	注意：你可以在iOS模拟器当中使用模拟内存警告命令来测试你的app在低内存下的行为。
 
 ### 减少你的app的内存占用
 
