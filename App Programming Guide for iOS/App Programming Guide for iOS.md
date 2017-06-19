@@ -540,8 +540,16 @@ Xcode后台模式 | UIBackgroundModes对应值 | 描述
 
 Instruments app包含了很多工具来收集电量相关的信息。你可以使用这些工具来收集通用的电量消耗信息以及收集指定的硬件信息，比如Wi-Fi、蓝牙、GPS接收器、显示屏以及CPU。你还可以设置电量诊断日志来收集设备的信息。更多关于如何使用Instruments来收集电量相关的数据，参见“Instruments用户指南”。更多关于如何在设备上设置电量诊断日志，参见“Instruments帮助”。
 ## 高效的使用内存
-
+我们鼓励app使用少量的内存以便系统能够持有更多的app运行或者为前台运行的确实需要内存的app贡献空间。系统空闲可用的内存空间和你的app的性能是正相关的。更少的内存空间意味着系统将很可能在被请求内存空间的时候会有不太好的表现。  
+为了确保一直拥有足够的可用内存空间，你应该最小化你的app的内存使用，并且在系统需要你腾出内存的时候作出响应。
 ### 检测低内存警告
+当系统给你的app分发了一个低内存警告的时候，请立即响应。低内存警告是你移除不需要的对象的的机会。响应这些警告是很重要的，因为app如果不这么做的话，很有肯能会被杀掉。系统使用以下API来给你的app发送低内存警告：  
+
+* app delegate的applicationDidReceiveMemoryWarning: 方法。
+* UIViewController类的didReceiveMemoryWarning方法。
+* UIApplicationDidReceiveMemoryWarningNotification通知。
+* 分发来源类型DISPATCH_SOURCE_TYPE_MEMORYPRESSURE。这是唯一的一种你能够用来区分严重内存压力的技术。
+
 
 ### 减少你的app的内存占用
 
