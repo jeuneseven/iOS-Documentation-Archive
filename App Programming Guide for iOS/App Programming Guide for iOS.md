@@ -579,7 +579,8 @@ Instruments app包含了很多工具来收集电量相关的信息。你可以�
 
 关于ARC以及内存管理的相关信息，参见“转换到ARC发行说明”。
 ## 调整你的网络层代码
-
+在iOS上的网络堆栈包含了一些通过iOS硬件设备交互的接口。最主要的编程接口是CFNetwork框架，它基于BSD sockets构建，并且在Core Foundation类库中以不透明的方式存在，与网络实体进行交互。你还可以使用在Foundation框架当中的NSStream类以及底层的核心系统层的BSD sockets框架。  
+更多关于如何使用CFNetwork框架来进行网络交互，参见CFNetwork编程指南以及CFNetwork编程参考。关于使用NSStream类的相关信息，参见Foundation框架参考。
 ### 有效率的网络层贴士
 
 ### 使用Wi-Fi
