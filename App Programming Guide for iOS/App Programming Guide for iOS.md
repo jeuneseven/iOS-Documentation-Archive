@@ -493,7 +493,10 @@ Xcode后台模式 | UIBackgroundModes对应值 | 描述
 
 ### 使用Reachability接口来提高用户体验
 
-# app内部通讯
+# app之间的通讯
+app只会与设备上的其他的app间接的进行通讯。你可以使用AirDrop来与其他的app共享文件以及数据。你还可以定义一个自定义的URL来让其他的app能够使用URL来给你的app发送信息。  
+
+	注意：你还可以使用 UIDocumentInteractionController 对象或者document picker来在app之间发送文件。更多关于支持添加文档交互控制器的信息，参见“iOS文档交互编程主题”。更多使用document picker打开文件的相关信息，参见“document picker编程指南”。
 
 ## 支持AirDrop
 
@@ -510,7 +513,7 @@ Xcode后台模式 | UIBackgroundModes对应值 | 描述
 ### 当一个URL打开的时候，展示一个自定义的加载图
 
 # 性能调试提示
-在开发你的app的每个阶段，都要考虑到你所选择的设计的隐含的整体性能问题。电量使用和内存消耗对于iOS app而言非常重要，当然也有很多其他的注意事项。以下段落描述了你在开发过程当中应当考虑的因素。  
+在开发你的app的每个阶段，都要考虑到你所选择的设计所隐含的整体性能问题。电量使用和内存消耗对于iOS app而言非常重要，当然也有很多其他的注意事项。以下段落描述了你在开发过程当中应当考虑的因素。  
 ## 减少你的app的电源消耗
 电源消耗在移动设备上一直都是一个问题。iOS上的电源管理系统通过关闭当前没有使用的硬件功能来节省电量。你可以通过优化使用以下功能来帮助提高电池寿命：  
 
@@ -624,10 +627,10 @@ Instruments app包含了很多工具来收集电量相关的信息。你可以�
 为了避免同步过程耗费较长时间，应当有选择性的在你的app主目录当中放置文件。存储比较大的文件的app将会拖慢iTunes或者iCloud的备份过程。这种app也同样会消耗大量的用户的可用空间，这将会让用户趋于删除该app或者不允许该app备份数据到iCloud上。考虑到这一点，你应当在存储app数据的时候遵守以下原则：  
 
 * 关键数据应当存放在< Application_Data >/Documents 目录下。关键数据是指任何你的app不能够重新生成的数据，比如用户的文档以及其他用户生成的内容。
-* 支持的文件包含你的app下载或者生成的文件并且你的app能够根据需要重新生成。存储你的app支持的文件的位置不同的iOS版本有所不同。
+* 支持的文件包含你的app下载或者生成的文件，并且你的app能够根据需要重新生成。存储你的app支持的文件的位置不同的iOS版本有所不同。
 	* 在iOS 5.1及以后的版本，存储支持的文件到 < Application_Data >/Library/Application Support 目录下，并且使用setResourceValue:forKey:error:方法添加NSURLIsExcludedFromBackupKey属性到相关的NSURL对象（如果你使用了Core Foundation，使用CFURLSetResourcePropertyForKey函数添加kCFURLIsExcludedFromBackupKey key到你的CFURLRef对象。）。使用这个属性将会阻止文件被iTunes或者iCloud备份。如果你有大量的支持文件的话，你应当将它们以自定义的子目录来存储，并且将这些属性应用到这些目录当中。
 	* 在iOS 5.0及之前的版本，存储支持的文件到 < Application_Data >/Library/Caches 目录下来避免他们被备份。如果你的target是iOS 5.0.1，参见“如何避免文件被iCloud和iTunes备份？”文档来了解更多关于如何从备份当中排除文件。
-* 缓存数据应当存放在< Application_Data >/Library/Caches 目录下。比如你应当放在Caches目录下的文件包括但不限于数据库缓存文件以及可下载的内容，比如呗杂志、报刊以及地图app使用的数据。你的app应当能够优雅的处理缓存文件呗系统从硬盘空间当中清除的情况。
+* 缓存数据应当存放在< Application_Data >/Library/Caches 目录下。比如你应当放在Caches目录下的文件包括但不限于数据库缓存文件以及可下载的内容，比如被杂志、报刊以及地图app使用的数据。你的app应当能够优雅的处理缓存文件被系统从硬盘空间当中清除的情况。
 * 临时数据应当存储在 < Application_Data >/tmp 目录下。临时数据包含你不需要再随后的时间内用到的数据。记得在你使用完这些文件之后将其删除，不要再占据用户的设备空间。
   
 尽管iTunes备份了app bundle 本身，但是它不是每次同步操作都会这么做的。直接从设备上购买的app会在下次在iTunes同步设备的时候进行备份。不过，随后的同步操作不会再备份app，除非app的包本身有修改（比如app更新了等原因）。  
