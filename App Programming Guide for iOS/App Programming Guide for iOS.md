@@ -514,7 +514,15 @@ AirDrop能够让你与附近的设备分享图片、文档、URL以及其他类�
 
 更多关于使用activity VC的相关信息，参见“UIActivityViewController 类参考”。有关活跃清单以及完整数据类型的支持，参见“UIActivity 类参考”。
 ### 接收发送给你的app的文件和数据
+如果想使用AirDrop来接收发送给你的app的文件，请遵照以下步骤：  
 
+* 在Xcode当中，声明你的app能够打开的支持的文档类型。
+* 在你的app delegate当中，实现application:openURL:sourceApplication:annotation:方法。使用该方法来接收其他app发送的文件。
+
+你的Xcode的Info一栏包含了你的app支持的“文档类型”。你必须指定你的文档类型的名称，并且使用一个或多个UTIs来表示该数据类型。举个例子，如果你声明支持PNG类型的文件，你应当包含public.png作为UTI字符串。iOS使用指定的UTIs来决定你的app是否有资格打开一个给定的文档。  
+在传输一个适当的文档到你的app的容器当中之后，iOS加载你的app（如果需要的话），并且调用appdelegate 的 application:openURL:sourceApplication:annotation:函数。如果你的app是在前台运行的话，你当用使用此方法来打开文件，展示文件给用户。如果你的app是在后台运行，你可以只决定文件的位置，以便你以后可以打开它。因为文件是通过AirDrop使用数据保护机制加密传输的，除非你的设备没有锁定，否则你无法打开文件。  
+你的app会对接收到的文件有读和删除的权限，但是没有写的权限。如果你打算更改该文件的话，在这样做之前, 您必须将它移出其当前位置。我们推荐你随后删除该文件的原始版本。  
+更多关于在你的app中支持的文档类型的相关信息，参见“iOS基于文档的app编程指南”。
 ## 与app之间使用URL Schemes进行通信
 
 ### 给其他的app发送URL
