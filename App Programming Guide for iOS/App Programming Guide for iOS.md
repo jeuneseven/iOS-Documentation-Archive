@@ -501,7 +501,18 @@ app只会与设备上的其他的app间接的进行通讯。你可以使用AirDr
 ## 支持AirDrop
 AirDrop能够让你与附近的设备分享图片、文档、URL以及其他类型的数据。AirDrop利用了P2P网络来查找附近的设备并与之连接。
 ### 发送文件和数据给其他的app
+使用AirDrop来发送文件和数据，需要用到UIActivityViewController对象来展示一个活动列表到你的用户界面上。当创建这个VC的时候，你应该指定你想要分享的数据对象。这个VC仅在那些支持指定数据的活跃设备上显示。对于AirDrop而言，你可以指定图片、字符串、URL以及其他类型的数据。你还可以通过UIActivityItemSource协议传输自定义的对象。  
+为展示一个activity VC，你可以直接使用清单6-1当中的代码。activity VC会自动使用指定的类型的对象来决定在activity sheet上该显示什么内容。你无需明确指定AirDrop。不过，你可以通过使用VC的excludedActivityTypes属性来排除显示某些指定的类型在界面上。当在iPad上展示activity VC的时候，你应当使用popover。  
 
+清单 6-1 展示一个activity sheet 在iPhone上  
+
+> -(void)displayActivityControllerWithDataObject:(id)obj {  
+   UIActivityViewController* vc = [[UIActivityViewController alloc]
+                                initWithActivityItems:@[obj] applicationActivities:nil];  
+    [self presentViewController:vc animated:YES completion:nil];  
+}  
+
+更多关于使用activity VC的相关信息，参见“UIActivityViewController 类参考”。有关活跃清单以及完整数据类型的支持，参见“UIActivity 类参考”。
 ### 接收发送给你的app的文件和数据
 
 ## 与app之间使用URL Schemes进行通信
