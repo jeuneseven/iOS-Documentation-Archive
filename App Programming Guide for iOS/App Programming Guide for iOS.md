@@ -499,7 +499,7 @@ app只会与设备上的其他的app间接的进行通讯。你可以使用AirDr
 	注意：你还可以使用 UIDocumentInteractionController 对象或者document picker来在app之间发送文件。更多关于支持添加文档交互控制器的信息，参见“iOS文档交互编程主题”。更多使用document picker打开文件的相关信息，参见“document picker编程指南”。
 
 ## 支持AirDrop
-
+AirDrop能够让你与附近的设备分享图片、文档、URL以及其他类型的数据。AirDrop利用了P2P网络来查找附近的设备并与之连接。
 ### 发送文件和数据给其他的app
 
 ### 接收发送给你的app的文件和数据
