@@ -529,7 +529,13 @@ URL scheme能够让你与其他的app通过你定义的协议进行通讯。为�
 	注意：Apple对http, mailto, tel, 以及 sms等URL schemes提供了内置的支持。同时，它对地图，YouTube以及iPod app当中基于http的URLs也提供支持。这些URL schemes已经被实现，并且不能够修改。如果你的URL类型包含了一种与Apple定义的scheme一样的话，Apple提供的app将会替代你的app被启动。更多关于Apple支持的 schemes，参见“Apple URL schemes 参考”。
 
 ### 给其他的app发送URL
+当你想给一个实现了自定义URL scheme的app发送数据的时候，创建一个适当格式的URL，并且调用app对象的openURL:方法。openURL:方法会加载已经注册了scheme 的 app，并且将你的URL传递给它。在这时，控制权交由新的app掌管。  
+以下代码片段展示了一个app如何请求另一个app的服务（本例中的“todolist”代表一个app的假想的自定义的scheme）：  
 
+> NSURL *myURL = [NSURL URLWithString:@"todolist://www.acme.com?Quarterly%20Report#200806231300"];  
+[[UIApplication sharedApplication] openURL:myURL];
+
+如果你的app定义了一个自定义的URL scheme，它应该实现在“实现自定义的URL scheme”中提到的该scheme的处理机制。更多关于系统支持的URL scheme的相关信息，包括如何格式化URLs的相关信息，参见“Apple URL scheme 参考”。
 ### 实现自定义的URL Schemes
 
 ### 当一个URL打开的时候，展示一个自定义的加载图
