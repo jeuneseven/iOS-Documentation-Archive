@@ -524,6 +524,9 @@ AirDrop能够让你与附近的设备分享图片、文档、URL以及其他类�
 你的app会对接收到的文件有读和删除的权限，但是没有写的权限。如果你打算更改该文件的话，在这样做之前, 您必须将它移出其当前位置。我们推荐你随后删除该文件的原始版本。  
 更多关于在你的app中支持的文档类型的相关信息，参见“iOS基于文档的app编程指南”。
 ## 与app之间使用URL Schemes进行通信
+URL scheme能够让你与其他的app通过你定义的协议进行通讯。为了与实现了scheme的app进行通讯，你必须生成一个适当格式的URL并且向系统请求打开它。实现一个自定义的scheme的支持，你必须生命支持该scheme并且使用该scheme处理好传入的URLs。  
+
+	注意：Apple对http, mailto, tel, 以及 sms等URL schemes提供了内置的支持。同时，它对地图，YouTube以及iPod app当中基于http的URLs也提供支持。这些URL schemes已经被实现，并且不能够修改。如果你的URL类型包含了一种与Apple定义的scheme一样的话，Apple提供的app将会替代你的app被启动。更多关于Apple支持的 schemes，参见“Apple URL schemes 参考”。
 
 ### 给其他的app发送URL
 
