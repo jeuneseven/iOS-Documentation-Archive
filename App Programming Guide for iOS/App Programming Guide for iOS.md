@@ -537,6 +537,10 @@ URL scheme能够让你与其他的app通过你定义的协议进行通讯。为�
 
 如果你的app定义了一个自定义的URL scheme，它应该实现在“实现自定义的URL scheme”中提到的该scheme的处理机制。更多关于系统支持的URL scheme的相关信息，包括如何格式化URLs的相关信息，参见“Apple URL scheme 参考”。
 ### 实现自定义的URL Schemes
+如果你的app能够接收一个指定的格式化过的URLs，你应该注册相应的URL schemes到系统中。app通常使用自定义的URL schemes来给其他的app提供服务。举个例子，地图类的app支持URLs来展示特定的地理位置。  
+#### 注册自定义的URL Schemes
+
+#### 实现URL请求
 
 ### 当一个URL打开的时候，展示一个自定义的加载图
 
