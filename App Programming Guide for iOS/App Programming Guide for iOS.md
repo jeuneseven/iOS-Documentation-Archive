@@ -539,7 +539,17 @@ URL scheme能够让你与其他的app通过你定义的协议进行通讯。为�
 ### 实现自定义的URL Schemes
 如果你的app能够接收一个指定的格式化过的URLs，你应该注册相应的URL schemes到系统中。app通常使用自定义的URL schemes来给其他的app提供服务。举个例子，地图类的app支持URLs来展示特定的地理位置。  
 #### 注册自定义的URL Schemes
+如果想为你的app注册一个URL的类型，需要在你的app当中的Info.plist文件中包含CFBundleURLTypes key值。CFBundleURLTypes key包含了一个字典的数组，每一个都定义了一个app支持的URL scheme。列表6-1描述了每个字典当中包含的键值对。  
 
+列表6-1 CFBundleURLTypes属性的键值对  
+
+key | value
+------------- | -------------
+CFBundleURLName | 该字符串包含了URL scheme的摘要名称。为了确保唯一性，我们推荐你指定一个反向DNS样式的ID，举个例子，com.acme.myscheme。你指定的该字符串也被用在你的app的InfoPlist.strings文件当中，作为key。对应的value是一个用户可读的scheme名称。
+CFBundleURLSchemes | 一个字符串的数组，包含URL scheme的名称——比如http, mailto, tel, 和 sms等。
+
+	注意：如果同一个URL scheme被超过一个的第三方的app注册处理的话，目前无法确定哪个app将会被授权处理该scheme。
+	
 #### 实现URL请求
 
 ### 当一个URL打开的时候，展示一个自定义的加载图
