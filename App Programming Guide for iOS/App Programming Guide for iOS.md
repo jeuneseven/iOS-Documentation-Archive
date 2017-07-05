@@ -366,25 +366,25 @@ Xcode后台模式 | UIBackgroundModes对应值 | 描述
 
 清单3-2 设置一个闹钟提醒  
 
-> -(void)scheduleAlarmForDate:(NSDate*)theDate  
-{   
-    UIApplication* app = [UIApplication sharedApplication];  
-    NSArray*    oldNotifications = [app scheduledLocalNotifications];  
-    // Clear out the old notification before scheduling a new one.  
-    if ([oldNotifications count] > 0). 
-        [app cancelAllLocalNotifications];  
-    // Create a new notification.  
-    UILocalNotification* alarm = [[UILocalNotification alloc] init];  
-    if (alarm)  
-    {  
-        alarm.fireDate = theDate;  
-        alarm.timeZone = [NSTimeZone defaultTimeZone];  
-        alarm.repeatInterval = 0;  
-        alarm.soundName = @"alarmsound.caf";  
-        alarm.alertBody = @"Time to wake up!";  
-        [app scheduleLocalNotification:alarm];  
-    }  
-}  
+	-(void)scheduleAlarmForDate:(NSDate*)theDate  
+	{   
+   	 UIApplication* app = [UIApplication sharedApplication];  
+   	 NSArray*    oldNotifications = [app scheduledLocalNotifications];  
+   	 // Clear out the old notification before scheduling a new one.  
+   	 if ([oldNotifications count] > 0). 
+   	     [app cancelAllLocalNotifications];  
+   	 // Create a new notification.  
+   	 UILocalNotification* alarm = [[UILocalNotification alloc] init];  
+   	 if (alarm)  
+   	 {  
+   	     alarm.fireDate = theDate;  
+	        alarm.timeZone = [NSTimeZone defaultTimeZone];  
+        		alarm.repeatInterval = 0;  
+     		   alarm.soundName = @"alarmsound.caf";  
+     		   alarm.alertBody = @"Time to wake up!";  
+      		  [app scheduleLocalNotification:alarm];  
+    	}  
+	}  
 
 与本地通知一起使用的声音文件和推送通知的需求相同。自定义的声音文件必需包含在你的app主程序包当中，并且必需是以下格式的其中一种：Linear PCM, MA4, µ-Law, 或者 a-Law。你还可以指定UILocalNotificationDefaultSoundName为默认的设备播放警告声音。当通知被发送，声音播放的时候，系统会在支持震动的机型上发起震动。  
 你还可以使用UIApplication类的方法来取消设定好的通知或者一系列通知。更多关于这些方法的信息，参见“UIApplication类参考”。更多关于配置本地通知的相关信息，参见“本地和远程通知编程指南”。
@@ -570,7 +570,8 @@ CFBundleURLSchemes | 一个字符串的数组，包含URL scheme的名称——�
 
 	注意：当启动app来处理一个URL的时候，支持自定义URL schemes的app可以指定不同的加载启动图展示。更多关于如何指定这些加载启动图，参见“当打开一个URL的时候，展示一个自定义的加载图”。
 
-所有的URLs都会以NSURL对象的形式传递给你的app。  
+所有的URLs都会以NSURL对象的形式传递给你的app。由你来定义URL的格式，不过NSURL类是遵循RFC 1808规范的，并且对于对于URL格式化规范增加了支持。需要特别指出的是，该类包含了各种方法来返回RFC 1808规范定义的各个部分，包括用户名、密码、查询语句、片段以及参数字符串。你可以在你自定义的scheme当中应用该“协议”来使用URL的各部分来转换各种类型的信息。  
+清单6-2展示了application:openURL:sourceApplication:annotation:的一种实现，传入的URL对象在它的查询和片段部分传输了app指定的信息。代理的摘要信息——在这个例子当中指的是to-do任务以及任务到期的时间——以及它生成的app的模型对象。这个例子假设用户使用了格里高利日历。如果你的app支持非格里高利的日历的话，你需要设计适配你的URL scheme以及准备好代码处理其他的日历类型。  
 
 清单 6-2 处理一个基于自定义scheme的URL请求  
 
@@ -624,7 +625,7 @@ CFBundleURLSchemes | 一个字符串的数组，包含URL scheme的名称——�
     return NO;
     }
 
-
+一定要验证你从URL当中获取到的输入到你的app的信息；参见“安全编码指南”中的“验证输入以及进程间通讯”来找到避免相关URL处理的问题。想了解更多关于Apple定义的URL schemes的信息，参见“Apple URL scheme参考”。
 ### 当打开一个URL的时候，展示一个自定义的加载图
 
 # 性能调试提示
