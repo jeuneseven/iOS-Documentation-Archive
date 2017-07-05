@@ -551,8 +551,81 @@ CFBundleURLSchemes | 一个字符串的数组，包含URL scheme的名称——�
 	注意：如果同一个URL scheme被超过一个的第三方的app注册处理的话，目前无法确定哪个app将会被授权处理该scheme。
 	
 #### 实现URL请求
+一款拥有自己的自定义的URL scheme的app必须能够处理传输给它的URLs。所有的URLs都会传输给你的app delegate，无论是在启动或者是当你的app正在运行或者在后台的时候。为了能够处理这些传递 的URLs，你的delegate应该实现以下方法：  
 
-### 当一个URL打开的时候，展示一个自定义的加载图
+* 使用application:willFinishLaunchingWithOptions: 和 application:didFinishLaunchingWithOptions:方法来检索URL的信息，然后决定你的app是否要打开它。如果每个方法都返回NO的话，你的app的URL处理的代码将不会被调用。
+* 使用application:openURL:sourceApplication:annotation: 方法来打开文件。
+
+如果在一个URL请求到来的时候，你的app没有在运行的话，它将会被加载到前台一边打开该URL。你实现的application:willFinishLaunchingWithOptions: 或 application:didFinishLaunchingWithOptions:方法应该检索URL当中可选的字典，并且决定你的app是否应该打开该URL。如果可以打开的话，要返回YES，并且让你的application:openURL:sourceApplication:annotation:方法（或者application:handleOpenURL:）处理实际打开的URL。（如果你两个方法都实现了，请务必在两个方法处理URL打开的逻辑之前都返回YES。）图 6-1展示了一款app被要求打开一个URL的时候的修改加载顺序。  
+
+图 6-1 加载一款app来打开一个URL  
+
+![](https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_open_url_2x.png)  
+
+如果当一个URL请求到达，但是你的app是在后台或者被挂起的状态的话，它将会被移到前台然后打开该URL。此后不久，系统会调用代理方法application:openURL:sourceApplication:annotation:来检查该URL然后打开它。图6-2展示了将一款app移到前台打开一个URL时的修改过程。  
+
+图 6-2 唤醒一款app来打开URL  
+
+![](https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Art/app_bg_open_url_2x.png)  
+
+	注意：当启动app来处理一个URL的时候，支持自定义URL schemes的app可以指定不同的加载启动图展示。更多关于如何指定这些加载启动图，参见“当打开一个URL的时候，展示一个自定义的加载图”。
+
+所有的URLs都会以NSURL对象的形式传递给你的app。  
+
+清单 6-2 处理一个基于自定义scheme的URL请求  
+
+	-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+        sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    
+    if ([[url scheme] isEqualToString:@"todolist"]) {
+        ToDoItem *item = [[ToDoItem alloc] init];
+        NSString *taskName = [url query];
+        if (!taskName || ![self isValidTaskString:taskName]) { // must have a task name
+            return NO;
+        }
+        taskName = [taskName stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        item.toDoTask = taskName;
+        NSString *dateString = [url fragment];
+        if (!dateString || [dateString isEqualToString:@"today"]) {
+            item.dateDue = [NSDate date];
+        } else {
+            if (![self isValidDateString:dateString]) {
+                return NO;
+            }
+            // format: yyyymmddhhmm (24-hour clock)
+            NSString *curStr = [dateString substringWithRange:NSMakeRange(0, 4)];
+            NSInteger yeardigit = [curStr integerValue];
+            curStr = [dateString substringWithRange:NSMakeRange(4, 2)];
+            NSInteger monthdigit = [curStr integerValue];
+            curStr = [dateString substringWithRange:NSMakeRange(6, 2)];
+            NSInteger daydigit = [curStr integerValue];
+            curStr = [dateString substringWithRange:NSMakeRange(8, 2)];
+            NSInteger hourdigit = [curStr integerValue];
+            curStr = [dateString substringWithRange:NSMakeRange(10, 2)];
+            NSInteger minutedigit = [curStr integerValue];
+ 
+            NSDateComponents *dateComps = [[NSDateComponents alloc] init];
+            [dateComps setYear:yeardigit];
+            [dateComps setMonth:monthdigit];
+            [dateComps setDay:daydigit];
+            [dateComps setHour:hourdigit];
+            [dateComps setMinute:minutedigit];
+            NSCalendar *calendar = [s[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+            NSDate *itemDate = [calendar dateFromComponents:dateComps];
+            if (!itemDate) {
+                return NO;
+            }
+            item.dateDue = itemDate;
+        }
+ 
+        [(NSMutableArray *)self.list addObject:item];
+        return YES;
+    }
+    return NO;
+    }
+
+
+### 当打开一个URL的时候，展示一个自定义的加载图
 
 # 性能调试提示
 在开发你的app的每个阶段，都要考虑到你所选择的设计所隐含的整体性能问题。电量使用和内存消耗对于iOS app而言非常重要，当然也有很多其他的注意事项。以下段落描述了你在开发过程当中应当考虑的因素。  
