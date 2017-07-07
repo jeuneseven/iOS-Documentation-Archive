@@ -627,7 +627,12 @@ CFBundleURLSchemes | 一个字符串的数组，包含URL scheme的名称——�
 
 一定要验证你从URL当中获取到的输入到你的app的信息；参见“安全编码指南”中的“验证输入以及进程间通讯”来找到避免相关URL处理的问题。想了解更多关于Apple定义的URL schemes的信息，参见“Apple URL scheme参考”。
 ### 当打开一个URL的时候，展示一个自定义的加载图
+支持自定义URL schemes的app可以为每个scheme提供一个自定义的启动图。当系统启动你的app来处理一个URL（并且没有相关的快照可用）的时候，它可以展示你指定的启动图。为了指定一个启动图，需要提供一个PNG格式的图片，它的文件名使用的是以下的命名规范：  
 
+< basename >-< url_scheme >< other_modifiers >.png  
+
+在这个命名规范中，basename代表你的app当中的Info.plist文件中的UILaunchImageFile key对应的基本的图片名。如果你没有指定一个自定义的基本图片名，会默认使用Default字符串。**url_scheme** 位置的名字是你的URL scheme的名字。比如，你如果想为myapp这个URL scheme指定一个通用的加载图片名称的话，你应该在app的bundle当中包含一个名为Default-myapp@2x.png的图片。（@2x修饰符表示该图片是为高清屏幕准备的。如果你的app同样支持标准分辨率的屏幕的话，你还需要提供一个名为Default-myapp.png的图片。）  
+更多关于其他的你可以对加载图片名称进行修改的相关信息，参见“信息属性列表Key参考”当中的UILaunchImageFile key的相关描述。
 # 性能调试提示
 在开发你的app的每个阶段，都要考虑到你所选择的设计所隐含的整体性能问题。电量使用和内存消耗对于iOS app而言非常重要，当然也有很多其他的注意事项。以下段落描述了你在开发过程当中应当考虑的因素。  
 ## 减少你的app的电源消耗
