@@ -175,14 +175,14 @@ iOS系统框架的实现是依赖于MVC以及代理模式这种设计模式的�
 
 清单 2-1 iOS app的main函数  
 
->  #import <UIKit/UIKit.h>  
-  #import "AppDelegate.h"  
-int main(int argc, char * argv[])  
-{  
-    @autoreleasepool {  
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));  
-    }  
-}
+	#import <UIKit/UIKit.h>
+	#import "AppDelegate.h"
+	int main(int argc, char * argv[])
+	{
+    	@autoreleasepool {
+       	 	return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+    	}
+	}
 
 main函数当中做的唯一的一件事是它控制了UIKit框架。UIApplicationMain函数通过创建你的app的核心对象来控制这一过程，从可用的 storyboard文件加载你的app的用户界面，调用你自己的代码以便你能够做自己想要的初始化工作，然后将app放入运行循环。你唯一需要做的就是提供 storyboard文件以及自定义初始化代码。
 ## app的结构
@@ -282,21 +282,26 @@ app必须准备好随时被终止并且不应该等到保存用户数据或者�
 清单3-1展示了如何在你的app转到后台运行的时候开始一个长时间运行的任务。在这个示例当中，请求开始一个后台任务包含了一个终止处理回调，以免任务运行的过久。任务本身被提交到一个分发队列异步执行，所以applicationDidEnterBackground: 方法可以正常返回。使用block简化了需要关注引用任何重要变量的代码，比如后台任务的ID。bgTask变量是一个存储了指向当前后台任务ID的类的成员变量，并且在使用方法之前就被初始化了。  
 
 清单 3-1 在退出前开始一个后台任务  
-> -(void)applicationDidEnterBackground:(UIApplication *)application  
-{  
-    bgTask = [application beginBackgroundTaskWithName:@"MyTask" expirationHandler:^{  
-        // Clean up any unfinished task business by marking where you  
-        // stopped or ending the task outright.  
-        [application endBackgroundTask:bgTask];  
-        bgTask = UIBackgroundTaskInvalid;  
-    }];  
-    // Start the long-running task and return immediately.  
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{  
-        // Do the work associated with the task, preferably in chunks.  
-        [application endBackgroundTask:bgTask];  
-        bgTask = UIBackgroundTaskInvalid;  
-    });  
-}  
+
+	- (void)applicationDidEnterBackground:(UIApplication *)application
+	{
+    	bgTask = [application beginBackgroundTaskWithName:@"MyTask" expirationHandler:^{
+        // Clean up any unfinished task business by marking where you
+        // stopped or ending the task outright.
+        	[application endBackgroundTask:bgTask];
+        	bgTask = UIBackgroundTaskInvalid;
+    	}];
+ 
+    	// Start the long-running task and return immediately.
+    	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+ 
+        // Do the work associated with the task, preferably in chunks.
+ 
+        [application endBackgroundTask:bgTask];
+        	bgTask = UIBackgroundTaskInvalid;
+    	});
+	}
+ 
 
 	注意：在开始一个任务前，永远应当提供一个终止回调方法，不过如果你想要知道你的app还剩多少时间运行的话，获取 UIApplication 的 backgroundTimeRemaining 属性就可以了。
 
@@ -366,25 +371,26 @@ Xcode后台模式 | UIBackgroundModes对应值 | 描述
 
 清单3-2 设置一个闹钟提醒  
 
-	-(void)scheduleAlarmForDate:(NSDate*)theDate  
-	{   
-   	 UIApplication* app = [UIApplication sharedApplication];  
-   	 NSArray*    oldNotifications = [app scheduledLocalNotifications];  
-   	 // Clear out the old notification before scheduling a new one.  
-   	 if ([oldNotifications count] > 0). 
-   	     [app cancelAllLocalNotifications];  
-   	 // Create a new notification.  
-   	 UILocalNotification* alarm = [[UILocalNotification alloc] init];  
-   	 if (alarm)  
-   	 {  
-   	     alarm.fireDate = theDate;  
-	        alarm.timeZone = [NSTimeZone defaultTimeZone];  
-        		alarm.repeatInterval = 0;  
-     		   alarm.soundName = @"alarmsound.caf";  
-     		   alarm.alertBody = @"Time to wake up!";  
-      		  [app scheduleLocalNotification:alarm];  
-    	}  
-	}  
+	- (void)scheduleAlarmForDate:(NSDate*)theDate
+	{
+    	UIApplication* app = [UIApplication sharedApplication];
+    	NSArray*    oldNotifications = [app scheduledLocalNotifications];
+ 
+    	// Clear out the old notification before scheduling a new one.
+    	if ([oldNotifications count] > 0)
+        	[app cancelAllLocalNotifications];
+ 
+    	// Create a new notification.
+    	UILocalNotification* alarm = [[UILocalNotification alloc] init];
+    	if (alarm)
+    	{
+        	alarm.fireDate = theDate;
+        	alarm.timeZone = [NSTimeZone defaultTimeZone];
+        	alarm.repeatInterval = 0;
+	       alarm.soundName = @"alarmsound.caf";
+        	alarm.alertBody = @"Time to wake up!";   		     [app scheduleLocalNotification:alarm];
+	    }
+	}
 
 与本地通知一起使用的声音文件和推送通知的需求相同。自定义的声音文件必需包含在你的app主程序包当中，并且必需是以下格式的其中一种：Linear PCM, MA4, µ-Law, 或者 a-Law。你还可以指定UILocalNotificationDefaultSoundName为默认的设备播放警告声音。当通知被发送，声音播放的时候，系统会在支持震动的机型上发起震动。  
 你还可以使用UIApplication类的方法来取消设定好的通知或者一系列通知。更多关于这些方法的信息，参见“UIApplication类参考”。更多关于配置本地通知的相关信息，参见“本地和远程通知编程指南”。
