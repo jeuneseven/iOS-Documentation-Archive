@@ -474,7 +474,20 @@ Xcode后台模式 | UIBackgroundModes对应值 | 描述
 * 存储在用户设备上的文件系统必须支持数据保护。大部分设备都支持这一行为。
 * 用户必须为设备设置活动的密码。
 
+如果你想保护一个文件的话，你应该添加一个属性到文件当中表明你想保护该文件的声明。使用NSData或者NSFileManager类都可以添加这个属性。当写入新文件的时候，你可以使用NSData类的writeToFile:options:error:方法结合适当的加密值作为一个写入的选项。对于已经存在的文件，你可以使用NSFileManager类的 setAttributes:ofItemAtPath:error: 方法来设置活着改变NSFileProtectionKey这个key的值。当使用这些方法的时候，要为文件指定以下的保护级别之一：  
 
+* 不保护——文件被加密但是不被密码保护，并且当设备锁定的时候，可以被访问。使用NSData的时候，指定NSDataWritingFileProtectionNone选项或者使用NSFileManager的时候，指定 NSFileProtectionNone属性即可。
+* 完全保护——文件被加密并且在设备锁定的时候无法访问。使用NSData的时候，指定NSDataWritingFileProtectionComplete选项或者使用NSFileManager的时候，指定 NSFileProtectionComplete属性即可。
+* 完全保护除非已经被打开——文件被加密。当设备被锁定的时候，一个已经关闭的文件是不可被访问的。当用户解锁设备，你的app可以打开该文件并使用它。不过，如果用户在文件打开的时候锁定了设备，你的app可以继续访问该文件。使用NSData的时候，指定NSDataWritingFileProtectionCompleteUnlessOpen选项或者使用NSFileManager的时候，指定 NSFileProtectionCompleteUnlessOpen属性即可。
+* 完全保护直到第一次登录——文件是加密的并且无法被访问直到设备启动完毕并且用户第一次解锁该设备之后。使用NSData的时候，指定NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication 选项或者使用NSFileManager的时候，指定 NSFileProtectionCompleteUntilFirstUserAuthentication属性即可。
+
+如果你保护了一个文件，你的app必须要为对该文件的失去访问权限做好准备。当完全保护文件功能开启的时候，你的app在用户将设备锁上的时候是无法对文件内容进行读写的。你可以使用以下技术跟踪被保护的文件的变更状态：  
+
+* 你可以实现app delegate的 applicationProtectedDataWillBecomeUnavailable: 和 applicationProtectedDataDidBecomeAvailable: 方法。
+* 任何对象都可以注册 UIApplicationProtectedDataWillBecomeUnavailable 和 UIApplicationProtectedDataDidBecomeAvailable 通知。
+* 任何对象都可以检查UIApplication对象的 protectedDataAvailable 的属性值来决定当前文件是否能够访问。
+
+对于新文件而言，我们推荐你在写入任何数据之前开启数据保护。如果你使用writeToFile:options:error:方法来写入 NSData 对象到磁盘上的话，这将会自动发生。对于已经存在的文件，将会添加一个数据保护的新版本来替换未保护的文件。
 ### 你app的用户唯一ID
 
 ## 考虑限制条件
