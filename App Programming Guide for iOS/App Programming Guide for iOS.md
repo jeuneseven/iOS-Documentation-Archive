@@ -488,12 +488,31 @@ Xcode后台模式 | UIBackgroundModes对应值 | 描述
 * 任何对象都可以检查UIApplication对象的 protectedDataAvailable 的属性值来决定当前文件是否能够访问。
 
 对于新文件而言，我们推荐你在写入任何数据之前开启数据保护。如果你使用writeToFile:options:error:方法来写入 NSData 对象到磁盘上的话，这将会自动发生。对于已经存在的文件，将会添加一个数据保护的新版本来替换未保护的文件。
-### 你app的用户唯一ID
+### app的用户唯一ID
 
 ## 考虑限制条件
 
 ## 支持多个iOS版本
+支持最新版本以及一个或者多个早期版本的iOS系统的app必须使用runtime机制检查来避免在早期版本的iOS上使用较新的APIs。当你的app尝试使用在当前操作系统中不支持的功能的时候，将会发生崩溃，如果你的使用了runtime机制进行检查的话，将会避免这种崩溃。  
+以下几种检查方式是你可以使用的：  
 
+* 检测一个类是否存在，可以查看该类的Class对象是否为nil。连接器对于任何未知的类的对象会返回nil，使用以下条件语句就可以很容易的检查：  
+	
+		if ([UIPrintInteractionController class]) {
+  			 // Create an instance of the class and use it.
+		}
+		else {
+   			// The print interaction controller is not available so use an alternative technique.
+		}
+
+* 检测一个已经存在的类的方法是否可用，可以使用 instancesRespondToSelector: 类方法或者 respondsToSelector: 实例方法。
+* 检测一个基于C的函数是否可用，执行该函数名与一个NULL进行比较，如果该函数不为NULL，你就可以调用该函数了。举个例子：  
+
+		if (UIGraphicsBeginPDFPage != NULL) {
+   		 	UIGraphicsBeginPDFPage();
+		}
+
+更多关于如何编写代码来支持不同的运行环境的相关信息和示例，参见“SDK兼容指南”。
 ## 通过启动图保存你的app的界面
 
 ### 在你的app当中授权状态保留和恢复
