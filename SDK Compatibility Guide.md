@@ -1,0 +1,1 @@
+[SDK Compatibility Guide 原文链接](https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/cross_development/Introduction/Introduction.html#//apple_ref/doc/uid/10000163i)  
