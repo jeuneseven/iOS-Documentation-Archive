@@ -50,7 +50,22 @@ Apple使得SDKs对于指定版本的iOS和OS X都可用。使用这些SDKs能够
 	重要：当编写OC代码的时候，你依赖弱链接的类、方法和函数以及类库。当编写Swift的时候，使用“availability condition”代替，这在“Swift编程指南（Swift 4）”当中的‘检查可用的API’段落有相关描述。
 
 ## 在iOS中使用弱连接的类
+如果你的Xcode项目使用了弱链接的类，你必须确保在使用这些类之前，这些类在运行时是可用的状态。如果你尝试使用一个不可用的类将会得到动态链接器处得到一个运行时绑定错误，这将会终止响应的进程。  
+使用基于iOS 4.2以及之后版本SDK的Xcode项目应该使用NSObject的类方法来检查一个弱链接的类在运行时是否可用。这样简单，有效机制是利用NS_CLASS_AVAILABLE类可用的宏定义，这在iOS的大部分系统库当中都是可用的。  
 
+	重要：请检查近期的iOS发布说明中的系统库列表，查看尚未支持NS_CLASS_AVAILABLE宏定义的类库。
+
+对于支持NS_CLASS_AVAILABLE宏定义的iOS系统类库，请参照如下演示代码来使用弱链接类：  
+
+	if ([UIPrintInteractionController class]) {
+    // Create an instance of the class and use it.
+	} else {
+    // Alternate code path to follow when the
+    // class is not available.
+	}
+
+这样做有用是因为如果一个弱链接的类事不可用的，给它发送信息就像给nil发送信息一样。如果你的子类是弱链接的类，并且父类是不可用的，那么子类也会表现为不可用。  
+这里用到的class方法的前提是你要确保该类库是支持NS_CLASS_AVAILABLE宏定义的。你也必须要配置相应的工程设置项。
 ## 使用弱连接的函数、方法和符号表
 
 ## 弱连接到整个框架
