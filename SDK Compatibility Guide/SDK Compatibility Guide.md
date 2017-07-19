@@ -67,9 +67,21 @@ Apple使得SDKs对于指定版本的iOS和OS X都可用。使用这些SDKs能够
 这样做有用是因为如果一个弱链接的类事不可用的，给它发送信息就像给nil发送信息一样。如果你的子类是弱链接的类，并且父类是不可用的，那么子类也会表现为不可用。  
 这里用到的class方法的前提是你要确保该类库是支持NS_CLASS_AVAILABLE宏定义的。你也必须要配置相应的工程设置项。在适当的位置配置这些必须的设置，之前的代码就会安全的检测一个类是否可用，即使在一个不存在该类的iOS系统版本上也可以这样检测。这些设置包含以下内容：  
 
-* 你的Xcode相比基于的SDK必须是iOS 4.2或更高的版本。
-* 你的项目部署的target必须是iOS 3.1或更高的版本。
-* 你的项目的编译器必须是LLVM-GCC 4.2或更高的版本，或者是LLVM compiler (Clang) 1.5或更高版本。
+* 你的Xcode相比基于的SDK必须是iOS 4.2或更高的版本。该项设置在构建设置编辑器当中的名字是SDKROOT (Base SDK)。
+* 你的项目部署的target必须是iOS 3.1或更高的版本。该项设置的名称是MACOSX_DEPLOYMENT_TARGET (OS X Deployment Target)。
+* 你的项目的编译器必须是LLVM-GCC 4.2或更高的版本，或者是LLVM compiler (Clang) 1.5或更高版本。该项设置的名称是GCC_VERSION (C/C++ Compiler Version)。
+* 你必须确保在你的工程部署target当中的任何系统类库都是弱链接的，而不是必须的。参见“链接到整体系统类库”以及“Xcode工程管理指南”中的链接库和系统框架部分。
+
+使用Xcode构建设置编辑器的相关信息，参见“Xcode项目设置指南”中的“构建产品”部分。  
+在OS X当中（以及在iOS当中，不符合刚刚列出的条件的集合中），你不能够使用class方法来判断一个弱链接的类是否可用。不过，你可以使用NSClassFromString函数来达到同样的效果：  
+
+	Class cls = NSClassFromString (@"NSRegularExpression");
+	if (cls) {
+    // Create an instance of the class and use it.
+	} else {
+    // Alternate code path to follow when the
+    // class is not available.
+	}
 
 ## 使用弱连接的函数、方法和符号表
 
