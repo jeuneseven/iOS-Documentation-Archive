@@ -4,13 +4,31 @@
 
 ## 辅助功能（Accessibility）
 
+### 使用VoiceOver
+
 ## 存取器方法（Accessor method）
 
+### 命名规范
+
 ## App ID
+
+### 一个显式的App ID对应一款App
+
+### 通配符App IDs对应多款App
 
 ## app代码签名（Application Code Signing）
 
 ## Block对象（Block object）
+
+### 声明一个Block
+
+### 创建一个Block
+
+### Block变量
+
+### 使用Block
+
+### 比较操作
 
 ## 包（Bundle）
 
