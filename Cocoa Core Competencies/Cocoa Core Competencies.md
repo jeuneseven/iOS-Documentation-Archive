@@ -46,29 +46,75 @@
 
 ## 类簇（Class cluster）
 
+### 收益
+
+### 注意事项
+
 ## 类定义（Class definition）
+
+### 接口
+
+### 实现
 
 ## 类方法（Class method）
 
+### 子类
+
+### 实例变量
+
+### self
+
 ## Cocoa (Touch)
+
+### 类库
+
+### 语言本身
 
 ## 编码惯例（Coding conventions）
 
 ## 集合（Collection）
 
+### 集合类
+
+### 排序方案
+
 ## 控制器对象（Controller object）
+
+### 协调控制
+
+### 视图控制器
+
+### 媒体控制（OS X）
 
 ## 声明属性（Declared property）
 
 ## 委托（Delegation）
 
+### 委托和cocoa框架
+
+### 委托和通知
+
+### 数据源
+
 ## 动态绑定（Dynamic binding）
 
 ## 动态类型（Dynamic typing）
 
+### isa指针
+
 ## 枚举（Enumeration）
 
+### NSEnumerator
+
+### 快速枚举
+
 ## 异常处理（Exception handling）
+
+### 异常的类型
+
+### 使用编译器指令处理异常
+
+### error信号量
 
 ## 类库（Framework）
 
@@ -76,9 +122,15 @@
 
 ## 初始化（Initialization）
 
+### 初始化声明的方式
+
+### 实现初始化函数
+
 ## 国际化（Internationalization）
 
 ## 内省机制（Introspection）
+
+### 内省信息的类型
 
 ## 键值编码（Key-value coding）
 
