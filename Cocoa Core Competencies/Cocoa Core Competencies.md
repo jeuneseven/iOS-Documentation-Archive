@@ -136,7 +136,22 @@
 ![](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Art/introspection_2x.png)
 
 ### 内省信息的类型
+NSObject类采用的NSObject协议定义了内省方法，产生了以下类型的对象信息：  
 
+* 类的关系。如果想检查一个对象是直接还是间接的从一个特定的类继承的，你可以发送 isKindOfClass: 消息来判断结果。该方法会告诉你该对象是否是给定类的直接子类。你还可以使用class和superClass方法来获取对象的类或父类，然后在判断语句当中使用该结果。
+* 消息响应。如果想检查一个对象的类或者父类是否实现了某方法，可以发送给该对象 respondsToSelector: 消息。参数是从使用 @selector 指令的方法签名构造的 SEL 类型值。举个例子：  
+		
+		BOOL doesRespond = [anObject respondsToSelector:@selector(writeToFile:atomically:)];
+* 协议的一致性。如果一个类遵守一项正式协议，你可以预期它已经实现了协议定义的必须实现的方法，并且可以给它发送相应的信息。使用 conformsToProtocol: 方法来获取这一信息。你可以使用@protocol指令来指定此方法的参数。
+
+### 预读文章
+消息（Message）
+### 相关文章
+对象比较（Object comparison）
+协议（Protocol）
+选择器（Selector）
+### 详细讨论
+NSObject协议参考（NSObject Protocol Reference）
 ## 键值编码（Key-value coding）
 
 ### 对象属性和KVC
