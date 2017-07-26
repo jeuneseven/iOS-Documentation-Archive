@@ -46,7 +46,15 @@
 
 ## 类簇（Class cluster）
 一组私有的、实体子类封装在一个公有、抽象的父类下的结构被称作类簇。以这种方式组成的类为用户提供了简单的接口，用户只看得到公共的接口结构。而在其下，抽象类会调用私有的子类，这些私有的子类大部分都会执行特定的任务。举个例子，一些比较通用的cocoa类是由类簇实现的，包括NSArray, NSString, 以及 NSDictionary。有很多种方式可以让它们用来表现它们内部的数据存储。对于任何特定实例，抽象类会根据实例正在初始化的数据选择最有效的类来使用。  
+您可以像使用任何其他类一样的对类簇的实例进行创建和交互。而在幕后，当你创建一个公开类的实例的时候，该类会根据你的调用返回一个适当的基于子类创建方法的实例对象。（你不会、也不能够选择实例的实际类。）  
+拿Foundation框架的NSString类作为示例，你可以创建三种不同的字符串对象：  
 
+	NSString *string1 = @"UTF32.txt";
+	NSString *string2 = [NSHomeDirectory() stringByAppendingPathComponent:string1];
+	NSTextStorage *storage = [[NSTextStorage alloc] initWithString:string2];
+	NSString *string3 = [storage string];
+
+每个字符串都可能是一个不同的私有子类的实例（事实上，在OS X v10.5中，每一个都是）。虽然每个对象都是 NSString 的私有子类, 但将每个对象都视为 NSString 类的实例很方便。你使用的NSString类声明的实例方法就像NSString本身的一样。
 ### 收益
 类簇的收益主要体现在效率上。实例管理的数据的内部表示可以根据创建或使用的方式进行调整。此外，即使底层实现改变了，你的代码依旧有效。
 ### 注意事项
