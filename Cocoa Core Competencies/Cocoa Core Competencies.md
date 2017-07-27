@@ -119,11 +119,24 @@
 ### 数据源
 
 ## 动态绑定（Dynamic binding）
-
+### 预读文章
+键值监听（Key-value observing）
+选择器（Selector）
+### 相关文章
+无
+### 详细讨论
+使用对象（Working with Objects）
 ## 动态类型（Dynamic typing）
 
 ### isa指针
 
+### 预读文章
+无
+### 相关文章
+动态绑定（Dynamic binding）
+异常处理（Exception handling）
+### 详细讨论
+使用对象（Working with Objects）
 ## 枚举（Enumeration）
 
 ### NSEnumerator
