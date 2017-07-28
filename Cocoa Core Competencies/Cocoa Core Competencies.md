@@ -119,6 +119,14 @@
 ### 数据源
 
 ## 动态绑定（Dynamic binding）
+动态绑定决定了方法是在运行时而不是编译时被调用。动态绑定也被称作延迟绑定。在OC当中，所有的方法都是在运行时决定的。最终被决定要执行的代码是被方法名（选择器）和接收对象共同决定的。  
+动态绑定允许多态。举例来说，假设一个集合对象包含了Dog, Athlete, 和 ComputerSimulation等。每个对象都有她自己的run方法的实现。在以下代码段当中，[anObject run]语句在运行时将会调用实际执行的代码。运行时系统使用选择器来判断run方法是由哪个类的anObject对象来最终调用的。  
+
+	NSArray *anArray = [NSArray arrayWithObjects:aDog, anAthlete, aComputerSimulation, nil];
+	id anObject = [anArray objectAtIndex:(random()/pow(2, 31)*3)];
+	[anObject run];
+
+本例阐述了OC的动态特性——这种功能在Cocoa当中到处都有。
 ### 预读文章
 键值监听（Key-value observing）
 选择器（Selector）
