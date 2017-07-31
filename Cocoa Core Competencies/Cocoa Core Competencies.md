@@ -314,9 +314,17 @@ NSObject协议参考（NSObject Protocol Reference）
 ## 根类（Root class）
 
 ## 选择器（Selector）
-
+一个selector代表一个对象用来执行的方法名，或者是党源代码被编译时替换的唯一标识。一个selector本身并不做任何事。它仅仅标识了一个方法。
 ### 获取选择器
+编译的selector是SEL类型的。通常有两种方式来获取一个selector：
 
+* 在编译时，你可以使用编译程序指令@selector。
+	
+		SEL aSelector = @selector(methodName);
+* 在运行时，你可以使用NSSelectorFromString函数，字符串为方法名：
+
+		SEL aSelector = NSSelectorFromString(@"methodName");
+当你希望代码在运行时发送可能不知道其名称的消息时, 可以使用从字符串创建的选择器。
 ### 使用选择器
 
 ### 预读文章
