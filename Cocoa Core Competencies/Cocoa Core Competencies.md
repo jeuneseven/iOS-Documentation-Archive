@@ -6,6 +6,13 @@
 
 ### 使用VoiceOver
 
+### 相关文章
+国际化（Internationalization）
+### 详细讨论
+辅助功能编程指南 (Accessibility Programming Guide for iOS)
+### 示例代码工程
+ImageMapExample
+
 ## 存取器方法（Accessor method）
 
 ### 命名规范
