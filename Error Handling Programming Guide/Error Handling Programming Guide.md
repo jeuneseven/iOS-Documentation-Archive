@@ -1,7 +1,7 @@
 [Error Handling Programming Guide 原文链接](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorHandling/ErrorHandling.html#//apple_ref/doc/uid/TP40001806)
 
 # 介绍
-
+任何程序在运行时发生error的话，都需要对其进行处理。举例来说，程序可能无法打开一个文件，或者可能无法解析一个XML文档。通常发生这类error的情况下，程序应当告知使用者。并且程序应当试图避免引起问题的error。
 # error对象，域名，代码
 
 ## 为什么会有Error对象？
