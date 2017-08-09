@@ -10,11 +10,11 @@ Cocoa (以及 Cocoa Touch)为开发者提供了开发工具来处理以下任务
 ## 本文档的组织结构
 Cocoa Error处理编程指南有以下文章：
 
-* error对象，域名，和code
-* 使用和创建error对象
-* error响应和error恢复
-* 处理接收到的error
-* 从error恢复
+* error对象，域名，和code：描述了NSError对象的相关属性，详细描述了它的域名以及error code，并且讨论了一个error对象的“user info”字典当中可能出现的内容，包括本地化的信息字符串和底层的error。
+* 使用和创建error对象：解释了如何评估一个error，如何使用NSError对象展示一个error消息，以及如何实现一个返回NSError对象引用的方法。
+* error响应和error恢复：描述了在一款app当中通过Application Kit框架来在响应链中传递error，给予每个对象以机会在展示error之前来定制它。本章还讨论了恢复error的相关角色，如果用户请求的话，一个对象是可以被设计为从error恢复的。
+* 处理接收到的error：讨论了在error响应链中的的对象，你将处理一个接收到的error并且对其定制化。
+* 从error恢复：阐述了用户想从error恢复的过程。
 
 与iOS相关的两个章节是：error对象，域名，和code、error对象，域名，和code
 ## 另请参见
