@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ElementsDataSourceProtocol.h"
 
 @interface ElementsTableViewController : UITableViewController
+
+@property (nonatomic, strong) id <ElementsDataSourceProtocol> delegate;
 
 @end

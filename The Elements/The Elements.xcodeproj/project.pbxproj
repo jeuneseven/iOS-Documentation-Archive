@@ -10,6 +10,18 @@
 		D830A70E1F3C55EE00273AB4 /* ElementsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A70D1F3C55EE00273AB4 /* ElementsTableViewController.m */; };
 		D830A70F1F3C55EE00273AB4 /* ElementsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A70D1F3C55EE00273AB4 /* ElementsTableViewController.m */; };
 		D830A7101F3C55EE00273AB4 /* ElementsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A70D1F3C55EE00273AB4 /* ElementsTableViewController.m */; };
+		D830A7151F3D56F300273AB4 /* ElementsSortedByNameDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A7141F3D56F300273AB4 /* ElementsSortedByNameDataSource.m */; };
+		D830A7161F3D56F300273AB4 /* ElementsSortedByNameDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A7141F3D56F300273AB4 /* ElementsSortedByNameDataSource.m */; };
+		D830A7171F3D56F300273AB4 /* ElementsSortedByNameDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A7141F3D56F300273AB4 /* ElementsSortedByNameDataSource.m */; };
+		D830A71A1F3D615A00273AB4 /* ElementsSortedByAtomicNumberDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A7191F3D615A00273AB4 /* ElementsSortedByAtomicNumberDataSource.m */; };
+		D830A71B1F3D615A00273AB4 /* ElementsSortedByAtomicNumberDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A7191F3D615A00273AB4 /* ElementsSortedByAtomicNumberDataSource.m */; };
+		D830A71C1F3D615A00273AB4 /* ElementsSortedByAtomicNumberDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A7191F3D615A00273AB4 /* ElementsSortedByAtomicNumberDataSource.m */; };
+		D830A71F1F3D616600273AB4 /* ElementsSortedBySymbolDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A71E1F3D616600273AB4 /* ElementsSortedBySymbolDataSource.m */; };
+		D830A7201F3D616600273AB4 /* ElementsSortedBySymbolDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A71E1F3D616600273AB4 /* ElementsSortedBySymbolDataSource.m */; };
+		D830A7211F3D616600273AB4 /* ElementsSortedBySymbolDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A71E1F3D616600273AB4 /* ElementsSortedBySymbolDataSource.m */; };
+		D830A7241F3D617100273AB4 /* ElementsSortedByStateDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A7231F3D617100273AB4 /* ElementsSortedByStateDataSource.m */; };
+		D830A7251F3D617100273AB4 /* ElementsSortedByStateDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A7231F3D617100273AB4 /* ElementsSortedByStateDataSource.m */; };
+		D830A7261F3D617100273AB4 /* ElementsSortedByStateDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A7231F3D617100273AB4 /* ElementsSortedByStateDataSource.m */; };
 		D8D887961EFFAD4000AB78B1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D887951EFFAD4000AB78B1 /* main.m */; };
 		D8D887991EFFAD4100AB78B1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D887981EFFAD4100AB78B1 /* AppDelegate.m */; };
 		D8D887A11EFFAD4100AB78B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8D887A01EFFAD4100AB78B1 /* Assets.xcassets */; };
@@ -37,6 +49,15 @@
 /* Begin PBXFileReference section */
 		D830A70C1F3C55EE00273AB4 /* ElementsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElementsTableViewController.h; sourceTree = "<group>"; };
 		D830A70D1F3C55EE00273AB4 /* ElementsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElementsTableViewController.m; sourceTree = "<group>"; };
+		D830A7121F3D538D00273AB4 /* ElementsDataSourceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElementsDataSourceProtocol.h; sourceTree = "<group>"; };
+		D830A7131F3D56F300273AB4 /* ElementsSortedByNameDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElementsSortedByNameDataSource.h; sourceTree = "<group>"; };
+		D830A7141F3D56F300273AB4 /* ElementsSortedByNameDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElementsSortedByNameDataSource.m; sourceTree = "<group>"; };
+		D830A7181F3D615A00273AB4 /* ElementsSortedByAtomicNumberDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElementsSortedByAtomicNumberDataSource.h; sourceTree = "<group>"; };
+		D830A7191F3D615A00273AB4 /* ElementsSortedByAtomicNumberDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElementsSortedByAtomicNumberDataSource.m; sourceTree = "<group>"; };
+		D830A71D1F3D616600273AB4 /* ElementsSortedBySymbolDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElementsSortedBySymbolDataSource.h; sourceTree = "<group>"; };
+		D830A71E1F3D616600273AB4 /* ElementsSortedBySymbolDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElementsSortedBySymbolDataSource.m; sourceTree = "<group>"; };
+		D830A7221F3D617100273AB4 /* ElementsSortedByStateDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElementsSortedByStateDataSource.h; sourceTree = "<group>"; };
+		D830A7231F3D617100273AB4 /* ElementsSortedByStateDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElementsSortedByStateDataSource.m; sourceTree = "<group>"; };
 		D8D887911EFFAD4000AB78B1 /* The Elements.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Elements.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8D887951EFFAD4000AB78B1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D8D887971EFFAD4100AB78B1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -85,6 +106,22 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		D830A7111F3D537200273AB4 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				D830A7121F3D538D00273AB4 /* ElementsDataSourceProtocol.h */,
+				D830A7131F3D56F300273AB4 /* ElementsSortedByNameDataSource.h */,
+				D830A7141F3D56F300273AB4 /* ElementsSortedByNameDataSource.m */,
+				D830A7181F3D615A00273AB4 /* ElementsSortedByAtomicNumberDataSource.h */,
+				D830A7191F3D615A00273AB4 /* ElementsSortedByAtomicNumberDataSource.m */,
+				D830A71D1F3D616600273AB4 /* ElementsSortedBySymbolDataSource.h */,
+				D830A71E1F3D616600273AB4 /* ElementsSortedBySymbolDataSource.m */,
+				D830A7221F3D617100273AB4 /* ElementsSortedByStateDataSource.h */,
+				D830A7231F3D617100273AB4 /* ElementsSortedByStateDataSource.m */,
+			);
+			path = DataSources;
+			sourceTree = "<group>";
+		};
 		D8D887881EFFAD4000AB78B1 = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +147,7 @@
 			children = (
 				D8D887971EFFAD4100AB78B1 /* AppDelegate.h */,
 				D8D887981EFFAD4100AB78B1 /* AppDelegate.m */,
+				D830A7111F3D537200273AB4 /* DataSources */,
 				D830A70B1F3C55DC00273AB4 /* ViewControllers */,
 				D8D887A01EFFAD4100AB78B1 /* Assets.xcassets */,
 				D8D887A51EFFAD4100AB78B1 /* Info.plist */,
@@ -272,9 +310,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D830A7151F3D56F300273AB4 /* ElementsSortedByNameDataSource.m in Sources */,
+				D830A7241F3D617100273AB4 /* ElementsSortedByStateDataSource.m in Sources */,
+				D830A71A1F3D615A00273AB4 /* ElementsSortedByAtomicNumberDataSource.m in Sources */,
 				D8D887991EFFAD4100AB78B1 /* AppDelegate.m in Sources */,
 				D830A70E1F3C55EE00273AB4 /* ElementsTableViewController.m in Sources */,
 				D8D887961EFFAD4000AB78B1 /* main.m in Sources */,
+				D830A71F1F3D616600273AB4 /* ElementsSortedBySymbolDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,8 +324,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D830A7161F3D56F300273AB4 /* ElementsSortedByNameDataSource.m in Sources */,
+				D830A71B1F3D615A00273AB4 /* ElementsSortedByAtomicNumberDataSource.m in Sources */,
 				D830A70F1F3C55EE00273AB4 /* ElementsTableViewController.m in Sources */,
 				D8D887AF1EFFAD4100AB78B1 /* The_ElementsTests.m in Sources */,
+				D830A7201F3D616600273AB4 /* ElementsSortedBySymbolDataSource.m in Sources */,
+				D830A7251F3D617100273AB4 /* ElementsSortedByStateDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,8 +337,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D830A7171F3D56F300273AB4 /* ElementsSortedByNameDataSource.m in Sources */,
+				D830A71C1F3D615A00273AB4 /* ElementsSortedByAtomicNumberDataSource.m in Sources */,
 				D830A7101F3C55EE00273AB4 /* ElementsTableViewController.m in Sources */,
 				D8D887BA1EFFAD4100AB78B1 /* The_ElementsUITests.m in Sources */,
+				D830A7211F3D616600273AB4 /* ElementsSortedBySymbolDataSource.m in Sources */,
+				D830A7261F3D617100273AB4 /* ElementsSortedByStateDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
