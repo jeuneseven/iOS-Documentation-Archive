@@ -24,6 +24,13 @@ Cocoa Error处理编程指南有以下文章：
 cocoa的程序使用NSError对象来传递运行时的错误信息给用户知道。大部分情况下，程序展示错误信息是以对话框或者表单的形式。不过也会有阐释信息以及询问用户是否从错误中恢复或者用户自己纠正错误的情况。  
 一个NSError对象的核心属性——或者简单来说，一个error对象——是error的域名，一个特定领域的error code以及一个“用户信息”字典，它包含了有关error的对象，大部分显式的描述和可以恢复的字符串。本章阐述了error对象的原因，描述了它的属性以及讨论了你如何在cocoa代码当中使用它。
 ## 为什么会有Error对象？
+由于大量的历史原因，OS X当中的错误代码被以域名的方式隔离开。举例来说，Carbon的错误代码，它的类型是OSStatus，它是在早于OS X的Macintosh操作系统中存在的。另一方面，POSIX的错误代码源自POSIX一致性的类UNIX，比如BSD。Foundation框架声明在NSError.h中的以下字符串常量为四种主要的错误域名：  
+
+	NSMachErrorDomain
+	NSPOSIXErrorDomain
+	NSOSStatusErrorDomain
+	NSCocoaErrorDomain
+
 
 ## error域名
 
