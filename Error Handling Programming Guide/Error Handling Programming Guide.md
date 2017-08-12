@@ -25,7 +25,7 @@ cocoa的程序使用NSError对象来传递运行时的错误信息给用户知�
 一个NSError对象的核心属性——或者简单来说，一个error对象——是error的域名，一个特定领域的error code以及一个“用户信息”字典，它包含了有关error的对象，大部分显式的描述和可以恢复的字符串。本章阐述了error对象的原因，描述了它的属性以及讨论了你如何在cocoa代码当中使用它。
 ## 为什么会有Error对象？
 由于它们是对象，所以NSError类的实例比一些简单的error code和error字符串有更多的优点。它们一次性的将一些error信息封装，包括本地化的error字符串。NSError对象还能够被归档和拷贝，并且它们能够在 app 当中传递和修改。尽管NSError并不是一个抽象类（因此可以被直接使用），你还可以通过子类继承NSError类对其进行扩展。  
-
+出于分层的error域的概念，NSError 对象可以嵌入底层子系统的错误, 从而提供有关错误的更详细、细致入微的信息。error对象还提供了从error恢复的机制，这种机制通过引用一个指定对象作为error的恢复调度。
 ## error域名
 由于大量的历史原因，OS X当中的错误代码被以域名的方式隔离开。举例来说，Carbon的错误代码，它的类型是OSStatus，它是在早于OS X的Macintosh操作系统中存在的。另一方面，POSIX的错误代码源自POSIX一致性的类UNIX，比如BSD。Foundation框架声明在NSError.h中的以下字符串常量为四种主要的错误域名：  
 
