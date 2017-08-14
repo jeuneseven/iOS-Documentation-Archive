@@ -34,6 +34,7 @@ cocoa的程序使用NSError对象来传递运行时的错误信息给用户知�
 	NSOSStatusErrorDomain
 	NSCocoaErrorDomain
 
+以上序列的域名常量表明了域名的一般分层，Mach错误域名在最底层。通过发送一个NSError对象的domain消息，你将会获取到一个error的域名。  
 
 ## error codes
 
