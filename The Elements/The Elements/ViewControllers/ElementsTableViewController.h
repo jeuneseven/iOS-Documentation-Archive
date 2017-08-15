@@ -11,6 +11,6 @@
 
 @interface ElementsTableViewController : UITableViewController
 
-@property (nonatomic, strong) id <ElementsDataSourceProtocol> delegate;
+@property (nonatomic, strong) id <ElementsDataSourceProtocol, UITableViewDataSource> delegate;
 
 @end

@@ -11,6 +11,6 @@
 #import <Foundation/Foundation.h>
 #import "ElementsDataSourceProtocol.h"
 
-@interface ElementsSortedByStateDataSource : NSObject <ElementsDataSourceProtocol>
+@interface ElementsSortedByStateDataSource : NSObject <ElementsDataSourceProtocol, UITableViewDataSource>
 
 @end

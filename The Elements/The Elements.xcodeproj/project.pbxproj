@@ -22,6 +22,9 @@
 		D830A7241F3D617100273AB4 /* ElementsSortedByStateDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A7231F3D617100273AB4 /* ElementsSortedByStateDataSource.m */; };
 		D830A7251F3D617100273AB4 /* ElementsSortedByStateDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A7231F3D617100273AB4 /* ElementsSortedByStateDataSource.m */; };
 		D830A7261F3D617100273AB4 /* ElementsSortedByStateDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A7231F3D617100273AB4 /* ElementsSortedByStateDataSource.m */; };
+		D830A73F1F43089600273AB4 /* AtomicElementTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A73E1F43089600273AB4 /* AtomicElementTableViewCell.m */; };
+		D830A7401F43089600273AB4 /* AtomicElementTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A73E1F43089600273AB4 /* AtomicElementTableViewCell.m */; };
+		D830A7411F43089600273AB4 /* AtomicElementTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A73E1F43089600273AB4 /* AtomicElementTableViewCell.m */; };
 		D8D887961EFFAD4000AB78B1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D887951EFFAD4000AB78B1 /* main.m */; };
 		D8D887991EFFAD4100AB78B1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D887981EFFAD4100AB78B1 /* AppDelegate.m */; };
 		D8D887A11EFFAD4100AB78B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8D887A01EFFAD4100AB78B1 /* Assets.xcassets */; };
@@ -58,6 +61,8 @@
 		D830A71E1F3D616600273AB4 /* ElementsSortedBySymbolDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElementsSortedBySymbolDataSource.m; sourceTree = "<group>"; };
 		D830A7221F3D617100273AB4 /* ElementsSortedByStateDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElementsSortedByStateDataSource.h; sourceTree = "<group>"; };
 		D830A7231F3D617100273AB4 /* ElementsSortedByStateDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElementsSortedByStateDataSource.m; sourceTree = "<group>"; };
+		D830A73D1F43089600273AB4 /* AtomicElementTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomicElementTableViewCell.h; sourceTree = "<group>"; };
+		D830A73E1F43089600273AB4 /* AtomicElementTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtomicElementTableViewCell.m; sourceTree = "<group>"; };
 		D8D887911EFFAD4000AB78B1 /* The Elements.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Elements.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8D887951EFFAD4000AB78B1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D8D887971EFFAD4100AB78B1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -122,6 +127,15 @@
 			path = DataSources;
 			sourceTree = "<group>";
 		};
+		D830A73C1F43088400273AB4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D830A73D1F43089600273AB4 /* AtomicElementTableViewCell.h */,
+				D830A73E1F43089600273AB4 /* AtomicElementTableViewCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		D8D887881EFFAD4000AB78B1 = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +159,7 @@
 		D8D887931EFFAD4000AB78B1 /* The Elements */ = {
 			isa = PBXGroup;
 			children = (
+				D830A73C1F43088400273AB4 /* Views */,
 				D8D887971EFFAD4100AB78B1 /* AppDelegate.h */,
 				D8D887981EFFAD4100AB78B1 /* AppDelegate.m */,
 				D830A7111F3D537200273AB4 /* DataSources */,
@@ -311,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D830A7151F3D56F300273AB4 /* ElementsSortedByNameDataSource.m in Sources */,
+				D830A73F1F43089600273AB4 /* AtomicElementTableViewCell.m in Sources */,
 				D830A7241F3D617100273AB4 /* ElementsSortedByStateDataSource.m in Sources */,
 				D830A71A1F3D615A00273AB4 /* ElementsSortedByAtomicNumberDataSource.m in Sources */,
 				D8D887991EFFAD4100AB78B1 /* AppDelegate.m in Sources */,
@@ -324,6 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D830A7401F43089600273AB4 /* AtomicElementTableViewCell.m in Sources */,
 				D830A7161F3D56F300273AB4 /* ElementsSortedByNameDataSource.m in Sources */,
 				D830A71B1F3D615A00273AB4 /* ElementsSortedByAtomicNumberDataSource.m in Sources */,
 				D830A70F1F3C55EE00273AB4 /* ElementsTableViewController.m in Sources */,
@@ -337,6 +354,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D830A7411F43089600273AB4 /* AtomicElementTableViewCell.m in Sources */,
 				D830A7171F3D56F300273AB4 /* ElementsSortedByNameDataSource.m in Sources */,
 				D830A71C1F3D615A00273AB4 /* ElementsSortedByAtomicNumberDataSource.m in Sources */,
 				D830A7101F3C55EE00273AB4 /* ElementsTableViewController.m in Sources */,

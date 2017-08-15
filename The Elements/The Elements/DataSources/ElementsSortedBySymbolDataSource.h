@@ -10,6 +10,6 @@
 #import <Foundation/Foundation.h>
 #import "ElementsDataSourceProtocol.h"
 
-@interface ElementsSortedBySymbolDataSource : NSObject <ElementsDataSourceProtocol>
+@interface ElementsSortedBySymbolDataSource : NSObject <ElementsDataSourceProtocol, UITableViewDataSource>
 
 @end
