@@ -25,6 +25,12 @@
 		D830A73F1F43089600273AB4 /* AtomicElementTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A73E1F43089600273AB4 /* AtomicElementTableViewCell.m */; };
 		D830A7401F43089600273AB4 /* AtomicElementTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A73E1F43089600273AB4 /* AtomicElementTableViewCell.m */; };
 		D830A7411F43089600273AB4 /* AtomicElementTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A73E1F43089600273AB4 /* AtomicElementTableViewCell.m */; };
+		D830A7431F440E3500273AB4 /* Elements.plist in Resources */ = {isa = PBXBuildFile; fileRef = D830A7421F440E3500273AB4 /* Elements.plist */; };
+		D830A7441F440E3500273AB4 /* Elements.plist in Resources */ = {isa = PBXBuildFile; fileRef = D830A7421F440E3500273AB4 /* Elements.plist */; };
+		D830A7451F440E3500273AB4 /* Elements.plist in Resources */ = {isa = PBXBuildFile; fileRef = D830A7421F440E3500273AB4 /* Elements.plist */; };
+		D830A7491F440EE400273AB4 /* AtomicElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A7481F440EE400273AB4 /* AtomicElement.m */; };
+		D830A74A1F440EE400273AB4 /* AtomicElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A7481F440EE400273AB4 /* AtomicElement.m */; };
+		D830A74B1F440EE400273AB4 /* AtomicElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A7481F440EE400273AB4 /* AtomicElement.m */; };
 		D8D887961EFFAD4000AB78B1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D887951EFFAD4000AB78B1 /* main.m */; };
 		D8D887991EFFAD4100AB78B1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D887981EFFAD4100AB78B1 /* AppDelegate.m */; };
 		D8D887A11EFFAD4100AB78B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8D887A01EFFAD4100AB78B1 /* Assets.xcassets */; };
@@ -63,6 +69,9 @@
 		D830A7231F3D617100273AB4 /* ElementsSortedByStateDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElementsSortedByStateDataSource.m; sourceTree = "<group>"; };
 		D830A73D1F43089600273AB4 /* AtomicElementTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomicElementTableViewCell.h; sourceTree = "<group>"; };
 		D830A73E1F43089600273AB4 /* AtomicElementTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtomicElementTableViewCell.m; sourceTree = "<group>"; };
+		D830A7421F440E3500273AB4 /* Elements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Elements.plist; sourceTree = "<group>"; };
+		D830A7471F440EE400273AB4 /* AtomicElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomicElement.h; sourceTree = "<group>"; };
+		D830A7481F440EE400273AB4 /* AtomicElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtomicElement.m; sourceTree = "<group>"; };
 		D8D887911EFFAD4000AB78B1 /* The Elements.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Elements.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8D887951EFFAD4000AB78B1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D8D887971EFFAD4100AB78B1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -136,6 +145,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		D830A7461F440EDA00273AB4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D830A7471F440EE400273AB4 /* AtomicElement.h */,
+				D830A7481F440EE400273AB4 /* AtomicElement.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		D8D887881EFFAD4000AB78B1 = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +177,7 @@
 		D8D887931EFFAD4000AB78B1 /* The Elements */ = {
 			isa = PBXGroup;
 			children = (
+				D830A7461F440EDA00273AB4 /* Models */,
 				D830A73C1F43088400273AB4 /* Views */,
 				D8D887971EFFAD4100AB78B1 /* AppDelegate.h */,
 				D8D887981EFFAD4100AB78B1 /* AppDelegate.m */,
@@ -174,6 +193,7 @@
 		D8D887941EFFAD4000AB78B1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D830A7421F440E3500273AB4 /* Elements.plist */,
 				D8D887951EFFAD4000AB78B1 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -301,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8D887A11EFFAD4100AB78B1 /* Assets.xcassets in Resources */,
+				D830A7431F440E3500273AB4 /* Elements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +329,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D830A7441F440E3500273AB4 /* Elements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +337,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D830A7451F440E3500273AB4 /* Elements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +352,7 @@
 				D830A73F1F43089600273AB4 /* AtomicElementTableViewCell.m in Sources */,
 				D830A7241F3D617100273AB4 /* ElementsSortedByStateDataSource.m in Sources */,
 				D830A71A1F3D615A00273AB4 /* ElementsSortedByAtomicNumberDataSource.m in Sources */,
+				D830A7491F440EE400273AB4 /* AtomicElement.m in Sources */,
 				D8D887991EFFAD4100AB78B1 /* AppDelegate.m in Sources */,
 				D830A70E1F3C55EE00273AB4 /* ElementsTableViewController.m in Sources */,
 				D8D887961EFFAD4000AB78B1 /* main.m in Sources */,
@@ -341,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D830A7401F43089600273AB4 /* AtomicElementTableViewCell.m in Sources */,
+				D830A74A1F440EE400273AB4 /* AtomicElement.m in Sources */,
 				D830A7161F3D56F300273AB4 /* ElementsSortedByNameDataSource.m in Sources */,
 				D830A71B1F3D615A00273AB4 /* ElementsSortedByAtomicNumberDataSource.m in Sources */,
 				D830A70F1F3C55EE00273AB4 /* ElementsTableViewController.m in Sources */,
@@ -355,6 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D830A7411F43089600273AB4 /* AtomicElementTableViewCell.m in Sources */,
+				D830A74B1F440EE400273AB4 /* AtomicElement.m in Sources */,
 				D830A7171F3D56F300273AB4 /* ElementsSortedByNameDataSource.m in Sources */,
 				D830A71C1F3D615A00273AB4 /* ElementsSortedByAtomicNumberDataSource.m in Sources */,
 				D830A7101F3C55EE00273AB4 /* ElementsTableViewController.m in Sources */,
