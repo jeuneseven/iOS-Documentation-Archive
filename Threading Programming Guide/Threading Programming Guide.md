@@ -125,3 +125,10 @@
 ##### NSImage的限制条件
 
 # 术语表
+
+application 一种特殊类型的程序，它展示图形界面给用户。
+condition 
+critical section
+input source
+joinable thread
+main thread 一种特殊类型的线程，当进程创建的时候，它就被创建。当程序的主线程终止时，它就终止。
