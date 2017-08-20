@@ -190,3 +190,18 @@ critical section
 input source
 joinable thread
 main thread 一种特殊类型的线程，当进程创建的时候，它就被创建。当程序的主线程终止时，它就终止。
+mutex
+operation object
+operation queue  
+process
+program
+recursive lock  
+run loop  
+run loop mode
+run loop object  
+run loop observer  
+semaphore
+task
+thread
+timer source  
+
