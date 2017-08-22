@@ -196,12 +196,11 @@ operation queue  NSOperationQueue类的实例对象。Operation queues管理着o
 process
 program 代码和资源的结合，它可以被用来执行某种任务。
 recursive lock  
-run loop  
+run loop 一个事件处理的循环，当接收到事件的时候以及调度适当的操作的时候。
 run loop mode
 run loop object  
 run loop observer  
 semaphore
-task
+task 一些要被执行的任务
 thread
 timer source  
-
