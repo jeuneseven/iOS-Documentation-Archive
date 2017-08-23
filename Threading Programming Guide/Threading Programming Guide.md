@@ -191,7 +191,7 @@ input source
 joinable thread
 main thread 一种特殊类型的线程，当进程创建的时候，它就被创建。当程序的主线程终止时，它就终止。
 mutex
-operation object
+operation object  NSOperation 类的实例对象。Operation对象封装了和一个任务相关的代码和数据到一个可执行的集合当中。
 operation queue  NSOperationQueue类的实例对象。Operation queues管理着operation对象的执行。
 process
 program 代码和资源的结合，它可以被用来执行某种任务。
