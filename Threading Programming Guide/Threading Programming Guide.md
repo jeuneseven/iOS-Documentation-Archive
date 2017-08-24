@@ -144,17 +144,55 @@
 
 ## 同步工具
 
+### 原子操作
+
+### 内存阻碍和不稳定的变量
+
+### 锁
+
+### Conditions
+
+### 执行Selector的惯例
+
 ## 同步的消耗和性能
 
 ## 线程安全和信号量
 
 ## 线程安全设计的一些贴士
 
+### 避免整体同步
+
+### 理解同步的有限性
+
+### 了解代码正确性的风险
+
+### 小心死锁和活锁
+
+### 正确的使用不稳定的变量
+
 ## 使用原子操作
 
 ## 使用锁
 
+### 使用POSIX互斥锁
+
+### 使用NSLock类
+
+### 直接使用@synchronized
+
+### 使用其他的Cocoa锁
+
+#### 使用NSRecursiveLock对象
+
+#### 使用NSConditionLock对象
+
+#### 使用NSDistributedLock对象
+
 ## 使用Conditions
+
+### 使用NSCondition类
+
+### 使用POSIX Conditions
 
 # 附录A：线程安全总结
 
