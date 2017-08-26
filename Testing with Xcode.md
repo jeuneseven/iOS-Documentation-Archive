@@ -1,1 +1,0 @@
-[Testing with Xcode 原文链接](https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/testing_with_xcode/chapters/01-introduction.html#//apple_ref/doc/uid/TP40014132)
