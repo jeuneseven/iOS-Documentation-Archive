@@ -13,6 +13,7 @@
 #import "ElementsSortedByAtomicNumberDataSource.h"
 #import "ElementsSortedBySymbolDataSource.h"
 #import "ElementsSortedByStateDataSource.h"
+#import "PeriodicElements.h"
 
 @interface AppDelegate ()
 
@@ -25,9 +26,11 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
+    [PeriodicElements sharedPeriodicElements];
+    
     UITabBarController *tabbarController = [UITabBarController new];
     
-    id <ElementsDataSourceProtocol> delegate;
+    id <ElementsDataSourceProtocol, UITableViewDataSource> delegate;
     
     ElementsTableViewController *nameVC = [[ElementsTableViewController alloc] init];
     delegate = [ElementsSortedByNameDataSource new];

@@ -20,15 +20,15 @@
     
     self.title = _delegate.name;
     self.view.backgroundColor = _delegate.backgroundColor;
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = _delegate;
+    
+    [self.tableView registerClass:[AtomicElementTableViewCell class] forCellReuseIdentifier:NSStringFromClass([AtomicElementTableViewCell class])];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self.delegate;
-    
-    [self.tableView registerClass:[AtomicElementTableViewCell class] forCellReuseIdentifier:NSStringFromClass([AtomicElementTableViewCell class])];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

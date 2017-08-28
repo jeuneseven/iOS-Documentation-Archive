@@ -31,6 +31,7 @@
 		D830A7491F440EE400273AB4 /* AtomicElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A7481F440EE400273AB4 /* AtomicElement.m */; };
 		D830A74A1F440EE400273AB4 /* AtomicElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A7481F440EE400273AB4 /* AtomicElement.m */; };
 		D830A74B1F440EE400273AB4 /* AtomicElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A7481F440EE400273AB4 /* AtomicElement.m */; };
+		D8BD740B1F5414C7009448FA /* PeriodicElements.m in Sources */ = {isa = PBXBuildFile; fileRef = D8BD740A1F5414C7009448FA /* PeriodicElements.m */; };
 		D8D887961EFFAD4000AB78B1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D887951EFFAD4000AB78B1 /* main.m */; };
 		D8D887991EFFAD4100AB78B1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D887981EFFAD4100AB78B1 /* AppDelegate.m */; };
 		D8D887A11EFFAD4100AB78B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8D887A01EFFAD4100AB78B1 /* Assets.xcassets */; };
@@ -72,6 +73,8 @@
 		D830A7421F440E3500273AB4 /* Elements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Elements.plist; sourceTree = "<group>"; };
 		D830A7471F440EE400273AB4 /* AtomicElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomicElement.h; sourceTree = "<group>"; };
 		D830A7481F440EE400273AB4 /* AtomicElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtomicElement.m; sourceTree = "<group>"; };
+		D8BD74091F5414C7009448FA /* PeriodicElements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeriodicElements.h; sourceTree = "<group>"; };
+		D8BD740A1F5414C7009448FA /* PeriodicElements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeriodicElements.m; sourceTree = "<group>"; };
 		D8D887911EFFAD4000AB78B1 /* The Elements.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Elements.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8D887951EFFAD4000AB78B1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D8D887971EFFAD4100AB78B1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -150,6 +153,8 @@
 			children = (
 				D830A7471F440EE400273AB4 /* AtomicElement.h */,
 				D830A7481F440EE400273AB4 /* AtomicElement.m */,
+				D8BD74091F5414C7009448FA /* PeriodicElements.h */,
+				D8BD740A1F5414C7009448FA /* PeriodicElements.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -349,6 +354,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D830A7151F3D56F300273AB4 /* ElementsSortedByNameDataSource.m in Sources */,
+				D8BD740B1F5414C7009448FA /* PeriodicElements.m in Sources */,
 				D830A73F1F43089600273AB4 /* AtomicElementTableViewCell.m in Sources */,
 				D830A7241F3D617100273AB4 /* ElementsSortedByStateDataSource.m in Sources */,
 				D830A71A1F3D615A00273AB4 /* ElementsSortedByAtomicNumberDataSource.m in Sources */,
