@@ -96,8 +96,34 @@
 
 # 自动化和测试过程
 
+## 持续集成基于服务的测试
+
+## 命令行测试
+
+### 使用xcodebuild运行测试
+
+### 结合ssh使用xcodebuild
+
+## 使用Xcode Server和持续集成
+
 # 用户界面测试
+
+## 必备条件
+
+## 一些概念以及API
+
+## Apis
+
+## 从UI录制开始
+
+## 编写UI测试用例
 
 # 附录A：编写可测试的代码
 
+## 指南
+
 # 附录B：从OCUnit转换到XCTest
+
+## 从OCUnit 转换到 XCTest
+
+## 手动从OCUnit 转换到 XCTest
