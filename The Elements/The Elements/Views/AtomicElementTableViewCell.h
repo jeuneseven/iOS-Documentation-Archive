@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class AtomicElement;
 @interface AtomicElementTableViewCell : UITableViewCell
+
+@property (nonatomic) AtomicElement *element;
 
 @end

@@ -10,6 +10,8 @@
 
 @interface PeriodicElements : NSObject
 
+@property (nonatomic, strong) NSArray *elementNameIndexArray;
+
 + (instancetype)sharedPeriodicElements;
 
 @end

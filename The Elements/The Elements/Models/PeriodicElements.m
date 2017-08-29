@@ -45,7 +45,7 @@
         [self.elementsDataSource addObject:element];
     }
     
-    NSLog(@"self.elementsDataSource == %@", self.elementsDataSource);
+    self.elementNameIndexArray = self.elementsDataSource;
 }
 
 - (NSMutableArray *)elementsDataSource

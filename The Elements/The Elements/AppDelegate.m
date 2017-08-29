@@ -26,8 +26,6 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
-    [PeriodicElements sharedPeriodicElements];
-    
     UITabBarController *tabbarController = [UITabBarController new];
     
     id <ElementsDataSourceProtocol, UITableViewDataSource> delegate;
