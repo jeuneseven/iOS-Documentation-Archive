@@ -17,25 +17,24 @@
 
 @implementation AtomicElementTableViewCell
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self.contentView addSubview:self.titleLabel];
     }
-    
     return self;
 }
 
 - (void)setElement:(AtomicElement *)element {
     _element = element;
     
-    self.titleLabel.text = _element.atomicWeight;
+    self.titleLabel.text = _element.name;
 }
 
 - (UILabel *)titleLabel
 {
     if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height)];
+        _titleLabel = [[UILabel alloc] initWithFrame:self.contentView.bounds];
         _titleLabel.textColor = [UIColor blackColor];
     }
     

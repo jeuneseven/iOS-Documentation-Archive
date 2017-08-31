@@ -8,6 +8,7 @@
 
 #import "ElementsSortedByStateDataSource.h"
 #import "AtomicElementTableViewCell.h"
+#import "PeriodicElements.h"
 
 @implementation ElementsSortedByStateDataSource
 
@@ -21,22 +22,20 @@
 
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return [PeriodicElements sharedPeriodicElements].elementNameIndexArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AtomicElementTableViewCell *cell = (AtomicElementTableViewCell *)[tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AtomicElementTableViewCell class]) forIndexPath:indexPath];
     
+    cell.element = [PeriodicElements sharedPeriodicElements].elementNameIndexArray[indexPath.row];
+    
     return cell;
 }
-
 
 @end
