@@ -13,6 +13,8 @@
 
 @property (nonatomic) NSMutableArray *elementsDataSource;
 
+@property (nonatomic) NSSortDescriptor *nameDescriptor;
+
 @end
 
 @implementation PeriodicElements

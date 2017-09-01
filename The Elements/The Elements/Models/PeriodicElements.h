@@ -11,6 +11,8 @@
 @interface PeriodicElements : NSObject
 
 @property (nonatomic, strong) NSArray *elementNameIndexArray;
+@property (nonatomic, strong) NSArray *elementsSortedByNumber;
+@property (nonatomic, strong) NSArray *elementsSortedBySymbol;
 
 + (instancetype)sharedPeriodicElements;
 
