@@ -31,6 +31,7 @@
 		D830A7491F440EE400273AB4 /* AtomicElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A7481F440EE400273AB4 /* AtomicElement.m */; };
 		D830A74A1F440EE400273AB4 /* AtomicElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A7481F440EE400273AB4 /* AtomicElement.m */; };
 		D830A74B1F440EE400273AB4 /* AtomicElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D830A7481F440EE400273AB4 /* AtomicElement.m */; };
+		D8B78BF21F593A1300F9BD63 /* AtomicElementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B78BF11F593A1300F9BD63 /* AtomicElementViewController.m */; };
 		D8BD740B1F5414C7009448FA /* PeriodicElements.m in Sources */ = {isa = PBXBuildFile; fileRef = D8BD740A1F5414C7009448FA /* PeriodicElements.m */; };
 		D8D887961EFFAD4000AB78B1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D887951EFFAD4000AB78B1 /* main.m */; };
 		D8D887991EFFAD4100AB78B1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D887981EFFAD4100AB78B1 /* AppDelegate.m */; };
@@ -73,6 +74,8 @@
 		D830A7421F440E3500273AB4 /* Elements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Elements.plist; sourceTree = "<group>"; };
 		D830A7471F440EE400273AB4 /* AtomicElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomicElement.h; sourceTree = "<group>"; };
 		D830A7481F440EE400273AB4 /* AtomicElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtomicElement.m; sourceTree = "<group>"; };
+		D8B78BF01F593A1300F9BD63 /* AtomicElementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomicElementViewController.h; sourceTree = "<group>"; };
+		D8B78BF11F593A1300F9BD63 /* AtomicElementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtomicElementViewController.m; sourceTree = "<group>"; };
 		D8BD74091F5414C7009448FA /* PeriodicElements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeriodicElements.h; sourceTree = "<group>"; };
 		D8BD740A1F5414C7009448FA /* PeriodicElements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeriodicElements.m; sourceTree = "<group>"; };
 		D8D887911EFFAD4000AB78B1 /* The Elements.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Elements.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,6 +122,8 @@
 			children = (
 				D830A70C1F3C55EE00273AB4 /* ElementsTableViewController.h */,
 				D830A70D1F3C55EE00273AB4 /* ElementsTableViewController.m */,
+				D8B78BF01F593A1300F9BD63 /* AtomicElementViewController.h */,
+				D8B78BF11F593A1300F9BD63 /* AtomicElementViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -353,6 +358,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8B78BF21F593A1300F9BD63 /* AtomicElementViewController.m in Sources */,
 				D830A7151F3D56F300273AB4 /* ElementsSortedByNameDataSource.m in Sources */,
 				D8BD740B1F5414C7009448FA /* PeriodicElements.m in Sources */,
 				D830A73F1F43089600273AB4 /* AtomicElementTableViewCell.m in Sources */,
