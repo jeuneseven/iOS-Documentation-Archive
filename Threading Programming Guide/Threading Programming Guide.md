@@ -1,6 +1,10 @@
 [Threading Programming Guide 原文链接](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/Multithreading/Introduction/Introduction.html#//apple_ref/doc/uid/10000057i)
 
 # 介绍
+线程是能够在一款应用中并发的执行不同代码的技术之一。尽管更新的技术，比如操作对象和GCD提供了更为现代和有效的结构来实现并发，OS X和iOS也同样提供了接口来创建和管理线程。  
+本文档提供了在OS X中可用的线程封装的相关介绍，并为你展示了如何使用它们。同样，本文档还介绍了相关的技术来支持线程操作以及如何在你的应用中进行多线程同步。  
+
+	重要：如果你在开发一款全新的应用，我们推荐你调研一下OS X上的实现并发的替代技术。如果您还不熟悉实现线程化应用程序所需的设计技术, 则尤其如此。这些替代的技术大大简化了你在实现并发执行的时候所要编写的代码量，并且提供了比传统的线程更为优秀的性能。更多关于这些技术的相关信息，参见“并发编程指南”。
 
 ## 本文档的组织结构
 
