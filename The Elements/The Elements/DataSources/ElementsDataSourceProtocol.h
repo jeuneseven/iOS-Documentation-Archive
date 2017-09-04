@@ -13,4 +13,7 @@
 @property (readonly) NSString *name;
 @property (readonly) UIColor *backgroundColor;
 
+@property (readonly) UIImage *tabBarImage;
+@property (readonly) NSString *navigationBarName;
+
 @end

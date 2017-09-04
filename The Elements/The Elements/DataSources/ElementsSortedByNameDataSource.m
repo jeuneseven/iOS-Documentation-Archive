@@ -20,6 +20,13 @@
     return [UIColor redColor];
 }
 
+- (NSString *)navigationBarName {
+    return @"Sorted by Name";
+}
+
+- (UIImage *)tabBarImage {
+    return [UIImage imageNamed:@"name_gray"];
+}
 
 #pragma mark - Table view data source
 

@@ -20,6 +20,13 @@
     return [UIColor greenColor];
 }
 
+- (NSString *)navigationBarName {
+    return @"Grouped by State";
+}
+
+- (UIImage *)tabBarImage {
+    return [UIImage imageNamed:@"state_gray.png"];
+}
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

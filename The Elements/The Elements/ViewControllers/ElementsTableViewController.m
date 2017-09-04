@@ -18,8 +18,10 @@
 - (void)setDelegate:(id<ElementsDataSourceProtocol, UITableViewDataSource>)delegate {
     _delegate = delegate;
     
-    self.title = _delegate.name;
+    self.title = [_delegate name];
     self.view.backgroundColor = _delegate.backgroundColor;
+    self.tabBarItem.image = [_delegate tabBarImage];
+    self.navigationItem.title = [_delegate navigationBarName];
     
     [self.tableView registerClass:[AtomicElementTableViewCell class] forCellReuseIdentifier:NSStringFromClass([AtomicElementTableViewCell class])];
 }

@@ -20,6 +20,15 @@
     return [UIColor blueColor];
 }
 
+- (NSString *)navigationBarName {
+    
+    return @"Sorted by Atomic Symbol";
+}
+
+- (UIImage *)tabBarImage {
+    
+    return [UIImage imageNamed:@"symbol_gray.png"];
+}
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
