@@ -1,7 +1,9 @@
 [Concurrency Programming Guide 原文链接](https://developer.apple.com/library/content/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008091)
 
 # 介绍
-
+并发性是指很多件事在同一时间发生的一种概念。随着CPU核心数目的增加以及意识到每个处理器的核数都只增不减，软件开发人员需要一种新的方式来利用它们。尽管类似OS X和iOS这种操作系统能够同时运行多个程序，但其实大部分这些程序都是运行在后台并且执行任务的时候仅需要很少的连续处理时间。当前正在前台运行的程序既需要吸引用户的注意，又需要让处理器保持高速运行。如果一款应用程序做了很多工作，但是仅仅使用了很少部分的处理性能的话，那些额外的资源就被浪费了。  
+在以前，为一款应用引入并发功能需要创建一个或多个额外的线程。而不幸的是，编写线程的代码是很有挑战性的。线程是一个底层的工具，它必须手动进行管理。  
+本文档描述了你可以在你的应用程序中使用的并发的方法和技术。这些技术在OS X或者iOS上都可以使用。
 ## 本文档的组织结构
 本文档包含以下章节：  
 
