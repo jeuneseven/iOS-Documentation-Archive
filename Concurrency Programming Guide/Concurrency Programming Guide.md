@@ -207,8 +207,13 @@ OS X和iOS都采用了很多的异步方式来增进并发任务的执行，而�
 
 # 术语表
 
-应用程序（application）  
+应用程序（application）一种特定类型的程序，用来展示图形界面给用户。  
 异步设计方法（asynchronous design approach）  
 block对象（block object）  
 并行操作（concurrent operation）
 条件（condition）  
+critical section  
+自定义source（custom source）
+描述符（descriptor）  
+分发队列（dispatch queue）  
+分发资源（dispatch source） 
