@@ -215,5 +215,34 @@ block对象（block object）
 critical section  
 自定义source（custom source）
 描述符（descriptor）  
-分发队列（dispatch queue）  
-分发资源（dispatch source） 
+调度队列（dispatch queue）  
+调度资源（dispatch source）  
+描述符调度资源（descriptor dispatch source）  
+动态共享库（dynamic shared library）  
+类库（framework）  
+全局分发队列（global dispatch queue）  
+GCD  
+输入源（input source）  
+等待线程（joinable thread）  
+库（library）  
+Mach接口调度资源（Mach port dispatch source）  
+主线程（main thread）  
+互斥（mutex）  
+开放式计算语言（OpenCL）  
+运算对象（operation object）  
+运算队列（operation queue）  
+私有调度队列（private dispatch queue）  
+进程（process）  
+进程调度资源（process dispatch source）  
+程序（program）  
+可重入（reentrant）  
+运行循环（run loop）  
+运行循环模式（run loop mode）  
+运行循环对象（run loop object）  
+运行循环观察者（run loop observer）  
+信号量（semaphore）  
+信号（signal）  
+信号调度资源（signal dispatch source）  
+任务（task）  
+线程（thread）  
+计时调度资源（timer dispatch source）
