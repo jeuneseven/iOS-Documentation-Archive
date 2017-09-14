@@ -232,7 +232,7 @@ Mach接口调度资源（Mach port dispatch source）
 运算对象（operation object）  
 运算队列（operation queue）  
 私有调度队列（private dispatch queue）  
-进程（process）  
+进程（process）一个应用或程序的运行时实例。一个进程有其自己的虚拟内存空间以及系统资源（包括接口权限）  
 进程调度资源（process dispatch source）  
 程序（program）  
 可重入（reentrant）  
@@ -244,5 +244,5 @@ Mach接口调度资源（Mach port dispatch source）
 信号（signal）  
 信号调度资源（signal dispatch source）  
 任务（task）  
-线程（thread）  
+线程（thread）一个进程中的可执行流。每个线程都有它自己的栈空间，但在同一个进程中与其他线程共享内存。  
 计时调度资源（timer dispatch source）
