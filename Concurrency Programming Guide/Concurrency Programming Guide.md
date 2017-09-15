@@ -211,7 +211,7 @@ OS X和iOS都采用了很多的异步方式来增进并发任务的执行，而�
 异步设计方法（asynchronous design approach）围绕应用程序的主线程或其他执行线程同时运行的代码块组织应用程序的原则。异步任务由一个线程开启，但是实际运行在不同的线程当中，利用额外的处理资源来更快的完成它们的工作。  
 block对象（block object）一种C的封装内联代码和数据的结构，它可以在稍后执行。你可以使用block封装你想要执行的任务，无论是在当前线程还是其他的使用调度队列的线程中。更多信息，参见Blocks编程主题。  
 并行操作（concurrent operation）一个运算对象在它的start方法被调用的线程当中不会执行任务。并行操作通常会配置它自己的线程或者调用一个接口以设置一个单独的线程来执行操作。  
-条件（condition）  
+竞争（condition）一种用来同步访问资源的结构。在某个条件上等待的线程不允许继续, 直到另一个线程显式地发出该条件的信号。  
 critical section  
 自定义source（custom source）
 描述符（descriptor）  
@@ -219,9 +219,9 @@ critical section
 调度资源（dispatch source）  
 描述符调度资源（descriptor dispatch source）  
 动态共享库（dynamic shared library）  
-类库（framework）  
+类库（framework）一种bundle的类型，用来包装动态共享库，包含资源文件和头文件支持该库。更多相关信息，参见类库编程指南。  
 全局分发队列（global dispatch queue）  
-GCD  
+GCD 一种能够并行的异步执行任务的技术。在OS X v10.6以及iOS 4.0之后的版本可以使用。  
 输入源（input source）  
 等待线程（joinable thread）  
 库（library）  
