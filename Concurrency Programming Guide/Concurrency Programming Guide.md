@@ -243,6 +243,6 @@ Mach接口调度资源（Mach port dispatch source）
 信号量（semaphore）  
 信号（signal）  
 信号调度资源（signal dispatch source）  
-任务（task）  
+任务（task）一些需要被执行的任务。尽管某些技术（尤其是Carbon多任务处理服务）在这个词汇上会有其他的意思，在这里我们使用只带某些需要被执行的任务的抽象概念。  
 线程（thread）一个进程中的可执行流。每个线程都有它自己的栈空间，但在同一个进程中与其他线程共享内存。  
 计时调度资源（timer dispatch source）
