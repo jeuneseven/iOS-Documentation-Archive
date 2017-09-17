@@ -232,11 +232,11 @@ Mach接口调度资源（Mach port dispatch source）
 运算对象（operation object）  
 运算队列（operation queue）  
 私有调度队列（private dispatch queue）  
-进程（process）一个应用或程序的运行时实例。一个进程有其自己的虚拟内存空间以及系统资源（包括接口权限）  
+进程（process）一个应用或程序的运行时实例。一个进程有其自己的虚拟内存空间以及系统资源（包括接口权限）独立于其他的程序。一个进程还包含至少一个线程（主线程）以及可以包含任意数量的额外的线程。  
 进程调度资源（process dispatch source）  
-程序（program）  
+程序（program）代码和资源的集合，可以被运行来执行某些任务。程序并非必须一个图形用户界面，但图形用户界面需要考虑程序。  
 可重入（reentrant）  
-运行循环（run loop）  
+运行循环（run loop）一个事件处理循环，在该循环内，事件被接收和分发至适当的处理回调中。  
 运行循环模式（run loop mode）  
 运行循环对象（run loop object）  
 运行循环观察者（run loop observer）  
