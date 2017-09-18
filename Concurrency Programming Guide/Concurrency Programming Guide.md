@@ -224,13 +224,13 @@ critical section
 GCD 一种能够并行的异步执行任务的技术。在OS X v10.6以及iOS 4.0之后的版本可以使用。  
 输入源（input source）  
 等待线程（joinable thread）  
-库（library）  
+库（library）一个UNIX用来监听底层系统事件的功能。更多信心参见kqueue主页面。  
 Mach接口调度资源（Mach port dispatch source）  
-主线程（main thread）  
+主线程（main thread）一种特殊类型的线程，在它的进程被创建的时候，它就被创建。当一个程序的主线程终止的时候，该进程也终止。  
 互斥（mutex）  
 开放式计算语言（OpenCL）  
-运算对象（operation object）  
-运算队列（operation queue）  
+运算对象（operation object）NSOperation类的实例对象。运算对象将与一个任务相关的代码和数据封装至一个可执行单元。  
+运算队列（operation queue）NSOperationQueue类的实例对象。运算队列管理着运算对象的执行。  
 私有调度队列（private dispatch queue）  
 进程（process）一个应用或程序的运行时实例。一个进程有其自己的虚拟内存空间以及系统资源（包括接口权限）独立于其他的程序。一个进程还包含至少一个线程（主线程）以及可以包含任意数量的额外的线程。  
 进程调度资源（process dispatch source）  
