@@ -212,10 +212,10 @@ OS X和iOS都采用了很多的异步方式来增进并发任务的执行，而�
 block对象（block object）一种C的封装内联代码和数据的结构，它可以在稍后执行。你可以使用block封装你想要执行的任务，无论是在当前线程还是其他的使用调度队列的线程中。更多信息，参见Blocks编程主题。  
 并行操作（concurrent operation）一个运算对象在它的start方法被调用的线程当中不会执行任务。并行操作通常会配置它自己的线程或者调用一个接口以设置一个单独的线程来执行操作。  
 竞争（condition）一种用来同步访问资源的结构。在某个条件上等待的线程不允许继续, 直到另一个线程显式地发出该条件的信号。  
-critical section  
+critical section  一次只能在一个线程中执行的代码片段。  
 自定义source（custom source）
 描述符（descriptor）  
-调度队列（dispatch queue）  
+调度队列（dispatch queue）一种GCD的结构，你可以用它来执行你app的任务。GCD为串行或并行执行任务定义了调度队列。  
 调度资源（dispatch source）  
 描述符调度资源（descriptor dispatch source）  
 动态共享库（dynamic shared library）  
