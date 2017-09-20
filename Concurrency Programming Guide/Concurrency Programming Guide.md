@@ -237,7 +237,7 @@ Mach接口调度资源（Mach port dispatch source）
 程序（program）代码和资源的集合，可以被运行来执行某些任务。程序并非必须一个图形用户界面，但图形用户界面需要考虑程序。  
 可重入（reentrant）  
 运行循环（run loop）一个事件处理循环，在该循环内，事件被接收和分发至适当的处理回调中。  
-运行循环模式（run loop mode）  
+运行循环模式（run loop mode）与输入源、timer源和运行循环观察者相关的名称的集合。当以一种指定的“模式”运行时，运行循环只监听与该模式相关的数据源和观察者。  
 运行循环对象（run loop object）  
 运行循环观察者（run loop observer）  
 信号量（semaphore）  
