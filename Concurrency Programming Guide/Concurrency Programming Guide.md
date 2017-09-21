@@ -213,8 +213,8 @@ block对象（block object）一种C的封装内联代码和数据的结构，�
 并行操作（concurrent operation）一个运算对象在它的start方法被调用的线程当中不会执行任务。并行操作通常会配置它自己的线程或者调用一个接口以设置一个单独的线程来执行操作。  
 竞争（condition）一种用来同步访问资源的结构。在某个条件上等待的线程不允许继续, 直到另一个线程显式地发出该条件的信号。  
 critical section  一次只能在一个线程中执行的代码片段。  
-自定义source（custom source）
-描述符（descriptor）  
+自定义source（custom source）一种调度资源，用来处理应用定义的事件。一个自定义的source会调用你的自定义的事件处理回调以响应你的应用程序生成的事件。
+描述符（descriptor）一个唯一的ID，用来访问文件，socket或者其他的系统资源。  
 调度队列（dispatch queue）一种GCD的结构，你可以用它来执行你app的任务。GCD为串行或并行执行任务定义了调度队列。  
 调度资源（dispatch source）  
 描述符调度资源（descriptor dispatch source）  
