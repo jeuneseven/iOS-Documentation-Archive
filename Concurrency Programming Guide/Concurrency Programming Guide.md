@@ -216,8 +216,8 @@ critical section  一次只能在一个线程中执行的代码片段。
 自定义source（custom source）一种调度资源，用来处理应用定义的事件。一个自定义的source会调用你的自定义的事件处理回调以响应你的应用程序生成的事件。
 描述符（descriptor）一个唯一的ID，用来访问文件，socket或者其他的系统资源。  
 调度队列（dispatch queue）一种GCD的结构，你可以用它来执行你app的任务。GCD为串行或并行执行任务定义了调度队列。  
-调度资源（dispatch source）  
-描述符调度资源（descriptor dispatch source）  
+调度资源（dispatch source）一种GCD的数据结构，你可以用来创建处理系统相关的事件。  
+描述符调度资源（descriptor dispatch source）一种调度资源，用来处理文件相关的事件。一个文件描述符资源在文件数据可读写的时候或者响应文件系统的变化的时候会调用你的自定义的事件回调。  
 动态共享库（dynamic shared library）  
 类库（framework）一种bundle的类型，用来包装动态共享库，包含资源文件和头文件支持该库。更多相关信息，参见类库编程指南。  
 全局分发队列（global dispatch queue）  
