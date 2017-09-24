@@ -218,9 +218,9 @@ critical section  一次只能在一个线程中执行的代码片段。
 调度队列（dispatch queue）一种GCD的结构，你可以用它来执行你app的任务。GCD为串行或并行执行任务定义了调度队列。  
 调度资源（dispatch source）一种GCD的数据结构，你可以用来创建处理系统相关的事件。  
 描述符调度资源（descriptor dispatch source）一种调度资源，用来处理文件相关的事件。一个文件描述符资源在文件数据可读写的时候或者响应文件系统的变化的时候会调用你的自定义的事件回调。  
-动态共享库（dynamic shared library）  
+动态共享库（dynamic shared library）一种二进制的可执行文件，它以动态加载的形式加载到一个应用的进程空间中，而不是以静态链接的形式作为应用程序二进制的一部分。  
 类库（framework）一种bundle的类型，用来包装动态共享库，包含资源文件和头文件支持该库。更多相关信息，参见类库编程指南。  
-全局分发队列（global dispatch queue）  
+全局调度队列（global dispatch queue）一种被GCD动态管理的提供给你的应用的调度队列。你无需自己创建全局队列或持有或释放它们。你只需要使用系统提供的函数检索它们就可以了。  
 GCD 一种能够并行的异步执行任务的技术。在OS X v10.6以及iOS 4.0之后的版本可以使用。  
 输入源（input source）  
 等待线程（joinable thread）  
