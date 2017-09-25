@@ -222,7 +222,7 @@ critical section  一次只能在一个线程中执行的代码片段。
 类库（framework）一种bundle的类型，用来包装动态共享库，包含资源文件和头文件支持该库。更多相关信息，参见类库编程指南。  
 全局调度队列（global dispatch queue）一种被GCD动态管理的提供给你的应用的调度队列。你无需自己创建全局队列或持有或释放它们。你只需要使用系统提供的函数检索它们就可以了。  
 GCD 一种能够并行的异步执行任务的技术。在OS X v10.6以及iOS 4.0之后的版本可以使用。  
-输入源（input source）  
+输入源（input source）一个线程的异步事件源。输入源可以基于接口或者手动的触发，并且必须依附于线程的运行循环。  
 等待线程（joinable thread）  
 库（library）一个UNIX用来监听底层系统事件的功能。更多信心参见kqueue主页面。  
 Mach接口调度资源（Mach port dispatch source）  
