@@ -238,8 +238,8 @@ Mach接口调度资源（Mach port dispatch source）一种调度资源，用来
 可重入（reentrant）当代码已经运行在另一个线程中时，能够在一个新线程中开始安全运行的能力。  
 运行循环（run loop）一个事件处理循环，在该循环内，事件被接收和分发至适当的处理回调中。  
 运行循环模式（run loop mode）与输入源、timer源和运行循环观察者相关的名称的集合。当以一种指定的“模式”运行时，运行循环只监听与该模式相关的数据源和观察者。  
-运行循环对象（run loop object）  
-运行循环观察者（run loop observer）  
+运行循环对象（run loop object） NSRunLoop 类的实例对象或者 CFRunLoopRef 类的不透明类型。这些对象提供了接口来在一个线程中实现一个事件处理循环。   
+运行循环观察者（run loop observer）运行循环执行期间的不同阶段的通知的接受者。  
 信号量（semaphore）  
 信号（signal）一种UNIX的机制，可以在进程的作用域外操作该进程。系统使用信号来给一个应用程序传递重要信息，比如应用是否执行了非法指令。更多关于信号的相关信息，参见signal主页面。  
 信号调度资源（signal dispatch source）  
