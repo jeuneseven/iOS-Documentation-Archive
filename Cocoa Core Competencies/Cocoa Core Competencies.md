@@ -349,7 +349,17 @@ NSObject协议参考（NSObject Protocol Reference）
 ### 详细讨论
 使用Objects（Working with Objects）
 ## 单例（Singleton）
+无论应用程序请求多少次，一个单例类始终都会返回同一个对象。一个标准的类会在调用者要求创建该类的对象时直接创建，无论调用多少次，而对于单例而言，每次这个过程都只会返回唯一的实例对象。一个单例对象会提供一个全局的访问接口来访问它的类的资源。单例一般用在需要控制的单点问题当中，例如某个类提供通用的服务或者资源。  
 
+![](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Art/singleton_2x.png)  
+
+### 预读文章
+对象的创建（Object creation）
+### 相关文章
+对象的拷贝（Object copying）  
+内存管理（Memory management）
+### 详细讨论
+无
 ## 统一类型标识（Uniform Type Identifier）
 
 ### 统一类型标识使用了反向系统域名惯例
