@@ -353,6 +353,8 @@ NSObject协议参考（NSObject Protocol Reference）
 
 ![](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Art/singleton_2x.png)  
 
+你可以通过一个工厂方法来获取单例的全局实例变量。在该类第一次被请求创建实例变量的时候，会懒加载它唯一的实例变量，并且在那之后会确保没有任何其他的实例会被创建。单例类同样也会组织调用者拷贝、持有或者释放该实例。如果你发现你需要的话，你也可以创建自己的单例类。例如，如果在你的程序中，需要有一个类为其他的对象提供声音，你可能就需要一个单例了。  
+有一些Cocoa的框架类是单例模式的。包括NSFileManager，NSWorkspace以及在UIKit中的UIApplication 和 UIAccelerometer。按照惯例，工厂方法的名称会以sharedClassType的格式返回单例的名称。比如，Cocoa框架中的示例：sharedFileManager，sharedColorPanel，和 sharedWorkspace。
 ### 预读文章
 对象的创建（Object creation）
 ### 相关文章
