@@ -389,6 +389,15 @@ NSObject协议参考（NSObject Protocol Reference）
 
 ### OS X应用通过定义添加了新的统一类型标识在app包当中
 
+### 预读文章
+包（Bundle）  
+属性列表（Property list）
+### 相关文章
+无
+### 详细讨论
+统一类型标识概览（Uniform Type Identifiers Overview）
+### 示例代码项目
+无
 ## 值对象（Value object）
 
 ### NSValue
