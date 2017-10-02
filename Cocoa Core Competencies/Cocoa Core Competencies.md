@@ -338,6 +338,14 @@ NSObject协议参考（NSObject Protocol Reference）
 ### 创建你自己的协议
 
 ## 根类（Root class）
+根类不从任何类继承，它定义了继承链中其他所有对象的基本行为。所有继承链中的对象最终都是继承自根类。根类通常用做一个基类。  
+OC当中的根类是NSObject类，它是Foundation框架的一部分。Cocoa 或 Cocoa Touch程序中的所有对象最终都是继承自NSObject。该类是通过其他类关联OC运行时的主要入口点。它还定义了对象的基本接口以及实现了对象的基本行为，包括内省，内存管理以及方法调用。Cocoa 和 Cocoa Touch对象拥有对象的能力很大程度上源自根类。  
+
+![](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Art/root_class_2x.png)  
+
+	注意：Foundation 框架还定义了其他的根类 NSProxy，不过该类很少用在Cocoa程序中，基本不会用在Cocoa Touch程序中。
+
+根类NSObject遵循一项协议，同样名称为NSObject，这种设计有助于编程接口。协议指定了任何根类需要的基本编程接口。
 
 ### 预读文章
 Cocoa (Touch)
@@ -347,7 +355,7 @@ Cocoa (Touch)
 ### 详细讨论
 OC编程语言（Programming with Objective-C）
 ## 选择器（Selector）
-一个selector代表一个对象用来执行的方法名，或者是党源代码被编译时替换的唯一标识。一个selector本身并不做任何事。它仅仅标识了一个方法。selector方法名与一个字符串的唯一区别是编译器会确保该selector是唯一的。
+一个selector代表一个对象用来执行的方法名，或者是当源代码被编译时替换的唯一标识。一个selector本身并不做任何事。它仅仅标识了一个方法。selector方法名与一个字符串的唯一区别是编译器会确保该selector是唯一的。
 ### 获取选择器
 编译的selector是SEL类型的。通常有两种方式来获取一个selector：
 
