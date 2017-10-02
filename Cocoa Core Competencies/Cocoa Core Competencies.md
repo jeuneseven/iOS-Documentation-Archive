@@ -339,6 +339,13 @@ NSObject协议参考（NSObject Protocol Reference）
 
 ## 根类（Root class）
 
+### 预读文章
+Cocoa (Touch)
+### 相关文章
+内省（Introspection）
+内存管理（Memory management）
+### 详细讨论
+OC编程语言（Programming with Objective-C）
 ## 选择器（Selector）
 一个selector代表一个对象用来执行的方法名，或者是党源代码被编译时替换的唯一标识。一个selector本身并不做任何事。它仅仅标识了一个方法。selector方法名与一个字符串的唯一区别是编译器会确保该selector是唯一的。
 ### 获取选择器
