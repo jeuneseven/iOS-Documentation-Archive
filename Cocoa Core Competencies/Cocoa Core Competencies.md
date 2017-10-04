@@ -416,6 +416,6 @@ OC编程语言（Programming with Objective-C）
 ## 值对象（Value object）
 
 ### NSValue
-
+NSValue为一个C或者OC数据项提供了简单的封装。它支持任意的标准类型，比如char, int, float, 或 double，同样支持指针，结构体以及对象的ID类型。它还能让你给容器类添加数据项，比如NSArray 和 NSSet，不过这需要元素必须是对象。这在你需要将指针，size或者矩形结构体（比如NSPoint, CGSize, 或 NSRect）添加到一个集合类中时非常有用。
 ### 预读文章
 无
