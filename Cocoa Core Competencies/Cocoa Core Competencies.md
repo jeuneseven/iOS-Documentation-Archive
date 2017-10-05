@@ -414,6 +414,13 @@ OC编程语言（Programming with Objective-C）
 ### 示例代码项目
 无
 ## 值对象（Value object）
+值对象本质上是一个基本数据元素（例如字符串、数字或者日期）的面向对象的封装。在Cocoa中的常用类是NSString, NSDate, 和 NSNumber。值对象通常被认为是你创建的自定义的对象。  
+值对象比常用的简单基本类型（比如char, NSTimeInterval, int, float, 或 double）提供更为丰富的行为：  
+
+* 你可以将任意的值对象添加到集合中，比如NSArray 或 NSDictionary的实例。
+* 使用NSString以及它的子类NSMutableString，你可以进行多种不同的字符串相关的操作。比如，你可以拼接字符串，切分字符串，在文件路径当中进行使用，转换大小写，以及搜索子串等。在所有的这些使用中，字符串对象都是以Unicode编码进行使用的。
+* 使用NSDate，结合NSCalendar和其他相关的类，你可以进行复杂的日期计算，比如基于用户的日历确定两个时间点之间的月份或者天数，考虑时区和闰年的变量因素等。
+* 使用NSNumber的子类NSDecimalNumber，你可以进行基于货币的计算。
 
 ### NSValue
 NSValue为一个C或者OC数据项提供了简单的封装。它支持任意的标准类型，比如char, int, float, 或 double，同样支持指针，结构体以及对象的ID类型。它还能让你给容器类添加数据项，比如NSArray 和 NSSet，不过这需要元素必须是对象。这在你需要将指针，size或者矩形结构体（比如NSPoint, CGSize, 或 NSRect）添加到一个集合类中时非常有用。
