@@ -144,7 +144,7 @@ ImageMapExample
 ## 动态类型（Dynamic typing）
 
 ### isa指针
-
+每个对象都有一个isa实例变量，它标示了该对象的类。运行时根据该指针来判断对象的实际类。
 ### 预读文章
 无
 ### 相关文章
@@ -399,7 +399,7 @@ OC编程语言（Programming with Objective-C）
 ## 统一类型标识（Uniform Type Identifier）
 
 ### 统一类型标识使用了反向系统域名惯例
-
+
 ### 统一类型标识在一个一致性的层级当中被声明
 
 ### OS X应用通过定义添加了新的统一类型标识在app包当中
