@@ -142,7 +142,18 @@ ImageMapExample
 ### 详细讨论
 使用对象（Working with Objects）
 ## 动态类型（Dynamic typing）
+如果在编译时未检查变量所指向的对象的类型，则变量是动态类型的。OC使用id数据类型来表明该变量是一个没有指定类型的对象。这被称作动态类型。  
+动态类型与静态类型相对，系统在其中显式标识对象在编译时所属的类。静态类型会在编译时期严格校验数据的完整性，作为完整性的交换，动态类型给予了编程极大的灵活性。通过对象的内省（查询动态类型，匿名对象的类），你仍旧可以在运行时校验对象的类型，从而确定它是适合于某种操作的。  
+以下示例举例说明了使用多种不同动态类型的对象：  
 
+	NSArray *anArray = [NSArray arrayWithObjects:@"A string", [NSDecimalNumber zero], [NSDate date], nil];
+	NSInteger index;
+	for (index = 0; index < 3; index++) {
+	    id anObject = [anArray objectAtIndex:index];
+	    NSLog(@"Object at index %d is %@", index, [anObject description]);
+	}
+
+被变量指针指向的对象在运行时必须响应相应的你发送给它的消息；否则，你的程序将会抛出异常。方法调用的实际实现是使用动态绑定来判断。
 ### isa指针
 每个对象都有一个isa实例变量，它标示了该对象的类。运行时根据该指针来判断对象的实际类。
 ### 预读文章
