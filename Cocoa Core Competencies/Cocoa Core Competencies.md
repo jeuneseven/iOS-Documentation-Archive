@@ -12,7 +12,6 @@
 辅助功能编程指南 (Accessibility Programming Guide for iOS)
 ### 示例代码工程
 ImageMapExample
-
 ## 存取器方法（Accessor method）
 
 ### 命名规范
@@ -45,6 +44,13 @@ ImageMapExample
 
 ### 可加载的包
 
+### 预读文章
+消息（Message）
+### 相关文章
+属性列表（Property list）
+nib文件（Nib file）
+### 详细讨论
+关于包（About Bundles）
 ## 分类（Category）
 
 ### 声明
