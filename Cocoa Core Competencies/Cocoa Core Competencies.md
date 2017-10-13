@@ -49,6 +49,7 @@ ImageMapExample
 ![](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Art/bundle_2x.png)
 
 ### 访问包资源
+每个应用程序都有一个主包，它包含了应用程序的代码。当用户加载一个应用的时候，它会在主包当中找到代码和资源，然后将需要的立即加载到内存中。此后，应用程序就能够动态的（惰性的）从主包或者需要的次级包中加载代码和资源。  
 
 ### 可加载的包
 
