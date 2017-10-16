@@ -271,6 +271,13 @@ NSObject协议参考（NSObject Protocol Reference）
 
 ### 内存管理的各方面
 
+### 预读文章
+对象创建（Object creation）
+对象拷贝（Object copying）
+### 相关文章
+对象生命周期（Object life cycle）
+### 详细讨论
+高级内存管理编程指南（Advanced Memory Management Programming Guide）
 ## 消息（Message）
 
 ## 方法重写（Method overriding）
