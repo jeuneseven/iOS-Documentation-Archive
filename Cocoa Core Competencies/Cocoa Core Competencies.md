@@ -24,6 +24,12 @@ ImageMapExample
 
 ## app代码签名（Application Code Signing）
 
+### 预读文章
+无
+### 相关文章
+App ID
+### 详细讨论
+配置ID和团队的设置（Configuring Identity and Team Settings）
 ## Block对象（Block object）
 
 ### 声明一个Block
