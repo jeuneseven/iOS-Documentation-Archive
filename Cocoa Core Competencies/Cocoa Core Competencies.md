@@ -24,12 +24,6 @@ ImageMapExample
 
 ## app代码签名（Application Code Signing）
 
-### 预读文章
-无
-### 相关文章
-App ID
-### 详细讨论
-配置ID和团队的设置（Configuring Identity and Team Settings）
 ## Block对象（Block object）
 
 ### 声明一个Block
@@ -300,6 +294,14 @@ NSObject协议参考（NSObject Protocol Reference）
 
 ### 控制器类
 
+
+### 预读文章
+消息（Message）
+### 相关文章
+模型对象（Model object）
+控制器对象（Controller object）
+### 详细讨论
+模型-视图-控制器（Model-View-Controller）
 ## 多种初始化（Multiple initializers）
 
 ### 特定的初始化
