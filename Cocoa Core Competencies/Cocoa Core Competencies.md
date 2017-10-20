@@ -23,7 +23,14 @@ ImageMapExample
 ### 通配符App IDs对应多款App
 
 ## app代码签名（Application Code Signing）
+为应用程序签名能够让系统判断到底是谁给这个应用程序签名，并且能够在应用程序被签名后验证该应用程序没有被修改。签名在提交到App Store之前是必须做的一项工作（无论是iOS还是Mac的应用）。从App Store或者Mac App Store上下载的应用程序，OS X和iOS系统都会验证其签名，确保运行的应用程序不是使用的无效的签名。这让用户能够相信该应用程序是从Apple的资源处签名的，并且在签名之后没有被修改过。  
 
+![](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Art/application_code_signing_2x.png)  
+
+Xcode在构建期间使用你的数字ID来给你的应用程序签名。这个数字ID是由一对公私钥和一个证书组成。私钥使用加密函数生成签名。证书由Apple颁发；它包含了公钥并将您标识为密钥对的所有者。  
+为了能够给应用程序签名，你的数字ID的每个部分都必须是安装过了的。使用Xcode或者钥匙串访问来管理你的数字ID。根据你在你的开发团队中的角色，你在不同的场景下可能需要多个数字ID。举例来说，你在开发过程中使用的ID与你发布到App Store或者Mac App Store使用的ID是不同的。在OS X和iOS上使用的数字ID也是不同的。  
+一款应用程序的代码是被它的签名保护着的，因为一旦app包当中的可执行代码更改了，那么它的签名就失效了。  
+一款应用程序的签名是可以被移除的，并且应用程序是可以被其他的数字ID重签名的。比如Apple就会把App Store和Mac App Store上出售的app都重新签名。一个被充分测试过的开发环境的你的应用程序，也是能够被重新签名，然后提交到App Store或Mac App Store上的。因此，对签名的最好的解释是它并不是一款应用程序的证明，它其实是由签名人所做的一个变量标记。
 ### 预读文章
 无
 ### 相关文章
