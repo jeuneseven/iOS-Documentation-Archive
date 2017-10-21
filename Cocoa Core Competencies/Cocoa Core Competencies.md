@@ -16,6 +16,13 @@ ImageMapExample
 
 ### 命名规范
 
+### 预读文章
+键值编码（Key-value coding）
+### 相关文章
+内存管理（Memory management）
+声明属性（Declared property）
+### 详细讨论
+使用存取器方法来获取或设置属性的值 (Use Accessor Methods to Get or Set Property Values)
 ## App ID
 
 ### 一个显式的App ID对应一款App
