@@ -132,6 +132,13 @@ nib文件（Nib file）
 
 ### 实现
 
+### 预读文章
+无
+### 相关文章
+分类（Category）
+存取器方法(Accessor method)
+### 详细讨论
+定义类（Defining Classes）
 ## 类方法（Class method）
 
 ### 子类
