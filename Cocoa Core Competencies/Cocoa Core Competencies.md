@@ -147,6 +147,12 @@ nib文件（Nib file）
 
 ### self
 
+### 预读文章
+无
+### 相关文章
+存取器方法(Accessor method)
+### 详细讨论
+定义类（Defining Classes）
 ## Cocoa (Touch)
 
 ### 类库
