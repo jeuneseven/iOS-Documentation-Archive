@@ -159,6 +159,13 @@ nib文件（Nib file）
 
 ### 语言本身
 
+### 预读文章
+无
+### 相关文章
+根类(Root class)
+Objective-C
+### 详细讨论
+无
 ## 编码惯例（Coding conventions）
 
 ## 集合（Collection）
