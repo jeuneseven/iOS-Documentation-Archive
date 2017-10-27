@@ -168,6 +168,12 @@ Objective-C
 无
 ## 编码惯例（Coding conventions）
 
+### 预读文章
+无
+### 相关文章
+内存管理(Memory management)
+### 详细讨论
+Cocoa编码指南(Coding Guidelines for Cocoa)
 ## 集合（Collection）
 
 ### 集合类
