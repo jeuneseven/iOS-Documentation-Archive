@@ -180,6 +180,12 @@ Cocoa编码指南(Coding Guidelines for Cocoa)
 
 ### 排序方案
 
+### 预读文章
+无
+### 相关文章
+枚举(Enumeration)
+### 详细讨论
+集合编程主题(Collections Programming Topics)
 ## 控制器对象（Controller object）
 
 ### 协调控制
