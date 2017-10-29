@@ -194,6 +194,15 @@ Cocoa编码指南(Coding Guidelines for Cocoa)
 
 ### 媒体控制（OS X）
 
+### 预读文章
+模型-视图-控制器(Model-View-Controller)
+消息（Message）
+### 相关文章
+模型对象（Model object）
+代理（Delegation）
+通知（Notification）
+### 详细讨论
+模型-视图-控制器(Model-View-Controller)
 ## 声明属性（Declared property）
 
 ## 委托（Delegation）
