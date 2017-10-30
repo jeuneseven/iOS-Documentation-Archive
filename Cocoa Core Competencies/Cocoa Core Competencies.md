@@ -205,6 +205,12 @@ Cocoa编码指南(Coding Guidelines for Cocoa)
 模型-视图-控制器(Model-View-Controller)
 ## 声明属性（Declared property）
 
+### 预读文章
+存取方法(Accessor method)
+### 相关文章
+无
+### 详细讨论
+属性封装了一个对象的值(Properties Encapsulate an Object’s Values)
 ## 委托（Delegation）
 
 ### 委托和cocoa框架
