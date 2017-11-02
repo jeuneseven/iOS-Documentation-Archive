@@ -314,6 +314,12 @@ block对象（Block object）
 异常编程话题讨论（Exception Programming Topics）
 ## 类库（Framework）
 
+### 预读文章
+包(Bundle)
+### 相关文章
+无
+### 详细讨论
+类库编程指南（Framework Programming Guide）
 ## 信息属性列表（Information property list）
 
 ## 初始化（Initialization）
