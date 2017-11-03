@@ -322,6 +322,13 @@ block对象（Block object）
 类库编程指南（Framework Programming Guide）
 ## 信息属性列表（Information property list）
 
+### 预读文章
+属性列表(Property list)
+包(Bundle)
+### 相关文章
+无
+### 详细讨论
+信息属性列表key值参考（Information Property List Key Reference）
 ## 初始化（Initialization）
 
 ### 初始化声明的方式
