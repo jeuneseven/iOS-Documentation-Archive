@@ -335,6 +335,15 @@ block对象（Block object）
 
 ### 实现初始化函数
 
+### 预读文章
+对象的创建(Object creation)
+消息(Message)
+### 相关文章
+多种初始化(Multiple initializers)
+对象的拷贝(Object copying)
+内存管理(Memory management)
+### 详细讨论
+对象是动态创建的（Objects Are Created Dynamically）
 ## 国际化（Internationalization）
 
 ## 内省机制（Introspection）
