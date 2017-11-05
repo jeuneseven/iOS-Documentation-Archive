@@ -384,6 +384,13 @@ NSObject协议参考（NSObject Protocol Reference）
 
 ### 让一个类能够顺利使用KVC
 
+### 预读文章
+对象模型（Object modeling）
+存取器方法(Accessor method)
+### 相关文章
+声明属性（Declared property）
+### 详细讨论
+键值编码编程指南（Key-Value Coding Programming Guide）
 ## 键值监听（Key-value observing）
 
 ### 实现KVO
