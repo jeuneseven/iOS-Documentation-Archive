@@ -346,6 +346,14 @@ block对象（Block object）
 对象是动态创建的（Objects Are Created Dynamically）
 ## 国际化（Internationalization）
 
+### 预读文章
+Cocoa (Touch)
+### 相关文章
+nib文件(Nib file)
+对象的拷贝(Object copying)
+值对象(Value object)
+### 详细讨论
+国际化和本地化（Internationalization and Localization）
 ## 内省机制（Introspection）
 内省是指对象在运行时根据请求泄露其本质特征的内在能力。通过歌对象发送特定的逆袭，你可以询问对象有关它们作为对象本身的问题，OC运行时机制会给你提供答案。内省是编程时很重要的一个工具，因为它能够让你的程序更有效和健壮。以下是一些如何使用内省的示例：  
 
