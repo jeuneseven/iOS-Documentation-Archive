@@ -397,6 +397,16 @@ NSObject协议参考（NSObject Protocol Reference）
 
 ### KVO是绑定中不可分割的一部分（OS X）
 
+### 预读文章
+键值编码（Key-value coding）
+### 相关文章
+模型－视图－控制器（Model-View-Controller）
+动态绑定(Dynamic binding)
+### 详细讨论
+键值监听编程指南（Key-Value Observing Programming Guide）
+### 示例代码工程
+SourceView: Using NSOutlineView with NSTreeController
+BindingsJoystick
 ## 内存管理（Memory management）
 
 ### 内存管理规定
