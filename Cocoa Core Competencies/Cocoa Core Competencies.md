@@ -422,6 +422,14 @@ BindingsJoystick
 高级内存管理编程指南（Advanced Memory Management Programming Guide）
 ## 消息（Message）
 
+### 预读文章
+无
+### 相关文章
+Objective-C
+类的定义（Class definition）
+选择器（Selector）
+### 详细讨论
+对象发送和接收消息（Objects Send and Receive Messages）
 ## 方法重写（Method overriding）
 
 ## 模型对象（Model object）
