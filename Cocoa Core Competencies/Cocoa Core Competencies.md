@@ -432,6 +432,12 @@ Objective-C
 对象发送和接收消息（Objects Send and Receive Messages）
 ## 方法重写（Method overriding）
 
+### 预读文章
+无
+### 相关文章
+无
+### 详细讨论
+对象可以调用被其他父类实现的方法（Objects Can Call Methods Implemented by Their Superclasses）
 ## 模型对象（Model object）
 
 ### 一个设计良好的模型类
