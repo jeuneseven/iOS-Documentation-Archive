@@ -442,6 +442,15 @@ Objective-C
 
 ### 一个设计良好的模型类
 
+### 预读文章
+模型-视图-控制器(Model-View-Controller)
+类的定义(Class definition)
+### 相关文章
+编码惯例(Coding conventions)
+声明属性(Declared property)
+对象的拷贝(Object copying)
+### 详细讨论
+使用OC编程（Programming with Objective-C）
 ## 模型-视图-控制器（Model-View-Controller）
 
 ### 模型类
@@ -449,7 +458,6 @@ Objective-C
 ### 视图类
 
 ### 控制器类
-
 
 ### 预读文章
 消息（Message）
