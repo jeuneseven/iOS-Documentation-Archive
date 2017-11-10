@@ -470,6 +470,13 @@ Objective-C
 
 ### 特定的初始化
 
+### 预读文章
+对象的创建（Object creation)
+初始化(Initialization）
+### 相关文章
+声明属性（Declared property）
+### 详细讨论
+对象是动态创建的（Objects Are Created Dynamically）
 ## nib文件（Nib file）
 
 ## 通知（Notification）
