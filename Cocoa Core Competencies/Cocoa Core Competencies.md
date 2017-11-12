@@ -479,6 +479,14 @@ Objective-C
 对象是动态创建的（Objects Are Created Dynamically）
 ## nib文件（Nib file）
 
+### 预读文章
+对象的归档(Object archiving)
+对象之间的关系(Object graph)
+### 相关文章
+模型-视图-控制器（Model-View-Controller）
+故事版（Storyboard）
+### 详细讨论
+nib文件（Nib Files）
 ## 通知（Notification）
 
 ### 通知对象
