@@ -495,6 +495,17 @@ nib文件（Nib Files）
 
 ### 发送通知
 
+### 预读文章
+选择器(Selector)
+消息(Message)
+### 相关文章
+代理（Delegation）
+模型-视图-控制器（Model-View-Controller）
+单例（Singleton）
+### 详细讨论
+通知编程主题（Notification Programming Topics）
+### 示例代码工程
+HeadsUpUI
 ## 对象归档（Object archiving）
 
 ### key和连续归档
