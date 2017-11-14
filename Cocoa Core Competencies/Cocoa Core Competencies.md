@@ -512,6 +512,17 @@ HeadsUpUI
 
 ### 创建和解码key归档
 
+### 预读文章
+对象关系(Object graph)
+对象编码(Object encoding)
+### 相关文章
+模型对象(Model object)
+属性列表(Property list)
+对象声明周期(Object life cycle)
+### 详细讨论
+归档和序列化编程指南（Archives and Serializations Programming Guide）
+### 示例代码工程
+Lister (for watchOS, iOS, and OS X)
 ## 对象比较（Object comparison）
 
 ### 实现比较逻辑
