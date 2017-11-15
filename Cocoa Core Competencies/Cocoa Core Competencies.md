@@ -527,6 +527,12 @@ Lister (for watchOS, iOS, and OS X)
 
 ### 实现比较逻辑
 
+### 预读文章
+消息(Message)
+### 相关文章
+内省(Introspection)
+### 详细讨论
+无
 ## 对象拷贝（Object copying）
 
 ### 对象拷贝的前提条件
