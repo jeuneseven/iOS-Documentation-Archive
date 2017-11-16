@@ -539,6 +539,14 @@ Lister (for watchOS, iOS, and OS X)
 
 ### 内存管理的启示
 
+### 预读文章
+对象的创建(Object creation)
+协议(Protocol)
+### 相关文章
+内存管理(Memory management)
+对象的生命周期(Object life cycle)
+### 详细讨论
+NSCopying协议参考(NSCopying Protocol Reference)
 ## 对象创建（Object creation）
 
 ### 对象创建的格式
