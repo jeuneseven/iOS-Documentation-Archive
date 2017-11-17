@@ -569,6 +569,17 @@ NSCopying协议参考(NSCopying Protocol Reference)
 
 ### key的相对连续归档
 
+### 预读文章
+类的定义(Class definition)
+协议(Protocol)
+### 相关文章
+对象的归档（Object archiving）
+属性列表（Property list）
+对象生命周期（Object life cycle）
+### 详细讨论
+对象的编码解码(Encoding and Decoding Objects)
+### 示例代码工程
+Reducer
 ## 对象关系（Object graph）
 
 ## 对象生命周期（Object life cycle）
