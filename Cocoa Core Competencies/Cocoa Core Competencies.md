@@ -555,6 +555,14 @@ NSCopying协议参考(NSCopying Protocol Reference)
 
 ### 工厂方法
 
+### 预读文章
+消息(Message)
+### 相关文章
+初始化（Initialization）
+内存管理（Memory management）
+对象生命周期（Object life cycle）
+### 详细讨论
+使用对象(Working with Objects)
 ## 对象编码（Object encoding）
 
 ### 如何编解码一个对象
