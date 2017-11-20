@@ -589,6 +589,15 @@ Reducer
 nib文件（Nib file） 
 ## 对象生命周期（Object life cycle）
 
+### 预读文章
+对象的创建（Object creation）
+对象的归档（Object archiving）
+### 相关文章
+内存管理（Memory management）
+nib文件（Nib file）
+对象的编码（Object encoding）
+### 详细讨论
+使用对象（Working with Objects）
 ## 对象建模（Object modeling）
 
 ## 对象的可变性（Object mutability）
