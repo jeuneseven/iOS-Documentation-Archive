@@ -600,6 +600,10 @@ nib文件（Nib file）
 使用对象（Working with Objects）
 ## 对象建模（Object modeling）
 
+### 预读文章
+无
+### 相关文章
+模型-视图-控制器(Model-View-Controller)
 ## 对象的可变性（Object mutability）
 
 ### 接收可变对象
