@@ -610,6 +610,14 @@ nib文件（Nib file）
 
 ### 存储可变对象
 
+### 预读文章
+类的定义（Class definition）
+消息（Message）
+### 相关文章
+内省（Introspection）
+声明属性（Declared property）
+### 详细讨论
+对象的可变性（Object Mutability）
 ## 对象所有权（Object ownership）
 
 ## Objective-C
