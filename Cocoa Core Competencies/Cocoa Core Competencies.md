@@ -453,7 +453,7 @@ Objective-C
 使用OC编程（Programming with Objective-C）
 ## 模型-视图-控制器（Model-View-Controller）
 模型－视图－控制器（MVC）设计模式为一个应用当中的对象赋予了三种角色：模型，视图或者控制器。设计模式不仅定义了对象在应用程序当中扮演的角色，也定义了对象与其它对象进行交互的方式。这三种类型的对象的每一种都被一个抽象的边界与其它两种分隔开，并且通过这个边界与其它类型的对象进行交互。在一个应用当中的一个特定的MVC类型的对象的集合有时候被称作一个层——举例来说，模型层。  
-对于Cocoa应用程序而言，MVC是非常重要的一种设计模式。  
+对于Cocoa应用程序而言，MVC是非常重要的一种设计模式。采用这套设计模式的收益是显而易见的。在应用中的很多对象都能够被更好的复用，并且它们的接口也会被更好的定义。使用MVC模式设计的应用程序也会比其他的应用程序更容易扩展。此外，很多cocoa的技术和架构都是基于MVC的，并且它需要你的自定义对象能够扮演一个MVC当中的角色。    
 ![](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Art/model_view_controller_2x.png)
 ### 模型类
 
@@ -620,6 +620,14 @@ nib文件（Nib file）
 对象的可变性（Object Mutability）
 ## 对象所有权（Object ownership）
 
+### 预读文章
+无
+### 相关文章
+无
+### 详细讨论
+通过关系和责任管理对象的关系（Manage the Object Graph through Ownership and Responsibility）
+### 示例代码工程
+无
 ## Objective-C
 
 ### 预读文章
