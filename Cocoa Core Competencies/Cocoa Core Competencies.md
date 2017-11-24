@@ -644,6 +644,16 @@ OC编程语言（Programming with Objective-C）
 
 ### 属性列表序列化
 
+### 预读文章
+对象关系（Object graph）
+容器类（Collection）
+### 相关文章
+对象的归档（Object archiving）
+对象的可变性（Object mutability）
+### 详细讨论
+属性列表编程指南（Property List Programming Guide）
+### 示例代码工程
+People
 ## 协议（Protocol）
 
 ### 形式与非形式的协议
