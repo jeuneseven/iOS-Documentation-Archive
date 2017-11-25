@@ -662,6 +662,16 @@ People
 
 ### 创建你自己的协议
 
+### 预读文章
+Objective-C
+### 相关文章
+分类（Category）
+代理（Delegation）
+内省（Introspection）
+### 详细讨论
+使用协议（Working with Protocols）
+### 示例代码工程
+LocateMe
 ## 根类（Root class）
 根类不从任何类继承，它定义了继承链中其他所有对象的基本行为。所有继承链中的对象最终都是继承自根类。根类通常用做一个基类。  
 OC当中的根类是NSObject类，它是Foundation框架的一部分。Cocoa 或 Cocoa Touch程序中的所有对象最终都是继承自NSObject。该类是通过其他类关联OC运行时的主要入口点。它还定义了对象的基本接口以及实现了对象的基本行为，包括内省，内存管理以及方法调用。Cocoa 和 Cocoa Touch对象拥有对象的能力很大程度上源自根类。  
