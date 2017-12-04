@@ -1,1 +1,17 @@
-[View Controller Programming Guide for iOS 原文链接](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/index.html#//apple_ref/doc/uid/TP40007457)
+[View Controller Programming Guide for iOS 原文链接](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/index.html#//apple_ref/doc/uid/TP40007457)。
+
+# 概览
+
+# 视图控制器的定义
+
+## 定义你的子类
+
+## 实现一个容器视图控制器
+
+## 支持辅助功能
+
+## 保存和恢复状态
+
+# 展示和转换
+
+# 自适应性和大小的变化
