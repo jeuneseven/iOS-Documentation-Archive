@@ -1,8 +1,18 @@
-[View Controller Programming Guide for iOS 原文链接](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/index.html#//apple_ref/doc/uid/TP40007457)。
+[View Controller Programming Guide for iOS 原文链接](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/index.html#//apple_ref/doc/uid/TP40007457)
 
 # 概览
 
 ## 视图控制器所扮演的角色
+
+### 视图的管理
+
+### 数据的封装
+
+### 用户的交互
+
+### 资源的管理
+
+### 自适应性
 
 ## 视图控制器的层级结构
 
