@@ -1,9 +1,9 @@
 [View Controller Programming Guide for iOS 原文链接](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/index.html#//apple_ref/doc/uid/TP40007457)
 
 # 概览
-
 ## 视图控制器所扮演的角色
-
+视图控制器是你的应用程序内部架构的基础。每个应用程序都至少含有一个视图控制器，大部分应用程序都有很多个。每个应用程序都会管理着一份你的应用程序的用户界面以及该用户界面与底层数据的交互。视图控制器同样也会改善不同的视图界面之间转换的过渡。  
+由于它在你的应用程序当中扮演着如此重要的角色，视图控制器几乎会成为你做任何事的中心。
 ### 视图的管理
 
 ### 数据的封装
