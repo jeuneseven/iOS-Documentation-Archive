@@ -11,6 +11,13 @@
 
 大部分应用程序是这两种类型视图控制器的混合体。
 ### 视图的管理
+一个视图控制器的最重要的角色是管理视图的层级。每个视图控制器都拥有一个根视图，它将所有的视图控制器的内容都封装进去。通过这个根视图，你可以添加你需要展示的视图内容。图1-1展示了视图控制器和它的视图之间的内部关系。视图控制器将一直持有根视图，并且每个视图对于它的子视图都是强引用。  
+
+图1-1 视图控制器和它的视图之间的关系  
+
+![](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_ControllerHierarchy_fig_1-1_2x.png)
+
+	注意：
 
 ### 数据的封装
 
