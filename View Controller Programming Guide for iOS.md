@@ -17,7 +17,7 @@
 
 ![](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_ControllerHierarchy_fig_1-1_2x.png)
 
-	注意：
+	注意：通常使用outlets来访问在你的视图控制器层级当中的其它视图。由于一个视图控制器管理着所有它的视图的内容，outlets能够让你持有你需要的视图的引用。outlets本身在视图被从故事版加载的时候自动连接到了实际的视图对象。
 
 ### 数据的封装
 
