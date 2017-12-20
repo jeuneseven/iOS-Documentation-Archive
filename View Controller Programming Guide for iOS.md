@@ -17,7 +17,15 @@
 
 ![](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_ControllerHierarchy_fig_1-1_2x.png)
 
-	注意：通常使用outlets来访问在你的视图控制器层级当中的其它视图。由于一个视图控制器管理着所有它的视图的内容，outlets能够让你持有你需要的视图的引用。outlets本身在视图被从故事版加载的时候自动连接到了实际的视图对象。
+	注意：通常使用outlets来访问在你的视图控制器层级当中的其它视图。由于一个视图控制器管理着所有它的视图的内容，outlets能够让你持有你需要的视图的引用。outlets本身在视图被从故事版加载的时候自动连接到了实际的视图对象。  
+
+内容类的视图控制器通过它本身来管理所有的视图。容器类的视图控制器管理它本身的视图以及一个或多个子视图的根视图。容器类本身不会管理它的子视图的内容。它仅仅管理根视图，尺寸并根据容器的设计来布局。图1-2展示了一个split视图控制器以及它的子视图之间的关系。split视图控制器管理了它的子视图的总体尺寸和位置，但是子视图控制器管理了这些视图的实际内容。
+
+图1-2 视图控制器能够管理其它视图控制器的内容
+
+![](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_ContainerViewController_fig_1-2_2x.png)  
+
+更多关于管理你的视图控制器视图的相关信息，参见“管理视图布局”。
 
 ### 数据的封装
 
