@@ -28,6 +28,11 @@
 更多关于管理你的视图控制器视图的相关信息，参见“管理视图布局”。
 
 ### 数据的封装
+一个视图控制器在它管理的视图和你的应用程序的数据之间起到了一个调度的作用。UIViewController类的方法和属性能够让你管理你的应用程序的可视化部分。当你继承UIViewController类的时候，你可以添加任何你需要管理你的数据的变量到你的子类当中。添加一个自定义的变量回创建一个类似于图1-3当中的关系，当视图控制器持有你的数据，视图将会用它来展示那个数据。将数据从两者之间进行传递是你的责任。  
+
+图1-3 一个视图控制器在数据对象和视图对象之间进行调度
+
+![](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_CustomSubclasses_fig_1-3_2x.png)
 
 ### 用户的交互
 
