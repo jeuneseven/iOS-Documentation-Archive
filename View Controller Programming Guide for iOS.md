@@ -62,6 +62,11 @@ UIDocument对象是一种能够让数据与你的视图控制器分离的管理�
 UIWindow对象的rootViewController属性可以用来让根视图控制器访问。当你使用故事版来配置你的视图控制器的时候，UIKit会在启动的时候自动的设置这个属性的值。对于代码创建的窗口而言，你必须自己设置根视图控制器。
 ### 容器视图控制器
 
+
+图2-2 容器扮演根视图控制器的角色  
+![](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG-container-acting-as-root-view-controller_2-2_2x.png)
+
+由于容器视图控制器管理着它的子类，UIKit为如何在自定义容器中设置这些子类定义了规则。关于如何创建一个自定义容器视图控制器的详细信息，参见“实现一个容器视图控制器”。
 ### 展现视图控制器
 
 ## 设计指南
