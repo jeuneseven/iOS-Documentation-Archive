@@ -69,6 +69,12 @@ UIWindow对象的rootViewController属性可以用来让根视图控制器访问
 由于容器视图控制器管理着它的子类，UIKit为如何在自定义容器中设置这些子类定义了规则。关于如何创建一个自定义容器视图控制器的详细信息，参见“实现一个容器视图控制器”。
 ### 展现视图控制器
 
+图2-3 展现视图控制器
+![](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG-presented-view-controllers_2-3_2x.png)
+
+图2-4 一个容器和一个展现的视图控制器
+![](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG-container-and-presented-view-controller_2-4_2x.png)
+
 ## 设计指南
 
 ### 尽量使用系统支持的视图控制器
