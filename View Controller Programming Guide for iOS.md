@@ -69,13 +69,18 @@ UIWindow对象的rootViewController属性可以用来让根视图控制器访问
 
 由于容器视图控制器管理着它的子类，UIKit为如何在自定义容器中设置这些子类定义了规则。关于如何创建一个自定义容器视图控制器的详细信息，参见“实现一个容器视图控制器”。
 ### 展现视图控制器
+展现一个视图控制器会用它的新的内容取代当前视图控制器的内容，通常会隐藏之前视图控制器的内容。展示的形式通常用于展现新内容模式。举例来说，你可能会展示一个视图控制器来收集用户的输入。你还可以使用它来作为你的应用程序界面的一个通用的构建模块。  
+当你展现一个视图控制器的时候，UIKit会在展现的的视图控制器和被展现的视图控制器之间建立关系，如图2-3所示。(这在从被展现的视图控制器返回展现的视图控制器之间是一对相反的关系。)这种关系是组成视图控制器层级关系的一部分，同样也是在运行时定位其他视图控制器的一种方式。  
 
 图2-3 展现视图控制器
-![](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG-presented-view-controllers_2-3_2x.png)
+![](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG-presented-view-controllers_2-3_2x.png)  
+
+当有容器类视图控制器参与的时候，UIKit可能会修改展示链来简化你必须编写的代码。
 
 图2-4 一个容器和一个展现的视图控制器
-![](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG-container-and-presented-view-controller_2-4_2x.png)
+![](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG-container-and-presented-view-controller_2-4_2x.png)  
 
+更多关于展现的相关信息，参见“展现和转换过程”部分。
 ## 设计指南
 
 ### 尽量使用系统支持的视图控制器
