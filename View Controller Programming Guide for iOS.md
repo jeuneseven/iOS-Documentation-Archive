@@ -99,6 +99,9 @@ UIWindow对象的rootViewController属性可以用来让根视图控制器访问
 
 ### 定义你的UI
 
+图4-1 故事版处理一批视图控制器和视图
+![](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/storyboard_bird_sightings_2x.png)
+
 ### 处理用户的交互
 
 ### 在运行时展示你的视图
