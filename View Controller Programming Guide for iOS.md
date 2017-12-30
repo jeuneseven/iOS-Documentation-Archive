@@ -75,14 +75,15 @@ UIWindow对象的rootViewController属性可以用来让根视图控制器访问
 图2-3 展现视图控制器
 ![](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG-presented-view-controllers_2-3_2x.png)  
 
-当有容器类视图控制器参与的时候，UIKit可能会修改展示链来简化你必须编写的代码。
+当有容器类视图控制器参与的时候，UIKit可能会修改展示链来简化你必须编写的代码。不同的展现样式会有不同的规则来决定它们如何被展示在屏幕上——举例来说，全屏的展现通常会覆盖整个屏幕。当你展现一个视图控制器的时候，UIKit会找到一个提供合适上下文的视图控制器用来展现。在大多数情况下，UIKit会选择最近的容器视图控制器，不过也可能会选择窗口的根视图控制器。在某些情况下，你还能够告诉UIKit哪个视图控制器定义了展现的上下文，并且它应该处理展现的逻辑。  
+图2-4展示了为什么容器通常会为展现提供上下文。当执行全屏幕展现的时候，新的视图控制器需要覆盖整个屏幕。容器决定是否处理展现逻辑，子视图无需知道它的容器的边界。由于示例中的导航控制器涵盖整个屏幕, 因此它充当呈现视图控制器并负责初始化展现逻辑。
 
 图2-4 一个容器和一个展现的视图控制器
 ![](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG-container-and-presented-view-controller_2-4_2x.png)  
 
 更多关于展现的相关信息，参见“展现和转换过程”部分。
 ## 设计指南
-
+视图控制器作为应用程序运行在iOS上的基本工具，UIKit对于视图控制器的基本架构使得创建复杂界面极为简单，而无需编写大量的代码。当实现你自己的视图控制器的时候，请采取以下的建议和指南以确保您不执行可能干扰系统所期望的自然行为的操作。
 ### 尽量使用系统支持的视图控制器
 
 ### 尽量使每个视图控制器孤立
