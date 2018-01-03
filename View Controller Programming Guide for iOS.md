@@ -89,9 +89,9 @@ UIWindow对象的rootViewController属性可以用来让根视图控制器访问
 大部分系统的视图控制器都是为特定任务设计的。某些视图控制器提供访问用户的数据功能，比如通讯录。还有的视图控制器会提供访问硬件的功能，或者提供对于媒体管理进行相关调试的界面。比如UIKit当中的UIImagePickerController类展示了一个标准界面来拍摄照片和视频，并且可以用它来访问用户的相机胶卷。  
 在你创建你自定义的视图控制器之前，最好先查看一下已有的框架当中是否存在你要执行的任务的相关视图控制器。  
 
-* UIKit
-* GameKit
-* Address Book UI
+* UIKit框架提供了视图控制器来展示警告框，拍摄视频和照片以及管理在iCloud上的文件。UIKit同样定义了很多容器视图控制器，你可以用来管理你的内容。
+* GameKit提供了视图控制器来匹配玩家和管理排行榜，成就榜以及其它游戏相关的功能。
+* Address Book UI（地址簿）
 * MediaPlayer
 * EventKit UI
 * GLKit
