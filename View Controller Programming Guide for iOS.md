@@ -91,15 +91,15 @@ UIWindow对象的rootViewController属性可以用来让根视图控制器访问
 
 * UIKit框架提供了视图控制器来展示警告框，拍摄视频和照片以及管理在iCloud上的文件。UIKit同样定义了很多容器视图控制器，你可以用来管理你的内容。
 * GameKit提供了视图控制器来匹配玩家和管理排行榜，成就榜以及其它游戏相关的功能。
-* Address Book UI（地址簿）
-* MediaPlayer
-* EventKit UI
-* GLKit
-* Multipeer Connectivity
-* Message UI
-* PassKit
-* Social
-* AVFoundation
+* Address Book UI（地址簿）框架提供了视图控制器来展示和选择通讯录相关信息。
+* MediaPlayer（媒体）框架提供了视图控制器来播放和管理视频，还可以通过它来选择用户相册中的媒体数据。
+* EventKit UI（日历）框架提供了视图控制器来展示和编辑用户的日历数据。
+* GLKit框架提供了视图控制器来管理OpenGL渲染层。
+* Multipeer Connectivity（多点连接）框架提供了视图控制器来检测其它用户的状态，并邀请连接。
+* Message UI（消息）框架提供了视图控制器来编写邮件和短信息。
+* PassKit框架提供了视图控制器展示护照和添加护照到护照本当中。
+* Social框架提供了视图控制器来为twitter，Facebook和其它的社交媒体的发布信息进行排版。
+* AVFoundation框架提供了视图控制器来展示媒体数据。
 	
 > 重要  
 > 永远不要修改系统提供的视图控制器的视图层级。每个视图控制器都有它自己的视图层级，并且它会负责维护该层级的完整性。进行更改可能会将 bug 引入到代码中, 或阻止拥有视图控制器正常运行。在使用系统提供的视图控制器的时候，你应当一直依赖使用视图控制器提供的公共方法和属性来进行修改。
