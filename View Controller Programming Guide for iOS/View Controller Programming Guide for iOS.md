@@ -153,6 +153,28 @@ UIWindow对象的rootViewController属性可以用来让根视图控制器访问
 * 视图控制器会监听由系统或其他对象发出的通知。通知会报告状态的变化，这是视图控制器更新状态的一种时机。
 * 视图控制器会担当其他对象的数据源或者代理。视图控制器通常被用来管理列表和表单视图的数据。你还可以使用它来作为一个对象（例如 CLLocationManager 对象）的代理，后者会发送地理位置的更新数据给它的代理。  
 
+响应事件通常包含更新视图的内容，这需要关联这些视图。你的视图控制器是定义你稍后要修改的视图的绝佳位置。使用清单4-1当中的语句来声明你的outlets作为属性。清单中的自定义类定义了两个outlets（被称作IBOutlet关键字）以及一个动作方法（被称作IBAction返回类型）。outlets存储在故事版当中，关联到了一个按钮和一个输入框，动作方法会响应按钮的点击。  
+
+清单4-1 在视图控制器类中定义outlets和actions  
+
+> OBJECTIVE-C  
+> @interface MyViewController : UIViewController  
+> @property (weak, nonatomic) IBOutlet UIButton *myButton;  
+> @property (weak, nonatomic) IBOutlet UITextField *myTextField;
+> 
+> -(IBAction)myButtonAction:(id)sender;
+ 
+> @end  
+
+> SWIFT  
+> class MyViewController: UIViewController {  
+>    @IBOutlet weak var myButton : UIButton!  
+>    @IBOutlet weak var myTextField : UITextField!  
+>      
+>    @IBAction func myButtonAction(sender: id)  
+> }
+
+在你的故事版当中，记住要连接你的视图控制器的outlets 和 actions到相应的视图上。连接故事版中的outlets 和 actions能够确保它们在视图被加载的时候能够被正确的配置。关于如何在视图构建工具中创建outlets 和 actions的相关信息，参见“视图构建工具连接帮助指南”。关于如何处理你的应用程序中的事件的相关信息，参见“iOS事件处理指南”。
 
 ### 在运行时展示你的视图
 
