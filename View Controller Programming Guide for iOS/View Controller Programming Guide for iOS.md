@@ -187,7 +187,7 @@ UIWindow对象的rootViewController属性可以用来让根视图控制器访问
 ### 设计一个自定义的容器视图控制器
 
 #### 示例：导航控制器
-
+![](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_structure-of-navigation-interface_5-1_2x.png)
 #### 示例：分栏视图控制器
 
 ### 在IB中配置一个容器
