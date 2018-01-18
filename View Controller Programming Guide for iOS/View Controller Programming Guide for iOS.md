@@ -261,7 +261,13 @@ UIWindow对象的rootViewController属性可以用来让根视图控制器访问
 ![](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG-split-view-inerface_5-2_2x.png)
 
 ### 在IB中配置一个容器
+在设计时创建一个父子关系的容器，需要将一个容器视图对象添加到你的故事版场景中，如图5-3所示。一个容器视图对象是一个占位符对象，它代表了一个子视图控制器的内容。使用该视图可以调整和定位子级的根视图, 使其与容器中的其他视图相对应。  
 
+图5-3 添加一个容器视图到界面编辑器当中  
+![](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/container_view_embed_2x.png)
+
+当你加载的视图控制器拥有一个或多个容器视图的时候，界面编辑器同样会加载与这些视图相关的子视图控制器。子视图控制器必须与父视图同一时间被初始化，以便在创建的时候就能够形成相应的父子关系。  
+如果你不使用界面编辑器来设置你的父子容器关系的话，你必须通过代码的方式添加每个子控制器到你的容器视图控制器当中来创建这种关系，这在“添加一个子视图控制器到你的内容中”中有相关描述。
 ### 实现一个自定义的容器视图控制器
 
 #### 添加一个子视图控制器到你的内容中
