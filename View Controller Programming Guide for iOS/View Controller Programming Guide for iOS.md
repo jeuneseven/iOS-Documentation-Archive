@@ -290,8 +290,23 @@ UIWindow对象的rootViewController属性可以用来让根视图控制器访问
 
 在这个例子当中，要注意，你只调用了子视图控制器的didMoveToParentViewController: 方法。这是因为addChildViewController: 方法为你调用了子视图控制器的willMoveToParentViewController: 方法。你必须要手动调用didMoveToParentViewController: 方法的原因是在你将子视图控制器的视图嵌入到你的容器视图层级之后，你就没有机会再调用该方法了。  
 当使用自动布局的时候，要在讲子视图添加到容器视图层级之后设置容器视图和子视图之间的约束。你的约束应该只影响子视图控制器的根视图的大小和位置。不要改变根视图的内容或者任何子视图层级当中的其它视图。
-
 #### 移除一个子视图控制器
+要想将一个子视图控制器从你的容器当中移除，要通过以下几点来解除视图控制器之间的父子关系：  
+
+* 调用子视图控制器的 willMoveToParentViewController: 方法，将值设置为nil。
+* 移除你为子视图控制器配置的相关约束。
+* 从你的视图层级当中移除子视图控制的根视图。
+* 调用子视图控制器的 removeFromParentViewController 方法，这将终止父子关系。
+
+移除一个子视图控制器将永久的隔断父子视图控制器之间的关系。你应该在不再需要一个子视图控制器的时机再移除它。举例来说，一个导航视图控制器不应当在当前的子视图控制器被创建并压入栈中的时候移除它。而仅应当在它移出栈的时候移除它。  
+清单5-2为你展示了如何从容器当中移除一个子视图控制器。调用willMoveToParentViewController: 方法并设置为nil给了子视图控制器机会来响应准备被移除的过程。removeFromParentViewController方法同样会调用调用子视图控制器的didMoveToParentViewController: 方法，并传递给该方法nil值。设置父视图控制器为nil，最终从你的容器中解除了子视图控制器。  
+
+清单5-2 从容器中移除子视图控制器  
+> -(void) hideContentController: (UIViewController*) content {  
+  		[content willMoveToParentViewController:nil];  
+	   [content.view removeFromSuperview];  
+	   [content removeFromParentViewController];  
+>  }
 
 #### 子视图控制器之间的转换
 
