@@ -271,6 +271,25 @@ UIWindow对象的rootViewController属性可以用来让根视图控制器访问
 ### 实现一个自定义的容器视图控制器
 要实现一个容器视图控制器，你必须在你的视图控制器和它的子视图控制器之间建立联系。在你试图管理任何子视图控制器的视图之前你就应该建立这种父子关系。这样做能够让UIKit知道你的视图控制器在管理着子视图控制器的位置和大小。你可以通过界面编辑器或者编码的方式来创建这种关系，当你通过编码的方式创建父子关系的时候，你应当将显式的添加和移除视图控制器作为你的视图控制器设置的一部分。
 #### 添加一个子视图控制器到你的内容中
+如果要通过编码的方式包含一个子视图控制器到你的内容当中，需要在相关的视图控制器之间通过以下方式创建父子关系：  
+
+* 调用容器视图控制器的 addChildViewController: 方法。该方法会告诉UIKit你的容器视图控制器现在已经接管了子视图控制器的视图。
+* 添加子视图控制器的根视图到你的容器视图层级当中。永远要记得在这个过程中要设置子视图的大小和位置。
+* 为子视图控制器的根视图添加约束来管理大小和位置。
+* 调用子视图控制器的 didMoveToParentViewController: 方法。
+
+清单5-1展示了一个容器如何将一个子视图控制器嵌入的过程。在创建了父子关系之后，一个容器要设置子视图的尺寸，并将子视图添加到它自己的视图层级当中。设置子视图的尺寸是非常重要的，这将确保视图能够在容器当中正确的展示出来。在添加视图之后，容器调用子视图的didMoveToParentViewController: 方法，来让子视图控制器有机会在它自己的视图当中来对视图进行调整。  
+
+清单5-1 添加一个子视图控制器到容器中  
+> -(void) displayContentController: (UIViewController*) content {  
+	   [self addChildViewController:content];  
+	   content.view.frame = [self frameForContentController];  
+	   [self.view addSubview:self.currentClientView];  
+	   [content didMoveToParentViewController:self];  
+> }  
+
+在这个例子当中，要注意，你只调用了子视图控制器的didMoveToParentViewController: 方法。这是因为addChildViewController: 方法为你调用了子视图控制器的willMoveToParentViewController: 方法。你必须要手动调用didMoveToParentViewController: 方法的原因是在你将子视图控制器的视图嵌入到你的容器视图层级之后，你就没有机会再调用该方法了。  
+当使用自动布局的时候，要在讲子视图添加到容器视图层级之后设置容器视图和子视图之间的约束。你的约束应该只影响子视图控制器的根视图的大小和位置。不要改变根视图的内容或者任何子视图层级当中的其它视图。
 
 #### 移除一个子视图控制器
 
