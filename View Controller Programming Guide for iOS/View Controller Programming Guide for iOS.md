@@ -309,6 +309,38 @@ UIWindow对象的rootViewController属性可以用来让根视图控制器访问
 >  }
 
 #### 子视图控制器之间的转换
+当你想要以动画的方式用一个子视图控制器替换另一个的话，要在转场动画过程中包括添加和移除子视图控制器两个操作。在动画开始之前，要确保两个子视图控制器都是你的容器视图控制器内容的一部分，但要让当前的子视图控制器知道它要被移除掉了。在动画过程中，将新的子视图控制器的视图移动到相应的位置，将旧的子视图控制器的视图移开。在动画完成后，要完成子视图控制器的移除操作。  
+清单5-3 展示了如何使用动画的方式来将两个子视图控制器进行替换的示例。在这个例子当中，新的视图控制器被以动画的方式移动到已经存在的子视图控制器的矩形区域，后者将被移出屏幕。在动画完成后，在完成代码块中从容器中移除了子视图控制器。在这个例子当中，transitionFromViewController:toViewController:duration:options:animations:completion: 方法自动更新了容器的视图层级，所以你无需添加和删除视图。  
+
+清单5-3 两个子视图控制器之间的转换  
+	
+		- (void)cycleFromViewController: (UIViewController*) oldVC
+               toViewController: (UIViewController*) newVC {
+	   // Prepare the two view controllers for the change.
+	   [oldVC willMoveToParentViewController:nil];
+	   [self addChildViewController:newVC];
+ 		
+	   // Get the start frame of the new view controller and the end frame
+	   // for the old view controller. Both rectangles are offscreen.
+	   newVC.view.frame = [self newViewStartFrame];
+	   CGRect endFrame = [self oldViewEndFrame];
+ 
+	   // Queue up the transition animation.
+	   [self transitionFromViewController: oldVC toViewController: newVC
+        duration: 0.25 options:0
+        animations:^{
+            // Animate the views to their final positions.
+            newVC.view.frame = oldVC.view.frame;
+            oldVC.view.frame = endFrame;
+        }
+        completion:^(BOOL finished) {
+           // Remove the old view controller and send the final
+           // notification to the new view controller.
+           [oldVC removeFromParentViewController];
+           [newVC didMoveToParentViewController:self];
+        }];
+	}
+
 
 #### 为子视图控制器管理显示更新
 
