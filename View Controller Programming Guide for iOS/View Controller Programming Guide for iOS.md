@@ -342,6 +342,34 @@ UIWindow对象的rootViewController属性可以用来让根视图控制器访问
 	}
 
 #### 为子视图控制器管理显示更新
+在添加一个子控制器到容器中后，容器会自动的向前发送显示相关的信息给子控制器。这通常是符合你想要的行为，因为这确保了所有的事件都被适当的发送。然而，有些时候的默认行为的的发送顺序可能不太符合你的容器所需。举例来说，如果多个子控制器同时改变它们视图的状态，你可能需要合并这些改变以便显示的回调以一种更符合逻辑的顺序在同一时间发生。  
+为处理显示的回调，在你的容器中重写shouldAutomaticallyForwardAppearanceMethods 方法并且返回NO，就像清单5-4那样。返回NO会让UIKit知道你的容器视图控制器通知它的子控制器的显示变更了。  
+
+清单5-4 禁止向前自动显示  
+
+		- (BOOL) shouldAutomaticallyForwardAppearanceMethods {
+		    return NO;
+		}
+
+当显示的转换发生的时候，视情况调用子控制器的方法 beginAppearanceTransition:animated: 或 endAppearanceTransition 方法。举例来说，如果你的容器只有一个子控制器，它被child属性所持有，你的容器应当向前发送这些消息给你的子控制器，见清单5-5所展示的。  
+
+清单5-5 当容器出现或消失的时候，向前发送展示的信息  
+
+		-(void) viewWillAppear:(BOOL)animated {
+		    [self.child beginAppearanceTransition: YES animated: animated];
+		}
+ 
+		-(void) viewDidAppear:(BOOL)animated {
+		    [self.child endAppearanceTransition];
+		}
+		 
+		-(void) viewWillDisappear:(BOOL)animated {
+		    [self.child beginAppearanceTransition: NO animated: animated];
+		}
+ 
+		-(void) viewDidDisappear:(BOOL)animated {
+		    [self.child endAppearanceTransition];
+		}
 
 ### 构建一个容器视图控制器的一些建议
 设计，开发和测试一个新的容器视图控制器会花费很多时间。尽管单一的视图控制器的行为很简单，但控制器如果作为一个整体的话，会很复杂。请在设计实现你自己的容器类的时候考虑以下建议：  
