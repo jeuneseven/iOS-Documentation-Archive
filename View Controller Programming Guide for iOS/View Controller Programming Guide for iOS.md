@@ -441,7 +441,32 @@ UIKit会使用你的恢复ID来在随后重新创建视图控制器，所以你�
 
 将一个恢复ID赋值给一个视图会告诉UIKit它应当将该视图的状态保存归档。当视图控制器被随后恢复的时候，UIKit同样会恢复那些拥有恢复ID的视图的状态。
 ### 在启动时恢复一个视图控制器
+在启动时，UIKit会视图恢复你的应用程序之前的状态。在这个时候，UIKit会要求你的应用程序创建（或定位）包含你之前保存的用户界面的视图控制器对象。当UIKit视图定位视图控制器的时候，它将以以下顺序进行检索：  
 
+1. 如果视图控制器拥有恢复类的话，UIKit要求该类提供视图控制器。UIKit会调用相关恢复类的 viewControllerWithRestorationIdentifierPath:coder: 方法来检索视图控制器。如果该方法返回nil，那么UIKit会假定应用程序不想重新创建该视图控制器然后停止查找。
+2. 如果视图控制器没有恢复类，UIKit要求应用程序的代理提供视图控制器。UIKit会调用应用程序代理类的 application:viewControllerWithRestorationIdentifierPath:coder: 方法来查找一个没有恢复类的视图控制器。若该方法返回nil，UIKit会隐式的对视图控制器进行查找。
+3. 如果一个视图控制器拥有正确的恢复路径，UIKit会使用该对象。如果你的应用程序在启动时创建了视图控制器（不管是编码方式还是从一个故事版加载的）那么这些视图控制器都拥有恢复ID，UIKit会隐式的基于恢复路径对它们进行检索。
+4. 如果视图控制器最初是由一个故事版文件加载的，UIKit会使用保存的故事版的相关信息来定位和创建视图控制器。UIKit会将视图控制器的故事版的相关信息保存到恢复归档当中。在恢复期间，UIKit会使用该信息来定位到相同的故事版文件然后实例化相关的视图控制器（若该视图控制器没有被其它手段查找到的话）。
+
+将一个恢复类赋值给一个视图控制器会阻止UIKit隐式的检索该视图控制器。使用恢复类会在你真的要创建一个视图控制器的时候给你更多的控制权。举例来说，如果你的类决定该控制器不应该被重新创建，那么你的viewControllerWithRestorationIdentifierPath:coder: 方法可以返回nil。当没有恢复类被展示的时候，UIKit会尽可能的寻找或创建视图控制器并保存它。  
+当使用恢复类的时候，你的viewControllerWithRestorationIdentifierPath:coder: 方法应当创建一个该类的实例对象，执行最小化的初始化，然后将处理后的对象返回。清单7-1展示了如何从一个故事版当中使用该方法来加载视图控制器的示例。由于视图控制器最初是从故事版加载的，该方法使用UIStateRestorationViewControllerStoryboardKey 为key来从归档当中回去故事版。要注意该方法并没有视图配置视图控制器的相关数据。当视图控制器的状态被解码之后才会发生该步骤。  
+
+清单7-1 在恢复期间创建一个新的视图控制器  
+
+		+ (UIViewController*) viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents
+                      coder:(NSCoder *)coder {
+	   MyViewController* vc;
+	   UIStoryboard* sb = [coder decodeObjectForKey:UIStateRestorationViewControllerStoryboardKey];
+	   if (sb) {
+	      vc = (PushViewController*)[sb 	instantiateViewControllerWithIdentifier:@"MyViewController"];
+	      vc.restorationIdentifier = [identifierComponents lastObject];
+	      vc.restorationClass = [MyViewController class];
+	   }
+	    return vc;
+	}
+
+当手动重新创建一个视图控制器的时候，重新赋值恢复ID和恢复类是一个应当养成的好习惯。还原恢复ID最简单的方法是从identifierComponents数组中获取最后一个元素然后将其赋值给你的视图控制器。  
+对于启动时从你的应用程序主故事版中创建的对象而言，不要为每个对象创建新的实例对象。应该让UIKit隐式的查找这些对象或者使用你的应用程序的代理的 application:viewControllerWithRestorationIdentifierPath:coder: 方法来找到这些已经存在的对象。
 ### 编解码你的视图控制器的状态
 
 ### 一些保存和存储你的视图控制器的建议
