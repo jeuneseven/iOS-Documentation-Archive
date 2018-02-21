@@ -269,7 +269,15 @@ UIKit为每个视图使用 opaque 属性来决定该视图是否能够被进行�
 ### 更改窗口的等级
 每个UIWindow对象都有一个可配置的 windowLevel 属性，它决定了窗口相对于其他相关窗口的位置。大部分情况下，你都不需要改变应用程序的窗口的等级。新的窗口会在创建的时候自动被赋值为标准窗口等级。标准窗口等级表示该窗口展示的是应用程序相关的内容。更高窗口等级为需要悬浮于应用程序内容之上的信息所保留，比如系统的状态栏或警告信息。虽然你可以将这些等级的窗口自己赋值，但系统通常在你使用特定的界面的时候已经为你做了这些事。比如，当你展示或隐藏状态栏或展示一个警告视图的时候，系统会自动的根据需要创建窗口来展示这些内容。
 ## 监控窗口的变更
+若你想要监控你的应用程序内的窗口的显示和消失，你可以使用以下几个窗口相关的通知做到这一点：  
 
+* UIWindowDidBecomeVisibleNotification
+* UIWindowDidBecomeHiddenNotification
+* UIWindowDidBecomeKeyNotification
+* UIWindowDidResignKeyNotification
+
+这些通知将在你的应用程序的窗口的代码发生改变的时候被发送。因此，当你的应用程序展示或隐藏一个窗口，UIWindowDidBecomeVisibleNotification 和 UIWindowDidBecomeHiddenNotification通知将会相应地被发送。当你的应用程序移到后台执行状态时，这些通知不会被发送。尽管你的窗口在应用程序运行在后台时未显示在屏幕上，但相对于你的应用程序上下文而言，它仍被认为是可见的。  
+UIWindowDidBecomeKeyNotification 和 UIWindowDidResignKeyNotification 通知会帮助你的应用程序跟踪哪个窗口是关键窗口——意思是当前的哪个窗口在接收键盘事件以及其他的非触摸相关的事件。尽管当触摸发生的时候触摸事件将会被发送到窗口，但没有相关坐标值的事件将会被发送给你的应用程序的关键窗口。一次只能有一个关键窗口。
 ## 在外部设备展示内容
 
 ### 处理屏幕的连接和断开连接的通知
