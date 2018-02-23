@@ -298,7 +298,7 @@ UIWindowDidBecomeKeyNotification 和 UIWindowDidResignKeyNotification 通知会�
 # 视图
 
 ## 创建和配置视图对象
-
+你可以使用编码或界面编辑器的方式来创建视图作为自包含的对象，然后将其整合进视图结构来进行使用。
 ### 使用界面编辑器来创建视图对象
 
 ### 编码创建视图对象
