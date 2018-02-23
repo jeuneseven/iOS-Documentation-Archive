@@ -325,7 +325,21 @@ UIWindowDidBecomeKeyNotification 和 UIWindowDidResignKeyNotification 通知会�
 
 在你创建一个视图之后，你必须在其可见之前将其添加到一个窗口中（或者其他窗口中的视图）。更多如何添加视图到你的视图层级中的相关信息，参见“添加和移除子视图”。
 ### 设定一个视图的属性
+UIView 类有很多声明的属性来控制视图的显示和行为。这些属性用来控制视图的大小和位置，透明度，背景色以及渲染行为。所有这些属性都有适当的默认值，你可以在随后根据需要进行修改。你还可以从界面编辑器中使用检查窗口来配置更多的属性。  
+列表3-1列出了一些比较常用的属性（以及方法）并描述了它的使用。相关的属性都列在一起以便你能够看到如果你想改变视图的某个方面的行为时你能够有哪些选项。  
 
+列表3-1 一些关键视图属性的使用  
+
+属性  | 使用
+------------- | -------------
+alpha, hidden, opaque  | 这些属性影响一个视图的透明度。alpha 和 hidden属性直接改变视图的透明度。opaque属性告诉系统它是否该合成你的视图。若你的视图的内容完全不透明并将该属性设置为YES，那么将不会暴露任何该视图下的内容。设置该属性为YES能够通过消除不必要的合成操作来提高性能。
+bounds, frame, center, transform  | 这些属性影响着视图的尺寸和位置。center 和 frame属性代表视图相对于其父视图的位置。frame还包括了视图的尺寸。bounds属性定义了视图在其自己的坐标系统中的可见区域。transform属性用在以比较复杂的方式动画或移动整个视图。比如，你可以使用一个transform来旋转或放大一个视图。若当前的transform与transform不一致，那么应当忽略frame属性，因为它是未定义的。更多关于bounds, frame, 和 center属性之间的关系的相关信息，参见“bounds, frame, 和 center属性之间的关系”。更多关于transforms如何影响一个视图的相关信息，参见“坐标系统的转换”。
+autoresizingMask, autoresizesSubviews  | 这些属性影响着视图和其子视图的自动调整尺寸的行为。autoresizingMask属性控制着一个视图如何在其父视图的边界内响应变化。autoresizesSubviews属性控制着当前视图的子视图是否应该调整大小。
+contentMode, contentStretch, contentScaleFactor | 这些属性影响着视图中的内容的渲染行为。contentMode 和 contentStretch属性决定了在视图的宽或高改变的时候，它的内容会被怎样处理。contentScaleFactor属性只在当你需要定制高分辨率屏幕上的视图的绘制行为时才有用。更多关于内容模式如何影响你的视图的相关信息，参见“内容模式”。更多关于内容拉伸矩形区域的相关信息，参见“可拉伸的视图”。更多关于如何处理放大因素的相关信息，参见“iOS绘制和打印指南”一文的“在视图中支持高分辨率屏幕”一章。
+gestureRecognizers, userInteractionEnabled, multipleTouchEnabled, exclusiveTouch | 这些属性影响着你的视图如何处理触摸事件。gestureRecognizers属性包含了依附于视图的手势。其他属性控制了视图支持的触摸事件。更多关于如何在你的视图中响应事件的相关信息，参见“iOS事件处理指南”。
+backgroundColor, subviews, drawRect: 方法, layer, (layerClass 方法) | 这些属性和方法帮你管理视图的实际内容。对于简单视图来说，你可以设置其背景色，添加一个或多个子视图。subviews属性包含一组只读的子视图，不过有很多方法来添加和重排子视图。对于自定义绘制行为的视图而言，你必须重写 drawRect: 方法。对于更高级的内容而言，你可以直接操作视图的核心动画层layer。若要指定视图的整个layer层的不同类型，你必须重写layerClass方法。
+
+更多关于所有视图的通用基本属性，参见“UIView类参考文档”。更多关于一个视图的特定属性的相关信息，参见该视图的参考文档。
 ### 为视图设置将来要使用的标签
 
 ## 创建和管理视图层级
