@@ -316,7 +316,14 @@ UIWindowDidBecomeKeyNotification 和 UIWindowDidResignKeyNotification 通知会�
 ### 使用界面编辑器来创建视图对象
 
 ### 编码创建视图对象
+若你比较偏向于使用代码的方式创建视图，你可以使用标准的“alloc／init设计模式”来做到这一点。视图的默认的初始化方法是 initWithFrame: 方法，它设置了视图相对于（将要确定的）其父视图的大小和位置的初始值。比如，若你想要创建一个通用的UIView对象，你可以使用类似于以下的代码：  
 
+	CGRect  viewRect = CGRectMake(0, 0, 100, 100);
+	UIView* myView = [[UIView alloc] initWithFrame:viewRect];
+
+> 注意：尽管所有的视图都支持 initWithFrame: 方法，某些视图还是有推荐的“初始化方法”能够让你替代使用。更多关于如何自定义初始化方法的相关信息，参见相关类的相关文档。
+
+在你创建一个视图之后，你必须在其可见之前将其添加到一个窗口中（或者其他窗口中的视图）。更多如何添加视图到你的视图层级中的相关信息，参见“添加和移除子视图”。
 ### 设定一个视图的属性
 
 ### 为视图设置将来要使用的标签
