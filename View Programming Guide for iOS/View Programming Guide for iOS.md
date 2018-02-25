@@ -353,7 +353,53 @@ UIView类包含了一个tag属性，你可以使用一个整形值来标记一�
 
 在iOS应用程序中有几种方法来构建视图层级，包括在界面编辑器中显示的编辑和使用代码编程。以下章节为你展示了如何构建你的视图层级以及在构建之后如何在视图层级中查找视图和在不同的视图坐标系统之间转换。
 ### 添加和移除子视图
+在构建视图结构的时候，界面编辑器是一种非常方便的方式，因为它能够让你直观的排列你的视图，知晓视图之间的关系以及能够知道在运行时这些视图是如何展现的。当使用界面编辑器的时候，最终的视图结构是保存在一个nib文件中的，它将在运行时根据需要加载相应的视图。  
+若你更倾向于使用代码的方式创建视图，你可以使用以下的方法来创建和初始化以及排序：  
 
+* 若要添加一个视子视图到其父视图上，调用父视图的 addSubview: 方法。该方法会将子视图添加到父视图的子视图列表的末尾。
+* 若要将一个子视图插入到其父视图的子视图列表当中的中间位置，调用父视图的insertSubview:...方法。将一个子视图插入到列表的一个可视化位置，该视图会在列表中任何将要显示的视图之后。
+* 若要重排父视图的子视图的顺序，调用父视图的 bringSubviewToFront:, sendSubviewToBack:, 或 exchangeSubviewAtIndex:withSubviewAtIndex: 等方法。使用这些方法比将视图移除或重新插入视图要快得多。
+* 若要将一个子视图从其父视图移除，调用子视图（而非父视图）的 removeFromSuperview 方法。
+
+当将一个子视图添加到其父视图上时，子视图当前的frame矩形区域表示它在父视图中的初始化位置。在父视图外部的子视图的区域默认是不会被剪切掉的。如果你想要剪切掉父视图区域之外的子视图的内容，你必须设置父视图的 clipsToBounds 属性为YES。  
+你可以在视图控制器的 loadView 或 viewDidLoad 方法中添加一个视图到视图层级中。若你使用代码的方式构建你的视图，你可以将创建视图的代码放置在视图控制器的loadView方法中。不论你是用代码还是用界面编辑器的方法加载视图，你都可以将视图的配置相关的额外代码放在viewDidLoad方法中。  
+清单3-1展示了“UIKit Catalog (iOS): Creating and Customizing UIKit Controls”示例工程的TransitionsViewController类的viewDidLoad方法。TransitionsViewController类管理着相关的两个视图之间的转场动画。应用程序的初始化视图层级（由一个根视图和一个工具栏组成）是从一个nib文件中加载的。viewDidLoad方法中的代码随后创建了容器视图和图片视图用来管理转场。容器视图的目的是为了简化实现两个图片视图之间转场动画的代码。容器视图本身没有实际的内容。  
+
+清单3-1 添加视图到一个已经存在的视图层级中  
+
+	- (void)viewDidLoad
+	{
+	    [super viewDidLoad];
+	 
+	    self.title = NSLocalizedString(@"TransitionsTitle", @"");
+	 
+	    // create the container view which we will use for transition animation (centered horizontally)
+	    CGRect frame = CGRectMake(round((self.view.bounds.size.width - kImageWidth) / 2.0),
+	                                                        kTopPlacement, kImageWidth, kImageHeight);
+	    self.containerView = [[[UIView alloc] initWithFrame:frame] autorelease];
+	    [self.view addSubview:self.containerView];
+	 
+	    // The container view can represent the images for accessibility.
+	    [self.containerView setIsAccessibilityElement:YES];
+	    [self.containerView setAccessibilityLabel:NSLocalizedString(@"ImagesTitle", @"")];
+	 
+	    // create the initial image view
+	    frame = CGRectMake(0.0, 0.0, kImageWidth, kImageHeight);
+	    self.mainView = [[[UIImageView alloc] initWithFrame:frame] autorelease];
+	    self.mainView.image = [UIImage imageNamed:@"scene1.jpg"];
+	    [self.containerView addSubview:self.mainView];
+	 
+	    // create the alternate image view (to transition between)
+	    CGRect imageFrame = CGRectMake(0.0, 0.0, kImageWidth, kImageHeight);
+	    self.flipToView = [[[UIImageView alloc] initWithFrame:imageFrame] autorelease];
+	    self.flipToView.image = [UIImage imageNamed:@"scene2.jpg"];
+	}
+
+> 重要：父视图自动持有它们的子视图，所有将一个子视图嵌入到一个父视图之后释放它是安全的。事实上，我们推荐你这么做，因为它避免了你一次性持有过多视图而导致的应用程序内存泄漏。不过要记住，若你将一个子视图从其父视图中移除然后打算重用的话，你必须再次持有该子视图。removeFromSuperview方法在将一个视图从其父视图上移除之前会自动的释放该视图。若你在下一个事件循环之前没有持有视图的话，视图将会被释放。  
+> 更多关于Cocoa内存管理惯例的相关信息，参见“高级内存管理编程指南”。
+
+当你将一个视图添加到另一个视图时，UIKit会同时通知父视图和子视图事件的变更。若你实现自定义视图的话，你可以通过重写一个或多个 willMoveToSuperview:, willMoveToWindow:, willRemoveSubview:, didAddSubview:, didMoveToSuperview, 或 didMoveToWindow 方法来截获这些通知。捏可以通过这些通知来更新任何域你的视图层级相关的状态信息或执行一些额外的工作。  
+在创建一个视图层级之后，你可以通过使用视图的 superview 和 subviews 属性来操纵它。每个视图所包含的window 属性包含了视图当前展示（若有的话）的窗口。由于一个视图层级的根视图没有父视图，它的superview属性被设置为nil。对于当前屏幕上的视图，窗口对象时视图层级的根视图。
 ### 隐藏视图
 
 ### 在视图层级中定位视图
