@@ -431,7 +431,22 @@ UIView的 transform属性包含了一个能够转换的 CGAffineTransform 结构
 当应用多个转换到一个视图上时，要注意你添加到CGAffineTransform结构上的转换的顺序。旋转视图然后转换于先转换然后旋转它是不一样的。即使这两种情况下的旋转和转换的数量是一样的，转换的顺序影响着最终的结果。此外，任何你添加并应用到视图上的转换都与视图的中心点相关。因此，应用一个旋转因素来旋转视图是围绕其中心点旋转。放大一个视图会改变视图的宽高，但不会改变其中心点。  
 更多关于创建和使用转换的相关信息，参见“Quartz 2D编程指南”中的“转换”一章。
 ### 在视图层级中转换坐标
+在很多情况下，尤其是处理事件时，应用程序都会需要从一个坐标系转换坐标到另一个。比如，触摸事件会通知窗口触摸在窗口中的位置，但是视图对象通常需要知道它在视图坐标系统中的位置信息。UIView 类定义了以下方法来从视图的坐标系统中转入或转出坐标值。  
+	convertPoint:fromView:  
+	convertRect:fromView:  
+	convertPoint:toView:  
+	convertRect:toView:  
+convert...:fromView:方法会从其他的视图坐标系统中转换坐标到当前视图的坐标系统中（矩形边界内）。相反的，convert...:toView:会从当前视图坐标系统（矩形边界内）转换坐标到指定视图的坐标系统中。若你在这些方法中的视图引用处传nil，转换会存在于包含视图的窗口的坐标系统与视图之间。  
+除了UIView的转换方法，UIWindow 类也定义了一些转换方法。这些方法与UIView的版本相似，不过它们是在窗口的坐标系统之间进行转换的。  
+convertPoint:fromWindow:  
+convertRect:fromWindow:  
+convertPoint:toWindow:  
+convertRect:toWindow:  
+在旋转视图中转换坐标时, UIKit 将在假定返回的矩形要反映源矩形所覆盖的屏幕区域的假设下转换矩形。图3-3展示了在转换期间旋转是如何引起矩形大小变换的一个例子。图中外部的父视图包含了一个旋转的子视图。从子视图的坐标系统转换一个矩形到父视图的坐标系统会产生一个较大区域的矩形区域。这个较大的矩形实际上是 outerView 边界中的最小矩形, 它完全包围了旋转的矩形。  
 
+图3-3 在一个旋转的视图中转换坐标  
+
+![](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/Art/uiview_convert_rotated.jpg)
 ## 在运行时调整视图的大小和位置
 
 ### 为布局的变更做好准备
