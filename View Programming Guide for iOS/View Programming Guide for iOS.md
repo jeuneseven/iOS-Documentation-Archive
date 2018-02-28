@@ -448,7 +448,7 @@ convertRect:toWindow:
 
 ![](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/Art/uiview_convert_rotated.jpg)
 ## 在运行时调整视图的大小和位置
-
+无论何时视图的尺寸变更了，它的子视图的位置和尺寸都必须随着变更。UIView 类支持在一个视图层级中自动和手动布局视图。若通过自动布局，你需要为每个视图设置规则以适应其父视图的尺寸变更，然后就无需再进行尺寸变更的调整操作了。若通过手动布局，你要根据需要对视图的位置和尺寸进行手动调整。  
 ### 为布局的变更做好准备
 
 ### 使用自动布局的规则来自动的处理布局的变更
