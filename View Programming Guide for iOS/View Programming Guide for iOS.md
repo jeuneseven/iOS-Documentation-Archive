@@ -445,6 +445,16 @@ UIView类包含了一个tag属性，你可以使用一个整形值来标记一�
 ### 响应事件
 
 ### 为你的视图进行清理
+若你的视图类分配了任何内存，存储了任何自定义对象的引用或持有了在视图被释放的时候必须被释放的资源，那你必须实现 dealloc 方法。系统会在你的视图的引用计数达到0并在释放你的视图的时机调用 dealloc 方法。实现该方法时，你应当释放任何被视图持有的对象或资源然后调用父类的实现，就像清单3-5一样。你不应当使用该方法执行任何其他类型的任务。  
+清单3-5 实现 dealloc 方法  
+
+	- (void)dealloc {
+    	// Release a retained UIColor object
+	    [color release];
+ 
+   		 // Call the inherited implementation
+	    [super dealloc];
+	}
 
 # 动画
 
