@@ -533,7 +533,25 @@ convertRect:toWindow:
 > 注意：若你使用 OpenGL ES 来绘制，你应当使用 GLKView 类，而不是通过继承UIView类。更多使用 OpenGL ES绘制的相关信息，参见“OpenGL ES编程指南”。
 
 ### 实现一个自定义视图的检查表
+自定义视图所要做的工作是展现其内容并管理该内容的交互。成功实现一个自定义视图不止包括绘制和处理事件。以下检查表包括了很多在实现自定义视图时你能够重写（或你能够提供的行为）的重要的方法。  
 
+* 为你的视图定义合适的初始化方法：  
+	* 对于你想要通过代码创建的视图，重写 initWithFrame:方法或定义一个自定义的初始化方法。
+	* 对于你想要从nib文件中加载的视图，重写 initWithCoder: 方法。使用该方法来初始化你的视图然后将其放入已知状态。
+* 实现dealloc方法来处理自定义数据的清理工作。
+* 要处理任何自定义绘制相关内容，重写 drawRect: 方法，在此编写绘制代码。
+* 为视图的 autoresizingMask 属性进行设置，定义其自动调整尺寸的行为。
+* 若你的视图类管理着一个或多个整块的子视图，需要做以下事情：
+	* 在你的视图初始化期间创建这些子视图。
+	* 创建时为每个子视图设置 autoresizingMask 属性。
+	* 若你的子视图需要自定义布局，重写 layoutSubviews 方法，在此实现布局代码。
+* 若要处理触摸相关事件，需要做以下事情：
+	* 通过使用 addGestureRecognizer: 方法来为视图添加任何适合的手势。
+	* 对于你想要自行处理触摸事件的情况，重写 touchesBegan:withEvent:, touchesMoved:withEvent:, touchesEnded:withEvent:, 和 touchesCancelled:withEvent: 等方法。（不论你重写了哪个相关的触摸事件方法，你都要重写 touchesCancelled:withEvent: 方法。）
+* 若你想打印出来的视图与屏幕上的版本看上去不一样的话，你要实现 drawRect:forViewPrintFormatter: 方法。对于如何支持视图的打印功能的详细信息，参见“iOS绘制和打印指南”。
+
+除了重写方法之外，记住视图本身还有很多已经存在的属性和方法。比如 contentMode 和 contentStretch属性能够让你改变视图最终渲染的样子，这也许比你自己重新绘制更好。除了 UIView 类本身，视图底层的CALayer还有很多方面让你能够直接或间接的配置视图。你甚至可以改变layer对象的类。  
+更多关于视图类的属性和方法的相关信息，参见“UIView类参考”。
 ### 初始化你的自定义视图
 
 ### 实现你的绘制代码
