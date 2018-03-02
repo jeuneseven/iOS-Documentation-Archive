@@ -494,7 +494,39 @@ convertRect:toWindow:
 每个视图都会在初始化的过程中调用它的layerClass方法，使用它所返回的类来创建layer对象。此外，视图通常会将其本身作为它的layer对象的代理对象。在这一点上，视图拥有它的layer并且视图与layer之间的关系不能改变。你不能够将相同的视图赋值给其他的layer对象作为其代理对象。改变视图的拥有关系或代理关系可能会引起绘图相关的问题，也可能会造成你的应用程序的潜在的崩溃。
 更多关于核心动画层所提供的不同类型的layer对象的相关信息，参见“核心动画文档集合”。
 ### 在一个视图中嵌入层级对象
+若你更倾向于操作layer对象而非视图的话，你可以根据需要将自定义的layer对象包含进你的视图层级中。一个自定义的layer对象是CALayer类的实例对象，它不被视图所拥有。通常使用编码的方式创建自定义的layer并使用核心动画层来嵌入它们。自定义layer对象不接收事件，并且不参与响应链条，但它会绘制其本身以及响应父视图的尺寸变更或根据核心动画层的规则的变更。  
+清单3-2展示了一个视图控制器的viewDidLoad方法的例子，在其中创建了一个自定义的layer对象，并将其添加到根视图上。layer被用来展示一个动画展示过的静态图。你应当将layer添加到视图的底层layer上，而非添加到视图上。  
 
+清单3-2 添加一个自定义layer到视图上  
+
+	- (void)viewDidLoad {
+	    [super viewDidLoad];
+	 
+	    // Create the layer.
+	    CALayer* myLayer = [[CALayer alloc] init];
+	 
+	    // Set the contents of the layer to a fixed image. And set
+	    // the size of the layer to match the image size.
+	    UIImage layerContents = [[UIImage imageNamed:@"myImage"] retain];
+	    CGSize imageSize = layerContents.size;
+	 
+	    myLayer.bounds = CGRectMake(0, 0, imageSize.width, imageSize.height);
+	    myLayer = layerContents.CGImage;
+	 
+	    // Add the layer to the view.
+	    CALayer*    viewLayer = self.view.layer;
+	    [viewLayer addSublayer:myLayer];
+	 
+	    // Center the layer in the view.
+	    CGRect        viewBounds = backingView.bounds;
+	    myLayer.position = CGPointMake(CGRectGetMidX(viewBounds), CGRectGetMidY(viewBounds));
+	 
+	    // Release the layer, since it is retained by the view's layer
+	    [myLayer release];
+	}
+
+你可以根据需要添加任意数量的子layer并将其整合到子layer层级中。不过，在某一时刻，这些layer必须依附于视图的layer对象。  
+更多关于如何直接操作layer的相关信息，参见“核心动画编程指南”。
 ## 声明一个自定义视图
 若标准的系统视图不能够提供你所需要的，你可以定义一个自定义视图。自定义视图会给予你对于应用程序内容展现的完全控制权，与内容之间的交互也由你控制。  
 
