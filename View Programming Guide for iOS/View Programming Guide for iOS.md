@@ -553,7 +553,22 @@ convertRect:toWindow:
 除了重写方法之外，记住视图本身还有很多已经存在的属性和方法。比如 contentMode 和 contentStretch属性能够让你改变视图最终渲染的样子，这也许比你自己重新绘制更好。除了 UIView 类本身，视图底层的CALayer还有很多方面让你能够直接或间接的配置视图。你甚至可以改变layer对象的类。  
 更多关于视图类的属性和方法的相关信息，参见“UIView类参考”。
 ### 初始化你的自定义视图
+每个你定义的新的视图对象都应该包含一个自定义的initWithFrame:初始化方法。该方法负责在类创建的时候初始化并将视图对象置于已知状态。当用代码创建视图的时候，你可以使用该方法来创建视图的实例对象。  
+清单3-3展示了一个实现initWithFrame:方法的标准框架。该方法会先调用父类的实现，然后在返回初始化后的对象之前进行类的实例变量和状态信息的初始化。习惯上会先调用父类的实现，如果有问题的话，你可以终止执行你的初始化代码然后返回nil。  
 
+清单3-3 初始化一个视图的子类  
+
+	- (id)initWithFrame:(CGRect)aRect {
+	    self = [super initWithFrame:aRect];
+	    if (self) {
+	          // setup the initial properties of the view
+	          ...
+	       }
+	    return self;
+	}
+
+若你打算通过一个nib文件来加载自定义视图的实例对象，你应该知道在iOS当中，通过nib文件加载的代码不会使用initWithFrame:方法来初始化新的视图对象。它使用的是 initWithCoder: 方法，该方法是NSCoding协议的一部分。  
+即使你的视图遵守了NSCoding协议，界面编辑器也不知道你的视图的自定义属性，所以不会将这些属性编码到nib文件中。所以你的initWithCoder: 方法必须执行初始化的代码使视图处于已知状态。你还可以在你的视图中实现 awakeFromNib 方法，用它来执行额外的初始化。
 ### 实现你的绘制代码
 
 ### 响应事件
