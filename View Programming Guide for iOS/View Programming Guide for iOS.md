@@ -570,7 +570,31 @@ convertRect:toWindow:
 若你打算通过一个nib文件来加载自定义视图的实例对象，你应该知道在iOS当中，通过nib文件加载的代码不会使用initWithFrame:方法来初始化新的视图对象。它使用的是 initWithCoder: 方法，该方法是NSCoding协议的一部分。  
 即使你的视图遵守了NSCoding协议，界面编辑器也不知道你的视图的自定义属性，所以不会将这些属性编码到nib文件中。所以你的initWithCoder: 方法必须执行初始化的代码使视图处于已知状态。你还可以在你的视图中实现 awakeFromNib 方法，用它来执行额外的初始化。
 ### 实现你的绘制代码
+对于需要自定义绘制的视图你需要重写 drawRect: 方法，将绘制代码写在这里。自定义绘制是最不推荐的一种做法。通常推荐使用其它类型的视图来展示内容。  
+实现 drawRect: 方法应当只做一件事：绘制你的内容。该方法不应用来更新应用程序的数据结构或执行其它与绘制无关的任务。它应当配置绘制环境，绘制视图内容，然后尽快退出。若你的 drawRect: 方法可能被频繁调用的话，你应当尽可能优化你的绘制代码并在该方法每次被调用的时候尽可能少的绘制内容。  
+在调用你的视图的 drawRect: 方法之前，UIKit会为你的视图配置基本的绘图环境。尤其是它创建了一个绘图的上下文环境，然后将它的坐标系统进行裁剪调整以匹配视图的可见区域的坐标系统。因此，当你的 drawRect:方法被调用的时候，你可以使用现成的类似UIKit 和 Core Graphics等技术来开始绘制你的内容。你可以使用 UIGraphicsGetCurrentContext 函数来获取一个指向当前绘制内容的指针。  
 
+> 重要：当前绘制上下文仅当 drawRect: 方法被调用期间才有效。UIKit可能会为每个随后的调用该方法的过程创建不同的绘制上下文，所以你不应该去试图缓存对象并在随后使用它。
+
+清单3-4 展示了一个drawRect: 方法的实现示例，它为一个视图绘制了一个10像素宽的红色边框。因为UIKit为它低层的实现绘制操作使用了Core Graphics，你可以结合绘制的调用，就像展示的这样，来得到你所要的结果。  
+
+清单3-4 绘制方法  
+
+	- (void)drawRect:(CGRect)rect {
+	    CGContextRef context = UIGraphicsGetCurrentContext();
+	    CGRect    myFrame = self.bounds;
+	 
+	    // Set the line width to 10 and inset the rectangle by
+	    // 5 pixels on all sides to compensate for the wider line.
+	    CGContextSetLineWidth(context, 10);
+	    CGRectInset(myFrame, 5, 5);
+	 
+	    [[UIColor redColor] set];
+	    UIRectFrame(myFrame);
+	}
+
+若你知道你的视图的绘制代码一直会以不透明的方式覆盖视图的整个区域的话，你可以通过设置你的视图的 opaque 属性为YES来提高性能。当你标记一个视图为不透明时，UIKit会立刻停止绘制处于你的视图背后的视图。不过，你应当仅在知道你的视图内容为不透明时才将此属性设置为YES。若你的视图不能保证它的内容始终为不透明的话，你应当设置该属性为NO。  
+另一个提高绘制性能的方法（尤其是在滚动期间）是设置你的视图的 clearsContextBeforeDrawing 属性为NO。当该属性被设置为YES时，UIKIt 会在你的 drawRect: 方法调用之前使用透明黑色的方法来更新区域来自动填充。设置该属性为NO为该填充操作降低了开销，但会使应用程序来负担填满传递给您的 drawRect: 的更新矩形带有内容的方法。
 ### 响应事件
 
 ### 为你的视图进行清理
