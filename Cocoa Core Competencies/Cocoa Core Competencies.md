@@ -1,7 +1,6 @@
 [Cocoa Core Competencies 原文链接](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore)
 
 # Cocoa 核心能力（Cocoa Core Competencies）
-
 ## 辅助功能（Accessibility）
 
 ### 使用VoiceOver
@@ -13,9 +12,21 @@
 ### 示例代码工程
 ImageMapExample
 ## 存取器方法（Accessor method）
+存取器方法是一个实例方法，它能够对一个对象的属性的值进行获取或设置。在Cocoa的术语中，一个检索对象的属性的值的方法被称作“getter”方法；一个改变对象的属性的值的方法被称作“setter”方法。这些方法通常成对出现，为获取或设置一个对象的属性的值来提供API。  
+你应该使用存取器方法而非直接访问状态数据，因为存取器方法提供了一个抽象层。以下是两点存取器提供的功能：  
 
 ### 命名规范
+由于这种模式非常重要，Cocoa为命名存取器方法定义了一些命名规则。给定一个属性以类型（type）和名称（name），你应当以以下格式实现存取器：
 
+	- (type)name;
+	- (void)setName:(type)newName;
+
+一种例外的情况是该属性是一个布尔值。比如拿一个属性名为isName的getter方法举例：
+
+	- (BOOL)isHidden;
+	- (void)setHidden:(BOOL)newHidden;
+	
+这种命名规则非常重要，因为其他的Cocoa功能会依赖于它，尤其是KVC（键值编码）。Cocoa不会使用getName，因为Cocoa中以“get”开头的方法表示该方法会以引用的方式返回值。
 ### 预读文章
 键值编码（Key-value coding）
 ### 相关文章
