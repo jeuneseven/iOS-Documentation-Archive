@@ -38,11 +38,34 @@ ImageMapExample
 ### 详细讨论
 使用存取器方法来获取或设置属性的值 (Use Accessor Methods to Get or Set Property Values)
 ## App ID
+App ID是一个两个字符串所组成的用来区分一个开发团队的一款或多款apps的标识符。该字符串由一个Team ID和一个bundle ID检索字符串所组成，使用句点（.）分割为两部分。Team ID由Apple提供用来作为一个特定开发团队的唯一标识，而bundle ID检索字符串由你提供，用来匹配一款或一组bundle ID的app。  
+
+![](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Art/app_ids_2x.png)  
+
+有两种类型的App IDs：一种叫做“确定的app id”，用来表示一款app，还有一种叫做“通配符app id”，用来表示一组app。
 
 ### 一个显式的App ID对应一款App
-
+对于一个确定的app id匹配一款app而言，app id中的Team ID必须等于与app相关的Team ID，并且bundle ID检索符业必须等于app的bundle ID。bundle ID是一个app的唯一标识符，并且它无法被其他团队所使用。
 ### 通配符App IDs对应多款App
+一个通配符App ID会在它的bundle ID检索串的末尾包含一个星号。星号取代了一部分或者所有的检索串的bundle ID。
 
+![](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Art/app_ids_wildcard_2x.png)
+
+当使用bundle ID检索串匹配bundle IDs的时候，星号被看作通配符。对于一个通配符app id来匹配一组app而言，bundle ID必须与bundle ID检索串中的星号前所有字符精确匹配。星号匹配了所有保留在bundle ID中的字符串。星号必须至少匹配bundle ID中的一个字符。下表展示了一个bundle ID检索串与一些bundle ID匹配和不匹配的情况。
+
+com.domain.*  |   | bundle id 检索符
+------------- | ------------- | -------------  
+ com.domain.text | ![](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Art/checkmark_2x.png) | 星号对应text
+com.domain.icon  | ![](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Art/checkmark_2x.png) | 星号对应icon
+com.otherdomain.database  | ![](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Art/x_2x.png) | 无法匹配
+com.domain  | ![](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Art/x_2x.png) | 无法匹配
+com.domain.  | ![](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Art/x_2x.png) | 无法匹配
+
+对于通配符App ID匹配一款app而言，Team ID必须相匹配，bundle ID必须与使用通配符规则的bundle ID检索符相匹配。
+### 相关文章
+无
+### 详细讨论
+app分发指南
 ## app代码签名（Application Code Signing）
 为应用程序签名能够让系统判断到底是谁给这个应用程序签名，并且能够在应用程序被签名后验证该应用程序没有被修改。签名在提交到App Store之前是必须做的一项工作（无论是iOS还是Mac的应用）。从App Store或者Mac App Store上下载的应用程序，OS X和iOS系统都会验证其签名，确保运行的应用程序不是使用的无效的签名。这让用户能够相信该应用程序是从Apple的资源处签名的，并且在签名之后没有被修改过。  
 
