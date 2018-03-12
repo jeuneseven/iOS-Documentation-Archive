@@ -82,17 +82,47 @@ App ID
 ### 详细讨论
 配置ID和团队的设置（Configuring Identity and Team Settings）
 ## Block对象（Block object）
-
+block（块）是一个C语言级别的语法，它是一个运行时的功能，能够让你将函数表达式作为参数进行传递，随意的存储并被多线程所使用。函数表达式能够被引用并且能够通过本地变量所存储访问。在其他编程语言或环境中，一个block对象通常被称作闭包或者lambda。当你需要创建一组任务的时候（代码段）你就可以使用block，它们可以作为值来进行传递。block为编程语言提供了更灵活和更强大的功能。在写回调函数或执行一个集合类中所有对象的操作时就可以使用它。  
 ### 声明一个Block
+在大多数情况下，使用block都是直接使用的，所以你无需声明它。不过，声明的语法与函数指针的标准语法类似，不过你要用脱字符(^)替代星号指针(*)。举个例子，以下语句声明了一个变量aBlock，它引用了一个block，该block需要三个参数，返回值为float类型：  
+
+	float (^aBlock)(const int*, int, float);
 
 ### 创建一个Block
+使用脱字符(^)作为block的开始，以分号作为block表达式的结尾。下例展示了一个简单的block，它赋值给之前声明的block变量(oneFrom):  
 
+	int (^oneFrom)(int);
+	oneFrom = ^(int anInt) {
+   		 return anInt - 1;
+	};
+
+末尾的分号与一个标准C语句的末尾的分号一样是必须的。  
+若你不需要声明一个block表达式的返回值，它能够自动的从block的内容中推导出。
 ### Block变量
-
+你可以使用__block存储修饰符与声明在闭包词法范围内的上下文中声明，表示block中被引用的变量是可变的。任何改变都会发生在闭包语法范围内，包括任何其他的定义在相同的闭包语法范围中的block。  
 ### 使用Block
+若你声明了一个block作为变量，你可以使用它作为函数，以下示例会输出9。  
 
+	printf("%d\n", oneFrom(10));
+
+不过，通常你会将block作为一个参数传递给一个函数或方法。在这种情况下，你会直接创建一个block。  
+下例展示了一个NSSet对象是否包含一个本地变量指定的单词，若包含的话，会将另一个本地变量（found）设置为YES（然后停止检索）。在这个例子中，found被声明为__block变量。
+
+	__block BOOL found = NO;
+	NSSet *aSet = [NSSet setWithObjects: @"Alpha", @"Beta", @"Gamma", @"X", nil];
+	NSString *string = @"gamma";
+ 
+	[aSet enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+   		 if ([obj localizedCaseInsensitiveCompare:string] == NSOrderedSame) {
+       	 *stop = YES;
+	        found = YES;
+   		 }
+	}];
+	// At this point, found == YES
+
+在这个例子中，block被包含在方法的参数列表中。block同样能够用做一个堆本地变量。
 ### 比较操作
-
+在Cocoa环境中，一个你经常执行的block的操作是比较两个对象——比如给一个数组的内容进行排序。OC语言定义了一个block类型——NSComparator——用来执行这些比较。
 ### 预读文章
 消息（Message）
 ### 相关文章
