@@ -161,8 +161,35 @@ nib文件（Nib file）
 
 通过在一个分类名下声明一个方法将方法添加到头文件中，在同样的名称下将方法在实现文件中进行定义来添加一个方法到问类。分类名表示该方法是一个已经存在的类在其他位置的扩展，而非一个新类。
 ### 声明
+一个分类的头文件的声明很像一个类的头文件的声明——只有一点不同，该分类名被放在括号中，在类名之后，而子类不会这么做。一个分类必须导入它要扩展的类的头文件。  
+
+	#import "SystemClass.h"
+ 
+	@interface SystemClass (CategoryName)
+	// method declarations
+	@end
+
+一个常用的命名规则是使用类名＋分类名来对分类进行命名。意思是文件名为：SystemClass+CategoryName.h。  
+若你使用分类来为你自己的类声明私有方法的话，你可以将声明放在 @implementation 块前：  
+
+	#import "MyClass.h"
+ 
+	@interface MyClass (PrivateMethods)
+	// method declarations
+	@end
+ 
+	@implementation MyClass
+	// method definitions
+	@end
 
 ### 实现
+若你使用分类来为你自己的类声明私有方法的话，你可以将实现放在 你自己的类的 @implementation 块中。若你使用分类来扩展一个你没有源码的类或者拆分你自己的类的实现的话，你可以将实现放在一个命名为 < ClassName >+CategoryName.m的文件中，同样的，你要导入它自己的头文件。所以一个分类的实现可能会看起来像这样：  
+
+	#import "SystemClass+CategoryName.h"
+ 
+	@implementation SystemClass ( CategoryName )
+	// method definitions
+	@end
 
 ### 预读文章
 类的定义（Class definition）
