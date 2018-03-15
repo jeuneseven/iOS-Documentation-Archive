@@ -229,8 +229,42 @@ nib文件（Nib file）
 一个类的定义是类的对象在使用类的某个文件或语句的说明文档。一个类的定义最少由两部分组成：一个公共接口以及一个私有的实现文件。通常将接口和实现分为两个文件——头文件和实现文件。通过将公共和私有的代码进行分离，你可以将类的接口视作独立的整体。  
 通常使用类名对接口和实现文件进行命名。由于需要包含在其他资源文件中，头文件的名称通常以.h作为扩展名。实现体的文件通常以.m作为扩展名，表示它所包含的是OC的源代码。举个例子，MyClass类会在MyClass.h中声明，MyClass.m中定义。
 ### 接口
+在接口中，你可以做以下事情：  
+
+* 命名类和其父类。你的类可能需要声明它所遵循的协议（参见Protocol）。
+* 声明类的实例变量。
+* 声明类所支持的方法和属性（参见声明属性）。
+
+在接口文件中，首先需要导入所需的类库。（通常是Cocoa/Cocoa.h）使用@interface编译器指令在头文件的最开始声明类，以@end指令结尾。  
+
+	#import <Cocoa/Cocoa.h>
+ 
+	@interface MyClass : SuperClass {
+   		 int integerInstanceVariable;
+	}
+	+ (void)aClassMethod;
+	- (void)anInstanceMethod;
+ 	
+	@end
 
 ### 实现
+在类的头文件中声明方法，在实现文件中定义方法（编写代码来实现它们）。  
+在头文件中，你首先需要导入需要的头文件。（至少应当包含你的类的头文件）以@implementation编译器指令作为实现类的开始，以@end指令作为结尾。
+
+	#import "MyClass.h"
+ 
+	@implementation MyClass
+ 
+	+ (void)aClassMethod {
+   		 printf("This is a class method\n");
+	}
+ 
+	- (void)anInstanceMethod {
+   		printf("This is an instance method\n");
+	    printf("The value of integerInstanceVariable is %d\n", 	integerInstanceVariable);
+	}
+ 
+@end
 
 ### 预读文章
 无
