@@ -274,13 +274,48 @@ nib文件（Nib file）
 ### 详细讨论
 定义类（Defining Classes）
 ## 类方法（Class method）
+类方法是一个作用于类对象的方法，而非类的实例对象。在OC中，以+号标记在方法的声明和实现之前表示该方法为类方法：
 
+	+ (void)classMethod;
+
+若要发送一个消息给一个类的话，需要将类名作为消息的接收者放在消息表达式中：  
+
+	[MyClass classMethod];
+	
 ### 子类
+你可以给声明了同样方法的子类发送类方法消息。比如，NSArray声明了类方法 array，它返回一个新的数组实例对象。你也可以使用NSMutableArray的同样的方法，它是NSArray的子类：  
 
+	NSMutableArray *aMutableArray = [NSMutableArray array];
+
+在这种情况下，新的对象是NSMutableArray的实例对象，而非NSArray。
 ### 实例变量
+类方法不能够直接引用实例变量。例如，给定以下类的声明：  
 
+	@interface MyClass : NSObject {
+	    NSString *title;
+	}
+	+ (void)classMethod;
+	@end
+
+你不可以在classMethod当中引用title。  
 ### self
+在一个类方法的实现体中，self指的是类对象本身。你可以像这样实现一个工厂方法：  
 
+	+ (id)myClass {
+	    return [[[self alloc] init] autorelease];
+	}
+
+在该方法当中，self代表类要发送的消息。若你创建了一个MyClass的子类：
+
+	@interface MySubClass : MyClass {
+	}
+	@end
+
+然后发送了一个myClass消息给子类：  
+
+	id instance = [MySubClass myClass];
+
+在运行时，myClass方法的实现中，self将会表示MySubClass类（并且该方法回返回一个子类的实例对象）。
 ### 预读文章
 无
 ### 相关文章
