@@ -323,11 +323,19 @@ nib文件（Nib file）
 ### 详细讨论
 定义类（Defining Classes）
 ## Cocoa (Touch)
+Cocoa 和 Cocoa Touch分别是OS X和iOS的应用程序开发者环境。Cocoa 和 Cocoa Touch都包含了OC运行时和两个核心类库：  
 
+* Cocoa，包含了Foundation 和 AppKit 框架，用来开发运行在OS X上的应用程序。
+* Cocoa Touch包含了Foundation 和 UIKit 框架，用来开发运行在iOS上的应用程序。
+
+```
+注意：术语“Cocoa”通常用来指代机遇OC运行时的对象和类，以及继承自根类NSObject的类和对象。术语“Cocoa” 或 “Cocoa Touch”也会在使用各自平台的编码界面进行应用程序开发时使用到。
+```
 ### 类库
-
+Foundation框架实现了根类NSObject，它定义了基本对象的基本行为。它的实现类还包括基本类型（比如字符串和数字）和集合（比如数组和字典）。Foundation还提供了国际化的工具，对象持久化，文件管理和XML过程处理等。你可以使用这些类来访问低层的系统实体和服务，比如端口，线程，锁和进程。Foundation基于Core Foundation框架，它发布了一个程序 (ANSI C) 接口。  
+你可以使用AppKit 和 UIKit 框架来开发一个应用程序的用户界面。这两个框架功能相同但是基于不同平台的。它们都包含了类来处理事件，绘制，图片处理，文字处理，排版和应用内数据传递等。它们同样也包括用户界面元素，比如列表视图，滑块，按钮，输入框和警告框等。  
 ### 语言本身
-
+OC是开发Cocoa 和 Cocoa Touch 应用程序的主要语言。不过，Cocoa 和 Cocoa Touch 的代码工程可能会包含C++和ANSI C的代码。此外，你可以使用脚本语言通过OC运行时的连接机制来开发Cocoa应用程序，比如PyObjC和RubyCocoa。
 ### 预读文章
 无
 ### 相关文章
