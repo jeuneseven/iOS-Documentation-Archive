@@ -366,10 +366,28 @@ Objective-C
 ### 详细讨论
 Cocoa编码指南(Coding Guidelines for Cocoa)
 ## 集合（Collection）
-
+集合是一个Foundation框架中的对象，它主要是用来以数组、字典和集合的形式来存储对象。
 ### 集合类
+主要的几种集合类——NSArray, NSSet, 和 NSDictionary——同时拥有几种通用功能：  
 
+* 它们只持有对象，但对象可以是任何类型。拿NSArray实例来说，它可以包含猫、狗或树袋熊或者任何这些的组合。
+* 它们对于它们的元素强引用。
+* 它们是不可变的，但都各自有可变的子类能够让你改变集合的内容。
+* 你可以使用NSEnumerator或快速枚举来对其内容进行迭代。
+
+Cocoa同样也提供了三个类——NSPointerArray, NSHashTable, 和 NSMapTable——这些类都与之前的集合类类似，但在以下几个方面不同：  
+
+* 它们不止能够存储对象。
+* 它们对于对象还提供内存管理选项。
+* 它们是可变的。
+
+Cocoa集合对象能够持有任意顺序的对象，通常不用创建特定的集合类来包含一种特定的类型的对象。
 ### 排序方案
+集合存储和出售特定排序方案中的其他对象：  
+
+* NSArray和它的可变子类NSMutableArray使用以从0开始的索引。在其他环境下，一个数组可能被称作vector, table, 或 list。NSPointerArray与NSMutableArray类似，但它能够持有NULL值（能够算做对象的个数）。你还能够直接设置指针数组的个数（对于数组你就不能这么做了）。
+* NSDictionary和其可变子类NSMutableDictionary使用的是键值对。在其他环境下，一个字典可能被称作hash table 或 hash map。NSMapTable与NSMutableDictionary类似，但提供不同的选项，尤其是在垃圾回收环境下支持弱引用关系。
+* NSSet和其可变子类NSMutableSet提供了对象的无序存储。Cocoa同样提供了NSCountedSet，它是NSMutableSet的子类，它能够记住每个对象被添加到集合中多少次。NSHashTable与NSMutableSet类似，但提供了不同的选项，通常是在垃圾回收环境下支持弱引用关系。
 
 ### 预读文章
 无
