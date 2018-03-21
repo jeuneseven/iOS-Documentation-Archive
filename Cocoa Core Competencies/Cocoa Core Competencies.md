@@ -425,6 +425,39 @@ iOS中的视图控制器是 UIViewController 类的子类的实例对象。UIKit
 ### 详细讨论
 模型-视图-控制器(Model-View-Controller)
 ## 声明属性（Declared property）
+一个声明的属性为一个类的访问和实现（可选）方法提供了一个简短语法。你可以在方法的声明列表的任意位置声明一个属性，只要是一个类的接口或者在一个协议或分类当中都可以。你应当使用以下语法：  
+
+	@property (<#attributes#>) <#type#> <#name#>;
+
+使用关键字@property作为声明属性的开始。随后使用括号括上可选的属性特性，属性特性定义了存储特性以及其他属性的行为。（参考定义描述属性列表的文档来描述这些特性。）  
+每个属性声明以类型说明符和一个名称作为结尾，比如：  
+
+	@property(copy) NSString *title;
+
+该语句等同于声明了以下存取方法：  
+
+	- (NSString *)title;
+	- (void)setTitle:(NSString *)newTitle;
+
+除了声明存取方法，你还可以指示编译器来合并存取方法的实现（或通知编译器你的类将在运行时合成它们）。  
+使用 @synthesize 语句在类的实现体中告知编译器来创建匹配你在属性中声明的实现。  
+
+	@interface MyClass : NSObject
+	{
+   		 NSString *title;
+	}
+	@property(copy) NSString *title;
+	@end
+ 
+	@implementation MyClass
+	@synthesize title;
+	@end
+
+使用@dynamic语句来告知编译器在无法找到被@property声明实现的存取方法时不要提示警告。  
+
+	@implementation MyClass
+	@dynamic title;
+	@end
 
 ### 预读文章
 存取方法(Accessor method)
