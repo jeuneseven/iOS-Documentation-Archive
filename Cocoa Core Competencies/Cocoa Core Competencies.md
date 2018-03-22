@@ -526,11 +526,37 @@ iOS UITableView基础(UITableView Fundamentals for iOS)
 ### 详细讨论
 使用对象（Working with Objects）
 ## 枚举（Enumeration）
+枚举是一个顺序操作一个对象的元素的过程——通常是一个集合——一次至多顺序操作一个。枚举也被称作迭代。当你枚举一个对象时，通常一次选择对象中的一个元素然后对其执行操作。对象通常是一个数组或一个集合。从最简单的概念来讲，你可以使用一个标准C语言的for循环来枚举一个数组中的内容，如以下例子所示：  
 
+	NSArray *array = // get an array;
+	NSInteger i, count = [array count];
+	for (i = 0; i < count; i++) {
+   		 id element = [array objectAtIndex:i];
+	    /* code that acts on the element */
+	}
+
+使用for循环效率较低，并且需要一个有序集合的元素。枚举更为通用。所以Cocoa提供了两种额外的方法来枚举对象——NSEnumerator类和快速枚举。  
 ### NSEnumerator
+在一些Cocoa类中，包括集合类，能够被要求提供一个枚举器以便让你能够通过持有一个实例对象来检索元素，比如：  
 
+	NSSet *aSet = // get a set;
+	NSEnumerator *enumerator = [aSet objectEnumerator];
+	id element;
+ 
+	while ((element = [enumerator nextObject])) {
+   		 /* code that acts on the element */
+	}
+
+不过通常来说，使用NSEnumerator类是为了代替快速枚举。
 ### 快速枚举
+某些Cocoa类，包括集合类，遵守了NSFastEnumeration协议。你可以使用一个类似于标准C语言的for循环的语句来持有一个实例对象对其进行元素的检索，如下例所述：  
 
+	NSArray *anArray = // get an array;
+	for (id element in anArray) {
+   		 /* code that acts on the element */
+	}
+
+就像名称所建议的那样，快速枚举是比其他形式的枚举更为有效的枚举方式。
 ### 预读文章
 集合（Collection）
 ### 相关文章
