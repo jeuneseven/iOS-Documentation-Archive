@@ -597,6 +597,15 @@ block对象（Block object）
 ### 详细讨论
 异常编程话题讨论（Exception Programming Topics）
 ## 类库（Framework）
+类库是一种bundle（结构化的目录），它包含了与资源相关的动态共享库，比如nib文件，图片文件以及头文件。当你开发一款应用程序时，你的工程会链接到一个或多个类库上。比如，iPhone应用程序工程默认会链接到Foundation, UIKit, 和 Core Graphics 等类库上。你的代码通过应用程序接口（API）会有访问类库的能力，API是由类库通过其头文件公布的。由于类库内容是动态共享的，多个应用程序都可以同时访问类库的代码和资源。系统会根据需要将一个类库的代码和资源加载到内存中，并在所有的应用程序之间共享一份资源的拷贝。  
+
+![](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Art/framework_2x.png)
+
+由于一个类库是一个bundle（包），你可以通过使用 NSBundle 类来访问其内容，或者通过程序中的Core Foundation中的CFBundle。你可以在OS X上创建自己的类库，但第三方类库在iOS上不允许创建。在OS X上，你可以在Finder当中浏览类库的内容。当为不同的平台开发的时候，你还可以在Xcode应用程序中查看类库的头文件。  
+
+```
+注意：本章所引用的详细讨论的文档特指OS X。若你使用的是iOS开发引用库的话，该链接无效。
+```
 
 ### 预读文章
 包(Bundle)
