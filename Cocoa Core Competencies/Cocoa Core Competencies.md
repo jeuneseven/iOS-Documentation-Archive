@@ -614,7 +614,19 @@ block对象（Block object）
 ### 详细讨论
 类库编程指南（Framework Programming Guide）
 ## 信息属性列表（Information property list）
+一个信息属性列表是一个结构化的文字，它阐述了一款应用程序或其他可执行文件的配置信息。操作系统会在运行时从信息属性列表中提取数据并以适当的方式对其进行处理。举例来说，当iOS和OS X（分别的）系统在主屏幕或Finder中列出应用程序时，操作系统会从已经安装的应用程序的信息属性列表中获取这些应用程序的名称。  
+信息属性列表的内容是被结构化的XML，它的根节点是一个字典。该字典包含了一连串的键值对或属性，key是一个key元素，value是一个表明值的数据类型的元素。  
 
+![](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Art/plist_2x.png)  
+
+来看一个简单的键值对的例子：  
+
+	<key>CFBundleDisplayName</key>
+	<string>Mail</string>
+
+在一个信息属性列表中的属性包括展示的名称，包ID，包图标，包的版本号，支持的操作系统以及文档类型。  
+一个信息属性列表的文件名必须是Info.plist，文件大小写也必须是这样。文件中的文字必须是UTF-8编码。当你构建一款应用程序或其他包的时候，文件必须放置在包当中的一个指定位置。  
+当你使用Xcode（主要使用的应用程序）来创建一款应用程序或其他包的项目的时候，Xcode会在你的项目的资源文件夹下创建一个名为ProjectName-Info.plist的文件。（当你运行你的项目的时候，该工具会拷贝该文件到包当中并命名为Info.plist。）Xcode会为你配置ProjectName-Info.plist文件中的部分属性，但通常你都需要再额外的添加一些。你可以在Xcode编辑器中通过直接选中文件来对信息属性列表进行编辑。你也可以在目标检查器的边栏中编辑某些属性。
 ### 预读文章
 属性列表(Property list)
 包(Bundle)
