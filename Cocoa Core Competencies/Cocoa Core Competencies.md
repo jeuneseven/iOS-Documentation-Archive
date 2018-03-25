@@ -635,11 +635,35 @@ block对象（Block object）
 ### 详细讨论
 信息属性列表key值参考（Information Property List Key Reference）
 ## 初始化（Initialization）
-
+初始化是对象创建的阶段，它通过为对象设置一个合理的初始值来创建一个新的对象。初始化应当始终发生在分配内存之后。它被初始化方法（或简单来说初始器）所执行，你应当始终调用一个新分配内存的对象。初始器还可以执行其他的将对象设置为有用的状态的执行步骤，比如加载资源和分配堆内存。  
 ### 初始化声明的方式
+按照惯例，初始器以init作为名称的开始。它会返回一个动态数据类型（id），若初始化未成功的话，会返回nil。一个初始器可以包括一个或多个特定的初始值的参数。  
+以下是一个NSString类的初始器的声明例子：  
+
+	- (id)initWithData:(NSData *)data encoding:(NSStringEncoding)encoding
 
 ### 实现初始化函数
+一个类通常会为其对象实现初始器，但这并非必要的。若一个类没有实现一个初始器的话，Cocoa会调用距离类最近的父类的初始器。不过，子类通常会定义其自己的初始器或重写其父类的初始器来添加和子类相关的初始化内容。若一个类没有实现初始器的话，它第一步应当调用其父类的初始器。该步骤确保了对象在继承链条上（从根对象开始）的一系列初始化。NSObject类声明了init方法作为默认的对象初始器，所以它会最后调用但首先返回。  
 
+![](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Art/initialization_2x.png)
+
+实现一个初始器方法的基本步骤如下：  
+
+1. 调用父类的初始器并检查它的返回值。（使用保留字super指代父类。）若值不为nil，父类的初始器会返回一个有效值，以便你继续进行初始化。
+2. 将值赋值给对象的实例变量。在内存管理的代码中，若这些值是对象的，视情况对其进行copy 或retain。
+3. 返回初始化后的对象，若初始化未成功，返回nil。
+
+以下是一个遵从这些步骤的初始化示例，初始化它的date实例变量为当前日期：  
+
+	- (id)init {
+ 	   if (self = [super init]) { // equivalent to "self does not equal nil"
+        date = [[NSDate date] retain];
+	    }
+   	 return self;
+	}
+
+在示例代码中，若其父类返回nil的话，该方法会跳过初始化，然后返回值给其调用者。  
+一个类可能会拥有多个初始器。当初始数据拥有多种样式或某个特定的初始器时，为了方便起见，为提供默认值就会有这种情况发生。在这种情况下，其中一个初始化方法被称作指定初始器，它将会提供所有的需要初始化的参数。  
 ### 预读文章
 对象的创建(Object creation)
 消息(Message)
