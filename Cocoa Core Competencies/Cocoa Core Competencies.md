@@ -708,11 +708,22 @@ NSObject类采用的NSObject协议定义了内省方法，产生了以下类型�
 ### 详细讨论
 NSObject协议参考（NSObject Protocol Reference）
 ## 键值编码（Key-value coding）
-
+KVC是一种使用字符串标识符来间接的访问一个对象的属性和关系的机制。它支撑着或与Cocoa编程的几种特殊机制和技术有关, 其中包括Core Data、应用程序脚本类型、绑定技术以及已声明属性的语言特征。(脚本类型和绑定是OS X的Cocoa特有。)你还可以使用KVC来简化你的编码。  
 ### 对象属性和KVC
+键值编码 (或 KVC) 的核心是属性的通用概念。属性引用了一个对象所封装的一组状态。一个属性可以是两种通用状态中的一种：作为一个属性（比如name, title, subtotal, 或 textColor）或与其他对象所关联。关系可以是一对一或一对多。一对多的关系的值通常是一个数组或集合，情况根据关系是有序还是无序的有所不同。  
+KVC通过一个key值定位一个对象的属性，key是一个字符串。key通常与对象所定义的访问方法名或实例变量名相关。key必须遵循一些特定的惯例：必须是ASCII编码，开头以小写字母开始，必须没有空格。key路径是一串以点号连接的key值，用于指定要遍历的对象属性序列。序列中的第一个key的属性用来指定对象（下图中的employee1），随后的key值代表之前的一个属性的属性值。  
+
+![](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Art/key_value_coding_2x.png)  
 
 ### 让一个类能够顺利使用KVC
+NSKeyValueCoding非正式协议使得KVC成为可能。它的两个方法——valueForKey: 和 setValue:forKey:——非常重要，因为当给定一个key值时，它们被用来获取和设置一个属性的值。NSObject为这些方法提供了默认的实现，若一个类遵从KVC协议的话，那么它就可以依赖默认的实现。  
+如何使得一个属性的KVC能够顺利使用取决于该属性是一个特性、一个一对一的关系或者一个一对多的关系。对于特性和一对一的关系，类必须在给定的首选项顺序中至少实现下列任一项（key引用属性的key）：  
 
+1. 类声明了名为key的属性。
+2. 类要实现名为key的取方法，若该属性是可变的，要实现setKey:方法。（若属性是一个布尔值，取方法名称为isKey。）
+3. 类要声明一个key或_key的实例变量。
+
+为一对多的关系顺利实现KVC是一个更为复杂的过程。请参考本文档末尾的KVC描述来了解该过程。
 ### 预读文章
 对象模型（Object modeling）
 存取器方法(Accessor method)
