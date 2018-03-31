@@ -815,6 +815,43 @@ Objective-C
 ### 详细讨论
 对象发送和接收消息（Objects Send and Receive Messages）
 ## 方法重写（Method overriding）
+方法的重写是一个语言的功能，意思是一个类可以提供一个已经被其父类（或其中一个父类）实现的方法的实现。在该类中的方法的实现（指的是重写的方法）会替代其父类中的方法的实现。  
+当你定义了一个与其父类的名字相同的方法时，新的方法会替代继承的定义。新的方法必须拥有同样的返回值和同样数量和类型的参数。以下是一个例子：  
+
+	@interface MyClass : NSObject {
+	}
+	- (int)myNumber;
+	@end
+ 
+	@implementation MyClass : NSObject {
+	}
+	- (int)myNumber {
+   		 return 1;
+	}
+	@end
+ 
+	@interface MySubclass : MyClass {
+	}
+	- (int)myNumber;
+	@end
+ 
+	@implementation MySubclass
+	- (int)myNumber {
+   		 return 2;
+	}
+	@end
+
+若你创建了一个MyClass的实例并且对其发送myNumber消息的话，它会返回1.若你创建一个MySubclass的实例然后对其发送myNumber消息的话，它会返回2。  
+要注意子类的方法必须和父类被重写的方法拥有相同的名称以及参数列表。  
+除了完全替代一个已经存在的实现之外，你还可能需要扩展一个父类的实现。为了做到这一点，你可以使用super关键字来调用父类的实现。  
+在一个方法的定义中，super代表当前对象的父类。你给super发送一个消息的话，将会执行父类的方法的实现。通常, 在同一方法的新的实现中, 可以扩展其功能。在下例中，被MySubclass实现的myNumber方法对于MyClass的实现的方法的返回值进行加一的操作。
+
+	@implementation MySubclass
+	- (int)myNumber {
+   		 int subclassNumber = [super myNumber] + 1;
+	    return subclassNumber;
+	}
+	@end
 
 ### 预读文章
 无
