@@ -860,6 +860,10 @@ Objective-C
 ### 详细讨论
 对象可以调用被其他父类实现的方法（Objects Can Call Methods Implemented by Their Superclasses）
 ## 模型对象（Model object）
+模型对象是一种包含应用程序数据的对象，提供访问该数据的能力，并提供修改该数据的逻辑实现。模型对象在MVC设计模式中扮演着其中一个角色。（其他两个角色由视图和控制器兑现所扮演。）任何属于持续状态的应用程序的一部分数据都应当存在于数据被加载到应用程序之后的模型对象当中。  
+由于模型对象代表着一个特定主题的相关信息，当该主题出现的时候，它们就能够被复用。在理想的情况下，一个模型对象应当与展现数据并允许用户编辑数据的视图对象没有明显的关系，换句话说——它不应当与用户界面以及展现问题有任何联系。
+
+![](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Art/model_object_2x.png)
 
 ### 一个设计良好的模型类
 
