@@ -1036,7 +1036,15 @@ Reducer
 对象的归档（Object archiving）
 nib文件（Nib file） 
 ## 对象生命周期（Object life cycle）
+一个对象的生命周期——指的是在运行时从对象的创建到其销毁——是由它接收的多种不同的消息所决定的。当程序显式的分配内存和初始化时（或拷贝了一份其他的对象），对象将被创建。对象还可以在解档期间，在其被要求从归档数据流中解码其本身时开始其生命周期。若一个对象从一个nib文件解档，在所有的nib文件中的对象被加载到内存后，它会收到 awakeFromNib 消息。
 
+```
+注意：本文描述了有关显式内存管理的概念，在iOS5.0中已经被自动引用计数（ARC）所替代。ARC是一个编译器功能，它能够为OC对象提供自动内存管理。
+```
+
+![](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Art/object_life_cycle_2x.png)  
+
+在创建和初始阶段后，对象的引用计数只要大于0，那么对象就会保持其内存。程序中的其他对象可以通过发送retain或copy来表示对该对象的拥有关系，通过发送release给该对象表示废除拥有关系。当对象可用时，程序可能会开始归档过程，在该过程中，对象会在归档数据流中编码其状态。当对象收到它最终的release消息时，它的引用计数会归零。因此，对象的dealloc方法被调用，它会释放所有对象或其他对象所分配的内存，然后对象被销毁。
 ### 预读文章
 对象的创建（Object creation）
 对象的归档（Object archiving）
