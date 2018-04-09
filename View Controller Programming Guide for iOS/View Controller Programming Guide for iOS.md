@@ -595,7 +595,13 @@ Coder对象在编解码过程中并不是共享的。每个拥有保存状态的
 
 # 自适应性和尺寸的变化
 ## 自适应模型
+一个能够自适应的界面是一个能够最佳利用可用区域的界面。能够自适应代表能够调整内容以便在任何iOS设备上都能够很好的适应。iOS上的自适应模型能够  
 
+图 12-1 适配不同的设备和屏幕方向  
+
+![](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_Adaptive-Model_13-1_2x.png)
+
+构建自适应界面的一个重要工具是自动布局。使用自动布局，你可以定义规则（被称作约束）来管理视图控制器中视图的布局。
 ### 特性的作用
 
 ### 什么时候特性和尺寸变更会发生？
