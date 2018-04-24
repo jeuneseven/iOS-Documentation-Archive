@@ -533,7 +533,16 @@ UIModalPresentationPopover样式会将视图控制器展示在一个弹出的视
 
 更多关于如何配置弹出样式的提示，参见“在弹出视图中呈现一个视图控制器”。
 ##### 聚焦样式
+UIModalPresentationCurrentContext 样式将会在你的用户界面上覆盖一个特定的视图控制器。当使用contextual样式时，你要设置你想覆盖的视图控制器的 definesPresentationContext 属性为YES。图8-3展示了一个只覆盖分离视图控制器的一个子视图控制器的展示情况。  
 
+图8-3 聚焦展现样式  
+
+![](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_CurrentContextStyles_2x.png)  
+
+	注意：当使用UIModalPresentationFullScreen样式来展示一个视图控制器时，UIKit通常会在转场动画结束时将底层的视图控制器的视图移除。你可以通过指定UIModalPresentationOverCurrentContext样式来阻止移除这些视图。当展示的视图控制器拥有底层内容需要透过展示的区域时，你可能会用到该样式。  
+
+定义了展现上下文的视图控制器也能够定义转场动画用在展现当中。通常UIKit使用展现的视图控制器的modalTransitionStyle属性来将视图控制器动画展示在屏幕上。若展示的视图控制器的 providesPresentationContextTransitionStyle 属性被设置为了YES，UIKit会使用它来代替视图控制器的modalTransitionStyle属性。  
+当转换到了一个水平紧凑环境中时，当前的上下文样式将适配为 UIModalPresentationFullScreen 样式。若要改变这种情况，要使用适配的展现代理来指定一个不同的展现样式或视图控制器。
 ##### 自定义展示样式
 UIModalPresentationCustom 样式能够让你使用自定义的方式来展示一个视图控制器。创建一个自定义的样式包含子类化 UIPresentationController 和使用它的方法来动画的展示自定义视图到屏幕上一集设置展示的视图控制器的尺寸和位置。由于被展现的视图控制器的特性的改变，展现的视图控制器同样会处理相应的适配问题。  
 关于如何定义一个自定义的展现视图控制器的相关信息，参见“创建自定义展现”。
