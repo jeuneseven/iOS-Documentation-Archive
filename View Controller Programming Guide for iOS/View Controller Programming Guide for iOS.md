@@ -510,7 +510,18 @@ Coder对象在编解码过程中并不是共享的。每个拥有保存状态的
 #### 展示样式
 视图控制器的“展示样式”管理着它在屏幕上的外观。UIKit定义了多种标准的展现样式，每种都有着特定的外观和意图。你还可以定义你自己定制的展现样式。当设计你的应用程序时，请尽量选择你想要的那种展现样式对应的场景，将其对应的合适的常量赋值给你想要展现的视图控制器的 modalPresentationStyle 属性。
 ##### 全屏展示样式
-全屏展示样式会覆盖整个屏幕，阻止与被遮盖的底部内容进行交互。在宽松的水平环境中，会只有一种全屏样式完全覆盖底层内容。
+全屏展示样式会覆盖整个屏幕，阻止与被遮盖的底部内容进行交互。在宽松的水平环境中，会只有一种全屏样式完全覆盖底层内容。其余部分会统一变暗或变透明来让底层的视图控制器透过来显示一部分。在水平的紧凑环境下，全屏展示会自动的适配为 UIModalPresentationFullScreen 样式，并覆盖所有底部的内容。  
+图8－1展示了在一个水平宽松环境下使用 UIModalPresentationFullScreen, UIModalPresentationPageSheet, 和 UIModalPresentationFormSheet 等样式来展示的样子。在图中，左上部的绿色视图控制器将展示右上方的蓝色视图控制器，每种展示样式的结果在下方展示。对于某些展示样式，UIKit会在两个视图控制器的内容之间插入一个较暗的视图。  
+
+图8-1 全屏展示样式  
+
+![](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_PresentationStyles%20_fig_8-1_2x.png)  
+
+```
+注意：当使用UIModalPresentationFullScreen样式来展示一个视图控制器的时候，UIKit通常会在转换动画结束后移除掉底层视图控制器的视图。你可以通过设定 UIModalPresentationOverFullScreen 样式来阻止移除视图。当展示的视图控制器拥有底层内容需要透过展示的区域时，你可能会用到该样式。
+```
+
+当使用一种全屏展示样式时，发起展示的视图控制器本身必须覆盖整个屏幕。若正在展示的视图控制器没有覆盖整个屏幕，UIKit会沿着视图控制器层级一直寻找，直到找到一个可以覆盖的视图控制器为止。若没能找到一个覆盖屏幕的中间的视图控制器的话，UIKit会使用窗口的根视图控制器。
 ##### 弹出样式
 UIModalPresentationPopover样式会将视图控制器展示在一个弹出的视图中。对于展示额外的信息或者展示当前正在浏览或选中的对象的一组相关元素而言很有用。在水平的规律环境中，弹出视图会只覆盖屏幕的一部分，如图8-2所示。在水平紧凑环境下，弹出视图会默认使用 UIModalPresentationOverFullScreen 展示样式。轻触弹出视图的外部会自动让弹出视图消失。  
 
