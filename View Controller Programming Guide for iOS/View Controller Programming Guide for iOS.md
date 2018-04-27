@@ -554,9 +554,14 @@ UIModalPresentationCustom 样式能够让你使用自定义的方式来展示一
 ![](https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_SlideTransition_fig_8-1_2x.png)
 
 你可以使用动画对象和转场代理来创建自定义转场方式。动画对象会创建转场动画来替换屏幕上的视图控制器。转场代理会在适当的时机支持动画对象作用于UIKit。更多关于如何实现自定义转场的相关信息，参见“自定义转场动画”。
-#### 展示对比显示一个视图控制器
+#### 模态展示与显示一个视图控制器
+UIViewController 类提供了两种方法来展示一个视图控制器：  
 
-### 展示一个视图控制器
+* showViewController:sender: 和 showDetailViewController:sender: 方法提供了非常灵活和适配的方式来展现视图控制器。这两个方法让模态展示的视图控制器来决定如何以更好的方法来处理展示过程。比如，一个容器视图控制器可能需要将一个视图控制器作为其子视图控制器所包含而非模态化的对其进行展现。默认的展现一个视图控制器的行为是模态化的。
+* presentViewController:animated:completion: 方法将始终以模态化的方法来展现视图控制器。调用该方法的视图控制器可能最终不会处理展现过程，但展现过程始终是模态化的。该方法为水平紧凑环境适配了展现样式。
+
+我们更推荐使用showViewController:sender: 和 showDetailViewController:sender: 这种方式来初始化展示。调用该方法的视图控制器无需知道任何关于视图控制器层级或当前视图控制器在视图层级中的位置等相关信息。这些方法同样使得在你的app中重用视图控制器更加简单而无需编写条件语句进行判断。
+### 模态展示一个视图控制器
 
 #### 显示视图控制器
 
