@@ -570,7 +570,15 @@ UIViewController 类提供了两种方法来展示一个视图控制器：
 
 关于如何销毁你使用以上技术所展现的视图控制器的相关信息，参见“销毁一个展示的视图控制器”部分。
 #### 显示视图控制器
+当使用showViewController:sender: 和 showDetailViewController:sender:方法时，获取屏幕上的新的视图控制器的过程是很简单的：  
 
+1. 创建你想要展示的视图控制器对象。当创建视图控制器时，你需要对其所要执行的任务所需的数据进行初始化。
+2. 将新的视图控制器的 modalPresentationStyle 属性设置为所需的展现样式。该样式可能不会在最终的展现样式中使用。
+3. 将师徒控制器的 modalTransitionStyle 属性设置为所需的转场动画样式。该样式可能不会在最终的动画中使用。
+4. 调用当前视图控制器的 showViewController:sender: 和 showDetailViewController:sender: 方法。
+
+UIKit会为适当的正在展示的视图控制器调用showViewController:sender: 和 showDetailViewController:sender: 方法。该视图控制器可以在随后决定如何更好的执行展现样式以及根据所需改变展现和转场样式。比如，一个导航控制器可能需要将视图控制器压入导航栈。  
+关于展示视图控制器和模态化展现视图控制器的区别的相关信息，参见“模态展示和展现视图控制器的对比”部分。
 #### 模态化展现视图控制器
 
 #### 在弹出框中展示一个视图控制器
