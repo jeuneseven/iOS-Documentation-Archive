@@ -586,6 +586,23 @@ UIKit会为适当的正在展示的视图控制器调用showViewController:sende
 ### 隐藏一个展示的视图控制器
 
 ### 展示一个在不同的故事版中定义的视图控制器
+虽然你能够在同一个故事板中的视图控制器之间创建segues，但你不能在不同的故事板之间创建segues。当你想要在不同的故事板上展示一个视图控制器时，你必须在展示该视图控制器之前对其进行实例化，如清单8-2所示。该示例以模态化得形式展示视图控制器，不过你可以将其以导航控制器的方式展示，或以其他方式也可以。  
+
+清单8-2 从一个故事板加载视图控制器  
+
+	UIStoryboard* sb = [UIStoryboard storyboardWithName:@"SecondStoryboard" bundle:nil];
+	MyViewController* myVC = [sb instantiateViewControllerWithIdentifier:@"MyViewController"];
+ 
+	// Configure the view controller.
+ 
+	// Display the view controller
+	[self presentViewController:myVC animated:YES completion:nil];
+
+在你的应用中创建多个故事板并非必须。不过，以下是几种可能用到多个故事板的情况：  
+
+* 你们是一个大的编程团队，需要给不同的团队赋予不同部分的用户界面。每个团队都在不同的故事板文件中有其自己的用户界面部分以便最小化争议。
+* 你已经购买或创建了一个预定义了多个视图控制器类型集合的库；这些视图控制器的内容都在故事板中被库所定义好。
+* 你需要在一个外置屏幕上展示内容。在这种情况下，你可以将所有与备用屏幕关联的视图控制器保留在单独的故事板中。相同方案的另一种模式是编写自定义的segue。
 
 ## 使用Segues
 
