@@ -580,6 +580,28 @@ UIViewController 类提供了两种方法来展示一个视图控制器：
 UIKit会为适当的正在展示的视图控制器调用showViewController:sender: 和 showDetailViewController:sender: 方法。该视图控制器可以在随后决定如何更好的执行展现样式以及根据所需改变展现和转场样式。比如，一个导航控制器可能需要将视图控制器压入导航栈。  
 关于展示视图控制器和模态化展现视图控制器的区别的相关信息，参见“模态展示和展现视图控制器的对比”部分。
 #### 模态化展现视图控制器
+当直接展现一个视图控制器时，你要告诉UIKit，你想如何将新的视图控制器展示以及以何种动画的方式呈现在屏幕上。  
+
+1. 创建你想要展示的视图控制器对象。当创建视图控制器时，你要负责将其要执行的任务的所需数据进行初始化。  
+2. 给新的视图控制器的 modalPresentationStyle 属性设置所需的展现样式。
+3. 给视图控制器的 modalTransitionStyle 属性设置所需动画样式。
+4. 在当前视图控制器中调用 presentViewController:animated:completion: 方法。
+
+调用 presentViewController:animated:completion: 方法的视图控制器可能并非实际执行模态化展示的视图控制器。展现样式决定了该视图控制器如何被展示，包括被展示的视图控制器的特征所需。举例来说，一个全屏展现必须被一个全屏视图控制器所初始化。若当前被展现的视图控制器并不合适的话，UIKit会沿视图控制器层级寻找，直到找到一个为止。当完成一个模态化展示时，UIKit会更新受到影响的视图控制器的 presentingViewController 和 presentedViewController 属性。  
+清单8-1 展示了如何以编码的方式展现一个视图控制器。当用户添加新功能时，应用程序会提示用户展现一个导航视图控制器的基本信息。导航视图控制器被选中，以便有标准位置来放置取消和完成按钮。使用导航控制器也使得以后扩展新的功能更为简单。你只需要将新的视图控制器压入导航栈即可。  
+
+清单8-1 以编码的方式展现一个视图控制器  
+
+	- (void)add:(id)sender {
+	   // Create the root view controller for the navigation controller
+	   // The new view controller configures a Cancel and Done button for the
+	   // navigation bar.
+	   RecipeAddViewController *addController = [[RecipeAddViewController alloc] init];
+ 
+	   addController.modalPresentationStyle = UIModalPresentationFullScreen;
+	   addController.transitionStyle = UIModalTransitionStyleCoverVertical;
+	   [self presentViewController:addController animated:YES completion: nil];
+	}
 
 #### 在弹出框中展示一个视图控制器
 
