@@ -604,7 +604,14 @@ UIKit会为适当的正在展示的视图控制器调用showViewController:sende
 	}
 
 #### 在弹出框中展示一个视图控制器
+在展示之前，弹出框需要额外的配置。在设置模态化展示样式给 UIModalPresentationPopover 之后，需要配置以下弹出框相关的属性：  
 
+* 给你的视图控制器的 preferredContentSize 属性设置所需尺寸。
+* 使用关联的 UIPopoverPresentationController 对象设置弹出框的锚点，这可以从视图控制器的 popoverPresentationController 属性访问。要只设置以下的其中之一：  
+	* 设置 barButtonItem 属性给一个bar button item。
+	* 设置 sourceView 和 sourceRect 属性给指定的一个视图的区域属性。
+
+你可以使用 UIPopoverPresentationController 对象来根据所需调整弹出框。弹出框的展示控制器同样支持代理对象，你可以使用它来在展示过程中响应变更。比如，你可以使用代理来响应弹出框的显示，隐藏或调整在屏幕上的位置。更多关于该对象的相关信息，参见“UIPopoverPresentationController 类介绍”。
 ### 隐藏一个展示的视图控制器
 
 ### 展示一个在不同的故事版中定义的视图控制器
