@@ -723,6 +723,21 @@ UIKit为标准展示样式提供了展示控制器。当你设置一个视图控
 
 所有的这些决策都需要重写UIPresentationController类的不同的方法。
 #### 设置一个展示的视图控制器的大小
+你可以修改被展示的视图控制器的矩形大小以便它能够填充有效区域。默认的，一个被展示的视图控制器与其容器视图的尺寸相同。若要改变矩形大小的话，需要重写你的展示控制器的 frameOfPresentedViewInContainerView 方法。  
+清单11-1展示了当尺寸改变为只覆盖容器视图的右半部分的一个例子。在这个例子中，展示控制器使用了灰暗背景来遮盖容器的其他部分。  
+
+清单11-1 改变被展示的视图控制器的尺寸  
+
+	- (CGRect)frameOfPresentedViewInContainerView {
+	    CGRect presentedViewFrame = CGRectZero;
+   		 CGRect containerBounds = [[self containerView] bounds];
+ 
+	    presentedViewFrame.size = CGSizeMake(floorf(containerBounds.size.width / 2.0),
+                                         containerBounds.size.height);
+   		 presentedViewFrame.origin.x = containerBounds.size.width -
+                                    presentedViewFrame.size.width;
+	    return presentedViewFrame;
+	}
 
 #### 管理和加载自定义视图的动画
 
