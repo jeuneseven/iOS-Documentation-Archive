@@ -742,7 +742,26 @@ UIKit为标准展示样式提供了展示控制器。当你设置一个视图控
 #### 管理和加载自定义视图的动画
 
 ### 将你的展示视图的控制权给UIKit
+当展示一个视图控制器时，请按照以下步骤使用你的自定义展示控制器来显示它：  
 
+* 设置被展示的视图控制器的 modalPresentationStyle 属性给UIModalPresentationCustom。
+* 给被展示的视图控制器的 transitioningDelegate 属性赋值一个转场代理。
+* 实现转场代理的 presentationControllerForPresentedViewController:presentingViewController:sourceViewController: 方法。 
+
+当需要你的展示控制器时，UIKit会调用你的转场代理的presentationControllerForPresentedViewController:presentingViewController:sourceViewController: 方法。实现该方法应当与清单11-6一样简单。需要简单的创建你的展示控制器，配置它，然后将其返回。若该方法返回nil，UIKit会使用全屏展示样式来展示视图控制器。  
+
+清单11-6 创建一个自定义展示控制器  
+
+	- (UIPresentationController *)presentationControllerForPresentedViewController:
+                                 (UIViewController *)presented
+        presentingViewController:(UIViewController *)presenting
+            sourceViewController:(UIViewController *)source {
+ 
+ 	   MyPresentationController* myPresentation = [[MyPresentationController]
+   		    initWithPresentedViewController:presented 	presentingViewController:presenting];
+ 
+   		 return myPresentation;
+	}
 ### 适配不同尺寸的类
 当展现于屏幕上时，UIKit会在底层的特性或容器视图发生改变的时候通知你的展现视图控制器。改变通常在设备旋转的时候发生，但很可能在其他时机发生。你可以使用特性和尺寸通知来调整你的展现自定义视图并在合适的时机更新你的展现样式。  
 更多关于如何适配新特性和尺寸的相关信息，参见“构建一个适配的界面”
