@@ -741,6 +741,80 @@ UIKit为标准展示样式提供了展示控制器。当你设置一个视图控
 
 #### 管理和加载自定义视图的动画
 
+清单11-2 初始化展示控制器  
+
+	- (instancetype)initWithPresentedViewController:(UIViewController *)presentedViewController
+                    presentingViewController:(UIViewController *)presentingViewController {
+	    self = [super initWithPresentedViewController:presentedViewController
+                         presentingViewController:presentingViewController];
+   		 if(self) {
+       	 // Create the dimming view and set its initial appearance.
+	        self.dimmingView = [[UIView alloc] init];
+   		     [self.dimmingView setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.4]];
+   	     [self.dimmingView setAlpha:0.0];
+   		 }
+	    return self;
+	}
+
+清单11-3 动画的将灰暗视图展示到屏幕上  
+
+	- (void)presentationTransitionWillBegin {
+    // Get critical information about the presentation.
+    UIView* containerView = [self containerView];
+    UIViewController* presentedViewController = [self presentedViewController];
+ 
+    // Set the dimming view to the size of the container's
+    // bounds, and make it transparent initially.
+    [[self dimmingView] setFrame:[containerView bounds]];
+    [[self dimmingView] setAlpha:0.0];
+ 
+    // Insert the dimming view below everything else.
+    [containerView insertSubview:[self dimmingView] atIndex:0];
+ 
+    // Set up the animations for fading in the dimming view.
+    if([presentedViewController transitionCoordinator]) {
+        [[presentedViewController transitionCoordinator]
+               animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>
+                                            context) {
+            // Fade in the dimming view.
+            [[self dimmingView] setAlpha:1.0];
+        } completion:nil];
+    }
+    else {
+        [[self dimmingView] setAlpha:1.0];
+    }
+	}
+
+清单11-4 处理取消展示事件  
+
+	- (void)presentationTransitionDidEnd:(BOOL)completed {
+    // If the presentation was canceled, remove the dimming view.
+    if (!completed)
+        [self.dimmingView removeFromSuperview];
+	}
+
+清单11-5 消除展示视图  
+
+	- (void)dismissalTransitionWillBegin {
+    // Fade the dimming view back out.
+    if([[self presentedViewController] transitionCoordinator]) {
+        [[[self presentedViewController] transitionCoordinator]
+           animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>
+                                        context) {
+            [[self dimmingView] setAlpha:0.0];
+        } completion:nil];
+    }
+    else {
+        [[self dimmingView] setAlpha:0.0];
+    }
+	}
+ 
+	- (void)dismissalTransitionDidEnd:(BOOL)completed {
+    // If the dismissal was successful, remove the dimming view.
+    if (completed)
+        [self.dimmingView removeFromSuperview];
+	}
+
 ### 将你的展示视图的控制权给UIKit
 当展示一个视图控制器时，请按照以下步骤使用你的自定义展示控制器来显示它：  
 
