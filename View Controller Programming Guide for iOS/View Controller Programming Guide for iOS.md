@@ -758,7 +758,7 @@ UIKit为标准展示样式提供了展示控制器。当你设置一个视图控
 	    return self;
 	}
 
-使用 presentationTransitionWillBegin 方法来讲你的自定义视图动画的展示到屏幕上。如清单11-3所示，在该方法中，配置你的自定义视图然后将其添加到容器视图中。无论是被展示还是展示的视图控制器都要使用transition coordinator（转场调度）来创建动画。不要在该方法中修改被展示的视图控制器的视图。
+使用 presentationTransitionWillBegin 方法来讲你的自定义视图动画的展示到屏幕上。如清单11-3所示，在该方法中，配置你的自定义视图然后将其添加到容器视图中。无论是被展示还是展示的视图控制器都要使用transition coordinator（转场调度）来创建动画。不要在该方法中修改被展示的视图控制器的视图。你从frameOfPresentedViewInContainerView方法中返回的矩形区域会被动画对象用来动画的将被展示的视图控制器移到该区域。  
 
 清单11-3 动画的将灰暗视图展示到屏幕上  
 
@@ -789,6 +789,8 @@ UIKit为标准展示样式提供了展示控制器。当你设置一个视图控
     }
 	}
 
+在展示的结束时，使用presentationTransitionDidEnd: 方法来处理被展示取消所造成的清理工作。一个交互式的动画对象可能会取消一个阈值没有达到条件的转场动画。当这种情况发生时，UIKit会调用presentationTransitionDidEnd: 方法并传值NO。当取消事件发生时，应取消你在一开始展示所添加的自定义视图并将其他的视图返回到其之前的配置，如清单11-4所示。  
+
 清单11-4 处理取消展示事件  
 
 	- (void)presentationTransitionDidEnd:(BOOL)completed {
@@ -796,6 +798,8 @@ UIKit为标准展示样式提供了展示控制器。当你设置一个视图控
     if (!completed)
         [self.dimmingView removeFromSuperview];
 	}
+
+当视图控制器消失时，使用 dismissalTransitionDidEnd: 方法来从视图层级中移除你的自定义视图。若你想动画的移除你的视图，你需要将动画放置在 dismissalTransitionDidEnd: 方法中。清单11-5展示了之前示例中动画移除灰暗视图的两种方法。要始终检测 dismissalTransitionDidEnd: 的参数来查看移除是否成功或者被取消了。
 
 清单11-5 消除展示视图  
 
