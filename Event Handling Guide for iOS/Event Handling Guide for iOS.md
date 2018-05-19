@@ -75,6 +75,13 @@ UIKit框架提供了内置的手势识别来检测常用的手势。你应当尽
 ### 使用界面编辑器来添加手势识别到你的app上
 
 ### 使用代码添加手势识别
+你可以通过alloc和init的方式以代码的形式来创建UIGestureRecognizer的一个子类实例，比如UIPinchGestureRecognizer。当你初始化手势识别的时候，要指定目标对象和动作选择器，如清单1-2所示。通常，目标对象时视图的视图控制器。  
+若你以代码的方式创建手势识别的话，你需要使用addGestureRecognizer:方法来将它附加在视图上。清单1-2创建了一个点击手势识别，指定手势识别一次点击，然后将手势识别对象附加到视图上。通常，在视图控制器的viewDidLoad方法当中创建手势识别，如清单1-2所示。
+
+清单1-2 通过代码创建一个点击手势识别
+
+	- (void)viewDidLoad {     [super viewDidLoad];
+     // Create and initialize a tap gesture       UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]            initWithTarget:self action:@selector(respondToTapGesture:)];       // Specify that the gesture must be a single tap       tapRecognizer.numberOfTapsRequired = 1;       // Add the tap gesture recognizer to the view       [self.view addGestureRecognizer:tapRecognizer];       // Do any additional setup after loading the view, typically from a nib	  }
 
 ### 响应分散的手势
 
