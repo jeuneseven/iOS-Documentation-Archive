@@ -83,7 +83,21 @@ UIKit框架提供了内置的手势识别来检测常用的手势。你应当尽
 	- (void)viewDidLoad {     [super viewDidLoad];
      // Create and initialize a tap gesture       UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]            initWithTarget:self action:@selector(respondToTapGesture:)];       // Specify that the gesture must be a single tap       tapRecognizer.numberOfTapsRequired = 1;       // Add the tap gesture recognizer to the view       [self.view addGestureRecognizer:tapRecognizer];       // Do any additional setup after loading the view, typically from a nib	  }
 
-### 响应分散的手势
+### 响应间断的手势
+当你创建一个手势识别的时候，你需要将其连接到一个动作方法上。使用动作方法来响应你的手势识别出来的手势。清单1-3展示了一个响应间断的手势的例子。当用户点击手势识别附加的视图时，视图控制器会展示一个图片说“Tap”。showGestureForTapRecognizer:方法会从识别器的locationInView:属性获取位置，并将图片展示在该位置。  
+
+	注意：接下来的三个代码例子都是从“Simple Gesture Recognizers”示例代码工程中找到的，你可以在该工程中查看更多的内容。
+
+清单1-3 处理两次点击手势  
+
+	- (IBAction)showGestureForTapRecognizer:(UITapGestureRecognizer *)recognizer {         // Get the location of the gesture        CGPoint location = [recognizer locationInView:self.view];         // Display an image view at that location        [self drawImageForGestureRecognizer:recognizer atPoint:location];         // Animate the image view so that it fades out         [UIView animateWithDuration:0.5 animations:^{             self.imageView.alpha = 0.0;	}]; }
+
+每个手势识别都有其自己的一套属性。比如，在清单1-4当中，showGestureForSwipeRecognizer:方法使用轻扫手势识别的direction属性来决定用户是从左往右还是从右往左扫动的。然后使用该值来设置一个图片以相同的扫动方向淡出。  
+
+清单1-4 向左或向右响应轻扫手势  
+
+	// Respond to a swipe gesture	- (IBAction)showGestureForSwipeRecognizer:(UISwipeGestureRecognizer *)recognizer	{	// Get the location of the gesture	CGPoint location = [recognizer locationInView:self.view];	// Display an image view at that location	[self drawImageForGestureRecognizer:recognizer atPoint:location];	// If gesture is a left swipe, specify an end location	// to the left of the current location	if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {	     location.x -= 220.0;	} else {	     location.x += 220.0;	}	// Animate the image view in the direction of the swipe as it fades out	[UIView animateWithDuration:0.5 animations:^{	     self.imageView.alpha = 0.0;   		  self.imageView.center = location;	}];
+	}
 
 ### 响应连续的手势
 
