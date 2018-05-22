@@ -100,7 +100,15 @@ UIKit框架提供了内置的手势识别来检测常用的手势。你应当尽
 	}
 
 ### 响应连续的手势
+连续的手势能够让你的应用程序即时的响应手势。比如，你的应用程序能够在用户捏合的时候进行缩放或者允许用户沿着屏幕拖拽一个对象。  
+清单1-5展示了一个与手势相同旋转角度的“Rotate”图片，随后用户停止旋转，动画的将图片在旋转回水平的位置淡出处理。当用户旋转它的手指时，showGestureForRotationRecognizer:方法会被持续的调用，直到两个手指都离开屏幕。  
 
+清单1-5 响应旋转手势
+
+	// Respond to a rotation gesture
+	- (IBAction)showGestureForRotationRecognizer:(UIRotationGestureRecognizer	*)recognizer {       // Get the location of the gesture       CGPoint location = [recognizer locationInView:self.view];       // Set the rotation angle of the image view to       // match the rotation of the gesture       CGAffineTransform transform = CGAffineTransformMakeRotation([recognizer	rotation]);	       self.imageView.transform = transform;   		    // Display an image view at that location  	     [self drawImageForGestureRecognizer:recognizer atPoint:location];	      // If the gesture has ended or is canceled, begin the animation	      // back to horizontal and fade out	      if (([recognizer state] == UIGestureRecognizerStateEnded) || (		[recognizer		state] == UIGestureRecognizerStateCancelled)) {           [UIView animateWithDuration:0.5 animations:^{                self.imageView.alpha = 0.0;                self.imageView.transform = CGAffineTransformIdentity;	}]; }	}
+
+每当该方法被调用时，在drawImageForGestureRecognizer:方法当中，图片都会被设置为不透明。当手势结束时，图片在animateWithDuration:方法中被设置为透明的。showGestureForRotationRecognizer:方法通过检测手势识别的状态来判断手势是否结束。这些状态在“在有限状态机中进行手势识别操作”部分有更详细的解释。
 ## 定义手势识别的相互作用
 通常，当你添加手势识别到你的应用程序时，你需要你需要指定手势识别之间如何进行相应或者手势识别如何相应你的应用程序的触摸事件相关代码。想要做到这些的话，你首先需要对于手势识别是如何工作的有一些了解。
 ### 手势识别是在一个有限状态机中进行操作的
