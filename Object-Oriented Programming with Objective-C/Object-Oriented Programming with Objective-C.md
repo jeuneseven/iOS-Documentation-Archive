@@ -156,6 +156,9 @@ C的结构体和函数能够表达有意义的抽象，但它们会维持数据�
 ## 继承
 
 ### 类的层级
+图3-3 一个继承等级  
+
+![](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/OOP_ObjC/Art/emptyhierarchy.gif)
 
 ### 子类的定义
 
