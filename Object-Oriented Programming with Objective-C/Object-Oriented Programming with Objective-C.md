@@ -179,6 +179,10 @@ C的结构体和函数能够表达有意义的抽象，但它们会维持数据�
 
 ## 接口连接
 
+图4-1 接口  
+
+![](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/OOP_ObjC/Art/outlets.gif)
+
 ### 外在的和内在的连接
 
 ### 动态的对象网络
