@@ -21,7 +21,17 @@
 
 ![](https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/debugging_with_xcode/Art/dwx-qs-2a_2x.png)  
 
+点开表格的一项能够打开一个更详细的状态报告。  
 
+![](https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/debugging_with_xcode/Art/dwx-qs-3a_2_2x.png)  
+
+无论是你新编写的代码没有按照你的期望运行还是你在调试界面看到了意外状况，你很可能不会立即知道问题的原因。不过，你已经有了以下信息：  
+
+* 你的应用程序在你开始添加新功能之前是运行正常的。
+* 直到你使用应用程序的UI运行新代码之前，它的行为都是正确的。
+* 你知道你添加到源代码中的新代码是什么。
+
+若要更进一步的隔离原因，你可以设置代码的“断点”。
 ## 使用断点
 
 # 调试工具
