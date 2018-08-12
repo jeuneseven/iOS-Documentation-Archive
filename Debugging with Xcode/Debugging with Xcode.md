@@ -87,7 +87,31 @@
 ## 使用替代工具链
 
 # 快速查看数据类型
+Xcode调试器包含变量快速查看功能，这是一种通过弹出框展示对象变量内容来查看当前对象变量状态的方式，不论是在调试器变量视图中通过点击“快速查看”按钮或是通过点击选中变量的Space栏都可以做到。  
 
+![](https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/debugging_with_xcode/Art/dwx-ql-qlbuttons_2x.png)
+
+不是所有的操作系统对象类型都能够通过快速查看来展示，不过很多都可以。以下清单列出了操作系统支持快速查看的常用对象类型：  
+
+类分类  | 对象类型
+------------- | -------------
+图片类  | NSImage、UIImage、NSImageView、UIImageView、CIImage、NSBitmapImageRep
+光标类  | NSCursor
+颜色类  | NSColor、UIColor
+贝塞尔路径类  | NSBezierPath、UIBezierPath
+定位类  | CLLocation
+视图类  | NSView、UIView
+字符串类  | NSString
+属性字符串类  | NSAttributedString
+数据类  | NSData
+URL类  | NSURL
+SpriteKit类  | SKSpriteNode、SKShapeNode、SKTexture、SKTextureAtlas
+
+即使是不在该清单中的对象你也可以尝试使用快速查看功能。若快速查看不支持你选中的对象的类型，Xcode会为该对象展示默认快速查看。  
+
+![](https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/debugging_with_xcode/Art/dwx-ql-default_2x.png)  
+
+你还可以通过给对象类添加渲染方法来扩展自定义对象的快速查看的使用。参见“在Xcode调试器中快速查看自定义类型”来了解如何在你的自定义对象类中实现快速查看。
 # 附录：静态分析
 
 ## 执行静态代码扫描
