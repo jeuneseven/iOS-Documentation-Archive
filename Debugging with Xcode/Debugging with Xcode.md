@@ -44,6 +44,19 @@
 
 ![](https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/debugging_with_xcode/Art/dwx-qs-4_2_2x.png)  
 
+你可以使用调试栏中的控件以多种方式单步执行，如同你在“调试器控件”中所看到的一样。手动单步执行过一段代码是检测你代码的一种清晰方式，而且它可能很耗时。一旦你将一个断点置于你的代码中，你可以以不同的方式将其设置，使其提高调试的效率。点击断点来展示详细菜单，然后选择编辑断点。  
+
+![](https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/debugging_with_xcode/Art/dwx-qs-5_2x.png)
+
+你可以将断点配置为根据条件暂停程序。由于你的应用程序是在断点激活的状态下运行的，你可以使用在源代码范围内的应用程序中的任意代码或变量，该位置的断点被会被一个条件所激活。  
+
+![](https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/debugging_with_xcode/Art/dwx-qs-6_2x.png)
+
+断点条件在很多地方都有用。举个例子，假设你的功能依赖于一个变量的状态。你会注意到，当一个问题发生，你会检测到变量，而应用程序会停在该断点上，该变量会有一个特殊状态——nil或某个其他的特殊值。一旦你注意到它，你可以设置一个断点条件来检测变量并仅当变量是该值时应用程序才会暂停。  
+另一个断点的有用的功能是能够调起一个动作执行。  
+
+![](https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/debugging_with_xcode/Art/dwx-qs-7_2x.png)
+
 
 ## 调试器中的控制
 
