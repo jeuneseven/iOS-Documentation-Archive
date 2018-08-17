@@ -57,6 +57,19 @@
 
 ![](https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/debugging_with_xcode/Art/dwx-qs-7_2x.png)
 
+给定上述情况，当循环次数在增加，变量需要达到一个特定状态，也许你需要知道每次循环执行的时候变量的值。在每次经过循环的时候，你可以设置断点动作来打印变量的描述到控制台（使用LLDB命令 po，po是LLDB为“打印对象”命令提供的缩写）。  
+在你的代码中的断点被断点导航器所管理。  
+
+![](https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/debugging_with_xcode/Art/dwx-qs-8_2x.png)
+
+使用断点导航器，你可以看到所有在你的代码中设置的断点，编辑它们，激活或禁用它们，并且能够改变它们在Xcode上下文中的操作域。若要激活或禁用一个断点，点击它在断点导航栏或源代码编辑器中的标志；一个变暗的标志表示该断点被禁用了。  
+当你使用完断点后，要删除一个断点的话，你需要做以下几种之一即可：  
+
+* 将其拖拽出源代码编辑器边栏。
+* 自断点导航栏中选中它然后点击删除。
+* 按住control点击它（在源代码编辑器或断电导航栏中）然后选择删除断点。
+
+![](https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/debugging_with_xcode/Art/dwx-qs-9_2x.png)  
 
 ## 调试器中的控制
 
