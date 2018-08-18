@@ -71,6 +71,16 @@
 
 ![](https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/debugging_with_xcode/Art/dwx-qs-9_2x.png)  
 
+你可以同时激活或禁用多个断点。举例来说，在你需要定位代码中不同部分的几个问题时，你就可能需要这么做。  
+在断电导航栏中点击断点行会在源代码编辑器中移动到该断点的位置。  
+当你放置了一组断点来调试一个问题，但临时需要没有这些断点造成的停顿来运行你的应用程序以便能够达到你需要调试的问题将要发生时的状态。要禁用或激活所有的断点，点击调试栏中的断点激活按钮。  
+
+```
+注意：断点激活按钮没有改变设置断点的激活/禁用。所有的断点依旧在该位置，激活或禁用的状态和它们被禁用之前的状态一样。
+```
+
+![](https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/debugging_with_xcode/Art/dwx-qs-11_2x.png)
+
 ## 调试器中的控制
 
 ## 在调试器导航中检测回溯
