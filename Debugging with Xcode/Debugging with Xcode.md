@@ -81,7 +81,13 @@
 
 ![](https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/debugging_with_xcode/Art/dwx-qs-11_2x.png)
 
-## 调试器中的控制
+## 调试器中的控制流
+
+### 调试器中的单步控制
+
+### 通过变量视图截获变量
+
+### 了解控制台
 
 ## 在调试器导航中检测回溯
 
