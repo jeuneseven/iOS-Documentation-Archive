@@ -4,6 +4,14 @@
 
 # Collection View基础
 
+## 一个Collection View就是一组合作的对象
+
+## 重用视图能够提高性能
+
+## 布局对象控制了界面展示
+
+## Collection View自动初始化了动画
+
 # 设计你的数据源和代理
 
 # 使用布局
