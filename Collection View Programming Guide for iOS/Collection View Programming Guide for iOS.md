@@ -37,7 +37,8 @@ collection view会协助你的应用程序所提供的数据驱动的视图的�
 ### 另请参阅
 Collection View与table view有一些类似，它们都能够展示有序的数据给用户。table view的实现与一个标准collection view（使用给定流式布局）在使用索引，单元格和视图循环的过程类似。不过table view的展示是沿一个单列布局所展示的，而collection view能够支持多种不同的布局。更多关于table view的相关信息，参见“iOS table view编程指南”。
 # Collection View基础
-
+要展示其内容到屏幕上，collection view要与很多不同的对象共同合作。有些对象是自定义的，并必须由你的应用程序所提供。比如，你的应用程序必须提供一个数据源对象来告诉collection view有多少元素需要显示。其他对象由UIKit所提供并且是collection view基础设计的一部分。  
+像table view一样，collection view也是数据驱动的对象，它的实现涉及你的应用程序对象的协作。若要理解你的代码需要做什么，你需要了解一些有关一个collection view都做了些什么的背景知识。
 ## 一个Collection View就是一组合作的对象
 
 ## 重用视图能够提高性能
