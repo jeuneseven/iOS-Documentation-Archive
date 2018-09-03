@@ -40,6 +40,13 @@ Collection View与table view有一些类似，它们都能够展示有序的数�
 要展示其内容到屏幕上，collection view要与很多不同的对象共同合作。有些对象是自定义的，并必须由你的应用程序所提供。比如，你的应用程序必须提供一个数据源对象来告诉collection view有多少元素需要显示。其他对象由UIKit所提供并且是collection view基础设计的一部分。  
 像table view一样，collection view也是数据驱动的对象，它的实现涉及你的应用程序对象的协作。若要理解你的代码需要做什么，你需要了解一些有关一个collection view都做了些什么的背景知识。
 ## 一个Collection View就是一组合作的对象
+collection view的设计是将数据从被安排和展示到屏幕上与将要展示的数据进行分离。尽管你的应用程序需要完全负责管理被展示的数据，但它的可视化部分同样也被很多不同的对象所管理。清单1-1列出了UIKit中的 collection view相关类以及他们在实现一个collection view界面的过程中所扮演的角色。大部分类都被设计为无需通过子类继承即可使用，所以你可以通过使用很少量的代码就能够实现一个collection view。若你需要更多功能，你可以通过子类扩展。  
+
+清单1-1 实现collection view的类和协议  
+
+| 用途  | 类/协议  | 描述 |
+|:------------- |:---------------:| -------------:|
+| 顶层容器和管理      | UICollectionView UICollectionViewController | UICollectionView类的对象为你的collection view的内容定义了可视化区域。该类由UIScrollView扩展而来，可以根据需要包含一大块可滚动区域。该类同样能够协助从布局对象所接收的布局信息来展示数据。UICollectionViewController类的对象提供了一个collection view的视图控制器级别的支持。它的使用是可选的。 |
 
 ## 重用视图能够提高性能
 
