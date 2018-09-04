@@ -47,6 +47,10 @@ collection view的设计是将数据从被安排和展示到屏幕上与将要�
 | 用途  | 类/协议  | 描述 |
 |:------------- |:---------------:| -------------:|
 | 顶层容器和管理      | UICollectionView UICollectionViewController | UICollectionView类的对象为你的collection view的内容定义了可视化区域。该类由UIScrollView扩展而来，可以根据需要包含一大块可滚动区域。该类同样能够协助从布局对象所接收的布局信息来展示数据。UICollectionViewController类的对象提供了一个collection view的视图控制器级别的支持。它的使用是可选的。 |
+| 内容管理      | UICollectionViewDataSource 协议 UICollectionViewDelegate 协议 | 数据源对象是与collection view相关的最重要的对象，也是你必须提供的。数据源管理着collection view的内容，并创建该内容所需要展示的视图。要实现一个数据源对象，你必须创建一个遵循UICollectionViewDataSource协议的对象。collection view的delegate对象能够让你从collection view获取你想要的信息，并定制化视图的行为。比如，你可以使用代理对象来跟踪collection view中的选取和高亮元素。和数据源对象不同，代理对象是可选的。关于如何实现数据源和代理对象的相关信息，参见“设计你的数据源和代理”部分。 |
+| 展示      | UICollectionReusableView UICollectionViewCell | 所有在collection view中展示的视图必须是UICollectionReusableView类的实例对象。该类支持一种collection view使用的循环机制。循环视图（而不是创建新视图）通常会提高性能，尤其是在其滚动的时候。UICollectionViewCell对象是一种你主要用来展示数据元素的特殊类型的重用视图。 |
+|  布局   | UICollectionViewLayout UICollectionViewLayoutAttributes UICollectionViewUpdateItem | UICollectionViewLayout的子类被称为布局对象，它负责定义单元格的位置，尺寸以及可视化的属性，并在一个collection view中重用视图。在布局期间，一个布局对象会创建属性对象（UICollectionViewLayoutAttributes类的实例对象）来告诉collection view在哪以及如何展示单元格和重用视图。布局对象会在有数据元素插入，删除或移动到collection view时接收到UICollectionViewUpdateItem类的实例发出的消息。你无须自己创建该类的实例对象。有关更多关于布局对象的相关信息，参见“布局对象控制了界面展示” |
+|  流式布局   | UICollectionViewFlowLayout UICollectionViewDelegateFlowLayout | UICollectionViewFlowLayout类是你用来实现网格或其他基于行式布局的混合布局对象。你可以使用该类本身或结合流式代理对象一起使用，后者能够让动态的你定制化布局信息。 |
 
 ## 重用视图能够提高性能
 
