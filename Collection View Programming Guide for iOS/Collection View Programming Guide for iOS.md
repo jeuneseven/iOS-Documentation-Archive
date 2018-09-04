@@ -52,6 +52,12 @@ collection view的设计是将数据从被安排和展示到屏幕上与将要�
 |  布局   | UICollectionViewLayout UICollectionViewLayoutAttributes UICollectionViewUpdateItem | UICollectionViewLayout的子类被称为布局对象，它负责定义单元格的位置，尺寸以及可视化的属性，并在一个collection view中重用视图。在布局期间，一个布局对象会创建属性对象（UICollectionViewLayoutAttributes类的实例对象）来告诉collection view在哪以及如何展示单元格和重用视图。布局对象会在有数据元素插入，删除或移动到collection view时接收到UICollectionViewUpdateItem类的实例发出的消息。你无须自己创建该类的实例对象。有关更多关于布局对象的相关信息，参见“布局对象控制了界面展示” |
 |  流式布局   | UICollectionViewFlowLayout UICollectionViewDelegateFlowLayout | UICollectionViewFlowLayout类是你用来实现网格或其他基于行式布局的混合布局对象。你可以使用该类本身或结合流式代理对象一起使用，后者能够让动态的你定制化布局信息。 |
 
+图1-1展示了一个collection view的核心对象之间的关系。collection view会从它的数据源获取有关展示单元格的相关信息。数据源和代理对象是由你的应用程序提供的自定义对象，它们用来管理内容，包括单元格的选中和高亮。布局对象负责决定这些单元格在什么位置显示以及将这些信息以一个或多个布局属性对象的形式发送给collection view。collection view随后会合并布局信息与实际的单元格（以及其他视图）来创建最终的展示式样。  
+
+图1-1 合并内容和布局来创建最终的展示  
+![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/cv_objects_2x.png)
+
+当创建一个collection view界面的时候，首先你可以将一个UICollectionView对象添加到你的故事版或nib文件当中。将collection view看做一个中央集线器，所有的其他对象都从中发出。在添加完该对象之后，你可以开始配置其他相关对象，比如数据源或代理。所有的配置都是围绕着collection view本身的。比如，你在已经创建了一个collection view对象之后就无需创建一个布局对象了。
 ## 重用视图能够提高性能
 
 ## 布局对象控制了界面展示
