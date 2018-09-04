@@ -59,6 +59,12 @@ collection view的设计是将数据从被安排和展示到屏幕上与将要�
 
 当创建一个collection view界面的时候，首先你可以将一个UICollectionView对象添加到你的故事版或nib文件当中。将collection view看做一个中央集线器，所有的其他对象都从中发出。在添加完该对象之后，你可以开始配置其他相关对象，比如数据源或代理。所有的配置都是围绕着collection view本身的。比如，你在已经创建了一个collection view对象之后就无需创建一个布局对象了。
 ## 重用视图能够提高性能
+Collection View使用了一种视图循环程序来提高性能。当视图移出屏幕的时候，它们将会被从视图移除并被放置到一个重用队列当中（而非被删除）。当新的内容滚动到屏幕上时，被从队列中移除的视图会被重新复用给新的内容。为更好的使用这种循环和重用，所有的被collection view所用来展示的视图都必须从UICollectionReusableView类所扩展。  
+Collection View支持三种不同类型的重用视图，每种都有特定用途：  
+
+* Cells（单元格）
+* Supplementary views（辅助视图）
+* Decoration views（装饰视图）
 
 ## 布局对象控制了界面展示
 
