@@ -106,7 +106,13 @@ collection view查找它所包含的数据时使用NSIndexPath对象。当试图
 ![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/cv_layout_sections_2x.png)
 
 ### 设计你的数据对象
+一个高效的数据源会使用段和元素来帮助组织其基本的数据对象。将你的数据组织成段落和元素将使得实现数据源的方法更为简单。由于数据源的方法经常被调用，你要确保这些方法的实现能够尽可能快的检索数据。  
+一种简单的解决方案（当然不是唯一的解决方案）是数据源使用一组嵌套的数组，如图2-2所示。在这种配置下，顶层的数组包含一个或多个代表你的数据源的段落的数组。每个段落的数组又包含该段落的数组元素。在段落中查找元素就变成了查找到该段落的数组然后从该数组查找元素的过程。这种配置能够适当的组织元素的集合以及根据需要检索特定的元素。  
 
+图2-2 使用嵌套数组来管理数据对象  
+![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/ds_data_object_layout_2x.png)  
+
+当设计你的数据结构的时候，你可以从一个简单的数组集合开始，然后根据需要转换到一个更高效的结构上。一般来讲，你的数据对象应当不应该有性能瓶颈。collection view 访问你的数据源只是为了计算总共有多少个对象，以及为当前屏幕上的元素获取视图。若布局对象只依赖你的数据对象的数据的话，那么当数据源包含上千个对象时，性能将会被严重降低。
 ### 将你的内容告知collection view
 
 ## 配置cell和辅助视图
