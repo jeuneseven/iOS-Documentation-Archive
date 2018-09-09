@@ -114,6 +114,27 @@ collection view查找它所包含的数据时使用NSIndexPath对象。当试图
 
 当设计你的数据结构的时候，你可以从一个简单的数组集合开始，然后根据需要转换到一个更高效的结构上。一般来讲，你的数据对象应当不应该有性能瓶颈。collection view 访问你的数据源只是为了计算总共有多少个对象，以及为当前屏幕上的元素获取视图。若布局对象只依赖你的数据对象的数据的话，那么当数据源包含上千个对象时，性能将会被严重降低。
 ### 将你的内容告知collection view
+collection view询问你的数据源的问题包括它包含多少段以及每段包含多少项元素。当以下情况发生时，collection view会要求你的数据源提供信息：  
+
+* collection view首次展示的时候。
+* 你将一个不同的数据源对象赋值给collection view时。
+* 你显式的调用collection view的reloadData方法时。
+* collection view的代理使用performBatchUpdates:completion:执行block或有任何移动，插入或删除的方法执行时。
+
+使用numberOfSectionsInCollectionView:方法来提供段落数，使用collectionView:numberOfItemsInSection:方法来提供每个段落的项目数。你必须实现collectionView:numberOfItemsInSection:方法，不过如果你的collection view只有一个段落的话，是否实现numberOfSectionsInCollectionView:方法是可选的。两个方法都是通过整形值返回相应的信息。  
+如果你如图2-2那样实现你的数据源的话，你的数据源方法的实现可以如清单2-1那样简单。在这份代码中，_data变量是一个数据源的自定义成员变量，它存储了顶层段落的数组。通过获取该数组的数量能够得到段落数。通过获取每个子数组的数量能够获取该段落的项目数。（当然，你自己的代码要根据需要检测各种错误来确保返回值有效。）  
+
+清单2-1 提供段落和项目数  
+
+	- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView*)collectionView {
+    // _data is a class member variable that contains one array per section.
+   		 return [_data count];
+	}
+ 
+	- (NSInteger)collectionView:(UICollectionView*)collectionView numberOfItemsInSection:(NSInteger)section {
+   		 NSArray* sectionArray = [_data objectAtIndex:section];
+	   	 return [sectionArray count];
+	}
 
 ## 配置cell和辅助视图
 
