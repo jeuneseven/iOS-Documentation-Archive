@@ -146,12 +146,223 @@ collection view询问你的数据源的问题包括它包含多少段以及每�
 为确保单元格和辅助视图以最高效的方式被利用，collection view承担了为你创建这些对象的责任。每个collection view都会维护一个当前没有被使用的单元格和辅助视图的内部队列。你无需自己创建对象，只需要直接要求collection view提供给你想要的视图即可。如果重用队列中有等待被重用的视图，collection view会立即将其准备好并返回给你。若没有等待被重用的视图，collection view会使用注册的类或nib文件来创建一个新的视图并返回给你。因此，每次你从队列中取出一个单元格或视图，你都会得到一个已经准备好被使用的对象。  
 重用标识符使得可以注册多种不同类型的单元格和辅助视图。重用标识符是一个你用来区分注册的单元格和视图类型的字符串。该字符串的内容只与你的数据源对象相关。但当被要求提供视图或单元格时，你可以使用提供的索引路径来决定你可能需要的视图或单元格类型，然后传递相应的重用标识符给出列方法。
 ### 注册cell和辅助视图
+你可以通过代码的方式或故事版的方式来配置你的collection view的单元格和视图。  
+通过故事版来配置单元格和视图。当在故事版中配置单元格和视图时，你可以通过拖拽相应的item到你的collection view并配置它来做到。这会在collection view和相应的单元格和视图之间创建一组联系。  
 
+* 对于单元格。从对象库中拖拽一个Collection View Cell到你的collection view中。给你的单元格设置自定义类和重用标识符以适当的值。
+* 对于辅助视图。从对象库中拖拽Collection Reusable View到你的collection view中。然后设置自定义类和重用标识符以适当的值。
+
+通过代码配置单元格。使用registerClass:forCellWithReuseIdentifier: 或 registerNib:forCellWithReuseIdentifier:方法来关联你的单元格和重用标识符。你可以在父视图控制器的初始化过程中调用该方法。  
+通过代码配置辅助视图。使用 registerClass:forSupplementaryViewOfKind:withReuseIdentifier: 或 registerNib:forSupplementaryViewOfKind:withReuseIdentifier:方法来关联每种类型的视图和重用标识符。你可以在父视图控制器的初始化过程中调用该方法。  
+在注册单元格的时候只需要一个重用标识符，不过在注册辅助视图时会额外要求你提供一个“类型”字符串。每种布局对象要负责定义它所支持的辅助视图的类型。比如，UICollectionViewFlowLayout类支持两种类型的辅助视图：段头视图和段尾视图。为区分这两种类型的视图，它定义了字符串常量 UICollectionElementKindSectionHeader 和 UICollectionElementKindSectionFooter。在布局期间，布局对象包含具有该视图类型的其他布局属性的类型字符串。collection view 会通过你的数据源传递信息。你的数据源可以使用两种类型的字符串和重用标识符来决定哪个视图对象应该出列以及返回。  
+
+```
+注意：若你实现了自定义的布局，你要负责定义你的布局所支持的辅助视图的类型。布局可能支持任意数量的辅助视图，每种都有其自己的类型字符串。更多关于定义自定义布局的相关信息，参见“创建自定义布局”。
+```
+
+注册是一个一次性的事件，它必须放置在你试图出列单元格或视图之前。在你注册之后，你可以根据需要出列任意数量的单元格或视图而无需再注册。我们不推荐你在出列一个或多个元素后再更改注册信息。最好是先注册单元格和视图然后再进行处理。
 ### 从队列取出和配置cell和视图
+当collection view要求时，你的数据源对象应当负责提供单元格和辅助视图。UICollectionViewDataSource协议为这两个目的提供了两个方法：collectionView:cellForItemAtIndexPath: 和 collectionView:viewForSupplementaryElementOfKind:atIndexPath:。由于单元格是collection view必须的元素，你的数据源必须实现collectionView:cellForItemAtIndexPath:方法，但collectionView:viewForSupplementaryElementOfKind:atIndexPath:方法是可选的，并且依赖于布局所使用的类型。不论哪种情况，在实现这些方法时都应遵循一个简单模式：  
 
+1. 使用dequeueReusableCellWithReuseIdentifier:forIndexPath: 或 dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:方法出列一个适当类型的单元格或视图。
+2. 在指定索引路径使用数据配置视图。
+3. 返回视图。
+
+出列的过程被设计为依赖于你创建单元格或视图的过程。只要你提前注册了单元格或视图，出列方法就能够保证永不返回nil。若在重用队列中没有给定的类型的单元格或视图的话，出列方法会直接使用你的故事版或你在注册时使用的类或nib文件来创建一个。  
+从出列过程中返回给你的单元格应当为原始状态，并应做好配置新数据的准备。对于必须创建的单元格或视图来说，出列过程会使用正常的过程对其进行创建和初始化——意思就是通过从一个故事版或nib文件或创建一个新的实例以及使用initWithFrame:方法对其进行初始化来加载视图。相反的，一个不是从这个过程中创建的单元，而是从重用队列中取出的单元很可能包含之前使用的数据的状态。在这种情况下，重用方法会调用 prepareForReuse 方法来给予单元格以时机来将其本身恢复至原始状态。当你实现一个自定义单元格或视图类时，你可以通过重写该方法来将属性重置为默认值以及执行一些额外的清理工作。  
+当你的数据源出列一个视图之后，它会使用新的数据配置视图。你可以使用索引路径来传递给你的数据源方法，以便定位到适当的数据对象，然后将其应用在视图上。在你配置视图之后，从你的方法中将其返回，你的工作就结束了。清单2-2展示了一个如何配置单元格的简单例子。在单元格出列后，方法使用单元格的位置信息设置了单元格的自定义label，然后将其返回。
+
+清单2-2 配置自定义单元格  
+
+	- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                  cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+		   MyCustomCell* newCell = [self.collectionView dequeueReusableCellWithReuseIdentifier:MyCellID
+                                                                          forIndexPath:indexPath];
+ 
+	   newCell.cellLabel.text = [NSString stringWithFormat:@"Section:%d, Item:%d", indexPath.section, indexPath.item];
+   		return newCell;
+		}
+
+
+```
+注意：当从你的数据源中返回视图时，应始终返回有效视图。即使是出于某种原因被要求的视图不会被显示，而返回了nil，这将会触发断言，你的应用程序将会终止，因为布局对象需要这些方法返回有效的视图。
+```
 ## 插入，删除和移动段落和单元格
+要插入，删除或移动一个段落或元素，请遵循以下步骤：  
+
+1. 更新数据源对象的数据
+2. 调用collection view的相应方法来插入或删除段落或元素。
+
+在你更新完你的数据，通知collection view改变之前的时间点。collection view会假设你的数据源包含正确的数据。如果不是这样的话，collection view可能会从你的数据源接收到错误的数据集合或请求不存在的元素，从而让你的应用程序崩溃。  
+当你通过编码的方式添加，删除或移动一个单元格的时候，collection view的方法会自动的为这些改变创建动画。不过，若你想要一起展示动画效果的话，你必须将所有的插入，删除或移动的调用放入一个block中，然后将其传递给 performBatchUpdates:completion: 方法。批量更新的过程会随后以动画的形式同时展示所有的变更，你可以自由的将插入，删除或移动的调用放入同一个block中。  
+清单2-3展示了如何执行一组批量更新来删除当前选中的元素的简单例子。传递给 performBatchUpdates:completion:方法的block首先调用自定义方法来更新数据源。然后告知collection view来删除元素。更新block和你提供的completion block都会被同步执行。  
+
+清单2-3 删除选中的元素  
+
+	[self.collectionView performBatchUpdates:^{
+	   NSArray* itemPaths = [self.collectionView indexPathsForSelectedItems];
+ 
+	   // Delete the items from the data source.
+	   [self deleteItemsFromDataSourceAtIndexPaths:itemPaths];
+ 
+	   // Now delete the items from the collection view.
+	   [self.collectionView deleteItemsAtIndexPaths:itemPaths];
+	} completion:nil];
+
+## 管理选中和高亮的状态
+Collection view默认支持单一元素的可选，并可以配置为支持多个元素的可选或禁用可选。Collection view会监听它区域内的触摸事件，然后高亮或选中相应的单元格。大部分情况下，Collection view会只修改一个单元格的属性来表示它被选中或高亮；它不会改变多个单元格的展现状态，不过有一个例外。若一个单元格的 selectedBackgroundView 属性包含一个有效视图的话，collection view会在单元格被高亮或选中时展示该视图。  
+
+清单2-4 设置背景视图来表示状态变更  
+
+	UIView* backgroundView = [[UIView alloc] initWithFrame:self.bounds];
+	backgroundView.backgroundColor = [UIColor redColor];
+	self.backgroundView = backgroundView;
+ 
+	UIView* selectedBGView = [[UIView alloc] initWithFrame:self.bounds];
+	selectedBGView.backgroundColor = [UIColor whiteColor];
+	self.selectedBackgroundView = selectedBGView;
+
+collection view的代理为collection view提供了以下方法来实现高亮和选中：  
+
+* collectionView:shouldSelectItemAtIndexPath:
+* collectionView:shouldDeselectItemAtIndexPath:
+* collectionView:didSelectItemAtIndexPath:
+* collectionView:didDeselectItemAtIndexPath:
+* collectionView:shouldHighlightItemAtIndexPath:
+* collectionView:didHighlightItemAtIndexPath:
+* collectionView:didUnhighlightItemAtIndexPath:
+
+这些方法给予你各种时机来改变collection view的高亮/选中行为达到想要的效果。  
+举个例子，如果你更倾向于自己绘制单元格的选中状态，你可以将selectedBackgroundView属性设置为nil，然后使用你的代理对象将可视化变化应用于单元格。你可以在collectionView:didSelectItemAtIndexPath:方法中应用可见变化，在collectionView:didDeselectItemAtIndexPath:方法中将其移除。  
+如果你更倾向于自己绘制高亮状态，你可以重写collectionView:didHighlightItemAtIndexPath: 和 collectionView:didUnhighlightItemAtIndexPath:代理方法，使用它们来应用在你的高亮中。若你同样指定了视图给selectedBackgroundView属性，你应该将你的变更应用于单元格的内容视图以确保你的变更是可见的。清单2-5展示了使用内容驶入的背景色来改变高亮的简单方式。  
+
+清单2-5 将一个临时高亮赋值给单元格  
+
+	- (void)collectionView:(UICollectionView *)colView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+   		 UICollectionViewCell* cell = [colView cellForItemAtIndexPath:indexPath];
+	   	 cell.contentView.backgroundColor = [UIColor blueColor];
+	}
+ 
+	- (void)collectionView:(UICollectionView *)colView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+   		 UICollectionViewCell* cell = [colView cellForItemAtIndexPath:indexPath];
+	    cell.contentView.backgroundColor = nil;
+	}
+
+单元格的高亮状态和选中状态有一个微小但重要的区别。高亮状态是一个过渡状态，你可以在用户的手指还在触摸设备时将可见的高亮应用于单元格。只有当collection view在跟踪单元格的触摸时，该状态才能被设置为YES。当触摸事件停止后，高亮状态会返回值NO。相反的，选中状态只会在一系列的触摸事件终止后才会改变——尤其是当这些触摸事件表示用户想要选中单元格时。  
+图2-3展示了当用户触摸一个未选中的单元格时发生的一系列步骤。初始的按下事件会引发collection view改变单元格的高亮状态为YES，不过这么做不会自动的改变单元格的展示效果。若最终的抬起事件也发生在单元格中的话，高亮状态会返回NO，collection view会改变选中状态为YES。当用户改变选中状态时，collection view会显示单元格中的selectedBackgroundView属性，不过这是collection view唯一作用于单元格的可见改变。其他的可见变化必须由你的代理对象实现。
+
+图2-3 跟踪单元格的触摸事件  
+
+![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/cell_selection_semantics_2x.png)
+
+无论用户选中还是不选中一个单元格，单元格的选中状态都是最后才改变的。单元格的触摸总是首先引起单元格高亮状态的更改。只有在触摸顺序结束后并且高亮状态在该顺序结束后作用于单元格后，才会引起单元格选中状态的变更。当你设计单元格时，你应当确保你的单元格的高亮和选中状态的可见效果不要冲突。
+## 展示单元格的编辑菜单
+当用户在单元格上执行长按操作时，collection view会展示一个编辑菜单给该单元格。编辑菜单可以用来裁剪，拷贝和粘贴collection view中的单元格。在编辑菜单展示之前可能会遇到几种情况：  
+
+* 代理必须实现所有关于处理动作事件的三个方法：  
+
+	collectionView:shouldShowMenuForItemAtIndexPath:
+
+	collectionView:canPerformAction:forItemAtIndexPath:withSender:
+
+	collectionView:performAction:forItemAtIndexPath:withSender:
+* 对于显示的单元格，collectionView:shouldShowMenuForItemAtIndexPath:方法必须返回YES。
+* collectionView:canPerformAction:forItemAtIndexPath:withSender:方法对于需要的动作处理当的至少一个要必须返回YES。collection view 支持以下动作：  
+	 cut:  
+	 
+	 copy: 
+	 
+	 paste:
+
+若条件都满足，并且用户从菜单中选择了一个动作，collection view会调用代理的collectionView:performAction:forItemAtIndexPath:withSender:方法来执行展示的动作。  
+清单2-6展示了如何隐藏菜单的一个元素。在该例中，collectionView:canPerformAction:forItemAtIndexPath:withSender:方法将裁剪元素从编辑菜单中隐去了。它允许粘贴和拷贝元素，以便用户能够插入内容。  
+
+清单2-6 有选择的隐藏编辑菜单的动作  
+	
+	- (BOOL)collectionView:(UICollectionView *)collectionView
+        canPerformAction:(SEL)action
+        forItemAtIndexPath:(NSIndexPath *)indexPath
+        withSender:(id)sender {
+		   // Support only copying and pasting of cells.
+		   if ([NSStringFromSelector(action) isEqualToString:@"copy:"]
+		      || [NSStringFromSelector(action) isEqualToString:@"paste:"])
+		      return YES;
+ 
+		   // Prevent all other actions.
+		   return NO;
+	}
+
+更多关于作用于剪切板命令的相关信息，参见“iOS文本编辑指南”。
+## 在布局之间进行转换
+最简单的在布局之间进行转换的方式是使用 setCollectionViewLayout:animated: 方法。不过，如果你对于转换过程需要更多的控制或者希望可交互的话，请使用UICollectionViewTransitionLayout对象。  
+UICollectionViewTransitionLayout类是一种特殊类型的布局，它在转换到一个新的布局时会作为collection view的布局对象。通过转换布局对象，你可以将对象以非线性布局，使用不同的时间算法，或根据触摸事件进行移动。标准类提供线性转换到新的布局，不过，与UICollectionViewLayout类相同，UICollectionViewTransitionLayout类可以被子类化来创建任意需要的效果。如果这么做的话，你需要实现同样的方法来创建自定义布局，并能够让你的实现适应用户的输入，一般来说是手势输入。关于如何创建自定义不对象的更多信息，参见“创建自定义布局”。  
+UICollectionViewLayout类提供了几个方法来跟踪布局切换之间的事件。UICollectionViewTransitionLayout对象会通过transitionProgress 属性来跟踪切换的完成状态。在切换发生时，你的代码应定时更新该属性来展示切换的进程。举例来说，使用UICollectionViewTransitionLayout类时可以结合手势对象一起使用，你可以用来在布局切换中使用，也能够让你创建可交互的切换。同时，如果你实现了自定义切换布局对象的话，UICollectionViewTransitionLayout类提供了两个方法来跟踪你的布局相关的值：updateValue:forAnimatedKey: 和 valueForAnimatedKey: 方法。这两个方法会跟踪你在切换的过程中与布局沟通的重要信息的设置和变更的浮点值。举例来说，若你使用捏合手势来切换布局的话，你可以使用这两个方法来告知转换的布局对象该在什么位置将视图的位移从一个转到另一个。  
+在你的应用程序中包含UICollectionViewTransitionLayout对象有以下步骤：  
+
+1. 使用initWithCurrentLayout:nextLayout:方法创建标准类的实例对象或你自己的自定义类。
+2. 通过定时修改transitionProgress属性来沟通切换的过程。不要忘记在改变切换过程之后使用collection view的invalidateLayout方法来禁用布局。
+3. 实现你的collection view的代理方法collectionView:transitionLayoutForOldLayout:newLayout:返回切换的布局对象。
+4. 可选用 updateValue:forAnimatedKey: 方法来修改你的布局的值来展示关于你的布局对象的值的变化。在这种情况下，该值为0。
 
 # 使用布局
+你可以在你的collection view中使用固定的布局对象来对元素进行排版，即UICollectionViewFlowLayout类。流式布局实现了一种基于行的中断式布局，意思是布局对象将单元格以行为基线布局，一行能放多少单元格就放多少。当当前行没有空间留给布局对象时，会创建一个新行继续布局过程。图3-1展示了垂直滚动的流式布局的样子。在这种情况下，每行都在之前行之后水平布局。在一个段落中的单元格能够被段头和段尾视图随意包裹。  
+
+图3-1 使用流式布局对段和单元格进行布局  
+
+![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/flow_horiz_headers_2x.png)
+
+你可以使用流式布局来实现网格，但你可以用它做的更多。线性布局的概念可以应用到很多不同的设计上。举例来说，你可以沿着滚动方向创建单行元素并调整间距，而非网格化的布局元素。单元格也能够拥有不同的尺寸，这会与传统的网格式不同，它会有更多的不对称性，但它仍然是线性布局。可能性很多。  
+你可以通过编码的方式，也可以通过Xcode中的界面编辑器来配置流式布局。配置流式布局的步骤如下：  
+
+1. 创建流式布局对象将其赋值给你的collection view。
+2. 配置单元格的宽高。
+3. 根据需要设置行间距和单元格之间的间距。
+4. 若你想要段头或段尾，设置它们的尺寸。
+5. 设置布局的滚动方向。
+
+
+```
+重要：你至少要指定单元格的宽高。若你不指定，你的单元格的宽高将被设置为0，并且不可用。
+```
+## 自定义流式布局属性
+流式布局对象会暴露几个属性来配置你的内容的展示。当设置这些属性时，这些属性将会被应用到布局的所有元素上。比如，使用流式布局对象的itemSize属性设置单元格的尺寸会让所有的单元格拥有同样的尺寸。  
+如果你想动态的改变单元格的间距或大小，你可以使用 UICollectionViewDelegateFlowLayout 协议的方法。你需要在赋值给collection view的代理对象的位置实现这些方法。若给定的方法存在，流式布局对象会调用该方法而非使用固定的值。你可以通过该方法返回collection view中所有元素的适当的值。
+### 在流式布局中指定元素的尺寸
+若在collection view中的所有元素都是相同的尺寸，赋值给流式布局对象的itemSize属性以相应的宽高值即可。（以像素点设定元素的尺寸。）这是为内容不可变的元素设置布局对象的最快方式。  
+若你想为你的单元格设定不同的尺寸，你必须实现collection view代理中的collectionView:layout:sizeForItemAtIndexPath:方法。你可以使用提供的索引路径信息来返回相应元素的尺寸。在布局期间，流式布局对象会将元素集中于同一垂直线上，如图3-2所示。该行的高或宽最终由该方向的最大元素所决定。  
+
+图3-2 流式布局中的不同尺寸的元素  
+
+![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/flow_horiz_layout_uneven_2x.png)
+
+```
+注意：当你指定单元格的不同尺寸时，单行元素的个数可以与其他行不同。
+```
+### 指定元素之间的间距和行间距
+使用流式布局，你可以指定同一行元素之间的最小间距以及相连行之间的最小间距。要注意，你提供的间距仅仅是最小间距。由于流式布局对象的布局内容的方式，在布局时可能会远大于你所指定的元素之间的距离。布局对象可能在元素布局后为不同尺寸时直接增加实际的行间距。  
+在布局时，流式布局对象会持续给当前行添加元素，直到没有足够的空间留给一个整个的元素。若该行足够容纳一个整数数量的元素而没有额外的空间的话，那么元素之间的空间将会等于最小间距。若在行尾还有额外控件，布局对象会增加元素之间的间距直到元素能够均匀的分布在一行之内，如图3-3所示。增加间距会改变整体元素的效果，并防止每行末尾有较大的空隙。  
+
+图3-3 元素之间实际的间距可能远比最小间距要大  
+
+![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/flow_item_spacing_2x.png)
+
+对于行间距，流式布局对象会使用元素间距相同的技术。若所有的元素是相同大小，流式布局会使用行间距值的最小值并且一行中的所有元素都与下一行中的元素平均间隔。若元素尺寸不同，那么每个单独元素之间的实际距离是可变的。  
+图3-4 展示了当元素为不同尺寸时，行间距为最小值的情况。由于元素尺寸不同，流式布局对象会选取每行中滚动方向上最大的元素。举例来说，在垂直滚动布局下，它会查找每行最高的元素。然后将这些元素之间的距离设置给最小值。若元素在一行的不同部分，如图所示，实际上的行间距将会比最小行间距看起来大的多。  
+
+图3-4 若元素尺寸不同行间距可变  
+
+![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/flow_line_spacing_2x.png)
+
+通过流式布局的属性，你可以使用固定间距值或动态间距值。行间距和元素之间的间距被基于段来处理。因此，行间距和元素间距在给定的段落中对于所有的元素而言相同，但不同的段落可能不同。你可以使用流式布局对象的minimumLineSpacing 和 minimumInteritemSpacing属性设置静态间距，或者使用collection view的collectionView:layout:minimumLineSpacingForSectionAtIndex: 和 collectionView:layout:minimumInteritemSpacingForSectionAtIndex:方法来设置。  
+### 使用段落内边距来拉伸你的内容的边距
+段落内边距可以作为调整布局单元格间距的一种方式。你可以使用内边距来在段头视图之后和段尾视图之前插入空间。你也可以使用内边距来在内容的四边来插入空间。图3-5展示了在一个垂直滚动流式布局中内边距是如何影响一些内容的效果。  
+
+图3-5 段落内边距改变了布局单元格的可用间距  
+
+![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/flow_section_insets_2x.png)  
+
+由于内边距减少了布局单元格的可用间距，你可以用它来限制一行的单元格的数量。在不滚动的方向设定内边距是一种压缩每行间距的方法。若你将该信息与适当的单元格大小所结合，你就能控制每行单元格的数量。
+## 要知道何时该子类化流式布局
 
 # 接入手势支持
 
