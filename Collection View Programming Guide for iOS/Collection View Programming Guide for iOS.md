@@ -355,7 +355,7 @@ UICollectionViewLayout类提供了几个方法来跟踪布局切换之间的事�
 
 通过流式布局的属性，你可以使用固定间距值或动态间距值。行间距和元素之间的间距被基于段来处理。因此，行间距和元素间距在给定的段落中对于所有的元素而言相同，但不同的段落可能不同。你可以使用流式布局对象的minimumLineSpacing 和 minimumInteritemSpacing属性设置静态间距，或者使用collection view的collectionView:layout:minimumLineSpacingForSectionAtIndex: 和 collectionView:layout:minimumInteritemSpacingForSectionAtIndex:方法来设置。  
 ### 使用段落内边距来拉伸你的内容的边距
-段落内边距可以作为调整布局单元格间距的一种方式。你可以使用内边距来在段头视图之后和段尾视图之前插入空间。你也可以使用内边距来在内容的四边来插入空间。图3-5展示了在一个垂直滚动流式布局中内边距是如何影响一些内容的效果。  
+段落内边距可以作为调整布局单元格间距的一种方式。你可以使用内边距来在段头视图之后和段尾视图之前插入空间。你也可以使用内边距来在内容的四边来插入空间。图3-5展示	了在一个垂直滚动流式布局中内边距是如何影响一些内容的效果。  
 
 图3-5 段落内边距改变了布局单元格的可用间距  
 
@@ -363,8 +363,26 @@ UICollectionViewLayout类提供了几个方法来跟踪布局切换之间的事�
 
 由于内边距减少了布局单元格的可用间距，你可以用它来限制一行的单元格的数量。在不滚动的方向设定内边距是一种压缩每行间距的方法。若你将该信息与适当的单元格大小所结合，你就能控制每行单元格的数量。
 ## 要知道何时该子类化流式布局
+虽然使用流式布局无需子类化就能够高效的使用，有时候你还是需要将其子类化以便获取你需要的行为。列表3-1列出了实现所需要的效果所必须的一些继承UICollectionViewFlowLayout的方案。  
 
+列表3-1 继承UICollectionViewFlowLayout的一些情境  
+
+情境  | 继承的一些提示
+------------- | -------------
+ 你要添加新的辅助视图或装饰视图到你的布局中 | 标准的流式布局类只支持段头段尾视图，不支持装饰视图。想要支持额外的辅助视图和装饰视图，你需要至少重写以下方法：layoutAttributesForElementsInRect: (必须) layoutAttributesForItemAtIndexPath: (必须) layoutAttributesForSupplementaryViewOfKind:atIndexPath: (支持新的辅助视图) layoutAttributesForDecorationViewOfKind:atIndexPath: (支持新的装饰视图) 在layoutAttributesForElementsInRect:方法中，你可以调用super来获取单元格的布局属性，然后将属性添加到任意指定的矩形区域的新的辅助视图或装饰视图中。使用其他方法来根据需要提供属性。更多关于在布局期间为视图提供属性的相关信息，参见“创建布局属性”以及“在给定矩形区域为元素提供布局属性”。
+ 你要调整流式布局返回的布局属性 | 重写 layoutAttributesForElementsInRect: 方法，然后将布局属性返回。在实现该方法时应当调用super，修改由父类提供的属性，然后将其返回。关于深度探讨这些方法所承担的工作，参见“创建布局属性”和“在给定矩形区域为单元格提供布局属性”。
+ 你要为你的单元格和视图添加新的布局属性 | 创建 UICollectionViewLayoutAttributes 的自定义子类并添加你需要的属性代表你的自定义布局信息。子类化UICollectionViewFlowLayout并重写layoutAttributesClass方法。在你的该方法实现中返回你的自定义子类。你还应该重写layoutAttributesForElementsInRect:方法，layoutAttributesForItemAtIndexPath:方法，以及其他的返回布局属性的方法。在你的自定义实现中，你应当为你定义的自定义属性设置值。
+ 你要为插入或删除的单元格指定初始或最终位置 | 默认的，在单元格被插入或删除时会有一个简单的淡出动画。若要创建自定义动画，你必须重写部分或所有以下方法：initialLayoutAttributesForAppearingItemAtIndexPath: initialLayoutAttributesForAppearingSupplementaryElementOfKind:atIndexPath: initialLayoutAttributesForAppearingDecorationElementOfKind:atIndexPath: finalLayoutAttributesForDisappearingItemAtIndexPath: finalLayoutAttributesForDisappearingSupplementaryElementOfKind:atIndexPath: finalLayoutAttributesForDisappearingDecorationElementOfKind:atIndexPath: 在你的这些方法的实现中，要设定你需要的属性给插入或移除的视图。流式布局对象会使用你提供的属性来动画的展示插入和删除。若你重写这些方法，我们推荐你也重写prepareForCollectionViewUpdates: 和 finalizeCollectionViewUpdates方法。你可以使用这两个方法来跟踪在当前循环中是哪些单元格被插入和删除了。更多关于插入和删除是如何工作的，参见“让插入和删除的动画更有趣”。
+
+还有一些实例中，正确的做法是从头开始创建自定义布局。在你决定这么做之前，花时间考虑一下这么做是否确实必要。流式布局提供了为适配多种不同的布局多种可定制的行为，它很容易使用，并且包含了大量的优化使得其更加高效。不过，这么说并不意味着你不应该创建自定义布局，因为某些情况下，这么做是有意义的。流式布局限定了滚动方向是单一的，所以如果你的布局包含的内容超出了屏幕在两个方向上的界限，那么这时就有必要实现自定义布局了。如上所述，如果你的布局不是网格或换行的布局的话，或者如果你的布局中的元素频繁的移动，而子类化流式布局比你自己创建的布局要复杂的话，那么创建自定义布局就是一个正确的决定。
+更多关于创建自定义布局，参见“创建自定义布局”。
 # 接入手势支持
+
+## 使用手势修改布局信息
+
+## 使用默认的手势行为
+
+## 操作单元格和视图
 
 # 创建自定义布局
 
