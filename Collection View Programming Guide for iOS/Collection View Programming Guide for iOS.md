@@ -377,11 +377,46 @@ UICollectionViewLayout类提供了几个方法来跟踪布局切换之间的事�
 还有一些实例中，正确的做法是从头开始创建自定义布局。在你决定这么做之前，花时间考虑一下这么做是否确实必要。流式布局提供了为适配多种不同的布局多种可定制的行为，它很容易使用，并且包含了大量的优化使得其更加高效。不过，这么说并不意味着你不应该创建自定义布局，因为某些情况下，这么做是有意义的。流式布局限定了滚动方向是单一的，所以如果你的布局包含的内容超出了屏幕在两个方向上的界限，那么这时就有必要实现自定义布局了。如上所述，如果你的布局不是网格或换行的布局的话，或者如果你的布局中的元素频繁的移动，而子类化流式布局比你自己创建的布局要复杂的话，那么创建自定义布局就是一个正确的决定。
 更多关于创建自定义布局，参见“创建自定义布局”。
 # 接入手势支持
+你可以通过使用手势识别来给你的collection view添加大量的交互。给collection view添加手势识别，当手势发生时使用它来触发事件。对于collection view，有两种事件你可能需要实现：  
 
+* 你需要触发collection view布局信息的改变事件。
+* 你需要直接操作单元格和视图。
+
+你应当将手势识别添加到collection view上——而非一个特定的单元格或视图上。UICollectionView 类扩展于UIScrollView，所以将你的手势识别添加到collection view上不会干扰其他跟踪的手势。此外，由于collection view会存取你的数据源和你的布局对象，你仍然应该存取所有你需要操作的单元格和视图的相关信息。
 ## 使用手势修改布局信息
+手势识别提供了一种简单的方式来动态的修改布局参数。举例来说，你可以使用捏合手势来改变自定义布局中单元格之间的距离。配置一个手势识别的过程是相对比较简单的。  
 
+1. 创建手势识别。
+2. 将手势识别添加到collection view上。
+3. 使用手势识别的处理方法来更新布局参数以及禁用布局对象。
+
+你可以使用alloc/init这种创建其他对象的过程来创建手势识别。在初始化期间，你需要指定目标对象和动作方法以供手势触发时调用。然后调用collection view的addGestureRecognizer:方法来将其添加到视图上。大部分的实际工作将会发生在你初始化时指定的方法中。  
+清单4-1展示了附加在collection view上的捏合手势调用方法的例子。在该例中，捏合所产生的数据被用来改变自定义布局的单元格之间的距离。布局对象实现了自定义的updateSpreadDistance方法，该方法会验证新的距离值然后将其存储，用在随后的布局过程中。动作方法随后会将布局设置为失效，然后强制其基于新的值更新单元格的位置。  
+
+清单4-1 使用手势识别改变布局值  
+
+	- (void)handlePinchGesture:(UIPinchGestureRecognizer *)sender {
+	    if ([sender numberOfTouches] != 2)
+   		     return;
+ 
+	   // Get the pinch points.
+	   CGPoint p1 = [sender locationOfTouch:0 inView:[self collectionView]];
+	   CGPoint p2 = [sender locationOfTouch:1 inView:[self collectionView]];
+ 
+	   // Compute the new spread distance.
+	    CGFloat xd = p1.x - p2.x;
+	    CGFloat yd = p1.y - p2.y;
+	    CGFloat distance = sqrt(xd*xd + yd*yd);
+ 
+	   // Update the custom layout parameter and invalidate.
+	   MyCustomLayout* myLayout = (MyCustomLayout*)[[self collectionView] collectionViewLayout];
+  		 [myLayout updateSpreadDistance:distance];
+	   [myLayout invalidateLayout];
+	}
+
+更多关于创建手势识别以及将其添加到视图上的相关信息，参见“iOS事件处理指南”。
 ## 使用默认的手势行为
-
+UICollectionView 类会监听单点触摸事件来初始化其高亮和选中的代理方法。若你想添加自定义触摸或长按手势到collection view 上的话，配置你的手势识别的相关值
 ## 操作单元格和视图
 
 # 创建自定义布局
