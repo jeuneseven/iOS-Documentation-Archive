@@ -416,9 +416,19 @@ UICollectionViewLayout类提供了几个方法来跟踪布局切换之间的事�
 
 更多关于创建手势识别以及将其添加到视图上的相关信息，参见“iOS事件处理指南”。
 ## 使用默认的手势行为
-UICollectionView 类会监听单点触摸事件来初始化其高亮和选中的代理方法。若你想添加自定义触摸或长按手势到collection view 上的话，配置你的手势识别的相关值
-## 操作单元格和视图
+UICollectionView 类会监听单点触摸事件来初始化其高亮和选中的代理方法。若你想添加自定义触摸或长按手势到collection view 上的话，要将你的手势识别的相关配置与collection view已经使用的值进行区分配置。举例来说，你可能要配置一个手势识别来只响应双击事件。  
+清单4-2你如何让collection view响应你的手势而非单元格的选中/高亮。由于collection view不会使用手势识别来初始化其代理方法，你的自定义手势识别可以通过延迟注册其他触摸事件（通过设置你的手势识别的 delaysTouchesBegan 属性为YES）或者通过取消触摸事件）（通过设置你的手势识别的 cancelsTouchesInView 属性为YES）来让你的自定义手势识别拥有比默认的选中监听更高的优先级。当一个触摸事件注册后，它首先会检测看你的手势识别是否有优先权。若输入对于你的手势识别非法，代理方法将会按照正常情况被调用。  
+清单4-2 优先考虑你的手势识别
 
+	UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+	tapGesture.delaysTouchesBegan = YES;
+	tapGesture.numberOfTapsRequired = 2;
+	[self.collectionView addGestureRecognizer:tapGesture];
+
+## 操作单元格和视图
+你如何使用手势识别来操作单元格和视图是取决于你要操作的类型。简单的插入和删除能够被放置在标准手势识别中的事件方法中执行。但如果你打算做更复杂的操作，你可能需要定义自定义手势识别来跟踪你自己的触摸事件了。  
+一种类型的操作是需要一个自定义手势识别来将一个移动单元格从你的collection view中的一个位置移动到另一个位置。最直接的移动一个单元格的方式是从collection view中删除它（临时的），使用手势识别来在该单元格的可见周围拖拽，然后在触摸事件结束时将该单元格插入新的位置。所有这些都需要你自行控制触摸事件，与布局对象合作来决定新的插入位置，操作数据源的改变，然后将新的单元格插入到新的位置。  
+更多关于创建自定义手势的相关信息，参见“iOS事件处理指南”。
 # 创建自定义布局
 
 # 自定义布局举例
