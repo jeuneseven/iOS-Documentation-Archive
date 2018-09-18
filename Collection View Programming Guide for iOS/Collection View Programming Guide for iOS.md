@@ -446,6 +446,12 @@ UICollectionView 类会监听单点触摸事件来初始化其高亮和选中的
 尽管你可以创建一个功能性的实现核心方法的布局对象，不过你要是也实现一些可选的方法，你的布局将会更有吸引力。  
 布局对象使用数据源提供的信息来创建collection view的布局。你的布局需要通过调用collectionView属性来与数据源进行沟通，该属性在所有的布局方法中均可访问。要知道在布局过程中，你的collection view知道什么，不知道什么。由于布局过程是在底层进行的，collection view不能够跟踪布局或视图的位置。所以即使是布局对象也不能限制你调用任何collection view的方法，也不要依赖collection view来计算布局所需的数据以外的任何内容。
 ### 理解核心布局过程
+collection view会直接与你的自定义布局对象合作来管理整体的布局过程。当collection view判断需要布局信息时，它会要求你的布局对象提供的。举例来说，collection view会在第一次展示或其调整尺寸的时候要求提供布局信息。你也可以通过显式的调用布局对象的invalidateLayout方法来告诉collection view 更新布局。该方法会抛弃已经存在的布局信息并强制布局对象生成新的布局信息。  
+
+```
+注意：要小心不要将布局对象的invalidateLayout方法和collection view的reloadData方法混淆。调用invalidateLayout方法不会必定引起collection view抛弃其已经存在的单元格和子视图。当然，在移动或和添加或删除元素时，它会强制布局对象重新计算所有需要的布局属性。若数据源中的数据改变了，reloadData方法更为适当。不论你如何初始化一个布局的更新，实际的布局过程都是一样的。
+```
+
 
 ### 创建布局属性
 
