@@ -452,6 +452,16 @@ collection view会直接与你的自定义布局对象合作来管理整体的�
 注意：要小心不要将布局对象的invalidateLayout方法和collection view的reloadData方法混淆。调用invalidateLayout方法不会必定引起collection view抛弃其已经存在的单元格和子视图。当然，在移动或和添加或删除元素时，它会强制布局对象重新计算所有需要的布局属性。若数据源中的数据改变了，reloadData方法更为适当。不论你如何初始化一个布局的更新，实际的布局过程都是一样的。
 ```
 
+在布局过程中，collection view会调用你的布局对象的特定方法。这些方法会给予你机选单元格位置的时机以及提供给collection view所需的主要信息。其他方法也可能会被调用，但这些方法会以以下顺序在布局过程中一直被调用：  
+
+* 使用 prepareLayout 方法执行需要提供的布局信息的预先计算。
+* 使用 collectionViewContentSize 方法基于你的初始化计算返回整体区域的大小。
+* 使用 layoutAttributesForElementsInRect: 方法返回特定矩形区域中单元格和视图的属性。
+
+图5-1展示了你该如何利用之前的这些方法来创建你的布局信息。  
+
+图5-1 布局你的自定义内容  
+![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/cv_layout_process_2x.png)
 
 ### 创建布局属性
 
