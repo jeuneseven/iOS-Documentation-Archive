@@ -463,6 +463,15 @@ collection view会直接与你的自定义布局对象合作来管理整体的�
 图5-1 布局你的自定义内容  
 ![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/cv_layout_process_2x.png)
 
+prepareLayout方法会给你机会来执行布局中单元格和视图的位置的计算。你至少应该在该方法中计算内容区域的整体大小，这就是你要在第二步中返回给 collection view 的。  
+collection view会使用内容大小来对其滚动区域进行配置。举例来说，如果你计算的内容区域从横向和纵向都超过了当前设备的屏幕边界，scroll view会调整成在两个方向同时都能够滚动。与UICollectionViewFlowLayout不同，它不会默认调整布局区域在一个方向上滚动。  
+在当前滚动位置，collection view会调用你的layoutAttributesForElementsInRect:方法来询问在一个特定区域内的单元格和视图的属性，这可能和可见矩形区域相同，也可能不同。在返回该信息之后，核心布局过程实际上就完成了。  
+在布局完成后，在你或者collection view禁用布局之前，单元格和视图的属性会维持不变。调用你的布局对象的invalidateLayout方法会让布局过程再次开始，从调用prepareLayout方法开始。collection view会在滚动期间自动禁用你的布局。若用户滚动其内容区域，collection view会调用布局对象的shouldInvalidateLayoutForBoundsChange:方法，若该方法返回YES的话，禁用布局。  
+
+```
+注意：要记住，调用invalidateLayout方法不会立即开始布局更新过程。该方法仅仅是将布局标记为数据改变了，并需要更新。在下一个视图更新循环中，collection view会检测是否有布局改变了，并更新。实际上，你可以调用invalidateLayout连续多次，而不会立即触发布局更新。
+```
+
 ### 创建布局属性
 
 ### 为布局做准备
