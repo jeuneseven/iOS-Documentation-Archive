@@ -1,7 +1,7 @@
 [Auto Layout Guide 原文链接](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853)
 
 # 开始
-
+自动布局会动态的计算在你的视图层级中所有视图的位置和大小，基于这些视图的约束。
 ## 理解自动布局
 
 ### 外部改变
