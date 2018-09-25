@@ -1,12 +1,11 @@
 [Auto Layout Guide 原文链接](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853)
 
 # 开始
+## 理解自动布局
 自动布局会动态的计算在你的视图层级中所有视图的位置和大小，基于这些视图的约束。举例来说，你可以约束一个按钮与一个图片水平居中，让按钮的顶部始终与图片的底部保持8像素的距离。若图片的大小或位置改变了，按钮的位置也会自动变化进行调整匹配。  
 这种基于约束的设计方式能够让你动态的构建用户界面，相应内部和外部的变化。
-## 理解自动布局
-
 ### 外部改变
-
+当你的父视图的大小或形状改变时外部改变将会发生。
 ### 内部改变
 
 ### 自动布局与基于frame布局对比
