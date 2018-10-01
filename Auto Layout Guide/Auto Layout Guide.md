@@ -35,6 +35,8 @@
 
 ![](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/Art/layout_views_2x.png)
 
+要布局你的用户界面，你需要计算你的视图层级中的每个视图的位置和大小。随后，如果有变化发生，你必须重新计算所有受到影响的视图的frame。  
+以编码的方式定义视图的frame会有极大的灵活性。当变化发生时，你可以直接设置你需要的改变。
 ## 没有约束的自动布局
 
 ## 约束的剖析
