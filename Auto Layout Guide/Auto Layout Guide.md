@@ -49,11 +49,14 @@
 ## 没有约束的自动布局
 Stack view提供了一种简单方式来利用自动布局的功能，而无需引入复杂的约束。一个单一的Stack view定义了一行或一列用户界面元素。Stack view会基于这些元素的属性来进行排版。  
 
-* axis轴线：（仅用于UIStackView）
-* orientation方向：（仅用于NSStackView）
-* distribution分布
-* alignment对齐
-* spacing间距
+* axis轴线：（仅用于UIStackView）定义了stack view的方向，是垂直还是水平。
+* orientation方向：（仅用于NSStackView）定义了stack view的方向，是垂直还是水平。
+* distribution分布：定义了沿轴线的视图的布局。
+* alignment对齐：定义了垂直于stack view轴线的视图的布局。
+* spacing间距：定义了临近视图的间距。
+
+若要使用stack view，在界面编辑器中拖拽一个垂直或水平的stack view到画布上。然后将内容拖拽到stack 中。  
+若一个对象拥有固定内容大小，它会以该尺寸出现在该stack中。若它的内容不是固定大小，界面编辑器会提供一个默认大小。你可以重新调整对象的大小，界面编辑器会添加约束来维持它的大小。  
 
 ## 约束的剖析
 
