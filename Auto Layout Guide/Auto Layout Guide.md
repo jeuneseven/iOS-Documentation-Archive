@@ -57,7 +57,26 @@ Stack view提供了一种简单方式来利用自动布局的功能，而无需�
 
 若要使用stack view，在界面编辑器中拖拽一个垂直或水平的stack view到画布上。然后将内容拖拽到stack 中。  
 若一个对象拥有固定内容大小，它会以该尺寸出现在该stack中。若它的内容不是固定大小，界面编辑器会提供一个默认大小。你可以重新调整对象的大小，界面编辑器会添加约束来维持它的大小。  
+要进一步的调试布局，你可以使用属性检查器修改stack view的属性。举例来说，下例使用了8像素间距和等距分布。  
 
+![](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/Art/IB_StackView_Simple_2x.png)
+
+stack view也会基于它在排版视图上的内容和压缩比例优先级来布局。你可以使用尺寸检查器来修改这些。  
+
+```
+注意：你可以通过直接添加约束到排版视图上来进一步的修改布局；不过，你要尽量避免可能的冲突：一般说来，若一个视图的尺寸在给定区域内默认基于其内容尺寸，你可以在该区域内放心添加约束。更多约束冲突的相关信息，参见“不满足的布局”
+```
+
+此外，你可以将stack view嵌入到其他的stack view中来构建更复杂的布局。  
+
+![](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/Art/IB_StackView_NestedStacks_2x.png)
+
+通常来讲，尽量多的使用stack view来管理你的布局。只有在单独通过stack view无法达到你的要求时才需要添加约束。  
+更多使用stack view的相关信息，参见“UIStackView类目参考” 或 “NSStackView类目参考”。  
+
+```
+注意：尽管使用嵌入的stack view会增加用户界面的复杂度，但你无法摆脱对约束的需要。至少，你总是需要约束来定义最外层堆栈的位置（也可能是大小）。
+```
 ## 约束的剖析
 
 ### 自动布局属性
