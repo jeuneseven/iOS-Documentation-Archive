@@ -78,6 +78,11 @@ stack view也会基于它在排版视图上的内容和压缩比例优先级来�
 注意：尽管使用嵌入的stack view会增加用户界面的复杂度，但你无法摆脱对约束的需要。至少，你总是需要约束来定义最外层堆栈的位置（也可能是大小）。
 ```
 ## 约束的剖析
+你的视图层级的布局被定义成一系列的线性等式。每个约束都代表着一个单一的等式。你的目的应该是声明一系列的等式，每个等式有且只有一个解。  
+一个简单的等式如下所示。  
+
+![](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/Art/view_formula_2x.png)
+
 
 ### 自动布局属性
 
