@@ -104,8 +104,29 @@ stack view也会基于它在排版视图上的内容和压缩比例优先级来�
 ```
 注意：虽然OSX和iOS都使用了NSLayoutAttribute枚举，它们的定义的值是有一些不同的。要想查看完整的属性列表，要确定你查看的是正确的平台的文档。
 ```
-
 ### 简单方程
+
+清单3-1 对于通用约束的简单方程
+
+	// Setting a constant height
+	View.height = 0.0 * NotAnAttribute + 40.0
+ 
+	// Setting a fixed distance between two buttons
+	Button_2.leading = 1.0 * Button_1.trailing + 8.0
+ 
+	// Aligning the leading edge of two buttons
+	Button_1.leading = 1.0 * Button_2.leading + 0.0
+ 
+	// Give two buttons the same width
+	Button_1.width = 1.0 * Button_2.width + 0.0
+ 
+	// Center a view in its superview
+	View.centerX = 1.0 * Superview.centerX + 0.0
+	View.centerY = 1.0 * Superview.centerY + 0.0
+ 
+	// Give a view a constant aspect ratio
+	View.height = 2.0 * View.width + 0.0
+
 
 ### 相等，不赋值
 
