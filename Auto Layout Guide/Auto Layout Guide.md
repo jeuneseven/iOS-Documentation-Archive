@@ -144,7 +144,36 @@ stack view也会基于它在排版视图上的内容和压缩比例优先级来�
 	// Give a view a constant aspect ratio
 	View.height = 2.0 * View.width + 0.0
 
-### 相等，不赋值
+### 相等而非赋值
+要注意，“注意”中展示的等式代表相等，而非赋值。  
+当自动布局解等式时，它并不只是将等式右边的值赋值给左边。而是它会计算属性1和属性2的值，并确定他们的关系为真。这意味着我们可以随意将等式两边的元素进行重新排列。比如，清单3-2中的等式与“注意”中的副本相同。  
+
+清单3-2 翻转的等式  
+
+	// Setting a fixed distance between two buttons
+	Button_1.trailing = 1.0 * Button_2.leading - 8.0
+ 
+	// Aligning the leading edge of two buttons
+	Button_2.leading = 1.0 * Button_1.leading + 0.0
+ 
+	// Give two buttons the same width
+	Button_2.width = 1.0 * Button.width + 0.0
+ 
+	// Center a view in its superview
+	Superview.centerX = 1.0 * View.centerX + 0.0
+	Superview.centerY = 1.0 * View.centerY + 0.0
+ 
+	// Give a view a constant aspect ratio
+	View.width = 0.5 * View.height + 0.0
+
+```
+注意：当重新排列元素时，要确定你要颠倒的倍数和常量。比如，常量8.0变为-8.0。2.0的倍数变为0.5。0.0的约束和1.0的倍数保持不变。
+```
+你会发现自动布局通常会提供多种方法来解决同一个问题。比较理想的方式是你应该选择最能够清晰描述你的理念的解决方案。不过，不同的开发者对于哪一种解决方案是最好的不会统一。在这里，保持一致要比正确要好。如果你选择一种方法并始终坚持下去，那么从长远来看，你会遇到越来越少的问题。比如，本指南使用了以下原则：  
+
+1. 整数的倍数比分数的倍数要好。
+2. 正数常量比负数常量要好。
+3. 无论在任何位置，视图都应该出现在布局队列中：前后，上下。
 
 ### 创建无歧义的布局
 
