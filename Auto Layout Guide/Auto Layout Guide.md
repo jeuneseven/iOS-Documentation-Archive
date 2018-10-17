@@ -185,6 +185,34 @@ stack view也会基于它在排版视图上的内容和压缩比例优先级来�
 * 第二种布局约束，视图的左边与父视图的左边相关。它还给视图的右边约束了与父视图的右边相关。视图的宽度随后酒呢能够根据父视图的尺寸和其他的约束计算出来了。
 * 第三种布局约束，视图的左边与父视图的左边相关。它还将视图的中心与父视图对其。宽度和右边距的位置随后就能够根据父视图的尺寸和其他的约束计算出来了。
 
+注意每种布局都有一个视图和两个水平的约束。在每种情况下，约束都完整定义了视图的宽度和水平位置。这就意味着所有的布局都是在水平轴上无歧义的，满足的布局。不过，这些布局并不等同于能够使用。要考虑到父视图的宽度改变的情况。  
+在第一种布局中，视图的宽度不会改变。大部分情况下，这不是你想要的。实际上，一般来讲，你应该避免将常量大小赋值给视图。自动布局是被设计用来自动适应环境来创建布局的。当你基于一个视图固定尺寸的时候，你就将这种能力缩小了。  
+可能不太明显，不过第二种和第三种布局是相同的效果：它们都维持视图和其父视图的固定间距，即使是父视图的宽度改变时。不过，它们并不相等。通常来讲，第二个例子比较容易理解，但第三个例子可能更有用，尤其是当你沿中线摆放一组元素时。始终要为你的布局选取最佳的方案。  
+现在，考虑的稍微复杂一点。假设你要在iPhone上展示两个挨着的视图。你要确保他们在所有方向上都有着较好的间距，并且始终拥有相同宽度。它们也应当在设备旋转的时候调整尺寸。  
+以下图片展示的视图，在水平和垂直方向上：  
+
+![](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Blocks_Portrait_2x.png)  
+
+![](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Blocks_Landscape_2x.png)
+
+那么这些约束应该是什么样呢？下图展示了一种比较直接的解决方案：  
+
+![](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/Art/two_view_example_1_2x.png)
+
+上述解决方案使用的是以下的约束：  
+
+	// Vertical Constraints
+	Red.top = 1.0 * Superview.top + 20.0
+	Superview.bottom = 1.0 * Red.bottom + 20.0
+	Blue.top = 1.0 * Superview.top + 20.0
+	Superview.bottom = 1.0 * Blue.bottom + 20.0
+ 
+	// Horizontal Constraints
+	Red.leading = 1.0 * Superview.leading + 20.0
+	Blue.leading = 1.0 * Red.trailing + 8.0
+	Superview.trailing = 1.0 * Blue.trailing + 20.0
+	Red.width = 1.0 * Blue.width + 0.0
+
 
 ### 反向约束
 
