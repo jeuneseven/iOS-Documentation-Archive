@@ -213,7 +213,33 @@ stack view也会基于它在排版视图上的内容和压缩比例优先级来�
 	Superview.trailing = 1.0 * Blue.trailing + 20.0
 	Red.width = 1.0 * Blue.width + 0.0
 
+根据之前的惯例，这种布局有两个视图，四个水平方向的约束，以及四个垂直方向的约束。虽然这不是万无一失的指南，但它是一个快速的迹象表明你是在正确的轨道上。更重要的是，约束对于视图的大小和位置都进行了单独设定，这就形成了无歧义的，满足条件的布局。移除任何约束，布局都会变成有歧义的。而添加额外的约束，你又会增加冲突的风险。  
+同样，这仍不是唯一的解决方案。以下是与之相等的合理解决方案：  
 
+![](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/Art/two_view_example_2_2x.png)  
+
+无需将蓝色视图的顶部和底部固定在其父视图上，你只需对其蓝色视图的顶部和红色视图的顶部即可。类似的，你需要将蓝色视图的底部和红色视图的底部对其。约束如下所示。
+
+	// Vertical Constraints
+	Red.top = 1.0 * Superview.top + 20.0
+	Superview.bottom = 1.0 * Red.bottom + 20.0
+	Red.top = 1.0 * Blue.top + 0.0
+	Red.bottom = 1.0 * Blue.bottom + 0.0
+ 
+	//Horizontal Constraints
+	Red.leading = 1.0 * Superview.leading + 20.0
+	Blue.leading = 1.0 * Red.trailing + 8.0
+	Superview.trailing = 1.0 * Blue.trailing + 20.0
+	Red.width = 1.0 * Blue.width + 0.0
+
+示例仍旧有两个视图，四个水平方向约束，四个垂直方向约束。同样也形成了无歧义的满足条件的布局。
+
+	但哪种比较好呢？
+	这些解决方案都形成了合理的布局。那么哪种比较好呢？
+	遗憾的是，事实上客观的不能够证明一种解决方案比另一种要更好。每种都有其自己的优势和缺点。  
+	第一种解决方案在一个视图被移除时会比较灵活。将一个视图从视图层级中移除同样也会移除其所有的关联的约束。所以，如果你移除红色视图的话，蓝色视图会留下三个约束。你需要添加一个约束就能够达到合理布局了。而第二种解决方案，移除红色视图的话，将会让蓝色视图只拥有一个约束。
+	另一方面，在第一种解决方案中，若你想要视图的顶部和底部对其，你必须确保它们的顶部和底部约束使用的是同样的常量值。若果你改变其中的一个常量，你必须要记得改变另一个常量。
+	
 ### 反向约束
 
 ### 约束优先级
