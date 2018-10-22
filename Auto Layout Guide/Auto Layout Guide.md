@@ -295,6 +295,17 @@ text view的固定内容尺寸会根据内容变化，无论其是否能够滚�
 
 ![](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/Art/intrinsic_content_size_2x.png)  
 
+这些约束会使用如清单3-5中的不相等关系来定义。在这，IntrinsicHeight和IntrinsicWidth常量代表视图的固定内容大小的高和宽值。  
+
+清单3-5 压阻和内容紧贴方程
+
+	// Compression Resistance
+	View.height >= 0.0 * NotAnAttribute + IntrinsicHeight
+	View.width >= 0.0 * NotAnAttribute + IntrinsicWidth
+ 
+	// Content Hugging
+	View.height <= 0.0 * NotAnAttribute + IntrinsicHeight
+	View.width <= 0.0 * NotAnAttribute + IntrinsicWidth
 
 
 #### 固定的内容尺寸对比适配尺寸
