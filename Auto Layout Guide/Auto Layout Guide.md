@@ -377,7 +377,10 @@ stack view 是个很好的例子。排除其他的约束，系统会基于stack 
 | Image View | 250 | 249 | 750 | 749 |
 
 #### 讨论
-
+你必须将stack view钉到父视图上，换句话说，stack view管理着整个布局，而无需其他显式的约束。  
+在这个例子当中，stack view以一个小而标准的间距填充了其父视图。其子视图被调整为填充stack view的区域。水平方向，每个视图被拉伸为stack view的宽度。垂直方向，视图基于其CHCR优先级进行拉伸。image view应当始终调整为填充适当的区域。所以，其垂直内容紧缩和压缩阻力优先级必须要低于label和button的默认优先级。  
+最后，设置image view的模式为Aspect Fit。这种设置会强制让image view调整其图片大小，以便让图片能够适应image view的大小，并且保持图片的比例。这能够让stack view 直接调整image view的尺寸，而不会造成图片的扭曲。  
+更多关于固定一个视图到其父视图的相关信息，参见“属性”和“适配单一视图”部分。
 ### 嵌套Stack Views
 
 ## 简单约束
