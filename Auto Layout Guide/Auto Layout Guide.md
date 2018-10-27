@@ -339,10 +339,42 @@ stack view 是个很好的例子。排除其他的约束，系统会基于stack 
 以下方法展示了你可以使用stack view来创建布局，以增加多样性。stack view是一种能够快速简单设计你的用户界面的强有力的工具。它的属性允许对其布局排列的子视图进行高度控制。你可以额外的增加这些设定，自定义约束；不过，这也增加了布局的复杂度。  
 若要查看这些方法的源代码，请参见“Auto Layout Cookbook”工程。
 ### 简单Stack View
+以下示例使用了一个简单的，垂直的Stack View来布局一个label，image view和button。  
+
+![](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Simple_Stack_View_Screenshot_2x.png)
 
 #### 视图和约束
+在界面编辑器中，从拖拽一个垂直的stack view开始，然后添加flowers label，image view，以及edit button。然后向以下这样设置约束。  
+
+![](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/Art/simple_stack_2x.png)
+
+	Stack View.Leading = Superview.LeadingMargin
+
+	Stack View.Trailing = Superview.TrailingMargin
+
+	Stack View.Top = Top Layout Guide.Bottom + Standard
+
+	Bottom Layout Guide.Top = Stack View.Bottom + Standard
 
 #### 属性
+在属性检查器中，设置以下stack view属性：  
+
+| Stack  | Axis(轴线)  | Alignment(对其方式) | Distribution(分布方式) | Spacing(间距) |
+|:------------- |:---------------|:---------------|:---------------|:---------------|:---------------:|
+| Stack View | Vertical(垂直) | Fill(填充) | Fill(填充) | 8 |
+
+下一步，为Image View设置以下属性：  
+
+| View(视图)  | Attribute(属性)  | Value(值) |
+|:------------- |:---------------|:---------------|:---------------:|
+| Image View | Image | 一张花的图片 |
+| Image View | Mode(模式) | Aspect Fit |
+
+最后，在尺寸检查器中，设置Image View的内容紧贴和压缩阻力（CHCR）优先级。
+
+| Name(名称)  | Horizontal hugging(水平紧贴)  | Vertical hugging(垂直紧贴) | Horizontal resistance(水平阻力) | Vertical resistance(垂直阻力) |
+|:------------- |:---------------|:---------------|:---------------|:---------------|:---------------:|
+| Image View | 250 | 249 | 750 | 749 |
 
 #### 讨论
 
