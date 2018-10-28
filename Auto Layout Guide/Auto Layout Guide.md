@@ -382,6 +382,12 @@ stack view 是个很好的例子。排除其他的约束，系统会基于stack 
 最后，设置image view的模式为Aspect Fit。这种设置会强制让image view调整其图片大小，以便让图片能够适应image view的大小，并且保持图片的比例。这能够让stack view 直接调整image view的尺寸，而不会造成图片的扭曲。  
 更多关于固定一个视图到其父视图的相关信息，参见“属性”和“适配单一视图”部分。
 ### 嵌套Stack Views
+本示例展示了一个使用多层嵌套stack views的复杂布局。不过，在这个例子中，stack views不能够单独创建想要的行为。还需要额外的增加一些约束来调整布局。  
+
+![](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Nested_Stack_Views_Screenshot_2x.png)
+
+在视图层级构建后，添加的约束在下个段落中，“视图和约束”。
+#### 视图和约束
 
 ## 简单约束
 
