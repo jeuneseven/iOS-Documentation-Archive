@@ -388,7 +388,25 @@ stack view 是个很好的例子。排除其他的约束，系统会基于stack 
 
 在视图层级构建后，添加的约束在下个段落中，“视图和约束”。
 #### 视图和约束
+当使用嵌套的Stack Views时，从内部向外进行布局使用是最简单的方式。从在界面构建器中布局姓名行开始，将label和text field放置在相关的正确位置上，将它们全部选中，然后点击Editor > Embed In > Stack View等菜单项。这会为这一行创建一个水平的Stack View。  
+下一步，将这些行水平放置，选中它们，然后再次点击Editor > Embed In > Stack View菜单项。浙江创建一个水平的Stack View。继续布局，直到界面如下所示。  
 
+![](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/Art/nested_stack_views_2x.png)
+
+	Root Stack View.Leading = Superview.LeadingMargin
+
+	Root Stack View.Trailing = Superview.TrailingMargin
+
+	Root Stack View.Top = Top Layout Guide.Bottom + 20.0
+
+	Bottom Layout Guide.Top = Root Stack View.Bottom + 20.0
+
+	Image View.Height = Image View.Width
+
+	First Name Text Field.Width = Middle Name Text Field.Width
+
+	First Name Text Field.Width = Last Name Text Field.Width
+	
 #### 属性
 
 #### 讨论
