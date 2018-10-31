@@ -408,6 +408,32 @@ stack view 是个很好的例子。排除其他的约束，系统会基于stack 
 	First Name Text Field.Width = Last Name Text Field.Width
 	
 #### 属性
+每个stack都有其自己的一组属性。这些属性定义了stack如何布局其内容。在属性检查器中，设置如下属性：  
+
+| Stack  | Axis(轴线)  | Alignment(对其方式) | Distribution(分布方式) | Spacing(间距) |
+|:------------- |:---------------|:---------------|:---------------|:---------------|:---------------:|
+| First Name | Horizontal(水平) | First Baseline | Fill(填充) | 8 |
+| Middle Name | Horizontal(水平) | First Baseline | Fill(填充) | 8 |
+| Last Name | Horizontal(水平) | First Baseline | Fill(填充) | 8 |
+| Name Rows | Vertical(垂直) | Fill(填充) | Fill(填充) | 8 |
+| Upper | Horizontal(水平) | Fill(填充) | Fill(填充) | 8 |
+| Button | Horizontal(水平) | First Baseline | Fill Equally | 8 |
+| Root | Vertical(垂直) | Fill(填充) | Fill(填充) | 8 |
+
+此外，基于 text view 一个亮灰色背景。这样能够更容易看到 text view 在设备旋转的时候是如何调整大小的。  
+
+| View(视图)  | Attribute(属性)  | Value(值) |
+|:------------- |:---------------|:---------------|:---------------:|
+| Text View | Background | Light Gray Color |
+
+最后，CHCR优先级定义了哪个视图应该被拉伸来填充可用区域。在尺寸检查器中，设置以下CHCR优先级：  
+
+| Name(名称)  | Horizontal hugging(水平紧贴)  | Vertical hugging(垂直紧贴) | Horizontal resistance(水平阻力) | Vertical resistance(垂直阻力) |
+|:------------- |:---------------|:---------------|:---------------|:---------------|:---------------:|
+| Image View | 250 | 250 | 48 | 48 |
+| Text View | 250 | 249 | 250 | 250 |
+| First, Middle, and Last Name Labels | 250 | 251 | 750 | 750 |
+| First, Middle, and Last Name Text Fields | 48 | 250 | 749 | 750 |
 
 #### 讨论
 
