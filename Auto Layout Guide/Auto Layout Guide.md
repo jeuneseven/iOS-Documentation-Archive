@@ -436,7 +436,15 @@ stack view 是个很好的例子。排除其他的约束，系统会基于stack 
 | First, Middle, and Last Name Text Fields | 48 | 250 | 749 | 750 |
 
 #### 讨论
+在这一节中，stack view之间互相协作来管理大部分的布局。不过它们不能靠其自身来创建所有所需的行为。举例来说，当 image view 改变大小时，图片应该始终维持其缩放比例。不巧的是，在“Simple Stack View”中的技术在这里用不到。布局需要同时贴近图片的前边和下边，使用Aspect Fit模式会在这两个其中之一的方向上添加额外的空白。凑巧的是，在这个例子当中，图片的缩放比始终是正方形，所以你能够让图片完整的填充image view，并且强制让image view为1:1的缩放比。  
 
+	注意：在界面编辑器中，缩放比约束是一个在视图的高和宽之间的简单的约束。界面编辑器还能够以多种方式展示约束的倍数。通常来讲，对于缩放比约束，它会展示为一个比例。所以，View.Width = View.Height约束可能展示为一个1：1的缩放比。
+
+此外，所有的text fields应当是同等宽度。不巧的是，它们全都在不同的stack views中，所以stacks不能够对其进行管理。所以，你必须显式的增加相等宽度的约束。  
+就像单一的stack view一样，你必须也同样修改一些CHCR优先级。这些优先级在父类的尺寸改变时定义了视图如何缩放。  
+垂直方向，你需要将textview扩展，直到填充upper stack和button stack 的间距。所以，textview的垂直内容紧缩必须要低于其他的垂直内容紧缩优先级。  
+水平方向，label应当展现为其固定内容宽度，而textfield要调整大小来填充其他的额外的区域。label默认的CHCR优先级会起作用。界面编辑器已经设置了内容紧缩为251，要让其比textfields要高；不过，你仍旧需要降低textfield的水平内容紧缩和水平压缩阻力。  
+image view 应该进行压缩以便高度与stack相同，让stack包含name行。不过，stackview只会简单的包含其内容。这意味着imageview的垂直压缩阻力必须非常低，所以imageview能够压缩，而非stackview扩展。此外，imageview的比例约束使得布局更加复杂，因为它允许垂直和水平约束互相影响。这意味着textfield水平内容紧缩必须非常低，或者它能够阻止imageview压缩。不论哪种情况，都要将优先级的值设为48或更低。
 ### 动态Stack View
 
 #### 视图和约束
