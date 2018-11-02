@@ -446,6 +446,11 @@ stack view 是个很好的例子。排除其他的约束，系统会基于stack 
 水平方向，label应当展现为其固定内容宽度，而textfield要调整大小来填充其他的额外的区域。label默认的CHCR优先级会起作用。界面编辑器已经设置了内容紧缩为251，要让其比textfields要高；不过，你仍旧需要降低textfield的水平内容紧缩和水平压缩阻力。  
 image view 应该进行压缩以便高度与stack相同，让stack包含name行。不过，stackview只会简单的包含其内容。这意味着imageview的垂直压缩阻力必须非常低，所以imageview能够压缩，而非stackview扩展。此外，imageview的比例约束使得布局更加复杂，因为它允许垂直和水平约束互相影响。这意味着textfield水平内容紧缩必须非常低，或者它能够阻止imageview压缩。不论哪种情况，都要将优先级的值设为48或更低。
 ### 动态Stack View
+本节展示了运行时动态的从stack中添加和移除元素。所有的stack的变化都是动画形式的。此外，stackview被放到一个scrollview中，这样即使它太长了，也让你能够滚动列表来适应屏幕大小。  
+
+![](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Dynamic_Stack_View_Screenshot_2x.png)
+
+	注意：本节只是试图展示动态的使用stackview以及将stackview嵌入到scrollview中。在真实的app中，本节所展示的内容应该使用UITableview类来替代。通常来讲，你不应该使用动态的stackview来简单的实现一个tableview的临时克隆版本。而是应该使用它来动态的创建那些你无法使用其他技术简单构建的用户界面。
 
 #### 视图和约束
 
