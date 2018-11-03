@@ -453,6 +453,27 @@ image view 应该进行压缩以便高度与stack相同，让stack包含name行�
 	注意：本节只是试图展示动态的使用stackview以及将stackview嵌入到scrollview中。在真实的app中，本节所展示的内容应该使用UITableview类来替代。通常来讲，你不应该使用动态的stackview来简单的实现一个tableview的临时克隆版本。而是应该使用它来动态的创建那些你无法使用其他技术简单构建的用户界面。
 
 #### 视图和约束
+初始化用户界面非常简单。将一个scrollview放到你的scene伤，然后将其调整大小使其适合scene。然后将一个stackview放到scrollview中，然后将一个按钮添加到stackview中。当所有都放置好后，设置如下的约束：  
+
+![](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/Art/dynamic_stack_view_2x.png)
+
+	Scroll View.Leading = Superview.LeadingMargin
+
+	Scroll View.Trailing = Superview.TrailingMargin
+
+	Scroll View.Top = Superview.TopMargin
+
+	Bottom Layout Guide.Top = Scroll View.Bottom + 20.0
+
+	Stack View.Leading = Scroll View.Leading
+
+	Stack View.Trailing = Scroll View.Trailing
+
+	Stack View.Top = Scroll View.Top
+
+	Stack View.Bottom = Scroll View.Bottom
+
+	Stack View.Width = Scroll View.Width
 
 #### 属性
 
