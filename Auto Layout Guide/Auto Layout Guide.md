@@ -483,6 +483,17 @@ image view 应该进行压缩以便高度与stack相同，让stack包含name行�
 | Stack View | Vertical(垂直) | Fill(填充) | Equal Spacing(等间距) | 0 |
 
 #### 代码
+本节徐亚一些代码来从stackview中添加元素以及移除元素。在你的scene上创建自定义的控制器，然后使用outlets连接scrollview和stackview。  
+
+	class DynamicStackViewController: UIViewController {
+    
+    @IBOutlet weak private var scrollView: UIScrollView!
+    @IBOutlet weak private var stackView: UIStackView!
+    
+    // Method implementations will go here...
+    
+	}
+
 
 #### 讨论
 
