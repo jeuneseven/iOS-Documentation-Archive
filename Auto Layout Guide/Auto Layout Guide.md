@@ -483,7 +483,7 @@ image view 应该进行压缩以便高度与stack相同，让stack包含name行�
 | Stack View | Vertical(垂直) | Fill(填充) | Equal Spacing(等间距) | 0 |
 
 #### 代码
-本节徐亚一些代码来从stackview中添加元素以及移除元素。在你的scene上创建自定义的控制器，然后使用outlets连接scrollview和stackview。  
+本节需要一些代码来从stackview中添加元素以及移除元素。在你的scene上创建自定义的控制器，然后使用outlets连接scrollview和stackview。  
 
 	class DynamicStackViewController: UIViewController {
     
@@ -493,6 +493,43 @@ image view 应该进行压缩以便高度与stack相同，让stack包含name行�
     // Method implementations will go here...
     
 	}
+
+下一步，重写viewDidLoad方法来设置scrollview的初始化位置。你要将scrollview的内容设置到status bar的下方。  
+
+	override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    // setup scrollview
+    let insets = UIEdgeInsetsMake(20.0, 0.0, 0.0, 0.0)
+    scrollView.contentInset = insets
+    scrollView.scrollIndicatorInsets = insets
+    
+	}
+
+然后，给添加的item button添加一个action方法。
+
+	// MARK: Action Methods
+ 
+	@IBAction func addEntry(sender: AnyObject) {
+    
+    let stack = stackView
+    let index = stack.arrangedSubviews.count - 1
+    let addView = stack.arrangedSubviews[index]
+    
+    let scroll = scrollView
+    let offset = CGPoint(x: scroll.contentOffset.x,
+                         y: scroll.contentOffset.y + addView.frame.size.height)
+    
+    let newView = createEntry()
+    newView.hidden = true
+    stack.insertArrangedSubview(newView, atIndex: index)
+    
+    UIView.animateWithDuration(0.25) { () -> Void in
+        newView.hidden = false
+        scroll.contentOffset = offset
+    }
+	}
+
 
 
 #### 讨论
