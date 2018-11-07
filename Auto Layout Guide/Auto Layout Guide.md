@@ -530,7 +530,61 @@ image view 应该进行压缩以便高度与stack相同，让stack包含name行�
     }
 	}
 
+该方法会为scrollview计算一个新的位移，然后创建一个新的view。入口视图是隐藏的，并被添加到stackview中。隐藏的视图不会影响stackview的展示或布局——所以stackview的展示会维持不变。然后，在动画block中，视图会展示出来，然后滚动位移会更新，动态的展示视图。  
+添加一个类似的方法来删除入口；不过，不像addEntry方法一样，该方法在界面编辑器中不会链接到任何控件上。APP会通过编码的方式在创建视图时连接每个入口视图到方法上。  
 
+	func deleteStackView(sender: UIButton) {
+    if let view = sender.superview {
+        UIView.animateWithDuration(0.25, animations: { () -> Void in
+            view.hidden = true
+        }, completion: { (success) -> Void in
+            view.removeFromSuperview()
+        })
+    }
+	}
+
+该方法会在动画block中隐藏视图。在动画完成时，它会从视图层级中将视图移除。这会自动的从stackview的视图中将视图移除。  
+尽管入口视图可以是任何视图，在本例中使用的stackview包含一个日期label，一个包含随机hex字符串的label以及一个删除按钮。  
+
+	// MARK: - Private Methods
+	private func createEntry() -> UIView {
+    let date = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .ShortStyle, timeStyle: .NoStyle)
+    let number = "\(randomHexQuad())-\(randomHexQuad())-\(randomHexQuad())-\(randomHexQuad())"
+    
+    let stack = UIStackView()
+    stack.axis = .Horizontal
+    stack.alignment = .FirstBaseline
+    stack.distribution = .Fill
+    stack.spacing = 8
+    
+    let dateLabel = UILabel()
+    dateLabel.text = date
+    dateLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+    
+    let numberLabel = UILabel()
+    numberLabel.text = number
+    numberLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+    
+    let deleteButton = UIButton(type: .RoundedRect)
+    deleteButton.setTitle("Delete", forState: .Normal)
+    deleteButton.addTarget(self, action: "deleteStackView:", forControlEvents: .TouchUpInside)
+    
+    stack.addArrangedSubview(dateLabel)
+    stack.addArrangedSubview(numberLabel)
+    stack.addArrangedSubview(deleteButton)
+    
+    return stack
+	}
+ 
+	private func randomHexQuad() -> String {
+    return NSString(format: "%X%X%X%X",
+                    arc4random() % 16,
+                    arc4random() % 16,
+                    arc4random() % 16,
+                    arc4random() % 16
+        ) as String
+	}
+	}
 
 #### 讨论
 
