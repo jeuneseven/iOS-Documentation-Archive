@@ -46,6 +46,26 @@ blocks作为函数和方法的参数的一个优势是它们能够在调用的�
 
 blocks的一个比其他回调更有价值的地方是block会在其局部词法范围内共享数据。若你实现了一个方法，并在该方法内定义了一个block，block会和函数以及全局变量一样有权访问方法中的本地变量和参数（包括栈变量），包括实例变量。默认的，这种权限是只读的，不过若你使用__block修饰符来定义一个变量的话，你就可以在block中修改这个变量的值了。即使在方法或函数的闭合block已经返回了，它的局部已经销毁，只要对于block还有引用，它的局部变量也会作为block对象的一部分继续存在下去。
 
+## 系统框架APIs中的Blocks
+一个使用blocks的明显的原因是系统框架中的函数和方法使用blocks作为参数的数量明显增多。以下列出六个系统框架中使用blocks的方法示例：  
+
+* 完成回调
+* 通知回调
+* 错误回调
+* 枚举
+* 视图动画和过渡
+* 排序
+
+以下各段落会详细描述每个示例。不过在开始前，我们先看一个在系统框架方法中block声明的解释的快速概览。我们先考虑一下NSSet类的以下方法：  
+
+	- (NSSet *)objectsPassingTest:(BOOL (^)(id obj, BOOL *stop))predicate
+
+block的声明显示该方法传递给block（对于每个枚举元素）一个动态类型的对象以及一个布尔值类型的引用；block会返回一个布尔值。（这些参数和返回值实际上是什么会在“枚举”一节提到。）当实现该block时，要以脱字符（^）开始，然后加上括号和参数列表；最后加上大括号和block代码本身。
+
+	[mySet objectsPassingTest:^(id obj, BOOL *stop) {
+	    // Code goes here: Return YES if obj passes the test and NO if obj does not pass the test.
+	}];
+
 ### 完成和错误处理
 
 ### 通知处理
@@ -56,4 +76,4 @@ blocks的一个比其他回调更有价值的地方是block会在其局部词法
 
 ### 排序
 
-## 系统框架APIs中的Blocks
+## Blocks和并发
