@@ -67,6 +67,29 @@ block的声明显示该方法传递给block（对于每个枚举元素）一个�
 	}];
 
 ### 完成和错误处理
+完成处理回调是指当系统框架方法完成任务时，客户端能够执行一些方法。通常客户端会使用完成回调来释放某些状态或者更新用户界面。一些系统方法能够让你以blocks的形式来实现完成回调（而非代理或通知的形式）。  
+UIView类有几个动画和视图转换的类方法使用了完成回调的block参数。（“UIView动画和过度”一段给出了这些方法的概述。）清单1-1中列出的示例展示了animateWithDuration:animations:completion:方法的实现。该方法的完成回调处理在动画结束后的几秒后重置了视图的初始位置和透明度（alpha值）。  
+
+清单1-1 一个完成回调处理block  
+
+	- (IBAction)animateView:(id)sender {
+	    CGRect cacheFrame = self.imageView.frame;
+	    [UIView animateWithDuration:1.5 animations:^{
+	        CGRect newFrame = self.imageView.frame;
+	        newFrame.origin.y = newFrame.origin.y + 150.0;
+	        self.imageView.frame = newFrame;
+	        self.imageView.alpha = 0.2;
+	    }
+	                     completion:^ (BOOL finished) {
+	                         if (finished) {
+	                             // Revert image view to original.
+	                             self.imageView.frame = cacheFrame;
+	                             self.imageView.alpha = 1.0;
+	                         }
+	    }];
+	}
+
+有些系统框架方法有错误回调，这种block参数与完成回调类似。当由于某些错误的条件造成无法完成某些任务时，方法会调用它们（并传递NSError对象参数）。通常你都需要实现一个错误处理来通知用户有错误。  
 
 ### 通知处理
 
