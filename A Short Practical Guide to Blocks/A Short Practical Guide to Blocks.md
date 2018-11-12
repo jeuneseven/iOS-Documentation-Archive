@@ -92,6 +92,19 @@ UIView类有几个动画和视图转换的类方法使用了完成回调的block
 有些系统框架方法有错误回调，这种block参数与完成回调类似。当由于某些错误的条件造成无法完成某些任务时，方法会调用它们（并传递NSError对象参数）。通常你都需要实现一个错误处理来通知用户有错误。  
 
 ### 通知处理
+NSNotificationCenter的方法addObserverForName:object:queue:usingBlock:能够让你在设置监听时就能够实现通知的处理。清单1-2展示了你在调用该方法时需为通知定义一个block处理。同时，作为通知处理方法，会传递一个NSNotification对象。该方法同样会传递一个NSOperationQueue实例对象，以便你的应用程序能够指定一个执行上下文来运行block处理。  
+
+清单1-2 添加一个对象为监听并使用block来处理通知  
+
+	- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+	    opQ = [[NSOperationQueue alloc] init];
+	    [[NSNotificationCenter defaultCenter] addObserverForName:@"CustomOperationCompleted"
+	             object:nil queue:opQ
+	        usingBlock:^(NSNotification *notif) {
+	        NSNumber *theNum = [notif.userInfo objectForKey:@"NumberOfItemsProcessed"];
+	        NSLog(@"Number of items processed: %i", [theNum intValue]);
+	    }];
+	}
 
 ### 枚举
 
