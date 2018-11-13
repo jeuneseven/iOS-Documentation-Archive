@@ -181,5 +181,28 @@ iOS4.0中的UIView类展示了几种使用blocks的类方法，这些方法用�
                 completion:NULL];
 
 ### 排序
+Foundation框架为比较两个元素声明了一种 NSComparator 类型：  
 
+	typedef NSComparisonResult (^NSComparator)(id obj1, id obj2);
+
+NSComparator是一种block类型，它带有两个对象参数，并返回一个NSComparisonResult值。在NSSortDescriptor, NSArray, 和 NSDictionary类的方法中使用它作为参数，并且这些类的实例用它来进行排序。清单1-7展示了一种使用示例。  
+
+清单1-7 使用NSComparator block来对数组进行排序  
+
+	NSArray *stringsArray = [NSArray arrayWithObjects:
+                                 @"string 1",
+                                 @"String 21",
+                                 @"string 12",
+                                 @"String 11",
+                                 @"String 02", nil];
+	static NSStringCompareOptions comparisonOptions = NSCaseInsensitiveSearch | NSNumericSearch |
+	        NSWidthInsensitiveSearch | NSForcedOrderingSearch;
+	NSLocale *currentLocale = [NSLocale currentLocale];
+	NSComparator finderSort = ^(id string1, id string2) {
+	    NSRange string1Range = NSMakeRange(0, [string1 length]);
+	    return [string1 compare:string2 options:comparisonOptions range:string1Range locale:currentLocale];
+	};
+	NSLog(@"finderSort: %@", [stringsArray sortedArrayUsingComparator:finderSort]);
+
+该例子来自“blocks编程主题”。
 ## Blocks和并发
