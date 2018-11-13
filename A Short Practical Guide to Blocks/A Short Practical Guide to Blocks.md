@@ -107,6 +107,50 @@ NSNotificationCenter的方法addObserverForName:object:queue:usingBlock:能够�
 	}
 
 ### 枚举
+Foundation框架中的集合类——NSArray, NSDictionary, NSSet, 和 NSIndexSet——声明了能够以特定类型集合来执行枚举的方法，并且会为使用者提供特定block代码来处理或测试每个枚举元素。换句话说，该方法会执行等价的快速枚举结构：  
+
+	for (id item in collection) {
+ 	   // Code to operate on each item in turn.
+	}
+
+通常有两种形式的枚举方法带有blocks。第一种是方法名以enumerate开头，但没有返回值。这些方法的block会对每个枚举元素执行某些操作。第二种类型的方法的block参数前会有passingTest；这种类型的方法会返回一个整形或一个NSIndexSet对象。这些方法的block会为每个枚举元素执行一个测试，如果该元素通过测试则返回YES。整形或索引集合表示该对象或该组对象在原始集合中通过测试的位置。  
+清单1-3中的代码调用了NSArray的这两种类型的方法。第一种方法的block（一个“passing test”方法）对于数组中每个有特定前缀的字符串都会返回YES。随后的代码会使用该方法所返回的索引集合创建一个临时数组。第二个方法的block会调整临时数组中的每个字符串的前缀，并将其添加到一个新的数组中。  
+
+清单1-3 使用两种blocks处理枚举数组  
+
+	NSString *area = @"Europe";
+	NSArray *timeZoneNames = [NSTimeZone knownTimeZoneNames];
+	NSMutableArray *areaArray = [NSMutableArray arrayWithCapacity:1];
+	NSIndexSet *areaIndexes = [timeZoneNames 	indexesOfObjectsWithOptions:NSEnumerationConcurrent
+                                passingTest:^(id obj, NSUInteger idx, BOOL 	*stop) {
+   	 NSString  *tmpStr = (NSString *)obj;
+   	 return [tmpStr hasPrefix:area];
+	}];
+ 
+	NSArray *tmpArray = [timeZoneNames objectsAtIndexes:areaIndexes];
+	[tmpArray enumerateObjectsWithOptions:NSEnumerationConcurrent|NSEnumerationReverse
+	                           usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+	                               [areaArray addObject:[obj substringFromIndex:[area length]+1]];
+	}];
+	NSLog(@"Cities in %@ time zone:%@", area, areaArray);
+
+每种枚举方法中的stop参数（示例中并未用到它）会让block通过传递给引用YES来告诉方法可以停止枚举了。当你想找到集合中第一个符合某个条件的元素时你就可以这么做。  
+虽然NSString不代表一个集合，但是它也有两个带有block参数的方法，名字以enumerate开头：enumerateSubstringsInRange:options:usingBlock: 和 enumerateLinesUsingBlock:。第一个方法会以一个特定间隔的文字集合（分割线，段落，词，句子等等）来枚举一个字符串；第二个方法只通过分割线来枚举。清单1-4展示了使用第一种方法。  
+
+清单1-4 使用block来在字符串中查找匹配的子串  
+
+	NSString *musician = @"Beatles";
+	NSString *musicDates = [NSString stringWithContentsOfFile:
+	    @"/usr/share/calendar/calendar.music"
+	    encoding:NSASCIIStringEncoding error:NULL];
+	[musicDates enumerateSubstringsInRange:NSMakeRange(0, [musicDates length]-1)
+	    options:NSStringEnumerationByLines
+	    usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+	           NSRange found = [substring rangeOfString:musician];
+	           if (found.location != NSNotFound) {
+	                NSLog(@"%@", substring);
+	           }
+	      }];
 
 ### 视图动画和过渡
 
