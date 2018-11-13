@@ -153,6 +153,32 @@ Foundation框架中的集合类——NSArray, NSDictionary, NSSet, 和 NSIndexSe
 	      }];
 
 ### 视图动画和过渡
+iOS4.0中的UIView类展示了几种使用blocks的类方法，这些方法用来展示动画和视图转换。block参数为两种类型（不是所有的方法都带有两种类型）：  
+
+* blocks会以动画形式改变视图的属性
+* 完成处理回调
+
+清单1-5展示了animateWithDuration:animations:completion:的调用，一个拥有两种类型block的方法。在该例中，动画是让视图消失（通过设置alpha为0），完成处理回调会将其从父视图中移除。  
+
+清单1-5 一个视图使用blocks的简单动画
+
+	[UIView animateWithDuration:0.2 animations:^{
+        view.alpha = 0.0;
+    } completion:^(BOOL finished){
+        [view removeFromSuperview];
+    }];
+
+另一个UIView的类方法会在两个视图之间执行转换，包括翻转和卷动。清单1-6的例子调用了transitionWithView:duration:options:animations:completion:，使用动画的形式以左翻转来替换一个子视图（它并未实现完成处理回调）。  
+
+清单1-6 在两个视图中实现一个翻转转换  
+
+	[UIView transitionWithView:containerView duration:0.2
+                   options:UIViewAnimationOptionTransitionFlipFromLeft
+                animations:^{
+                    [fromView removeFromSuperview];
+                    [containerView addSubview:toView]
+                }
+                completion:NULL];
 
 ### 排序
 
