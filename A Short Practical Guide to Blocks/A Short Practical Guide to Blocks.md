@@ -206,3 +206,9 @@ NSComparator是一种block类型，它带有两个对象参数，并返回一个
 
 该例子来自“blocks编程主题”。
 ## Blocks和并发
+blocks作为轻便和匿名的对象，封装了可以在任意时间异步执行的一组操作。基于这一基本事实，blocks也是GCD和NSOperationQueue类的核心功能，这两个技术都是在并发处理时推荐使用的。  
+
+* GCD的两种核心功能，“同步分发 OSX 开发工具手册”（用于同步分发）或“异步分发 OSX 开发手册”（用于异步分发）将block作为他们的第二个参数。
+* NSOperationQueue是一种将任务安排为并行或定义为依赖顺序执行的对象。任务被表现为NSOperation类，NSOperation会频繁的使用blocks来实现它的任务。
+
+更多关于GCD, NSOperationQueue, 和 NSOperation的相关信息，参见“并发编程指南”。
