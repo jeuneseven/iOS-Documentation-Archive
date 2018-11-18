@@ -39,6 +39,17 @@ Blocks在OS X v10.6 Xcode开发工具中的GCC和Clang自带。你可以在OS X 
 	// prints "21"
 
 ## 直接使用Block
+在很多情况下，你都无需声明block变量；你只需简单的根据需要写一个block字面量内联函数作为参数。以下示例使用了qsort_b函数。qsort_b与标准的qsort_r函数类似，不过它以一个block作为参数的结尾。  
+
+	char *myCharacters[3] = { "TomJohn", "George", "Charles Condomine" };
+ 
+	qsort_b(myCharacters, 3, sizeof(char *), ^(const void *l, const void *r) {
+   		 char *left = *(char **)l;
+	    char *right = *(char **)r;
+   		 return strncmp(left, right, 1);
+	});
+ 
+	// myCharacters is now { "Charles Condomine", "George", "TomJohn" }
 
 ## Blocks与Cocoa
 
