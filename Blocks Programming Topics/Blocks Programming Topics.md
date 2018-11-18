@@ -52,6 +52,37 @@ Blocks在OS X v10.6 Xcode开发工具中的GCC和Clang自带。你可以在OS X 
 	// myCharacters is now { "Charles Condomine", "George", "TomJohn" }
 
 ## Blocks与Cocoa
+在Cocoa系统框架中有一些方法以block作为参数，通常来讲，要么它是用来执行一系列集合对象的操作，或者用来作为操作结束的回调。以下示例展示NSArray使用block的方法sortedArrayUsingComparator:示例。该方法使用了一个参数——block。为说明起见，该例的block定义为一个NSComparator局部变量。  
+
+	NSArray *stringsArray = @[ @"string 1",
+                           @"String 21",
+                           @"string 12",
+                           @"String 11",
+                           @"String 02" ];
+ 
+	static NSStringCompareOptions comparisonOptions = NSCaseInsensitiveSearch | NSNumericSearch |
+	        NSWidthInsensitiveSearch | NSForcedOrderingSearch;
+	NSLocale *currentLocale = [NSLocale currentLocale];
+	 
+	NSComparator finderSortBlock = ^(id string1, id string2) {
+	 
+	    NSRange string1Range = NSMakeRange(0, [string1 length]);
+	    return [string1 compare:string2 options:comparisonOptions range:string1Range locale:currentLocale];
+	};
+	 
+	NSArray *finderSortArray = [stringsArray sortedArrayUsingComparator:finderSortBlock];
+	NSLog(@"finderSortArray: %@", finderSortArray);
+	 
+	/*
+	Output:
+	finderSortArray: (
+	    "string 1",
+	    "String 02",
+	    "String 11",
+	    "string 12",
+	    "String 21"
+	)
+	*/
 
 ## __block变量
 
