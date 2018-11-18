@@ -15,8 +15,28 @@ Blocks在OS X v10.6 Xcode开发工具中的GCC和Clang自带。你可以在OS X 
 * “使用Blocks”阐述了各种使用范式。
 
 # 从Blocks开始
-
+以下章节会帮助你从使用一些实际示例来开始了解blocks。
 ## 声明和使用Block
+你可以使用^操作符来声明一个block变量，它表示一个block字面量的开始。block本身包含在{}中，如下示例所示（与C语言一样；分号表示语句的结尾）：  
+
+	int multiplier = 7;
+	int (^myBlock)(int) = ^(int num) {
+   		 return num * multiplier;
+	};
+
+该例展示了如下图所示：  
+
+![](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Blocks/Art/blocks.jpg)  
+
+注意block能够使用当前上下文定义的变量。  
+若你声明一个block作为变量，你可以像使用一个函数一样使用它：  
+
+	int multiplier = 7;
+	int (^myBlock)(int) = ^(int num) {
+   		 return num * multiplier;
+	};
+	printf("%d", myBlock(3));
+	// prints "21"
 
 ## 直接使用Block
 
