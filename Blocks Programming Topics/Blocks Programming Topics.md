@@ -85,7 +85,49 @@ Blocks在OS X v10.6 Xcode开发工具中的GCC和Clang自带。你可以在OS X 
 	*/
 
 ## __block变量
+一个block的强大功能就是它可以修改同一个词法范围内的变量。你可以使用__block存储类型修饰符来标识该变量可以被修改。适配的示例展示在“Blocks与cocoa”一节中，如下例所示，你可以使用一个block变量来记录有多少个字符串进行了比较运算。在本例当中，block被直接使用，currentLocale作为一个只读变量存在在block中：  
 
+	NSArray *stringsArray = @[ @"string 1",
+                          @"String 21", // <-
+                          @"string 12",
+                          @"String 11",
+                          @"Strîng 21", // <-
+                          @"Striñg 21", // <-
+                          @"String 02" ];
+ 
+NSLocale *currentLocale = [NSLocale currentLocale];
+__block NSUInteger orderedSameCount = 0;
+ 
+NSArray *diacriticInsensitiveSortArray = [stringsArray sortedArrayUsingComparator:^(id string1, id string2) {
+ 
+    NSRange string1Range = NSMakeRange(0, [string1 length]);
+    NSComparisonResult comparisonResult = [string1 compare:string2 options:NSDiacriticInsensitiveSearch range:string1Range locale:currentLocale];
+ 
+    if (comparisonResult == NSOrderedSame) {
+        orderedSameCount++;
+    }
+    return comparisonResult;
+	}];
+	 
+	NSLog(@"diacriticInsensitiveSortArray: %@", diacriticInsensitiveSortArray);
+	NSLog(@"orderedSameCount: %d", orderedSameCount);
+	 
+	/*
+	Output:
+	 
+	diacriticInsensitiveSortArray: (
+	    "String 02",
+	    "string 1",
+	    "String 11",
+	    "string 12",
+	    "String 21",
+	    "Str\U00eeng 21",
+	    "Stri\U00f1g 21"
+	)
+	orderedSameCount: 2
+	*/
+
+“blocks和变量”中的讨论比这更详细。
 # 概念概览
 
 ## Block功能
