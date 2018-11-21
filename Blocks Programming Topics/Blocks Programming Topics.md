@@ -149,12 +149,40 @@ Blocks作为一个传统回调函数的替代品有两个原因：
 2. 它能够让你访问局部变量。与那种需要执行操作时体现所有上下文信息的回调数据结构不同，你只需直接传递局部变量即可。
 
 # 声明和创建Blocks
-
 ## 声明一个Block的引用
+block变量会持有一个对于blocks的引用。你可以使用一个类似声明一个指针函数的语法来声明它。只不过是使用^替代*。block类型会完全能够与其他的C类型系统进行交互操作。以下的block声明都是有效的变量声明：  
+
+	void (^blockReturningVoidWithVoidArgument)(void);
+	int (^blockReturningIntWithIntAndCharArguments)(int, char);
+	void (^arrayOfTenBlocksReturningVoidWithIntArgument[10])(int);
+
+blocks同样支持可变参数(...)。一个无参数的block必须指定void在参数列表当中。  
+Blocks通过给予编译器全部的元数据集合来验证blocks的使用，传递给blocks的参数和返回值来达到完全类型安全的目的。你可以将block引用强制转换为任意类型的指针，反之亦然。不过，你不可以通过指针解引用操作符（*）来解引用一个block的引用——因为一个block的大小是无法在编译期间被计算的。  
+你还能够创建blocks的类型——当你使用block作为一个签名在多处使用时，通常这么做是比较好的方法：  
+
+	typedef float (^MyBlockType)(float, float);
+ 
+	MyBlockType myFirstBlock = // ... ;
+	MyBlockType mySecondBlock = // ... ;
 
 ## 创建一个Block
+使用^操作符来标识一个block字面量表达式的开始。它可能跟随一个参数列表，被（）包含。block的函数体被{}所包含。以下例子定义了一个简单的block，并将其赋值给了一个之前定义的变量（oneFrom）——在这，block后面跟随一个正常的；，它代表一个C语句的结束。  
 
+	float (^oneFrom)(float);
+ 
+	oneFrom = ^(float aFloat) {
+	    float result = aFloat - 1.0;
+	    return result;
+	};
+
+若你不想显式的声明一个block表达式的返回值，它也能够自动的从block的内容进行推断。若返回值已经被推定，并且参数列表为void的话，那么你就可以省略（void）参数列表了。若当多个返回语句出现时，你必须将其完全匹配（如有必要，请使用强制转换）。
 ## 全局Blocks
+在文件级别，你可以使用一个block作为全局字面量：  
+
+	#import <stdio.h>
+ 
+	int GlobalInt = 0;
+	int (^getGlobalInt)(void) = ^{ return GlobalInt; };
 
 # Blocks和变量
 
