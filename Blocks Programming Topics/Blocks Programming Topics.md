@@ -232,6 +232,45 @@ Blocks还同样支持两个其他类型的变量：
 若要允许一个变量在block中被改变，你需要使用__block存储类型修饰符——参见“__block存储类型”。
 ## __block存储类型
 
+你可以指定一个输入的变量为可变类型——意思就是可读写——通过设定__block存储类型标识符。__block标识符与register, auto, 和 static等存储类型符对于局部变量来说都类似，但又互相独立。  
+__block 变量存在于存储中, 该存储在变量的词法范围与在变量的词法范围内声明或创建的所有block和block副本之间共享。因此, 如果在堆栈框架内声明的block的任何副本在框架结束后仍然存在, 那么储存将在堆栈框架的销毁中幸存下来（比如，通过加入队列来在以后执行）。在一个给定的词法范围内的多个blocks能够同时使用一个共享的变量。  
+作为一种优化，block存储从堆栈开始——就像block本身一样。若block被使用Block_copy所拷贝（或者在OC当中当block被发送copy消息），变量将被拷贝到堆当中。因此，一个__block修饰的变量的地址可以随着时间的推移而更改。  
+此外对于__block变量还有两个额外的限制：它不能是可变长度的数组，也不能是包含C99可变长度数组的结构。  
+下例展示了__block变量的使用：  
+
+	__block int x = 123; //  x lives in block storage
+ 
+	void (^printXAndY)(int) = ^(int y) {
+	 
+	    x = x + y;
+	    printf("%d %d\n", x, y);
+	};
+	printXAndY(456); // prints: 579 456
+	// x is now 579
+
+下例展示了blocks与集中类型的变量的交互：  
+
+	extern NSInteger CounterGlobal;
+	static NSInteger CounterStatic;
+	 
+	{
+	    NSInteger localCounter = 42;
+	    __block char localCharacter;
+	 
+	    void (^aBlock)(void) = ^(void) {
+	        ++CounterGlobal;
+	        ++CounterStatic;
+	        CounterGlobal = localCounter; // localCounter fixed at block creation
+	        localCharacter = 'a'; // sets localCharacter in enclosing scope
+	    };
+	 
+	    ++localCounter; // unseen by the block
+	    localCharacter = 'b';
+	 
+	    aBlock(); // execute the block
+	    // localCharacter now 'a'
+	}
+
 ## 对象和Block变量
 
 ### OC对象
