@@ -274,11 +274,37 @@ __block 变量存在于存储中, 该存储在变量的词法范围与在变量�
 ## 对象和Block变量
 Blocks为OC和C++的对象和其他blocks提供作为变量的支持。
 ### OC对象
+当一个block被拷贝，对于block中使用的对象变量，block对其对创建一个强引用。若你在实现一个方法时使用到了block：  
 
+* 若你通过引用访问一个实例变量，那么强引用作用于self；
+* 若你通过值访问一个实例变量，强引用作用于变量本身。
+
+下例展示了两种不同的情况：  
+
+	dispatch_async(queue, ^{
+	    // instanceVariable is used by reference, a strong reference is made to self
+	    doSomethingWithObject(instanceVariable);
+	});
+	 
+	 
+	id localVariable = instanceVariable;
+	dispatch_async(queue, ^{
+	    /*
+	      localVariable is used by value, a strong reference is made to localVariable
+	      (and not to self).
+	    */
+	    doSomethingWithObject(localVariable);
+	});
+
+若要为特定的对象变量重写这一功能，你可以通过使用__block存储类型修饰符来达到。
 ### C++对象
+通常你可以在一个block当中使用C++对象。在成员函数中，对于成员变量和函数的引用是通过隐式的引入this指针来进行的，因此显示为可变。若一个block被拷贝了，有两种情况将会发生：  
+
+* 若你对于那些有基于栈的C++对象使用了__block存储类，那么通常在构造函数中使用copy。
+* 若你在一个block中使用任何其他的基于栈的C++对象，那么必须有一个const copy构造函数。C++对象之后会使用该构造函数来进行拷贝。
 
 ### Blocks
-
+当你拷贝一个block时，从该block当中引用的任何其他block如有必要都会被拷贝——整个树结构都可鞥呗拷贝（从顶部）。若你有一个block变量并且你对于block当中的block有引用，那么该block也会被拷贝。
 # 使用Blocks
 
 ## 调用一个Block
