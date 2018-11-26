@@ -358,6 +358,47 @@ Blocks为OC和C++的对象和其他blocks提供作为变量的支持。
 	});
 
 ## 使用Block作为方法参数
+Cocoa提供了大量的方法使用了blocks。你可以像使用其他参数那样将一个block作为参数传递给方法。  
+下例展示了一个用来判断在一个数组中给定筛选集合的任意最靠前五个元素的索引。  
+
+	NSArray *array = @[@"A", @"B", @"C", @"A", @"B", @"Z", @"G", @"are", @"Q"];
+	NSSet *filterSet = [NSSet setWithObjects: @"A", @"Z", @"Q", nil];
+	 
+	BOOL (^test)(id obj, NSUInteger idx, BOOL *stop);
+	 
+	test = ^(id obj, NSUInteger idx, BOOL *stop) {
+	 
+	    if (idx < 5) {
+	        if ([filterSet containsObject: obj]) {
+	            return YES;
+	        }
+	    }
+	    return NO;
+	};
+	 
+	NSIndexSet *indexes = [array indexesOfObjectsPassingTest:test];
+	 
+	NSLog(@"indexes: %@", indexes);
+	 
+	/*
+	Output:
+	indexes: <NSIndexSet: 0x10236f0>[number of indexes: 2 (in 2 ranges), indexes: (0 3)]
+	*/
+
+下例展示了一个NSSet对象是否包含一个被局部变量设定的词，并且在确定时将该值设置为另一个局部变量（found）为YES（并终止了搜索）。注意found也是声明为__block变量，并且它的block定义为内联。
+
+	__block BOOL found = NO;
+	NSSet *aSet = [NSSet setWithObjects: @"Alpha", @"Beta", @"Gamma", @"X", nil];
+	NSString *string = @"gamma";
+	 
+	[aSet enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+	    if ([obj localizedCaseInsensitiveCompare:string] == NSOrderedSame) {
+	        *stop = YES;
+	        found = YES;
+	    }
+	}];
+	 
+	// At this point, found == YES
 
 ## 拷贝Blocks
 
