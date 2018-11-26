@@ -306,10 +306,56 @@ Blocks为OC和C++的对象和其他blocks提供作为变量的支持。
 ### Blocks
 当你拷贝一个block时，从该block当中引用的任何其他block如有必要都会被拷贝——整个树结构都可鞥呗拷贝（从顶部）。若你有一个block变量并且你对于block当中的block有引用，那么该block也会被拷贝。
 # 使用Blocks
-
 ## 调用一个Block
+若你将一个block声明为一个变量，你可以像使用函数一样使用它，如以下两个例子所示：  
 
+	int (^oneFrom)(int) = ^(int anInt) {
+	    return anInt - 1;
+	};
+	 
+	printf("1 from 10 is %d", oneFrom(10));
+	// Prints "1 from 10 is 9"
+	 
+	float (^distanceTraveled)(float, float, float) =
+	                         ^(float startingSpeed, float acceleration, float time) {
+	 
+	    float distance = (startingSpeed * time) + (0.5 * acceleration * time * time);
+	    return distance;
+	};
+	 
+	float howFar = distanceTraveled(0.0, 9.8, 1.0);
+	// howFar = 4.9
+
+不过，你会经常将一个block作为一个参数传递给一个函数或方法。在这种情况下，你通常需要创建以block“内联”。
 ## 使用Block作为函数参数
+你可以将一个block作为一个函数的参数进行传递，就跟你使用其他参数一样。不过，在大多数情况下，你无须声明block；你只需在需要它作为参数的地方直接以内联的方式实现即可。下例使用了qsort_b函数。qsort_b与标准的qsort_r函数类似，但带有一个block作为最后的参数。  
+
+	char *myCharacters[3] = { "TomJohn", "George", "Charles Condomine" };
+ 
+	qsort_b(myCharacters, 3, sizeof(char *), ^(const void *l, const void *r) {
+	    char *left = *(char **)l;
+	    char *right = *(char **)r;
+	    return strncmp(left, right, 1);
+	});
+	// Block implementation ends at "}"
+	 
+	// myCharacters is now { "Charles Condomine", "George", "TomJohn" }
+
+注意该block是包含在函数的参数列表中的。  
+接下来的这个例子展示了如何使用dispatch_apply函数的block。dispatch_apply的声明如下：  
+
+	void dispatch_apply(size_t iterations, dispatch_queue_t queue, void (^block)(size_t));
+
+函数将一个block添加到一个分发队列中以供多次调用。它带有三个参数；第一个指定了要执行的迭代数量；第二个为block指定了要加入的一个队列；第三个就是block本身，它也带有一个参数——当前迭代的索引。  
+你可以只使用dispatch_apply简单的打印迭代索引，如下：
+	
+	#include <dispatch/dispatch.h>
+	size_t count = 10;
+	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+	 
+	dispatch_apply(count, queue, ^(size_t i) {
+	    printf("%u\n", i);
+	});
 
 ## 使用Block作为方法参数
 
