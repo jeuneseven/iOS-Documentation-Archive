@@ -401,7 +401,41 @@ Cocoa提供了大量的方法使用了blocks。你可以像使用其他参数那
 	// At this point, found == YES
 
 ## 拷贝Blocks
+通常，你不需要拷贝（或持有）一个block。只有在block被声明后的词法范围销毁后你还需要使用它时才需要进行拷贝。拷贝操作会让block移到堆上。  
+你可以使用C函数来对block进行拷贝和释放：  
 
+	Block_copy();
+	Block_release();
+
+为避免内存泄漏，你必须始终保持Block_copy()和Block_release()的配对使用。  
 ## 要避免的模式
+一个block字面量（指^{...}）是一个局部栈数据结构的地址，它代表着一个block。局部栈数据结构的范围因此是封闭的复合语句，因此你应该避免以下这种例子的出现：
+
+	void dontDoThis() {
+	    void (^blockArray[3])(void);  // an array of 3 block references
+	 
+	    for (int i = 0; i < 3; ++i) {
+	        blockArray[i] = ^{ printf("hello, %d\n", i); };
+	        // WRONG: The block literal scope is the "for" loop.
+	    }
+	}
+	 
+	void dontDoThisEither() {
+	    void (^block)(void);
+	 
+	    int i = random():
+	    if (i > 1000) {
+	        block = ^{ printf("got i at: %d\n", i); };
+	        // WRONG: The block literal scope is the "then" clause.
+	    }
+	    // ...
+	}
 
 ## 调试
+你可以给blocks设置断点和单步执行。在GDB中你可以使用invoke-block来调用一个block，如下例所示：  
+
+	$ invoke-block myBlock 10 20
+
+若你要传递一个C字符串，你必须引用它。举例来说，要传递this string 给 doSomethingWithString这个block，你必须像这样写：  
+
+	$ invoke-block doSomethingWithString "\"this string\""
