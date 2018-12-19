@@ -154,6 +154,18 @@ NSInvocationOperation 类是一个NSOperation的具体子类，在运行时它�
 		@end
 
 ## 创建NSBlockOperation对象
+NSBlockOperation 类是一个NSOperation类的具体子类，它的作用是作为一个或多个block对象的封装器。该类是为那些已经使用操作队列并且不想创建调度队列的应用程序所提供的一种面向对象的封装。你也可以使用block操作来利用操作依赖，KVO监听以及其他的调度队列中不支持的功能。  
+当你创建一个block操作时，通常在初始化时至少要添加一个block进去；随后还可以根据需要添加更多的blocks。当到了执行NSBlockOperation对象的时机，该对象会将所有的持有的blocks以默认优先级提交到一个并行调度队列中。该对象随后会等待所有的blocks结束执行。当最后一个block结束执行后，操作对象会将其本身标记为已完成。因此，你可以使用一个block操作对象来跟踪一组执行的blocks，这很像你使用一个线程来从多线程中获取结果。区别是由于block操作对象本身运行在一个独立的线程中，你的应用程序其他的线程能够继续进行工作指导block操作对象完成工作为止。  
+清单2-2展示了一个如何创建NSBlockOperation对象的简单例子。block本身没有参数，并且没有返回值。  
+
+清单2-2 创建一个NSBlockOperation对象  
+
+	NSBlockOperation* theOp = [NSBlockOperation blockOperationWithBlock: ^{
+      NSLog(@"Beginning operation.\n");
+      // Do some work.
+	   }];
+
+在创建一个block操作对象之后，你可以使用 addExecutionBlock: 方法来讲更多的blocks添加进去。若你需要串行的执行blocks，你必须将其直接提交到需要的调度队列中。
 
 ## 定义一个自定义的操作对象
 
