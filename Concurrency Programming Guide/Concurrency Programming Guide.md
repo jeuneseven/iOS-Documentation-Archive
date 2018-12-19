@@ -134,6 +134,24 @@ Cocoa中的操作对象是以一种面向对象的方式封装任务，来让你
 大部分开发者基本上不太可能需要实现并行操作对象。只要你是将你的操作对象添加到操作队列中，你就无需实现并行操作了。当你提交一个非并行的操作到操作队列时，队列本身会创建一个线程来运行你的操作对象。因此，添加一个非并行的操作对象到一个操作队列的结果仍旧是异步执行你的操作对象的代码。定义并行操作对象的能力只有在你需要执行异步操作而不想将其添加到一个操作队列时才会用到。  
 有关如何创建一个并行操作对象的相关信息，参见“为并行执行配置操作对象”和“NSOperation类参考”部分。  
 ## 创建NSInvocationOperation对象
+NSInvocationOperation 类是一个NSOperation的具体子类，在运行时它会调用你的对象所指定的selector（选择器）。在你的应用程序中使用该类可以避免为每个任务都定义大量的自定义操作对象；尤其是你在修改一个已经存在的应用程序并且它有对象和方法需要执行特定的必须任务时。举个例子，你可以使用一个invocation操作来执行一个选择器，该选择器是基于用户的输入来动态的被选定的。  
+创建一个invocation操作的过程很简单。你可以直接创建和初始化该类的一个实例，将需要的对象和选择器传递给需要执行的初始化方法即可。清单2-1展示了从一个自定义类中创建的两个方法。taskWithData:方法创建了一个新的invocation对象，并且为其提供了另一个名称的方法，后者包含任务的实现。  
+
+清单2-1 创建一个 NSInvocationOperation 对象  
+
+	@implementation MyCustomClass
+	- (NSOperation*)taskWithData:(id)data {
+	    NSInvocationOperation* theOp = [[NSInvocationOperation alloc] initWithTarget:self
+	                    selector:@selector(myTaskMethod:) object:data];
+	 
+		   return theOp;
+		}
+		 
+		// This is the method that does the actual work of the task.
+		- (void)myTaskMethod:(id)data {
+		    // Perform the task.
+		}
+		@end
 
 ## 创建NSBlockOperation对象
 
