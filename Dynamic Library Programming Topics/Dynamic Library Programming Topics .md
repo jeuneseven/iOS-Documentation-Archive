@@ -1,0 +1,1 @@
+[Dynamic Library Programming Topics 原文链接](https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/DynamicLibraries/000-Introduction/Introduction.html#//apple_ref/doc/uid/TP40001869)
