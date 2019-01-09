@@ -36,12 +36,54 @@
 
 # 创建frameworks指南
 
+## API命名指南
+
+## frameworks的性能影响
+
+## 什么应该包含进你的frameworks中
+
+## 在frameworks代码中使用C++
+
+## 不要创建受保护的frameworks
+
+## 在什么位置初始化你的frameworks
+
 # 创建一个frameworks
+
+## 创建你的frameworks
+
+## 在你的应用程序包中嵌入一个私有frameworks
+
+## 构建一个frameworks的多个版本
 
 # 运行时初始化一个frameworks
 
+## 初始化惯例以及性能
+
+## 定义模块的初始化和终止
+
+## 应用初始化惯例
+
 # 导出你的frameworks的接口
+
+## 创建你的导出文件
+
+## 指定你的导出文件
 
 # 加载你的frameworks
 
+## 公开frameworks的定位
+
+## 私有frameworks的定位
+
+## 初始化frameworks
+
 # 包含frameworks
+
+## 在你的项目中包含frameworks
+
+## 在不标准的目录下定位frameworks
+
+## 头文件和性能
+
+## 子frameworks链接时的限制
