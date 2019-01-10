@@ -8,13 +8,39 @@
 
 ## framework bundle的结构
 
+### framework版本
+
+### 额外的目录
+
+### framework配置
+
 ## 保护式framework bundle的结构
+
+### 保护式framework的目的
+
+### 保护式framework bundle
 
 # framework的版本
 
 ## 主版本
 
+### 主版本号组合
+
+### 何时使用主版本
+
+### 避免主版本改变
+
+### 创建一个framework的主版本
+
 ## 次版本
+
+### 次版本号组合
+
+### 何时使用次版本
+
+### 运行时兼容版本号
+
+### 创建一个framework的次版本
 
 ## 版本指南
 
@@ -22,7 +48,23 @@
 
 ## 动态共享库
 
+### 符号绑定
+
+### 组织你的framework代码
+
+### 库依赖
+
+### 独立动态共享库
+
 ## frameworks和预绑定
+
+### 预绑定你的framework
+
+### 预绑定的警告
+
+### 查找framework的优先地址
+
+### Apple framework和预绑定
 
 # frameworks和弱链接
 
@@ -52,9 +94,21 @@
 
 ## 创建你的frameworks
 
+### 配置你的framework工程
+
+### 在适当的位置测试你的framework
+
 ## 在你的应用程序包中嵌入一个私有frameworks
 
+### 为targets使用一个单独的Xcode项目
+
+### 为不同的targets使用不同的Xcode项目
+
 ## 构建一个frameworks的多个版本
+
+### 更新次版本
+
+### 更新主版本
 
 # 运行时初始化一个frameworks
 
