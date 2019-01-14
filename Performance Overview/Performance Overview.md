@@ -1,6 +1,11 @@
 [Performance Overview 原文链接](https://developer.apple.com/library/content/documentation/Performance/Conceptual/PerformanceOverview/Introduction/Introduction.html#//apple_ref/doc/uid/TP40001410)  
 
 # 介绍
+性能在所有软件产品中都是一个非常重要的设计因素。如果程序运行缓慢或者显示旋转光标的话，用户可能会对该程序感到沮丧，并寻找替代方案。维持一个合理的性能水平需要你的付出，但你越早开始考虑，就越容易捕获和修复问题。  
+
+## 谁应该阅读本文档
+
+
 
 # 为性能而开发
 
