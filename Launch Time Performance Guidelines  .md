@@ -1,0 +1,1 @@
+[Launch Time Performance Guidelines](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/LaunchTime/LaunchTime.html#//apple_ref/doc/uid/10000148i)
