@@ -221,6 +221,13 @@ Instruments并不是唯一的能够收集你的应用程序数据的分析工具
 
 列表3-1 分析工具  
 
+工具  | 描述
+------------- | -------------
+OpenGL Driver Monitor  | 
+OpenGL Profiler  | 
+heap  | 
+leaks  | 
+vmmap  | 
 
 ## 监控工具
 
