@@ -223,7 +223,7 @@ Instruments并不是唯一的能够收集你的应用程序数据的分析工具
 
 工具  | 描述
 ------------- | -------------
-OpenGL Driver Monitor  | 
+OpenGL Driver Monitor  | 收集GPU相关的性能数据，包括VRAM使用相关的数据，视频总线阻塞以及硬件异常等。你可以使用这些信息来在你的OpenGL应用程序中定位引起临时缓慢的原因或者不定时卡顿的原因。该工具是Xcode可视化工具的一部分，在Apple开发者网站上的下载页面可以见到。
 OpenGL Profiler  | 
 heap  | 
 leaks  | 
