@@ -285,3 +285,8 @@ vm_stat |
 ## 使用Instruments
 
 ## 使用Quartz来debug
+Quartz Debug是一个用来判断你的绘制代码是否高效的重要工具。该工具会从你的程序的绘制调用中收集信息来找出你的程序是在绘制还是在做一些不必要的重复绘制内容。图4-3展示了Quartz Debug选项窗口。  
+
+图4-3 Quartz Debug选项  
+
+![](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/PerformanceOverview/art/quartzdebug_2x.png)
