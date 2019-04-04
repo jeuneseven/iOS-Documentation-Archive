@@ -284,6 +284,14 @@ vm_stat |
 
 ## 使用Instruments
 
+图4-1 选择一个Instruments模板  
+
+![](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/PerformanceOverview/art/instruments_profilingtemplate_dialog_2x.png)
+
+图4-2 检测记录的数据
+
+![](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/PerformanceOverview/art/instruments_trace_document_withdata_2x.png)
+
 ## 使用Quartz来debug
 Quartz Debug是一个用来判断你的绘制代码是否高效的重要工具。该工具会从你的程序的绘制调用中收集信息来找出你的程序是在绘制还是在做一些不必要的重复绘制内容。图4-3展示了Quartz Debug选项窗口。  
 
