@@ -236,11 +236,11 @@ vmmap  | 展示一个指定进程的虚拟内存区域分配。你可以使用�
 
 工具  | 描述
 ------------- | -------------
-Activity Monitor  | 该工具安装在/Applications/Utilities/
+Activity Monitor  | 该工具安装在/Applications/Utilities/。
 Quartz Debug  | 该工具是Xcode可视化工具的一部分，在Apple开发者网站上的下载页面可以见到。
-fs_usage  | 该工具安装在/usr/bin/
-sc_usage  | 该工具安装在/usr/bin/
-top  | 该工具安装在/usr/bin/
+fs_usage  | 该工具安装在/usr/bin/。
+sc_usage  | 展示系统调用列表以及页错误统计。该工具安装在/usr/bin/。
+top  | 展示常用的系统使用统计数据，这些数据是与当前运行的进程的内存和CPU使用相关。该工具会动态的更新信息，你可以在运行时看到趋势。该工具安装在/usr/bin/。
 
 ## 硬件分析工具
 在OSX上，CHUD工具另外包含应用程序来为硬件和底层软件进行分析。（这些工具不能够运行在iOS上分析硬件。）列表3-3列出了这个安装包当中的一部分工具，在Apple开发者网站上的下载页面可以见到。  
