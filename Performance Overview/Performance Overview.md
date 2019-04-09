@@ -236,7 +236,7 @@ vmmap  | 展示一个指定进程的虚拟内存区域分配。你可以使用�
 
 工具  | 描述
 ------------- | -------------
-Activity Monitor  | 该工具安装在/Applications/Utilities/。
+Activity Monitor  | 展示当前运行的进程的常用的与内存和CPU使用相关的统计数据。你也可以从该程序初始化一个进程的采样。该工具提供的信息类似于top工具。该工具安装在/Applications/Utilities/。
 Quartz Debug  | 该工具是Xcode可视化工具的一部分，在Apple开发者网站上的下载页面可以见到。
 fs_usage  | 该工具安装在/usr/bin/。
 sc_usage  | 展示系统调用列表以及页错误统计。该工具安装在/usr/bin/。
