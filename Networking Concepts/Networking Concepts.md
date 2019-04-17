@@ -12,6 +12,9 @@
 本文档是“网络概览”的协同手册，并解释了如何编写好的网络层代码。
 # 网络术语
 
+图1-1 以太包的结构
+![](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/NetworkingConcepts/Art/structure_of_an_ethernet_packet.png)
+
 # 网络层
 
 ## 连接层
