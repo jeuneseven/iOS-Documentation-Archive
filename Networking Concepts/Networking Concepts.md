@@ -16,7 +16,7 @@
 ![](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/NetworkingConcepts/Art/structure_of_an_ethernet_packet.png)
 
 # 网络层
-
+![](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/NetworkingConcepts/Art/networking_layers.png)
 ## 连接层
 
 ## IP层
