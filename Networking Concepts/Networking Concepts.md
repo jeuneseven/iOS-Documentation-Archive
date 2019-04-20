@@ -17,7 +17,7 @@
 ## 另请参见
 本文档是“网络概览”的协同手册，并解释了如何编写好的网络层代码。
 # 网络术语
-
+在网络术语中，host可以是任何连接到一个网络并提供网络交流的结点设备。一个主机可能是一个桌面电脑，一台服务器，一个iOS设备，一个运行在服务器上的虚拟机，或者甚至是一个位于你的桌面上的VoIP电话。它被称作主机是因为它主宰应用程序并运行它。  
 图1-1 以太包的结构
 ![](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/NetworkingConcepts/Art/structure_of_an_ethernet_packet.png)
 
