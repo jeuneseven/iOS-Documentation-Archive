@@ -18,6 +18,7 @@
 本文档是“网络概览”的协同手册，并解释了如何编写好的网络层代码。
 # 网络术语
 在网络术语中，host可以是任何连接到一个网络并提供网络交流的结点设备。一个主机可能是一个桌面电脑，一台服务器，一个iOS设备，一个运行在服务器上的虚拟机，或者甚至是一个位于你的桌面上的VoIP电话。它被称作主机是因为它主宰应用程序并运行它。  
+同样的，基础结构设备是负责使用网络功能的任何设备。主机和基础结构设备之间的区别在于，基础结构设备通常传递主机发送的信息，而主机主要发送或接收其自己的信息。甚至有一些基础设施设备对TCP/IP网络是完全透明的，例如以太网集线器和交换机（稍后将对这些设备进行更多了解）。
 图1-1 以太包的结构
 ![](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/NetworkingConcepts/Art/structure_of_an_ethernet_packet.png)
 
