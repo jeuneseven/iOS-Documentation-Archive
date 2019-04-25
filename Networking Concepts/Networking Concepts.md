@@ -25,11 +25,14 @@
 图1-1 以太包的结构
 ![](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/NetworkingConcepts/Art/structure_of_an_ethernet_packet.png)
 
-
+收到信息的主机会重新组装这些包，然后将它们提供给程序作为字节流或者一系列的信息，取决于不同的协议。程序可以通过发送数据来响应，该主机会将数据分为包，然后发送回第一台主机。  
+当一个包包含另一个包的时候（通常是不同的类型），这被称作“封装”。比如，以太网的包（图1-1所示）包含一个TCP/IP包在其负载部分；TCP/IP包就被称作被封装在以太网包中。
 # 网络层
-![](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/NetworkingConcepts/Art/networking_layers.png)
-## 连接层
+TCP/IP网络模型由四个基本层构成：链接层，IP层（因特网协议层的缩写），传输层，以及应用层。这些层会在之后的章节中描述到。  
 
+![](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/NetworkingConcepts/Art/networking_layers.png)
+## 链接层
+最底层叫做链接层，或者称作物理层。
 ## IP层
 
 ## 传输层
