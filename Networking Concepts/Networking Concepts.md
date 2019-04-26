@@ -32,7 +32,9 @@ TCP/IP网络模型由四个基本层构成：链接层，IP层（因特网协议
 
 ![](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/NetworkingConcepts/Art/networking_layers.png)
 ## 链接层
-最底层叫做链接层，或者称作物理层。
+最底层叫做链接层，或者称作物理层。该层包含用来与附近的物理主机连接的实际硬件设备。链接层传输的是原始的包，通过物理网络从一台主机传输到另一台。   
+大部分终端使用者只会直接碰到五中链接层：WiFi，蜂窝网络，以太网，蓝牙和火线。不过它们的数据传输的路径有很多种不同的类型。使用者可能通过基于DOCSIS的调制解调器或者基于VHDSL的DSL调制解调器来发送数据。这时用户的数据可能是通过SONET/SDH链接（用来作为中继）
+或者使用IPoS（通过卫星的IP）或者IPoDVB（通过数字视频广播的IP）来发送的。  
 ## IP层
 
 ## 传输层
