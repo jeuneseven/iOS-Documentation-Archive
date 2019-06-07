@@ -1,0 +1,1 @@
+[Transitioning to ARC Release Notes 原文链接](https://developer.apple.com/library/archive/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011226)
