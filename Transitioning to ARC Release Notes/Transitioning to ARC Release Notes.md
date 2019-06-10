@@ -16,8 +16,44 @@ Xcode提供了一个工具来自动的操作ARC转换（比如移除retain和rel
 * Core Foundation内存管理编程指南
 
 # ARC概览
+你无需记住何时得使用retain, release, 和 autorelease，ARC会对你的对象的生命周期的要求进行评估，并在编译时自动的插入适当的内存管理调用。编译器也会生成适当的dealloc方法。通常来讲，如果你需要与使用手动引用计数的代码进行交互时，使用ARC的传统Cocoa命名惯例才会显得重要。  
+一份完整并正确的 Person 类的实现会类似这样：  
 
+	@interface Person : NSObject
+	@property NSString *firstName;
+	@property NSString *lastName;
+	@property NSNumber *yearOfBirth;
+	@property Person *spouse;
+	@end
+ 
+	@implementation Person
+	@end
+
+（对象属性默认是strong类型的；strong属性在“ARC引入了新的生命周期的限定符”一节中有相关描述。）  
+使用ARC，你可以实现一个人为的方法，类似这样：  
+
+	- (void)contrived {
+	    Person *aPerson = [[Person alloc] init];
+	    [aPerson setFirstName:@"William"];
+	    [aPerson setLastName:@"Dudney"];
+	    [aPerson setYearOfBirth:[[NSNumber alloc] initWithInteger:2011]];
+	    NSLog(@"aPerson: %@", aPerson);
+	}
+
+ARC会关心内存管理，所以不论是Person还是NSNumber对象都不会泄漏。  
+你也可以安全的实现Person 类的 takeLastNameFrom:方法类似这样：  
+
+	- (void)takeLastNameFrom:(Person *)person {
+ 	   NSString *oldLastname = [self lastName];
+	    [self setLastName:[person lastName]];
+	    NSLog(@"Lastname changed from %@ to %@", oldLastname, [self lastName]);
+	}
+
+ARC会确保 oldLastName 不会在NSLog语句之前就被释放。  
 ## ARC强制新规定
+为了起到作用，当使用其他编译器模式时，ARC会强加一些新的规则在未展示的情况。规则本身试图提供一个完整的可依赖的内存管理模型；在某些情况下，它会直接强制最佳体验，在一些其他的情况下，它会简化你的代码或  
+
+* 你不能够显式的调用 dealloc，或实现或调用retain, release, retainCount, 或 autorelease。以此延伸到使用@selector(retain), @selector(release)等等。
 
 ## ARC引入了新的生命周期的限定符
 
