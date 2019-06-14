@@ -82,8 +82,31 @@ OC程序与运行时系统进行交互是通过三个不同的层级：通过OC�
 ## 获取一个方法的地址
 
 # 动态方法的解决方案
-
+本章描述了你该如何动态的提供一个方法的实现。  
 ## 动态方法的解决方案
+当你想动态的提供一个方法的实现时，是有解决方案的。举例来说，OC声明一个属性的功能（参见“OC编程语言”一文中的“声明属性”部分）包含 @dynamic 指令：  
+
+	@dynamic propertyName;
+
+这会告诉编译器有关这个对象的方法将会动态的提供。  
+你可以实现方法 resolveInstanceMethod: 和 resolveClassMethod: 分别来动态的为一个给定的示例和类方法selector提供动态的实现。  
+一个OC方法简单来说其实是一个带有至少两个参数的C函数——self和_cmd。你可以使用函数class_addMethod添加一个函数到一个类，作为该类的方法。所以，给出下列函数：  
+
+	void dynamicMethodIMP(id self, SEL _cmd) {
+ 	   // implementation ....
+	}
+你可以动态的将其添加到一个类作为方法(调用resolveThisMethodDynamically)使用resolveInstanceMethod: 类似这样：  
+
+	@implementation MyClass
+	+ (BOOL)resolveInstanceMethod:(SEL)aSEL
+	{
+	    if (aSEL == @selector(resolveThisMethodDynamically)) {
+   		       class_addMethod([self class], aSEL, (IMP) dynamicMethodIMP, "v@:");
+       	   return YES;
+	    }
+   	 return [super resolveInstanceMethod:aSEL];
+	}
+	@end
 
 ## 动态加载
 
