@@ -73,4 +73,16 @@ ARC会确保 oldLastName 不会在NSLog语句之前就被释放。
 
 # 当转换一个项目时的常见问题
 
-# 常见问题
+# 常见问题  
+
+**我该如何考虑ARC？该在什么位置放置各种retain/release？**  
+无需考虑在什么位置放置retain/release，你只需考虑你的应用程序算法即可。对于对象而言，只需要考虑"strong 和 weak"指针，对于对象关系，需要考虑循环引用的可能性。  
+**我还需要为我的对象编写dealloc么？**  
+可能需要。  
+由于ARC并不会自动实现malloc/free，管理Core Foundation对象的生命周期，文件描述符等等，你依旧需要通过编写dealloc方法来释放相关资源。  
+
+**循环引用在ARC中还是有可能么？**  
+
+**block在ARC中是如何工作的？**  
+
+**我可以使用Snow Leopard为OSX开发ARC程序么？**  
