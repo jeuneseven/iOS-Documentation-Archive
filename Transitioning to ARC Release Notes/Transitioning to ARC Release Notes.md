@@ -62,7 +62,14 @@ ARC会确保 oldLastName 不会在NSLog语句之前就被释放。
 ## 跨平台管理连接的模式变得一致
 
 ## 栈变量被初始化为nil
+使用ARC，strong, weak和自动释放的栈变量会默认初始化为nil，举例来说：  
 
+	- (void)myMethod {
+	    NSString *name;
+   		 NSLog(@"name: %@", name);
+	}
+
+name的值将会打印null，而不会崩溃。
 ## 使用编译器标识来开启或禁用ARC
 
 # 管理免费的桥接
@@ -90,6 +97,7 @@ ARC会确保 oldLastName 不会在NSLog语句之前就被释放。
 **在ARC下我可以创建一个保留指针的C数组么？**  
 
 **ARC会变慢么？**  
+取决于你的衡量标准，但通常来讲答案是否定的。  
 
 **ARC会在Objc++模式下运行么？**  
 
