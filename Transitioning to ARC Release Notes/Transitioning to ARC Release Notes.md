@@ -58,7 +58,14 @@ ARC会确保 oldLastName 不会在NSLog语句之前就被释放。
 ## ARC引入了新的生命周期的限定符
 
 ## ARC使用了新的语句来管理自动释放池
+使用ARC时，你不能够直接使用NSAutoreleasePool类来管理自动释放池。而是要使用@autoreleasepool代码块：  
 
+	@autoreleasepool {
+     // Code, such as a loop that creates a large number of temporary objects.
+	}
+
+这种简单的结构能够让编译器推理引用计数状态。在进入时，将推送自动释放池。在正常退出（中断，返回，goto，跌落等）时，自动释放池被推出。为了与现有代码兼容，如果是由于异常推出的，则不会弹出自动释放池。  
+这种语法在所有OC模式下都可用。它比使用NSAutoreleasePool类更为高效；我们推荐你使用它来替代NSAutoreleasePool。
 ## 跨平台管理连接的模式变得一致
 
 ## 栈变量被初始化为nil
