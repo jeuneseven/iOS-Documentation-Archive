@@ -125,6 +125,34 @@ OC程序是可以在运行时加载和链接一个新类和分类的。新的代
 ## 向上转发和继承
 
 # 类型编码
+列表6-1 OC类型编码  
+
+代码  | 意义
+------------- | -------------
+c  | char
+i  | int
+s  | short
+l  | long
+q  | long long
+C  | unsigned char
+I  | int
+S  | int
+L  | int
+Q  | int
+f  | int
+d  | int
+B  | int
+C  | int
+C  | int
+C  | int
+C  | int
+C  | int
+C  | int
+C  | int
+C  | int
+C  | int
+C  | int
+C  | int
 
 # 声明属性
 
