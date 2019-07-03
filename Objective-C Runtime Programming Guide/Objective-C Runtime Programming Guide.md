@@ -135,24 +135,15 @@ s  | short
 l  | long
 q  | long long
 C  | unsigned char
-I  | int
-S  | int
-L  | int
-Q  | int
-f  | int
-d  | int
-B  | int
-C  | int
-C  | int
-C  | int
-C  | int
-C  | int
-C  | int
-C  | int
-C  | int
-C  | int
-C  | int
-C  | int
+I  | unsigned int
+S  | unsigned short
+L  | unsigned long
+Q  | unsigned long long
+f  | float
+d  | double
+B  | C++ bool 或 C99 _Bool
+v  | void
+*  | 字符串 char *
 
 # 声明属性
 
