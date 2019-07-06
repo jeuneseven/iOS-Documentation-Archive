@@ -144,6 +144,15 @@ d  | double
 B  | C++ bool 或 C99 _Bool
 v  | void
 *  | 字符串 char *
+@  | 一个对象（无论是静态类型或者id类型）
+ # | 一个类对象(Class)
+ : | 一个方法选择器(SEL)
+[array type] | 一个数组
+{name=type...} | 一个结构体
+(name=type...) | 一个联合体
+bnum | A bit field of num bits
+^type | 一个指向type的指针
+? | 未知类型（在其他情况下，该代码用来做函数指针）
 
 # 声明属性
 
