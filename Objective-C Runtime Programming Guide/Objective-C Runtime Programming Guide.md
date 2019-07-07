@@ -154,6 +154,18 @@ bnum | A bit field of num bits
 ^type | 一个指向type的指针
 ? | 未知类型（在其他情况下，该代码用来做函数指针）
 
+列表6-2 OC方法编码  
+
+代码  | 意义
+------------- | -------------
+r  | const
+n  | in
+N  | inout
+o  | out
+O  | bycopy
+R  | byref
+V  | oneway
+
 # 声明属性
 
 ## 属性类型和函数
