@@ -54,7 +54,21 @@
 
 ## 使用故事版来创建Table View
 
+### 选择Table View的展示样式
+
+### 选择Table View的内容类型
+
+### 设计Table View的行
+
+### 创建额外的Table View
+
+### 通过创建一个简单的应用学习更多
+
 ## 使用代码来创建Table View
+
+### 采取数据源和代理
+
+### 创建和配置一个Table View
 
 ## 通过数据构成Table View
 
@@ -63,6 +77,16 @@
 ## 构成索引
 
 ## 可选的Table View配置
+
+### 添加自定义标题
+
+### 提供段落标题
+
+### 缩进一行
+
+### 改变行高
+
+### 定制化cell
 
 # 近距离观察Table View Cell
 
