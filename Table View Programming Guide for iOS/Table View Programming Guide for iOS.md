@@ -1,6 +1,17 @@
 [Table View Programming Guide for iOS 原文链接](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/TableView_iPhone/AboutTableViewsiPhone/AboutTableViewsiPhone.html#//apple_ref/doc/uid/TP40007451)
 
 # 介绍
+在iOS 应用程序中，table view是常见的通用用户界面对象。一个table view是展示在多行可滚动列表的数据，数据也可被分为段。  
+table view有很多用处：  
+
+* 让用户通过层级结构数据导航
+* 展示元素的索引列表
+* 展示详细信息并以可视化的分组控制
+* 展示可选列表
+
+图1-1 各种table view  
+
+![](file:///Users/lizhankun/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.iOS.docset/Contents/Resources/Documents/documentation/UserExperience/Conceptual/TableView_iPhone/Art/types_of_table_views.jpg)
 
 # Table View样式和辅助视图
 
