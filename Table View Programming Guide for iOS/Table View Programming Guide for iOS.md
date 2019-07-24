@@ -13,6 +13,7 @@ table view有很多用处：
 
 ![](file:///Users/lizhankun/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.iOS.docset/Contents/Resources/Documents/documentation/UserExperience/Conceptual/TableView_iPhone/Art/types_of_table_views.jpg)
 
+table view只有一列，并只允许垂直方向滚动。它由段落组成。每个段落可以拥有一个header和一个footer来展示文本或者图片。不过，很多table view都只有一个段落，并且没有可见的header或者footer。在程序中，UIKit框架通过索引数字来定位行和段落：段落从0开始直到n-1，是从table view的头部到底部；行是在一个段落中从0到n-1。table view也能拥有其本身的header和footer，且与段落的区分开；table view的header展示在第一段的第一行之前，table view的footer展示在最后一个段落的最后一行之后。
 # Table View样式和辅助视图
 
 ## Table View样式
