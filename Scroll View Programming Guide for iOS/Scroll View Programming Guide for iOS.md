@@ -1,7 +1,6 @@
 [Scroll View Programming Guide for iOS 原文链接](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/UIScrollView_pg/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008179)
 
 # 介绍
-
 ## 关于滚动视图编程
 
 ### 概览
@@ -15,7 +14,7 @@
 #### 要支持分页模式，你需要三个子视图
 
 ### 预备知识
-
+在阅读本文之前，请阅读《iOS App编程指南》来理解开发iOS应用程序的基本过程。最好再阅读一下《iOS视图控制器编程指南》来了解视图控制器的基本信息，它通常是和scrollview结合使用的。
 ### 如何使用本文档
 
 ### 另请参见
