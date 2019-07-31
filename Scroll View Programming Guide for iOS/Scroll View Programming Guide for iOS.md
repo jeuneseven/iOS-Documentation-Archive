@@ -2,6 +2,14 @@
 
 # 介绍
 ## 关于滚动视图编程
+当内容需要被展示和操作，但整个屏幕不够的时候，就需要iOS应用中的Scroll view了。Scroll view有两个主要用途：  
+
+* 让用户拖拽他们想要展示的内容区域
+* 让用户使用捏合手势放大或缩小展示内容区域
+
+下图展示了一个 UIScrollView 类的典型使用方式。子视图是一个UIImageView，它包含一张小男孩的图片。当用户拖拽他/她在屏幕上的手指时，图片的视角就会进行移动，正如你在图片中看到的那样，滚动指示器就展现出来了。当用户手指离开时，指示器就消失了。
+
+![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/UIScrollView_pg/Art/NSImageView_UIScrollView.jpg)
 
 ### 概览
 
