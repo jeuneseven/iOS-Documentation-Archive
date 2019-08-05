@@ -45,6 +45,10 @@ UIKit框架定义了四种标准cell样式，每种对于默认的三个内容�
 ## 预备知识
 
 ## 另请参阅
+你会发现以下示例代码项目对于你自己的table view实现是很好的范例：  
+
+* SimpleDrillDown 项目
+* Table View Animations and Gestures 项目
 
 # Table View样式和辅助视图
 
