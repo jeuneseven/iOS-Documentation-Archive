@@ -12,11 +12,13 @@
 ![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/UIScrollView_pg/Art/NSImageView_UIScrollView.jpg)
 
 ### 概览
-UIScrollView 类提供了一下功能：  
+UIScrollView 类提供了以下功能：  
 
 * 滚动不能够适应整个屏幕的内容
 * 放大或缩小内容，能够让你的应用程序支持标准的捏合手势来放大缩小
 * 限制一次只能够滚动到一屏幕内容（paging模式）
+
+UIScrollView 类对其展示的内容无需指定特定视图；它只是直接滚动其子视图。这种简单的模式之所以可行是因为在iOS上scroll view没有对初始滚动做额外的控制
 
 #### 基本的视图滚动是很容易实现的
 
