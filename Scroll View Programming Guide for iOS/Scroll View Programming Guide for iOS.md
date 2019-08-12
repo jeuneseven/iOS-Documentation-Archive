@@ -71,6 +71,23 @@ scroll view可以和其他任意视图一样创建插入到一个控制器或一
 ### 在界面编辑器中创建滚动视图
 
 ### 以编码方式创建滚动视图
+还可以完全通过代码来创建scroll view。这通常在你的控制器类中实现，而且一般在 loadView 方法中。一个简单的实现参见清单1-2.  
+
+清单1-2 通过代码创建scroll view
+
+	- (void)loadView {
+	    CGRect fullScreenRect=[[UIScreen mainScreen] applicationFrame];
+	    scrollView=[[UIScrollView alloc] initWithFrame:fullScreenRect];
+	    scrollView.contentSize=CGSizeMake(320,758);
+	 
+	    // do any further configuration to the scroll view
+	    // add a view, or views, as a subview of the scroll view.
+	 
+	    // release scrollView as self.view retains it
+	    self.view=scrollView;
+	    [scrollView release];
+	}
+
 
 ## 添加子视图
 
