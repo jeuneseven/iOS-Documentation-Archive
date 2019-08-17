@@ -100,6 +100,10 @@ scroll view可以和其他任意视图一样创建插入到一个控制器或一
 
 ## 配置滚动视图的内容大小，内容内边距以及滚动指示
 
+图 1-2 contentSize 范围标注的内容  
+
+![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/UIScrollView_pg/Art/contentSize.jpg)
+
 # 滚动滚动视图的内容
 
 ## 以编码方式滚动
