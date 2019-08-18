@@ -99,10 +99,13 @@ scroll view可以和其他任意视图一样创建插入到一个控制器或一
 	注意：当返回一个单一子视图时，是常见的情况，你的应用程序可能需要支持允许多个视图在同一个滚动视图中来支持缩放的功能。在那种情况下，你就需要返回适当的子视图并实现代理方法viewForZoomingInScrollView:，这些将在“使用基本的捏合手势来支持基本的缩放”中进行深入讨论。
 
 ## 配置滚动视图的内容大小，内容内边距以及滚动指示
+contentSize属性是你想要展示在scroll view中的内容的大小。在界面创建器中创建scroll view时，可以设置320 * 758像素的宽高。图1-2中的图片展示了scroll view的内容以及宽高指示器。
 
 图 1-2 contentSize 范围标注的内容  
 
-![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/UIScrollView_pg/Art/contentSize.jpg)
+![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/UIScrollView_pg/Art/contentSize.jpg)  
+
+
 
 # 滚动滚动视图的内容
 
