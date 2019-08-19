@@ -105,7 +105,9 @@ contentSize属性是你想要展示在scroll view中的内容的大小。在界�
 
 ![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/UIScrollView_pg/Art/contentSize.jpg)  
 
+图 1-3 contentSize 和 contentInset 所代表的内容
 
+![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/UIScrollView_pg/Art/contentSize_contentInset.jpg)  
 
 # 滚动滚动视图的内容
 
