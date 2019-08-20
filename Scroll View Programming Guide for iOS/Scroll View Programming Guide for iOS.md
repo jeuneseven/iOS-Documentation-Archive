@@ -105,9 +105,31 @@ contentSize属性是你想要展示在scroll view中的内容的大小。在界�
 
 ![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/UIScrollView_pg/Art/contentSize.jpg)  
 
+你可能想要沿着scroll view的内容的边缘添加边距，通常需要在顶部和底部添加，那么控制器以及工具栏就不会挡住内容了。要添加边距的话，使用 contentInset 属性来给scroll view的内容指定一个缓冲区域。考虑它的一个方法是，在不更改子视图大小或视图内容大小的情况下，使滚动视图内动区域变大。  
+contentInset属性是一个UIEdgeInsets结构体，有top, bottom, left, right字段。图1-3展示了contentInset 和 contentSize 所指示的内容。  
+
 图 1-3 contentSize 和 contentInset 所代表的内容
 
 ![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/UIScrollView_pg/Art/contentSize_contentInset.jpg)  
+
+如图1-3所示，指定 contentInset 属性 (64,44,0,0) 的结果是在顶部的内容上增加了64像素的区域（20像素给状态栏，44像素给导航控制器）以及底部增加了44像素（工具栏的高度）。给 contentInset 设置这些值就能够展示导航控制以及工具栏到屏幕上了，还能够滚动展示scroll view的整个内容区域。  
+
+清单1-3 设置 contentInset 属性  
+
+	- (void)loadView {
+	    CGRect fullScreenRect=[[UIScreen mainScreen] applicationFrame];
+	    scrollView=[[UIScrollView alloc] initWithFrame:fullScreenRect];
+	    self.view=scrollView;
+	    scrollView.contentSize=CGSizeMake(320,758);
+	    scrollView.contentInset=UIEdgeInsetsMake(64.0,0.0,44.0,0.0);
+	 
+	    // do any further configuration to the scroll view
+	    // add a view, or views, as a subview of the scroll view.
+	 
+	    // release scrollView as self.view retains it
+	    self.view=scrollView;
+	    [scrollView release];
+	}
 
 # 滚动滚动视图的内容
 
