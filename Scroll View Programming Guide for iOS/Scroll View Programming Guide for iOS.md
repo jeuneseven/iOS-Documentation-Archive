@@ -131,6 +131,32 @@ contentInset属性是一个UIEdgeInsets结构体，有top, bottom, left, right�
 	    [scrollView release];
 	}
 
+图1-4展示了给contentInset的top和bottom设置值之后的结果。当滚动到顶部时（像左边所展示的那样），屏幕会为导航栏和状态栏留出空间。右边的图展示了内容滚动到底部时给工具栏留出的空间。两种情况下你都能看到内容滚动的时候会穿过导航栏和工具栏，而当内容完全滚动到顶部或底部时，所有内容都是可见的。
+
+图1-4 给contentInset的top和bottom设置值之后的结果
+
+![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/UIScrollView_pg/Art/contentInset_results.jpg)
+
+不过，改变contentInset的值在当你的scroll view展示滚动指示器的时候会有一个意外的边际效果。当用户将内容拖到屏幕的顶部或底部的时候，滚动指示器会滚动到contentInset定义的所有区域，比如在导航控制器和工具栏中。  
+要校正这点，你必须设置scrollIndicatorInsets属性。和contentInset属性一样，scrollIndicatorInsets属性也被定义为一个UIEdgeInsets结构体。设置垂直方向的内边距值会限制垂直滚动指示器在展示的时候会越过该区域展示，这也会导致水平滚动指示器显示在contentInset区域之外展示。
+
+清单1-4 设置scroll view的contentInset和scrollIndicatorInsets属性  
+
+	- (void)loadView {
+	    CGRect fullScreenRect=[[UIScreen mainScreen] applicationFrame];
+	    scrollView=[[UIScrollView alloc] initWithFrame:fullScreenRect];
+	    scrollView.contentSize=CGSizeMake(320,758);
+	    scrollView.contentInset=UIEdgeInsetsMake(64.0,0.0,44.0,0.0);
+	    scrollView.scrollIndicatorInsets=UIEdgeInsetsMake(64.0,0.0,44.0,0.0);
+	 
+	    // do any further configuration to the scroll view
+	    // add a view, or views, as a subview of the scroll view.
+	 
+	    // release scrollView as self.view retains it
+	    self.view=scrollView;
+	    [scrollView release];
+	}
+
 # 滚动滚动视图的内容
 
 ## 以编码方式滚动
