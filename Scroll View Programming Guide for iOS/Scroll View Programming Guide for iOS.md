@@ -138,7 +138,9 @@ contentInset属性是一个UIEdgeInsets结构体，有top, bottom, left, right�
 ![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/UIScrollView_pg/Art/contentInset_results.jpg)
 
 不过，改变contentInset的值在当你的scroll view展示滚动指示器的时候会有一个意外的边际效果。当用户将内容拖到屏幕的顶部或底部的时候，滚动指示器会滚动到contentInset定义的所有区域，比如在导航控制器和工具栏中。  
-要校正这点，你必须设置scrollIndicatorInsets属性。和contentInset属性一样，scrollIndicatorInsets属性也被定义为一个UIEdgeInsets结构体。设置垂直方向的内边距值会限制垂直滚动指示器在展示的时候会越过该区域展示，这也会导致水平滚动指示器显示在contentInset区域之外展示。
+要校正这点，你必须设置scrollIndicatorInsets属性。和contentInset属性一样，scrollIndicatorInsets属性也被定义为一个UIEdgeInsets结构体。设置垂直方向的内边距值会限制垂直滚动指示器在展示的时候会越过该区域展示，这也会导致水平滚动指示器显示在contentInset区域之外展示。  
+在不设置contentInset和scrollIndicatorInsets属性能够让滚动指示器在导航控制器和工具栏之上展示，但这不是需要的结果。但是设置scrollIndicatorInsets值能够将内容匹配contentInset的值来修复这个问题。  
+正确的loadView方法的实现参见清单1-4，添加了额外的配置scroll view 的 scrollIndicatorInsets 初始化相关的代码。
 
 清单1-4 设置scroll view的contentInset和scrollIndicatorInsets属性  
 
