@@ -165,9 +165,9 @@ contentInset属性是一个UIEdgeInsets结构体，有top, bottom, left, right�
 不过有时候需要应用程序以代码的形式滚动内容，举例来说，展示一个文档的一个指定部分。在这种情况下，UIScrollView提供了所需要的方法。  
 UIScrollView的代理协议 UIScrollViewDelegate 提供了各种方法让你的应用程序能够跟踪滚动过程，根据你的应用程序所需来响应特殊需求。  
 ## 以编码方式滚动
-
+滚动一个scroll view的内容并非只是为了响应用户的手指拖拽或轻触屏幕。当你的应用程序需要滚动到一个特定内容位移时，就需要一个特定的矩形区域暴露出来（或者滚动到scroll view的顶部）。UIScrollView提供了方法来执行所有的这些事件。  
 ### 滚动到一个特定的位置
-
+滚动到一个指定的左上方区域（contentOffset属性）可以以两种方式完成。setContentOffset:animated: 方法会将内容滚动到指定的内容位移。若动画参数设置为YES，那么滚动将以动画的方式从当前位置滚动到指定的位置，并且是以恒定的速率。若动画参数设置为NO，滚动会立即发生，并且不会伴有动画。不论哪种情况，代理都会发送 scrollViewDidScroll: 消息。若动画被禁止，或者你直接通过设置contentOffset属性来改变内容的位移，代理会只接收到一次 scrollViewDidScroll: 消息。若动画开启，代理会再动画的过程中接收到一系列的 scrollViewDidScroll: 消息。当动画完成时，代理接收到一个  scrollViewDidEndScrollingAnimation: 消息。  
 ### 将一个矩形可视化区域滚动到顶部
 
 ## 滚动时会发送代理消息
