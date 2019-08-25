@@ -167,8 +167,11 @@ UIScrollView的代理协议 UIScrollViewDelegate 提供了各种方法让你的�
 ## 以编码方式滚动
 滚动一个scroll view的内容并非只是为了响应用户的手指拖拽或轻触屏幕。当你的应用程序需要滚动到一个特定内容位移时，就需要一个特定的矩形区域暴露出来（或者滚动到scroll view的顶部）。UIScrollView提供了方法来执行所有的这些事件。  
 ### 滚动到一个特定的位置
-滚动到一个指定的左上方区域（contentOffset属性）可以以两种方式完成。setContentOffset:animated: 方法会将内容滚动到指定的内容位移。若动画参数设置为YES，那么滚动将以动画的方式从当前位置滚动到指定的位置，并且是以恒定的速率。若动画参数设置为NO，滚动会立即发生，并且不会伴有动画。不论哪种情况，代理都会发送 scrollViewDidScroll: 消息。若动画被禁止，或者你直接通过设置contentOffset属性来改变内容的位移，代理会只接收到一次 scrollViewDidScroll: 消息。若动画开启，代理会再动画的过程中接收到一系列的 scrollViewDidScroll: 消息。当动画完成时，代理接收到一个  scrollViewDidEndScrollingAnimation: 消息。  
-### 将一个矩形可视化区域滚动到顶部
+滚动到一个指定的左上方区域（contentOffset属性）可以以两种方式完成。setContentOffset:animated: 方法会将内容滚动到指定的内容位移。若动画参数设置为YES，那么滚动将以动画的方式从当前位置滚动到指定的位置，并且是以恒定的速率。若动画参数设置为NO，滚动会立即发生，并且不会伴有动画。不论哪种情况，代理都会发送 scrollViewDidScroll: 消息。若动画被禁止，或者你直接通过设置contentOffset属性来改变内容的位移，代理会只接收到一次 scrollViewDidScroll: 消息。若动画开启，代理会在动画的过程中接收到一系列的 scrollViewDidScroll: 消息。当动画完成时，代理接收到一个  scrollViewDidEndScrollingAnimation: 消息。  
+### 将一个矩形区域可视化
+还可以滚动到一个矩形区域让其可见。这在应用程序需要展示一个当前在可视区域之外的控件到可视视图上时尤其有用。scrollRectToVisible:animated: 方法会滚动指定矩形区域让其在scroll view 中可见。若动画参数设置为YES，矩形区域会以恒定速度滚动到视图中。与 setContentOffset:animated: 一样，若动画被禁用，代理会收到一个scrollViewDidScroll: 消息。若动画开启，代理会在动画的过程中收到一连串的scrollViewDidScroll: 消息。而在 scrollRectToVisible:animated: 这种情况下，scroll view的tracking和dragging属性也是NO。  
+若 scrollRectToVisible:animated: 动画是开启的，代理会收到一条 scrollViewDidEndScrollingAnimation: 消息，通知scroll view已经到达指定位置并完成了动画。  
+### 滚动到顶部
 
 ## 滚动时会发送代理消息
 
