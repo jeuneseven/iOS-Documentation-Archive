@@ -172,7 +172,9 @@ UIScrollView的代理协议 UIScrollViewDelegate 提供了各种方法让你的�
 还可以滚动到一个矩形区域让其可见。这在应用程序需要展示一个当前在可视区域之外的控件到可视视图上时尤其有用。scrollRectToVisible:animated: 方法会滚动指定矩形区域让其在scroll view 中可见。若动画参数设置为YES，矩形区域会以恒定速度滚动到视图中。与 setContentOffset:animated: 一样，若动画被禁用，代理会收到一个scrollViewDidScroll: 消息。若动画开启，代理会在动画的过程中收到一连串的scrollViewDidScroll: 消息。而在 scrollRectToVisible:animated: 这种情况下，scroll view的tracking和dragging属性也是NO。  
 若 scrollRectToVisible:animated: 动画是开启的，代理会收到一条 scrollViewDidEndScrollingAnimation: 消息，通知scroll view已经到达指定位置并完成了动画。  
 ### 滚动到顶部
-
+若状态栏是可见的，那么scroll view也能够滚动到内容的顶部以响应状态栏的点击。这种情况经常出现在应用程序提供垂直数据的展示的情况下。举例来说，“照片”应用就支持滚动到顶，无论是在相簿选择的列表视图还是照片缩略图的浏览中以及大部分的 UITableView 实现（UIScrollView的子类）都支持滚动到顶。  
+你的应用程序可以通过实现 scroll view 的代理方法 scrollViewShouldScrollToTop: 并返回YES来开启这个功能。如果屏幕上一次有多个 scroll view，则通过返回 scroll view进行滚动，该代理方法能够允许对某个scroll view滚动到顶部进行细粒度的控制。  
+当滚动完成时，代理方法会发送一条 scrollViewDidScrollToTop: 消息，说明是哪个 scroll view。
 ## 滚动时会发送代理消息
 
 ### 简单的方式：跟踪一个滚动事件的开始和结束
