@@ -176,6 +176,15 @@ UIScrollView的代理协议 UIScrollViewDelegate 提供了各种方法让你的�
 你的应用程序可以通过实现 scroll view 的代理方法 scrollViewShouldScrollToTop: 并返回YES来开启这个功能。如果屏幕上一次有多个 scroll view，则通过返回 scroll view进行滚动，该代理方法能够允许对某个scroll view滚动到顶部进行细粒度的控制。  
 当滚动完成时，代理方法会发送一条 scrollViewDidScrollToTop: 消息，说明是哪个 scroll view。
 ## 滚动时会发送代理消息
+在滚动发生时，scroll view会使用tracking, dragging, decelerating和zooming等属性跟踪状态。此外，contentOffset属性定义了在scroll view边界左上角可见的内容中的点。下表描述了每个状态属性：  
+
+状态属性  | 描述
+------------- | -------------
+tracking  | 若用户的手指接触设备屏幕时为YES。
+dragging  | 若用户的手指接触屏幕并移动了为YES。
+decelerating  | 在滑动手势之后，若scroll view开始减速为YES，或是在scroll view的frame之外拖拽时也为YES。
+zooming  | 若scroll view 检测到捏合手势来改变 zoomScale 属性时为YES。
+contentOffset  | CGPoint类型的值，定义了scroll view边界的左上角。
 
 ### 简单的方式：跟踪一个滚动事件的开始和结束
 
