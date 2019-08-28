@@ -186,6 +186,8 @@ decelerating  | 在滑动手势之后，若scroll view开始减速为YES，或�
 zooming  | 若scroll view 检测到捏合手势来改变 zoomScale 属性时为YES。
 contentOffset  | CGPoint类型的值，定义了scroll view边界的左上角。
 
+不必轮询这些属性来确定正在进行的操作，因为scroll view 会向代理发送详细的消息序列，指示滚动操作的进度。这些方法允许你的应用程序根据需要进行相应。代理方法可以查询这些状态属性，以确定接收消息的原因或scroll view当前的位置。
+
 ### 简单的方式：跟踪一个滚动事件的开始和结束
 
 ### 完整的代理消息发送顺序
