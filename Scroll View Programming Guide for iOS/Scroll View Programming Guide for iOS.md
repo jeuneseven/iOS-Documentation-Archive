@@ -189,7 +189,9 @@ contentOffset  | CGPoint类型的值，定义了scroll view边界的左上角。
 不必轮询这些属性来确定正在进行的操作，因为scroll view 会向代理发送详细的消息序列，指示滚动操作的进度。这些方法允许你的应用程序根据需要进行相应。代理方法可以查询这些状态属性，以确定接收消息的原因或scroll view当前的位置。
 
 ### 简单的方式：跟踪一个滚动事件的开始和结束
-
+如果你的应用程序只对滚动过程的开始和结束感兴趣，你可以只实现代理方法的很少的一个子集方法即可。  
+实现 scrollViewWillBeginDragging: 方法来接收拖拽将要开始的通知。  
+要判断何时滚动完成，你需要实现两个代理方法： scrollViewDidEndDragging:willDecelerate: 和 scrollViewDidEndDecelerating:。无论是当代理接收到 scrollViewDidEndDragging:willDecelerate: 消息，decelerate参数为NO，还是代理接收到scrollViewDidEndDecelerating: 方法都代表滚动完成。无论哪种情况，滚动都完成了。
 ### 完整的代理消息发送顺序
 
 # 基于放大效果使用捏合手势
