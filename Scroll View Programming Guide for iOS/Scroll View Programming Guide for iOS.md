@@ -193,7 +193,7 @@ contentOffset  | CGPoint类型的值，定义了scroll view边界的左上角。
 实现 scrollViewWillBeginDragging: 方法来接收拖拽将要开始的通知。  
 要判断何时滚动完成，你需要实现两个代理方法： scrollViewDidEndDragging:willDecelerate: 和 scrollViewDidEndDecelerating:。无论是当代理接收到 scrollViewDidEndDragging:willDecelerate: 消息，decelerate参数为NO，还是代理接收到scrollViewDidEndDecelerating: 方法都代表滚动完成。无论哪种情况，滚动都完成了。
 ### 完整的代理消息发送顺序
-
+当用户触摸屏幕，跟踪顺序就开始了。tracking属性会被立刻设置为YES，并且会一直保持为YES，只要用户的手指是在和屏幕接触，不管是否移动。
 # 基于放大效果使用捏合手势
 
 ## 支持捏合缩放手势
