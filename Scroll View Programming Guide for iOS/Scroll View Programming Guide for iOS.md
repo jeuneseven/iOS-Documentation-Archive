@@ -198,8 +198,9 @@ contentOffset  | CGPoint类型的值，定义了scroll view边界的左上角。
 不过，如果用户的手指发生移动时，发送消息就会继续。  
 当用户开始移动他/她的手指来开始滚动时，scroll view 会试图取消（假设scroll view 有默认值）所有的正在进行的触摸处理事件（如果有的话）。  
 	
-	注意：在消息队列的自始至终，tracking 和 dragging 属性都有可能一直是NO，并且 zooming 属性可能为 YES。
+	注意：在消息队列的自始至终，tracking 和 dragging 属性都有可能一直是NO，并且 zooming 属性可能为 YES。当滚动由于缩放操作而发生时，无论是通过手势还是程序启动的滚动，都会发生这种情况。如果代理方法由于缩放或者滚动而发送，则应用程序可能会选择采取其他操作。
 	
+scroll view 的 dragging属性会被设置为YES，并且代理会发送 scrollViewWillBeginDragging:  消息。
 # 基于放大效果使用捏合手势
 
 ## 支持捏合缩放手势
