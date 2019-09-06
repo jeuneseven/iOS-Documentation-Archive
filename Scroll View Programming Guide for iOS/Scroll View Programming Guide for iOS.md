@@ -200,7 +200,10 @@ contentOffset  | CGPoint类型的值，定义了scroll view边界的左上角。
 	
 	注意：在消息队列的自始至终，tracking 和 dragging 属性都有可能一直是NO，并且 zooming 属性可能为 YES。当滚动由于缩放操作而发生时，无论是通过手势还是程序启动的滚动，都会发生这种情况。如果代理方法由于缩放或者滚动而发送，则应用程序可能会选择采取其他操作。
 	
-scroll view 的 dragging属性会被设置为YES，并且代理会发送 scrollViewWillBeginDragging:  消息。
+scroll view 的 dragging属性会被设置为YES，并且代理会发送 scrollViewWillBeginDragging:  消息。  
+当用户拖拽他/她的手指，代理会接收到 scrollViewDidScroll: 消息。只要是在滚动中，该消息就会一直发送。你可以通过实现该方法来查询scroll view 的contentOffset属性，进而判断 scroll view 范围内的左上角的位置。contentOffset 属性会始终表示当前滚动范围的左上角的位置，不管是否在滚动中。  
+如果用户快速翻动，tracking 属性会被设置为NO，为了执行快速翻动手势，用户的手指打破了开始滚动时初始化的手势与屏幕之间的联系。与此同时，代理会接收到 scrollViewDidEndDragging:willDecelerate: 消息。当滚动减速的时候，deceleration属性将会是YES。减速的速度是由 decelerationRate 属性来控制的。默认的，该属性将会被设置为UIScrollViewDecelerationRateNormal，这能够让滚动持续一段时间。你可以将该属性设置为 UIScrollViewDecelerationFast 来让减速效果花费更少的时间，滚动的距离会在快速翻动手势之后变得更少。作为视图的减速，scroll view 的 decelerating 属性是YES。  
+
 # 基于放大效果使用捏合手势
 
 ## 支持捏合缩放手势
