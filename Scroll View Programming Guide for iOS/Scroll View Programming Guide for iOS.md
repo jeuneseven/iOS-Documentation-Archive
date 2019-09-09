@@ -204,7 +204,10 @@ scroll view 的 dragging属性会被设置为YES，并且代理会发送 scrollV
 当用户拖拽他/她的手指，代理会接收到 scrollViewDidScroll: 消息。只要是在滚动中，该消息就会一直发送。你可以通过实现该方法来查询scroll view 的contentOffset属性，进而判断 scroll view 范围内的左上角的位置。contentOffset 属性会始终表示当前滚动范围的左上角的位置，不管是否在滚动中。  
 如果用户快速翻动，tracking 属性会被设置为NO，为了执行快速翻动手势，用户的手指打破了开始滚动时初始化的手势与屏幕之间的联系。与此同时，代理会接收到 scrollViewDidEndDragging:willDecelerate: 消息。当滚动减速的时候，deceleration属性将会是YES。减速的速度是由 decelerationRate 属性来控制的。默认的，该属性将会被设置为UIScrollViewDecelerationRateNormal，这能够让滚动持续一段时间。你可以将该属性设置为 UIScrollViewDecelerationFast 来让减速效果花费更少的时间，滚动的距离会在快速翻动手势之后变得更少。作为视图的减速，scroll view 的 decelerating 属性是YES。  
 如果用户拖拽，然后停止拖拽，手指离开屏幕，那么代理会接收到scrollViewDidEndDragging:willDecelerate: 消息，不过，减速参数将会是NO。这是因为没有滚动动量添加到scroll view上。因为用户的手指不再和屏幕接触，tracking属性的值将会是NO。  
-如果 scrollViewDidEndDragging:willDecelerate: 消息的减速参数是NO，那么 scroll view 的代理将不会接收到该拖拽事件的其他代理消息。scroll view 减速属性也会返回 NO。
+如果 scrollViewDidEndDragging:willDecelerate: 消息的减速参数是NO，那么 scroll view 的代理将不会接收到该拖拽事件的其他代理消息。scroll view 减速属性也会返回 NO。  
+还有另一种情况会触发 scrollViewDidEndDragging:willDecelerate: 消息发送给代理，即使用户在静止时抬起手指。  
+
+最后，当 scroll view 的减速完成时，代理会收到 scrollViewDidEndDecelerating: 消息，decelerating 参数为NO，并且滚动序列完成。  
 # 基于放大效果使用捏合手势
 
 ## 支持捏合缩放手势
