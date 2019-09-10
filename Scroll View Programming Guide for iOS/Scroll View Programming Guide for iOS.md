@@ -239,7 +239,17 @@ scroll view 的 dragging属性会被设置为YES，并且代理会发送 scrollV
 ## 配置一个分页滚动视图的子视图
 
 # 嵌套滚动视图
-
+为创造丰富的用户体验，你可能要在你的应用程序中嵌套scroll view。在iOS 3.0之前这很困难，并且不太可能完成这点。在iOS 3.0之后，该功能完全支持并且能够自动工作。  
 ## 相同方向的滚动
+当一个 UIScrollView 作为一个 UIScrollView 的子视图并且滚动方向一致时会发生相同滚动方向的情况。这在图6-1的左边的图中展示。  
 
-## 交叉方向的滚动
+图6-1 相同方向的scroll view和交叉方向的scroll view  
+
+![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/UIScrollView_pg/Art/scrollViews.jpg)  
+
+	注意：我们支持相同方向的滚动，并且为该功能定义了不同的行为，但改行为可能会在未来版本的iOS中更改。
+	
+## 交叉方向的滚动  
+当一个scroll view作为另一个scroll view的子视图，并且滚动方向和图6-1中的右侧图所示那样成90度夹角，那么就会用到交叉方向的滚动。  
+一个交叉方向滚动的例子是“股票”应用程序。顶部的视图是一个table view，底部的视图是一个横向的scroll view，并且被配置成使用了分页模式。当三个子视图当中的两个都是自定义视图时，第三个视图（包含新内容）是一个UITableView（UIScrollView的子类）它也是一个横向scroll view的子视图。当你横向滚动到新闻视图时，随后可以垂直滚动它的内容。  
+之前提到过，你的应用程序无需做任何事情就可以支持嵌套的滚动。它是默认支持的。
