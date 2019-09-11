@@ -206,7 +206,7 @@ scroll view 的 dragging属性会被设置为YES，并且代理会发送 scrollV
 如果用户拖拽，然后停止拖拽，手指离开屏幕，那么代理会接收到scrollViewDidEndDragging:willDecelerate: 消息，不过，减速参数将会是NO。这是因为没有滚动动量添加到scroll view上。因为用户的手指不再和屏幕接触，tracking属性的值将会是NO。  
 如果 scrollViewDidEndDragging:willDecelerate: 消息的减速参数是NO，那么 scroll view 的代理将不会接收到该拖拽事件的其他代理消息。scroll view 减速属性也会返回 NO。  
 还有另一种情况会触发 scrollViewDidEndDragging:willDecelerate: 消息发送给代理，即使用户在静止时抬起手指。  
-
+无论触发 scroll view 接收 scrollViewDidEndDragging:willDecelerate: 消息的条件如何，如果减速参数为 YES，scroll view 就会发送 scrollViewWillBeginDecelerating: 消息。在减速期间，代理会持续收到 scrollViewDidScroll: 消息，不过 tracking 和 dragging 参数这时都是 NO。decelerating 属性会一直为YES。
 最后，当 scroll view 的减速完成时，代理会收到 scrollViewDidEndDecelerating: 消息，decelerating 参数为NO，并且滚动序列完成。  
 # 基于放大效果使用捏合手势
 
