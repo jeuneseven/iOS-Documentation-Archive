@@ -236,6 +236,9 @@ scroll view 的 dragging属性会被设置为YES，并且代理会发送 scrollV
 UIScrollView 类支持一种分页模式，它能够限制用户的滚动动作是以一次滚动单个屏幕的内容。当展示连续的内容时，可以使用该模式，比如eBook或者连续的介绍说明。
 ## 配置分页模式
 
+图 5-1 展示了一个配置了分页模式的scroll view的例子。其实现的展示在“PageControl: Using a Paginated UIScrollView
+”示例代码中可以得到。
+
 图 5-1 一个在分页模式下的 scroll view 以及滚动事件的结果
 
 ![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/UIScrollView_pg/Art/pageModeScroll.jpg)
