@@ -109,6 +109,31 @@ NSNumber *aDouble = [NSNumber numberWithDouble:1.0];
 ### 复合对象：举个例子
 
 # 类工厂方法
+类工厂方法是由类实现的一种给用户方便调用的方法。它将分配空间和初始化一步完成并返回创建好的对象。不过，用户并不拥有接收到的对象（基于每个对象的协议），并且不用负责释放它。这些方法都是这种形式：+(type)className...（className可包含任意前缀）。  
+Cocoa提供了大量的示例，尤其是“值”相关的类。NSDate 类包含以下类工厂方法：  
+
+> +(id)dateWithTimeIntervalSinceNow:(NSTimeInterval)secs;  
++(id)dateWithTimeIntervalSinceReferenceDate:(NSTimeInterval)secs;  
++(id)dateWithTimeIntervalSince1970:(NSTimeInterval)secs;
+
+NSData 也提供了以下工厂方法：  
+
+> +(id)dataWithBytes:(const void *)bytes length:(unsigned)length;  
++(id)dataWithBytesNoCopy:(void *)bytes length:(unsigned)length;  
++(id)dataWithBytesNoCopy:(void *)bytes length:(unsigned)length  
+        freeWhenDone:(BOOL)b;  
++(id)dataWithContentsOfFile:(NSString *)path;  
++(id)dataWithContentsOfURL:(NSURL *)url;  
++(id)dataWithContentsOfMappedFile:(NSString *)path;
+
+工厂方法不仅仅是带来了便利。他们不只是将分配空间和初始化合并了，并且分配空间还会通知初始化。举例来说，假设你必须初始化一组从属性列表文件中读取的对象，该文件对于集合的任意数量的元素（NSString对象、NSData对象、NSNumber对象等等）进行编码。在工厂方法指导要为该集合分配多少内存之前，必须读取该文件并缝隙属性列表，以确定有多少元素以及这些元素的对象类型。  
+另一个工厂方法的目的是确保一个确定的类（比如NSWorkspace）能够提供一个单例实例。虽然 init... 方法能够确保在程序中的任意时刻只有一个实例对象存在，但还是需要优先级来分配原始的实例变量，然后在内存管理代码中需要释放该实例变量。换句话说，一个工厂方法，可以给你一种方式来避免盲目的分配内存给一个你可能用不到的对象，如以下示例所示：  
+
+> static AccountManager *DefaultManager = nil;  
+	+(AccountManager *)defaultManager {  
+   		 if (!DefaultManager) DefaultManager = [[self allocWithZone:NULL] init];  
+	    return DefaultManager;  
+}
 
 # 代理和数据源
 
