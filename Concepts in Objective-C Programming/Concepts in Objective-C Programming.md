@@ -103,8 +103,75 @@ NSNumber *aDouble = [NSNumber numberWithDouble:1.0];
 通常来讲，一个类簇的抽象基类会定义一组init...和+className方法。就像“生成初始化”当中描述过的那样，抽象类决定了实体的子类实例化基于你选择的init...或者+ className方法。你可以认为抽象类声明了这些方法为了方便子类使用。抽象类没有实例变量，那么也就无需存在实例化方法了。  
 你的子类应该定义它自己的init...方法（如果有必要的话，初始化它点实例变量）以及可能的类方法。它不应该依赖任何它继承的方法。为了维持继承响应链，它应该在它自己的初始化方法中调用它父类的初始化方法。它还应该重载所有它继承的初始化方法，并且以合理的方式实现他们。（参见“多种构造方法和初始化方法”关于初始化方法的讨论）在类簇中，抽象基类的初始化方法永远是init。
 ### 真正的子类：举个例子
+假设你要创建一个NSArray的子类，名叫MonthArray，它会返回给定索引的月份的名称。不过，一个MonthArray类的对象不会实际存储月份数组的名称来作为实例变量。而是返回一个给定索引的名字的方法(objectAtIndex:)会返回一个字符串常量。此外，只有十二个字符串对象将会被分配内存，不论多少MonthArray对象会存在在应用程序中。  
 
+MonthArray 类声明如下：  
+
+```
+#import <foundation/foundation.h>
+@interface MonthArray : NSArray
+{
+}
+ 
++ monthArray;
+- (unsigned)count;
+- (id)objectAtIndex:(unsigned)index;
+@end
+
+```
+
+注意MonthArray类没有声明init...方法，因为它没有实例变量要初始化。count和objectAtIndex:方法只是直接覆盖继承的原始方法，如上述所示。  
+而MonthArray类的实现类似这样：  
+
+```
+#import "MonthArray.h"
+ 
+@implementation MonthArray
+ 
+static MonthArray *sharedMonthArray = nil;
+static NSString *months[] = { @"January", @"February", @"March",
+    @"April", @"May", @"June", @"July", @"August", @"September",
+    @"October", @"November", @"December" };
+ 
++ monthArray
+{
+    if (!sharedMonthArray) {
+        sharedMonthArray = [[MonthArray alloc] init];
+    }
+    return sharedMonthArray;
+}
+ 
+- (unsigned)count
+{
+ return 12;
+}
+ 
+- objectAtIndex:(unsigned)index
+{
+    if (index >= [self count])
+        [NSException raise:NSRangeException format:@"***%s: index
+            (%d) beyond bounds (%d)", sel_getName(_cmd), index,
+            [self count] - 1];
+    else
+        return months[index];
+}
+ 
+@end
+```
+
+由于MonthArray覆盖了继承的原始方法，因此它继承的衍生方法将正常工作，而不会被覆盖。NSArray的 lastObject, containsObject:, sortedArrayUsingSelector:, objectEnumerator,以及其他方法对于MonthArray对象而言不会发生问题。  
 ### 复合对象
+通过在你自己设计的类中添加一个私有的类簇对象，你就创建了一个复合对象。  
+
+图 1-4 内置类簇对象的对象  
+
+![](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/compositeobject.gif)  
+
+```
+- (unsigned)count {
+    return [embeddedObject count];
+}
+```
 
 ### 复合对象：举个例子
 
