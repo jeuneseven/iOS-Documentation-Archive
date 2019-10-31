@@ -174,6 +174,92 @@ static NSString *months[] = { @"January", @"February", @"March",
 ```
 
 ### 复合对象：举个例子
+为展示符合对象的使用，假设你需要一个可变数组来测试某些验证条件来保证对于数组内容的修改。以下描述的示例类称作ValidatingArray，它包含一个标准的可变数组对象。ValidatingArray 重写了所有的父类声明的方法， 即NSArray 和 NSMutableArray。它还声明了array, validatingArray, 和 init方法，可以用来创建和初始化一个实例：  
+
+```
+#import <foundation/foundation.h>
+ 
+@interface ValidatingArray : NSMutableArray
+{
+    NSMutableArray *embeddedArray;
+}
+ 
++ validatingArray;
+- init;
+- (unsigned)count;
+- objectAtIndex:(unsigned)index;
+- (void)addObject:object;
+- (void)replaceObjectAtIndex:(unsigned)index withObject:object;
+- (void)removeLastObject;
+- (void)insertObject:object atIndex:(unsigned)index;
+- (void)removeObjectAtIndex:(unsigned)index;
+ 
+@end
+```
+实现文件展示了在 ValidatingArrayclass 类的 init 方法中，内置的对象以及被创建并赋值给了embeddedArray变量。消息直接传递给数组，但并没有改变其内容而是转发给了内置的对象。能够改变内容的消息是被检查过的（以下是伪代码）并且只有在其通过了设定的验证测试之后才会被转发。  
+
+```
+#import "ValidatingArray.h"
+ 
+@implementation ValidatingArray
+ 
+- init
+{
+    self = [super init];
+    if (self) {
+        embeddedArray = [[NSMutableArray allocWithZone:[self zone]] init];
+    }
+    return self;
+}
+ 
++ validatingArray
+{
+    return [[[self alloc] init] autorelease];
+}
+ 
+- (unsigned)count
+{
+    return [embeddedArray count];
+}
+ 
+- objectAtIndex:(unsigned)index
+{
+    return [embeddedArray objectAtIndex:index];
+}
+ 
+- (void)addObject:object
+{
+    if (/* modification is valid */) {
+        [embeddedArray addObject:object];
+    }
+}
+ 
+- (void)replaceObjectAtIndex:(unsigned)index withObject:object;
+{
+    if (/* modification is valid */) {
+        [embeddedArray replaceObjectAtIndex:index withObject:object];
+    }
+}
+ 
+- (void)removeLastObject;
+{
+    if (/* modification is valid */) {
+        [embeddedArray removeLastObject];
+    }
+}
+- (void)insertObject:object atIndex:(unsigned)index;
+{
+    if (/* modification is valid */) {
+        [embeddedArray insertObject:object atIndex:index];
+    }
+}
+- (void)removeObjectAtIndex:(unsigned)index;
+{
+    if (/* modification is valid */) {
+        [embeddedArray removeObjectAtIndex:index];
+    }
+}
+```
 
 # 类工厂方法
 类工厂方法是由类实现的一种给用户方便调用的方法。它将分配空间和初始化一步完成并返回创建好的对象。不过，用户并不拥有接收到的对象（基于每个对象的协议），并且不用负责释放它。这些方法都是这种形式：+(type)className...（className可包含任意前缀）。  
