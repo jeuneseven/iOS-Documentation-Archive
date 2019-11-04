@@ -69,7 +69,7 @@ NSNumber *aDouble = [NSNumber numberWithDouble:1.0];
 
 其它类似这种情况的类簇也是存在的，但这清楚的阐述了两个抽象的节点如何以编程的形式在一个类簇中声明接口。在每个类簇中，一个公开的节点声明的方法，所有的类簇的对象都可以响应，另一个节点声明的方法智能被该类簇的对象访问和修改。  
 类簇接口的分解性帮助面向对象的框架在编程上更为丰富。例如，想象一个对象表示一本书，声明了以下方法：  
-> - (NSString *)title;
+> -(NSString *)title;
 
 一个book对象可以反悔它本身的实例变量或者生成一个新的字符串对象然后返回它（这无所谓）。这清楚的表达了这个返回的字符串是无法被修改的。任何企图修改这个返回的对象都会引起编译器的报错。
 
@@ -161,17 +161,21 @@ static NSString *months[] = { @"January", @"February", @"March",
 
 由于MonthArray覆盖了继承的原始方法，因此它继承的衍生方法将正常工作，而不会被覆盖。NSArray的 lastObject, containsObject:, sortedArrayUsingSelector:, objectEnumerator,以及其他方法对于MonthArray对象而言不会发生问题。  
 ### 复合对象
-通过在你自己设计的类中添加一个私有的类簇对象，你就创建了一个复合对象。  
+通过在你自己设计的类中添加一个私有的类簇对象，你就创建了一个复合对象。符合对象可以靠类簇对象实现其基本功能，只需在复合对象处理某些特定消息时才需要拦截消息。这种结构减少了你需要编写的代码量，并让你可以利用 Foundation 框架提供的测试代码。图1-4描述了这种结构。  
 
 图 1-4 内置类簇对象的对象  
 
 ![](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/compositeobject.gif)  
+
+符合对象必须声明其本身为一个类簇抽象父类的子类。作为一个子类，它必须重载父类原来的方法。它还可以重载派生的方法，但这并非必须的，因为派生的方法会通过原来的方法。  
+NSArray 类的 count 方法就是个例子；在对象的实现方法中它可以被重载成这样：
 
 ```
 - (unsigned)count {
     return [embeddedObject count];
 }
 ```
+不过，你的对象应该将它重载的方法的实现放在其自己的实现体中。
 
 ### 复合对象：举个例子
 为展示符合对象的使用，假设你需要一个可变数组来测试某些验证条件来保证对于数组内容的修改。以下描述的示例类称作ValidatingArray，它包含一个标准的可变数组对象。ValidatingArray 重写了所有的父类声明的方法， 即NSArray 和 NSMutableArray。它还声明了array, validatingArray, 和 init方法，可以用来创建和初始化一个实例：  
