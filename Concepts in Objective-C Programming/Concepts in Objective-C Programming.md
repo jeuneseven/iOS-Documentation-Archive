@@ -315,6 +315,34 @@ NSData 也提供了以下工厂方法：
 # 对象的模态
 
 # 对象的可变
+Cocoa对象都是有可变或不可变的。你不能够更改封装的不可变对象的值；一旦一个对象创建了，它所代表的值就会伴随对象的生命周期而存在。但是你可以在任意时刻改变一个可变对象所封装的值。以下章节阐述了一个对象类型有可变和不可变两种变体的原因，描述了相关特性以及对象可变的边际效应，并对于当对象可变时产生的问题如何处理给出了建议。  
+## 为什么有可变和不可变对象的两种变体？
+对象默认是可变的。大部分的对象都允许你通过setter方法来访问改变其封装的数据。举例来说，你可以改变一个 NSWindow 对象的大小、位置、标题、缓冲行为以及其他的特性。一个设计良好的模型对象——一个对象就表示一个消费记录——需要setter方法来改变其实例数据。  
+Foundation框架通过引入一些有可变和不可变变体的类添加了一些细微差别。可变的子类通常是其不可变父类的子类，并且类名拥有“Mutable”。这些类包括以下：  
+
+NSMutableArray
+NSMutableDictionary
+NSMutableSet
+NSMutableIndexSet
+NSMutableCharacterSet
+NSMutableData
+NSMutableString
+NSMutableAttributedString
+NSMutableURLRequest
+
+```
+注意：除了AppKit框架中的NSMutableParagraphStyle，Foundation框架当前已经定义了所有明确命名的可变类。不过，任何Cocoa框架都可能拥有其自己的可变和不可变的变体类。
+```
+
+## 使用可变对象编程
+
+### 创建和转换可变对象
+
+### 存储和返回可变实例变量
+
+### 接收可变对象
+
+### 集合中的可变对象
 
 # Outlets
 
