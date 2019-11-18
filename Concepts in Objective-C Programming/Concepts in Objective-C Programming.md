@@ -409,3 +409,23 @@ NSMutableURLRequest
 ## UIKit中的目标-动作
 
 # 无成本桥接
+
+```
+NSLocale *gbNSLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"];
+CFLocaleRef gbCFLocale = (CFLocaleRef) gbNSLocale;
+CFStringRef cfIdentifier = CFLocaleGetIdentifier (gbCFLocale);
+NSLog(@"cfIdentifier: %@", (NSString *)cfIdentifier);
+// logs: "cfIdentifier: en_GB"
+CFRelease((CFLocaleRef) gbNSLocale);
+ 
+CFLocaleRef myCFLocale = CFLocaleCopyCurrent();
+NSLocale * myNSLocale = (NSLocale *) myCFLocale;
+[myNSLocale autorelease];
+NSString *nsIdentifier = [myNSLocale localeIdentifier];
+CFShow((CFStringRef) [@"nsIdentifier: " stringByAppendingString:nsIdentifier]);
+// logs identifier for current locale
+```
+
+| Core Foundation 类型 | Foundation类 | 可用 |
+|:------------- |:---------------:|:---------------:|
+| CFArrayRef | NSArray | OS X 10.0 |
