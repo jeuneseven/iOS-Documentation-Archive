@@ -3,7 +3,7 @@
 # 关于Cocoa和Cocoa Touch的基本编程概念
 很多Cocoa和Cocoa Touch框架的编程接口都是基于你对于概念的理解的。这些概念表达了很多框架的核心设计理念。通晓这些概念会让你的软件编程过程非常顺畅。  
 
-![](https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaEncyclopedia/Art/controller_object.jpg). 
+![](https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaEncyclopedia/Art/controller_object.jpg) 
 
 ## 概览
 本文档阐述了Cocoa和Cocoa Touch框架的核心理念、设计模式以及基本运行机制。这些文章是按照字母排序的。  
@@ -293,7 +293,8 @@ NSData 也提供了以下工厂方法：
 }
 
 # 代理和数据源
-
+代理是一种在某个对象在程序中遇到事件时，代表或与其他对象进行协作的对象。代理对象通常是一个响应对象——意思是，该对象继承自AppKit中的NSResponder或者UIKit中的UIResponder——能够响应用户事件。代理就是一种代理控制用户界面来处理事件的对象，或者至少被要求以特定于应用程序的方式解释该事件。  
+为更好的理解代理的价值，我们看下现成的Cocoa对象，比如一个输入框（NSTextField 或者 UITextField 的实例）或者一个列表（NSTableView 或者 UITableView的实例）。这些对象旨在以通用方式完成特定的角色功能；举例来说，AppKit 框架中的 window 对象会响应鼠标操作控制，处理诸如关闭，调整大小，移动物理窗口等事件。
 ## 代理是如何工作的
 
 ## 代理消息的格式
