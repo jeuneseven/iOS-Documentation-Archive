@@ -299,6 +299,8 @@ NSData 也提供了以下工厂方法：
 
 ![](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/delegation1.jpg)
 
+![](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/delegation2.jpg)
+
 ## 代理消息的格式
 
 ## 代理和应用的工具库
