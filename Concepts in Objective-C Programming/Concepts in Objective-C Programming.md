@@ -297,6 +297,8 @@ NSData 也提供了以下工厂方法：
 为更好的理解代理的价值，我们看下现成的Cocoa对象，比如一个输入框（NSTextField 或者 UITextField 的实例）或者一个列表（NSTableView 或者 UITableView的实例）。这些对象旨在以通用方式完成特定的角色功能；举例来说，AppKit 框架中的 window 对象会响应鼠标操作控制，处理诸如关闭，调整大小，移动物理窗口等事件。
 ## 代理是如何工作的
 
+![](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/delegation1.jpg)
+
 ## 代理消息的格式
 
 ## 代理和应用的工具库
