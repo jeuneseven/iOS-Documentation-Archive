@@ -303,6 +303,17 @@ NSData 也提供了以下工厂方法：
 
 ## 代理消息的格式
 
+```
+- (BOOL)application:(NSApplication *)sender
+    openFile:(NSString *)filename;                        // NSApplication
+- (BOOL)application:(UIApplication *)application
+    handleOpenURL:(NSURL *)url;                           // UIApplicationDelegate
+- (UITableRowIndexSet *)tableView:(NSTableView *)tableView
+    willSelectRows:(UITableRowIndexSet *)selection;       // UITableViewDelegate
+- (NSRect)windowWillUseStandardFrame:(NSWindow *)window
+    defaultFrame:(NSRect)newFrame;                        // NSWindow
+```
+
 ## 代理和应用的工具库
 
 ### 成为工具类库的代理
