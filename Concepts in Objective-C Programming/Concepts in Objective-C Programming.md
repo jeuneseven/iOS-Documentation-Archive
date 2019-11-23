@@ -324,6 +324,16 @@ NSData 也提供了以下工厂方法：
 
 ## 为一个自定义类实现代理
 
+```
+- (void)someMethod {
+    if ( [delegate respondsToSelector:@selector(operationShouldProceed)] ) {
+        if ( [delegate operationShouldProceed] ) {
+            // do something appropriate
+        }
+    }
+}
+```
+
 # 内省
 内省是面向对象语言和环境中的很强大的功能，在OC和Cocoa中也不例外。内省是指对象在运行时将自身详细信息作为对象而向外暴露的能力。此类详细信息包括对象在继承树中的位置，是否遵循了一个特定的协议，以及是否响应一个特定的消息等等。NSObject 协议和类定义了很多的内省方法，你可以使用它来查询运行时对象的表现。  
 如果正确使用的话，内省会让面向对象程序更加高效和健壮。还能够帮助你避免消息分发的错误，对象相等的错误假设判断，以及类似问题。以下段落展示了你可以在编码中如何高效的使用 NSObject 内省方法。  
