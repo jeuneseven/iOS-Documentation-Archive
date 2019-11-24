@@ -314,6 +314,15 @@ NSData 也提供了以下工厂方法：
     defaultFrame:(NSRect)newFrame;                        // NSWindow
 ```
 
+```
+- (void) tableView:(NSTableView*)tableView
+    mouseDownInHeaderOfTableColumn:(NSTableColumn *)tableColumn;      // NSTableView
+- (void)windowDidMove:(NSNotification *)notification;                 // NSWindow
+- (void)application:(UIApplication *)application
+    willChangeStatusBarFrame:(CGRect)newStatusBarFrame;               // UIApplication
+- (void)applicationWillBecomeActive:(NSNotification *)notification;   // NSApplication
+```
+
 ## 代理和应用的工具库
 
 ### 成为工具类库的代理
