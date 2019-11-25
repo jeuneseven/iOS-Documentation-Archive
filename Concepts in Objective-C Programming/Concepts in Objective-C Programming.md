@@ -334,6 +334,21 @@ NSData 也提供了以下工厂方法：
 ## 为一个自定义类实现代理
 
 ```
+- (id)delegate;
+- (void)setDelegate:(id)newDelegate;
+```
+
+```
+- (id)delegate {
+    return delegate;
+}
+ 
+- (void)setDelegate:(id)newDelegate {
+    delegate = newDelegate;
+}
+```
+
+```
 - (void)someMethod {
     if ( [delegate respondsToSelector:@selector(operationShouldProceed)] ) {
         if ( [delegate operationShouldProceed] ) {
