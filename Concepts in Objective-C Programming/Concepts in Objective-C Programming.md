@@ -364,6 +364,15 @@ NSData 也提供了以下工厂方法：
 
 ## 判断继承关系
 
+```
+// ...
+while ( id anObject = [objectEnumerator nextObject] ) {
+    if ( [self class] == [anObject superclass] ) {
+        // do something appropriate...
+    }
+}
+```
+
 ## 方法实现和协议性能
 
 ## 对象的比较
