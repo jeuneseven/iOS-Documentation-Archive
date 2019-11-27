@@ -375,6 +375,16 @@ while ( id anObject = [objectEnumerator nextObject] ) {
 
 ## 方法实现和协议性能
 
+```
+- (void)doCommandBySelector:(SEL)aSelector {
+    if ([self respondsToSelector:aSelector]) {
+        [self performSelector:aSelector withObject:nil];
+    } else {
+        [_client doCommandBySelector:aSelector];
+    }
+}
+```
+
 ## 对象的比较
 
 # 对象的分配
