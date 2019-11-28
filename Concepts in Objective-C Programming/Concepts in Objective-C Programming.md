@@ -387,6 +387,26 @@ while ( id anObject = [objectEnumerator nextObject] ) {
 
 ## 对象的比较
 
+```
+- (BOOL)isEqual:(id)other {
+    if (other == self)
+        return YES;
+    if (!other || ![other isKindOfClass:[self class]])
+        return NO;
+    return [self isEqualToWidget:other];
+}
+ 
+- (BOOL)isEqualToWidget:(MyWidget *)aWidget {
+    if (self == aWidget)
+        return YES;
+    if (![(id)[self name] isEqual:[aWidget name]])
+        return NO;
+    if (![[self data] isEqualToData:[aWidget data]])
+        return NO;
+    return YES;
+}
+```
+
 # 对象的分配
 
 # 对象的初始化
