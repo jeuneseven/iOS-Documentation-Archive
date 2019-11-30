@@ -380,7 +380,13 @@ while ( id anObject = [objectEnumerator nextObject] ) {
 
 > 注意：有时候你要使用 class 或 superclass 方法来为一个类消息获得一个适当的接收者。
 
-
+```
+if ([item isKindOfClass:[NSData class]]) {
+    const unsigned char *bytes = [item bytes];
+    unsigned int length = [item length];
+    // ...
+}
+```
 
 ## 方法实现和协议性能
 
