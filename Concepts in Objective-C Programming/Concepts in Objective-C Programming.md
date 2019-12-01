@@ -380,6 +380,8 @@ while ( id anObject = [objectEnumerator nextObject] ) {
 
 > 注意：有时候你要使用 class 或 superclass 方法来为一个类消息获得一个适当的接收者。
 
+更为常见的检测一个对象的类的从属关系，是使用发送 isKindOfClass: 或 isMemberOfClass: 消息。该方法会返回接收者是否是一个给定类的实例或者是否是继承自该类的任意类的实例。换句话说，isMemberOfClass:会告诉你接收者是否是一个指定类的实例。isKindOfClass:通常比较常用，因为从它你可以立刻知道你能够发送给对象的完整消息域。参考清单4-2的代码块。
+
 ```
 if ([item isKindOfClass:[NSData class]]) {
     const unsigned char *bytes = [item bytes];
@@ -387,6 +389,8 @@ if ([item isKindOfClass:[NSData class]]) {
     // ...
 }
 ```
+
+知晓了 item 继承自 NSData 类，代码就知道它能够发送NSData 的 bytes 和 length 消息了。如果假定item是一个 NSMutableData 的实例对象，则 isKindOfClass: 和 isMemberOfClass: 的区别就显而易见了。如果你使用 isMemberOfClass: 而非 isKindOfClass:，则条件语句块中的代码将永远不会执行，因为 item 并不是 NSData 的实例对象而是 NSMutableData的，是 NSData的一个子类。
 
 ## 方法实现和协议性能
 
