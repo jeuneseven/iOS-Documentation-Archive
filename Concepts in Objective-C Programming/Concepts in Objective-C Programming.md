@@ -394,6 +394,8 @@ if ([item isKindOfClass:[NSData class]]) {
 
 ## 方法实现和协议性能
 
+清单4-3 使用 respondsToSelector:
+
 ```
 - (void)doCommandBySelector:(SEL)aSelector {
     if ([self respondsToSelector:aSelector]) {
@@ -401,6 +403,19 @@ if ([item isKindOfClass:[NSData class]]) {
     } else {
         [_client doCommandBySelector:aSelector];
     }
+}
+```
+清单4-4展示了你如何在代码中使用 conformsToProtocol: 方法。
+
+清单4-4 使用conformsToProtocol:
+
+```
+// ...
+if (!([((id)testObject) conformsToProtocol:@protocol(NSMenuItem)])) {
+    NSLog(@"Custom MenuItem, '%@', not loaded; it must conform to the
+        'NSMenuItem' protocol.\n", [testObject class]);
+    [testObject release];
+    testObject = nil;
 }
 ```
 
