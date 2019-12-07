@@ -427,6 +427,15 @@ if (!([((id)testObject) conformsToProtocol:@protocol(NSMenuItem)])) {
 ## 对象的比较
 
 ```
+- (void)saveDefaults {
+    NSDictionary *prefs = [self preferences];
+    if (![origValues isEqual:prefs])
+        [Preferences savePreferencesToDefaults:prefs];
+}
+```
+
+
+```
 - (BOOL)isEqual:(id)other {
     if (other == self)
         return YES;
