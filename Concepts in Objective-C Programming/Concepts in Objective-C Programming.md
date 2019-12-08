@@ -426,6 +426,8 @@ if (!([((id)testObject) conformsToProtocol:@protocol(NSMenuItem)])) {
 
 ## 对象的比较
 
+清单4-5 使用isEqual:
+
 ```
 - (void)saveDefaults {
     NSDictionary *prefs = [self preferences];
@@ -433,7 +435,7 @@ if (!([((id)testObject) conformsToProtocol:@protocol(NSMenuItem)])) {
         [Preferences savePreferencesToDefaults:prefs];
 }
 ```
-
+清单4-6 重写isEqual:
 
 ```
 - (BOOL)isEqual:(id)other {
