@@ -428,6 +428,7 @@ if (!([((id)testObject) conformsToProtocol:@protocol(NSMenuItem)])) {
 
 尽管不是严格的自省方法，但是 hash 和 isEqual: 方法具有类似的作用。对于判定相等和比较对象等功能来说是不可缺少的运行时工具。但是，它们依赖于特定于类的比较逻辑，而非查询运行时有关对象的信息。  
 hash 和 isEqual: 方法都声明在 NSObject 协议中，并且紧密相关。hash 必须被实现，并且要返回一个整型值，该整型值将会被用在一个哈希表结构体中作为地址。如果两个对象是相等的（被 isEqual: 方法判断），它们必须具有相同的哈希值。如果你的对象能够被包含进类似 NSSet 这样的集合类对象中，你需要定义 hash 并验证两个对象的常量是否相等，它们会返回相同的哈希值。NSObject 默认实现的 isEqual: 方法会直接检查指针是否相等。  
+使用 isEqual: 方法是很直接的；它将接收者与作为参数提供的对象进行比较。对象的比较经常通知运行时决定如何处理对象。如清单4-5所示，你可以使用 isEqual: 方法决定是否执行操作，在这种情况下，可以保存已修改的用户首选项。  
 
 清单4-5 使用isEqual:
 
@@ -438,6 +439,9 @@ hash 和 isEqual: 方法都声明在 NSObject 协议中，并且紧密相关。h
         [Preferences savePreferencesToDefaults:prefs];
 }
 ```
+
+如果你创建了一个子类，你可能需要重写 isEqual: 方法，为指针是否相等添加更多的检查。子类可能定义了一个额外的属性，该属性在两个实例中必须具有相同的值才能将它们视为相等。比如，假设你创建了一个叫做 MyWidget 的 NSObject 的子类包含两个实例变量，name和data。这两个值必须同时相等才可以视为相等。清单4-6展示了你该如何为 MyWidget 类实现 isEqual: 方法。
+
 清单4-6 重写isEqual:
 
 ```
@@ -459,6 +463,9 @@ hash 和 isEqual: 方法都声明在 NSObject 协议中，并且紧密相关。h
     return YES;
 }
 ```
+
+这个 isEqual: 方法首先检查了指针是否相等，然后检查了类是否相等，最后调用了一个对象比较。其名称表示了要比较涉及的对象类。这种类型的比较方法强制检查传入的对象的类型，是Cocoa种常见的约定；NSString 类的 isEqualToString: 方法以及 NSTimeZone 类的 isEqualToTimeZone: 方法只是两个示例。特定于此类的比较器是——isEqualToWidget:——执行检测name和data是否相等。  
+在所有Cocoa框架中的 isEqualToType: 这种类型的方法，nil 不是一个合法的参数，并且实现这些方法时，在接收到nil后可能抛出异常。不过对于向后兼容性来说，isEqual: 方法会接收nil，并且返回NO。
 
 # 对象的分配
 
