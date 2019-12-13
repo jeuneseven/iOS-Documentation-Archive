@@ -333,10 +333,16 @@ NSData 也提供了以下工厂方法：
 
 ## 为一个自定义类实现代理
 
+要为你的自定义类实现代理的话，要完成以下几个步骤：
+
+* 在你的类的头文件中声明代理的存取方法。
+
 ```
 - (id)delegate;
 - (void)setDelegate:(id)newDelegate;
 ```
+
+* 实现存取方法。在内存管理程序中，要避免循环引用，setter 方法不应该使用 retain 或者 copy 对你的 delegate 进行操作。
 
 ```
 - (id)delegate {
