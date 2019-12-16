@@ -299,11 +299,17 @@ NSData 也提供了以下工厂方法：
 
 ## 代理是如何工作的
 
+图3-1 代理的机制
+
 ![](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/delegation1.jpg)
+
+图3-2 调用代理的一个真实序列
 
 ![](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/delegation2.jpg)
 
 ## 代理消息的格式
+
+清单 3-1 带有返回值的代理方法的示例
 
 ```
 - (BOOL)application:(NSApplication *)sender
@@ -315,6 +321,8 @@ NSData 也提供了以下工厂方法：
 - (NSRect)windowWillUseStandardFrame:(NSWindow *)window
     defaultFrame:(NSRect)newFrame;                        // NSWindow
 ```
+
+清单3-2 返回 void 的代理方法示例
 
 ```
 - (void) tableView:(NSTableView*)tableView
