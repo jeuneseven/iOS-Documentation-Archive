@@ -497,6 +497,14 @@ hash 和 isEqual: 方法都声明在 NSObject 协议中，并且紧密相关。h
 
 ## MVC作为一个复合设计模式
 
+图 7-1 传统版本的MVC作为复合设计模式  
+
+![](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/traditional_mvc.gif)
+
+图 7-2 Cocoa版本的MVC作为复合设计模式  
+
+![](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/cocoa_mvc.gif)
+
 ## MVC应用的设计指南
 
 ## Cocoa（osx）中的模型-视图-控制器
