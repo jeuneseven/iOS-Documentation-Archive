@@ -505,6 +505,10 @@ hash 和 isEqual: 方法都声明在 NSObject 协议中，并且紧密相关。h
 
 ![](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/cocoa_mvc.gif)
 
+图 7-3 协调作为一个nib文件的拥有者控制器
+
+![](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/cocoa_mvc_coord.gif)
+
 ## MVC应用的设计指南
 
 ## Cocoa（osx）中的模型-视图-控制器
