@@ -609,6 +609,10 @@ NSMutableURLRequest
 
 # 无成本桥接
 
+有大量的Core Foundation 和 Foundation 框架的数据类型都是可以用来交换使用的。
+
+列表13-1 数据类型能够在 Core Foundation 和 Foundation 框架之间交换使用
+
 ```
 NSLocale *gbNSLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"];
 CFLocaleRef gbCFLocale = (CFLocaleRef) gbNSLocale;
@@ -628,3 +632,5 @@ CFShow((CFStringRef) [@"nsIdentifier: " stringByAppendingString:nsIdentifier]);
 | Core Foundation 类型 | Foundation类 | 可用 |
 |:------------- |:---------------:|:---------------:|
 | CFArrayRef | NSArray | OS X 10.0 |
+| CFAttributedStringRef | 	NSAttributedString | OS X 10.4 |
+| CFBooleanRef | 	NSNumber | OS X 10.0 |
