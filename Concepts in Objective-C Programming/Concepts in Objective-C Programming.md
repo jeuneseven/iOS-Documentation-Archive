@@ -637,3 +637,6 @@ CFShow((CFStringRef) [@"nsIdentifier: " stringByAppendingString:nsIdentifier]);
 | CFCalendarRef | 	NSCalendar | OS X 10.4 |
 | CFCharacterSetRef | 	NSCharacterSet | OS X 10.0 |
 | CFDataRef | 	NSData | OS X 10.0 |
+| CFDateRef | 	NSDate | OS X 10.0 |
+| CFDictionaryRef | 	NSDictionary | OS X 10.0 |
+| CFErrorRef | 	NSError | OS X 10.5 |
