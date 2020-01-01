@@ -629,6 +629,8 @@ CFShow((CFStringRef) [@"nsIdentifier: " stringByAppendingString:nsIdentifier]);
 // logs identifier for current locale
 ```
 
+列表 13-1 能够在 Core Foundation 和 Foundation 框架之间用来转换的数据类型
+
 | Core Foundation 类型 | Foundation类 | 可用 |
 |:------------- |:---------------:|:---------------:|
 | CFArrayRef | NSArray | OS X 10.0 |
@@ -640,3 +642,20 @@ CFShow((CFStringRef) [@"nsIdentifier: " stringByAppendingString:nsIdentifier]);
 | CFDateRef | 	NSDate | OS X 10.0 |
 | CFDictionaryRef | 	NSDictionary | OS X 10.0 |
 | CFErrorRef | 	NSError | OS X 10.5 |
+| CFLocaleRef | 	NSLocale | OS X 10.4 |
+| CFMutableArrayRef | 	NSMutableArray | OS X 10.0 |
+| CFMutableAttributedStringRef | 	NSMutableAttributedString | OS X 10.4 |
+| CFMutableCharacterSetRef | 	NSMutableCharacterSet | OS X 10.0 |
+| CFMutableDataRef | 	NSMutableData | OS X 10.0 |
+| CFMutableDictionaryRef | 	NSMutableDictionary | OS X 10.0 |
+| CFMutableSetRef | 	NSMutableSet | OS X 10.0 |
+| CFMutableStringRef | 	NSMutableString | OS X 10.0 |
+| CFNullRef | 	NSNull | OS X 10.2 |
+| CFNumberRef | 	NSNumber | OS X 10.0 |
+| CFReadStreamRef | 	NSInputStream | OS X 10.0 |
+| CFRunLoopTimerRef | 	NSTimer | OS X 10.0 |
+| CFSetRef | 	NSSet | OS X 10.0 |
+| CFStringRef | 	NSString | OS X 10.0 |
+| CFTimeZoneRef | 	NSTimeZone | OS X 10.0 |
+| CFURLRef | 	NSURL | OS X 10.0 |
+| CFWriteStreamRef | 	NSOutputStream | OS X 10.0 |
