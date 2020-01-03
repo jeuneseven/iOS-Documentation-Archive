@@ -659,3 +659,7 @@ CFShow((CFStringRef) [@"nsIdentifier: " stringByAppendingString:nsIdentifier]);
 | CFTimeZoneRef | 	NSTimeZone | OS X 10.0 |
 | CFURLRef | 	NSURL | OS X 10.0 |
 | CFWriteStreamRef | 	NSOutputStream | OS X 10.0 |
+
+```
+注意：并非所有的数据类型都是能够无成本桥接的，即使是它的名字可能建议它这么做。举例来说，NSRunLoop 就和 CFRunLoopRef 并非无成本桥接，NSBundle 和 CFBundleRef 之间也是，NSDateFormatter 和 CFDateFormatterRef 之间也是。
+```
