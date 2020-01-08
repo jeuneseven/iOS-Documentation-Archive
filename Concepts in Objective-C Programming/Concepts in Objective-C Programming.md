@@ -589,6 +589,8 @@ NSMutableURLRequest
 接收器设计模式是用来解决应用程序执行上下文中发生的事件重定向到另一个执行上下文以进行处理的一般问题。这是一个混合模式。虽然它没有出现在GOF中，但它结合了该书中描述的命令、备忘录和代理设计模式的元素。这也是电车模式的变体（该书也未出现）；在此模式中，事件最初由蹦床对象接收，即所谓的事件，因为它会立即将事件退回或重定向到目标对象进行处理。
 ## 实践中的接收器模式
 
+![](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/receptionist.jpg)
+
 ## 何时该使用接收器模式
 
 # 目标-动作
