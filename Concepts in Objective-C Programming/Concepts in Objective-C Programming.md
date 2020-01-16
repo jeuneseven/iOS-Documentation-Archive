@@ -307,9 +307,13 @@ NSData 也提供了以下工厂方法：
 
 ![](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/delegation1.jpg)
 
+协议的方法标志着事件的处理或者代理对象的预期。该对象期望与事件和事件代理之间进行沟通，或者对于即将发生的事件，请求输入或者从代理获取许可。举例来说，当一个用户点击OSX窗口的关闭按钮时，窗口对象会发送 windowShouldClose: 消息给其代理；这会给代理对于关闭或推迟关闭窗口以时机，比如，窗口会有数据必须保存（参见图3-2）。
+
 图3-2 调用代理的一个真实序列
 
 ![](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/delegation2.jpg)
+
+只有当代理实现了方法时，代理对象才会发送消息。最好在代理中先调用NSObject 的 respondsToSelector: 方法来进行判断。
 
 ## 代理消息的格式
 
