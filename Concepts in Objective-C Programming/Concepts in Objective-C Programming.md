@@ -361,7 +361,13 @@ NSData 也提供了以下工厂方法：
 
 ### 成为工具类库的代理
 
+	@interface MyControllerClass : UIViewController <UIAlertViewDelegate> {
+
 ### 通过代理属性定位对象
+
+	id winController = [[NSApp keyWindow] delegate];
+	
+	id appController = [NSApp delegate];
 
 ## 数据源
 数据源很像代理，只是代理控制的是用户界面，而数据源控制的是数据。数据源是被NSView 和 UIView持有的一个接口对象，类似tableview这种表格视图需要一个数据源来构成其展示的数据。一个视图的数据源通常也扮演着它的代理的角色，不过它可以是任意对象。同代理一样，数据源必须实现非正式协议的一个或多个方法来支持视图所需的数据，并且需要做额外的实现来处理用户直接在某个视图中进行编辑的数据。
