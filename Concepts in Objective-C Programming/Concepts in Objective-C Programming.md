@@ -519,6 +519,30 @@ hash 和 isEqual: 方法都声明在 NSObject 协议中，并且紧密相关。h
 
 ## 初始化的格式
 
+	- (id)initWithArray:(NSArray *)array; (from NSSet)
+	- (id)initWithTimeInterval:(NSTimeInterval)secsToBeAdded sinceDate:(NSDate *)anotherDate; (from NSDate)
+	- (id)initWithContentRect:(NSRect)contentRect styleMask:(unsigned int)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag; (from NSWindow)
+	- (id)initWithFrame:(NSRect)frameRect; (from NSControl and NSView)
+
+	id anObject = [[MyClass alloc] init];
+	if (anObject) {
+   	 [anObject doSomething];
+   	 // more messages...
+	} else {
+   	 // handle error
+	}
+	
+	id myObject = [MyClass alloc];
+	[myObject init];
+	[myObject doSomething];
+	
+	id myObject = [[MyClass alloc] init];
+	if ( myObject ) {
+   	 [myObject doSomething];
+	} else {
+   	 // error recovery...
+	}
+
 ## 初始化的问题
 
 ## 实现一个初始化
