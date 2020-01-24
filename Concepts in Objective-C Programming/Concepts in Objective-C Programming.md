@@ -398,6 +398,8 @@ NSData 也提供了以下工厂方法：
 }
 ```
 
+* 实现存取方法。在内存管理的程序中，为了避免引用循环，setter 方法不应该持有或拷贝你的代理。
+
 ```
 - (void)someMethod {
     if ( [delegate respondsToSelector:@selector(operationShouldProceed)] ) {
