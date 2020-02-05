@@ -345,6 +345,8 @@ NSData 也提供了以下工厂方法：
 
 ## 代理和应用的工具库
 
+Cocoa 或 Cocoa Touch 应用程序的代理对象通常是一个响应者对象，比如 UIApplication， NSWindow，或者 NSTableView 对象。代理对象本身通常来讲（但并非必须）是一个自定义对象，它控制某些应用程序的部分（与控制器对象合作）。以下AppKit类定义了代理：
+
 * NSApplication
 * NSBrowser
 * NSControl
