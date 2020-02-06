@@ -365,6 +365,8 @@ Cocoa 或 Cocoa Touch 应用程序的代理对象通常是一个响应者对象�
 
 ### 成为工具类库的代理
 
+一个框架的类或者任何其他实现声明了delegate和协议（通常是正式协议）的类。协议列出了需要代理实现的必须和可选的方法。
+
 	@interface MyControllerClass : UIViewController <UIAlertViewDelegate> {
 
 ### 通过代理属性定位对象
