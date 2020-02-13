@@ -567,11 +567,34 @@ hash 和 isEqual: 方法都声明在 NSObject 协议中，并且紧密相关。h
 	} else {
    	 // error recovery...
 	}
+	
+	NSString *aStr = [[NSString alloc] initWithString:@"Foo"];
+	aStr = [aStr initWithString:@"Bar"];
+	
 
 ## 初始化的问题
 
 ## 实现一个初始化
-
+	
+	- (id)initWithAccountID:(NSString *)identifier {
+    if ( self = [super init] ) {
+        Account *ac = [accountDictionary objectForKey:identifier];
+        if (ac) { // object with that ID already exists
+            [self release];
+            return [ac retain];
+        }
+        if (identifier) {
+            accountID = [identifier copy]; // accountID is instance variable
+            [accountDictionary setObject:self forKey:identifier];
+            return self;
+        } else {
+            [self release];
+            return nil;
+        }
+    } else
+        return nil;
+	}
+	
 ## 可变的初始化和指定初始化
 
 # 模型-视图-控制器
