@@ -574,6 +574,14 @@ hash 和 isEqual: 方法都声明在 NSObject 协议中，并且紧密相关。h
 
 ## 初始化的问题
 
+	id anObject = [[MyClass alloc] init];
+	if (anObject) {
+	    [anObject doSomething];
+	    // more messages...
+	} else {
+	    // handle error
+	}
+
 ## 实现一个初始化
 	
 	- (id)initWithAccountID:(NSString *)identifier {
