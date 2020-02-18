@@ -603,6 +603,10 @@ hash 和 isEqual: 方法都声明在 NSObject 协议中，并且紧密相关。h
         return nil;
 	}
 	
+图6-1 继承链的初始化
+	
+![](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/init_inheritance_chain.gif)
+	
 ## 可变的初始化和指定初始化
 
 	- (id)initWithArray:(NSArray *)array;
