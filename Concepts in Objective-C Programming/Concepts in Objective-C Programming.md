@@ -546,6 +546,8 @@ hash 和 isEqual: 方法都声明在 NSObject 协议中，并且紧密相关。h
 
 ## 初始化的格式
 
+NSObject 为初始化声明了 init 的原型；这是个实力方法类型，返回一个 id 类型的对象。
+
 	- (id)initWithArray:(NSArray *)array; (from NSSet)
 	- (id)initWithTimeInterval:(NSTimeInterval)secsToBeAdded sinceDate:(NSDate *)anotherDate; (from NSDate)
 	- (id)initWithContentRect:(NSRect)contentRect styleMask:(unsigned int)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag; (from NSWindow)
