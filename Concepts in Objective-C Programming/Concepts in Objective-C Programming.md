@@ -578,6 +578,8 @@ NSObject 为初始化声明了 init 的原型；这是个实力方法类型，�
 
 ## 初始化的问题
 
+尽管 init... 方法需要它们的方法签名返回一个对象，但该对象并非最近分配的对象—— init... 的接收消息。换句话说，你从初始化中得到的对象可能并非你正在初始化的对象。
+
 	id anObject = [[MyClass alloc] init];
 	if (anObject) {
 	    [anObject doSomething];
