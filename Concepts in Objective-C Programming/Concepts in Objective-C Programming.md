@@ -637,11 +637,11 @@ Cocoa 有大量的带参数的初始化例子。以下是一部分（定义的�
 	- (id)initWithTitle:(NSString *)aTitle date:(NSDate *)aDate;
 
 	- (id)initWithTitle:(NSString *)aTitle {
-    return [self initWithTitle:aTitle date:[NSDate date]];
+	    return [self initWithTitle:aTitle date:[NSDate date]];
 	}
  
 	- (id)init {
-   	 return [self initWithTitle:@”Task”];
+	   	 return [self initWithTitle:@”Task”];
 	}
 
 图6-2 次级初始化和指定初始化的交互
