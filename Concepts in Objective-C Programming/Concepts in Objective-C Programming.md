@@ -570,6 +570,8 @@ Cocoa 有大量的带参数的初始化例子。以下是一部分（定义的�
 	- (id)initWithContentRect:(NSRect)contentRect styleMask:(unsigned int)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag; (from NSWindow)
 	- (id)initWithFrame:(NSRect)frameRect; (from NSControl and NSView)
 
+这些初始化方法都是实例方法，并且都以 init 开头，返回一个动态id类型的对象。除此之外，它们还都遵循Cocoa对于多参数方法的惯例，在首个或重要的参数前增加 With 类型: 或 From 源。
+
 	id anObject = [[MyClass alloc] init];
 	if (anObject) {
    	 [anObject doSomething];
