@@ -607,6 +607,21 @@ Cocoa 有大量的带参数的初始化例子。以下是一部分（定义的�
 	    // handle error
 	}
 
+	id myObject = [MyClass alloc];
+	[myObject init];
+	[myObject doSomething];
+
+	id myObject = [[MyClass alloc] init];
+	if ( myObject ) {
+	    [myObject doSomething];
+	} else {
+	    // error recovery...
+	}
+	
+	NSString *aStr = [[NSString alloc] initWithString:@"Foo"];
+	aStr = [aStr initWithString:@"Bar"];
+
+
 ## 实现一个初始化
 	
 	- (id)initWithAccountID:(NSString *)identifier {
