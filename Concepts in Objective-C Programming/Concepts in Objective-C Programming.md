@@ -720,6 +720,9 @@ MVC设计模式考虑到有三种类型的对象：模型，视图和控制器�
 
 ## 属性
 
+图 8-2
+![](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/employeetable.gif)
+
 ## 关系
 
 ## 访问属性
