@@ -737,6 +737,9 @@ MVC设计模式考虑到有三种类型的对象：模型，视图和控制器�
 
 ### 值
 
+图 8-5
+![](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/object_graph.gif)
+
 ### key路径
 
 # 对象的可变
