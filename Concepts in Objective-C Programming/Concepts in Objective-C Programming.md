@@ -742,6 +742,10 @@ MVC设计模式考虑到有三种类型的对象：模型，视图和控制器�
 
 ### key路径
 
+图 8-6  
+
+![](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/employeedepttable.gif)
+
 # 对象的可变
 Cocoa对象都是有可变或不可变的。你不能够更改封装的不可变对象的值；一旦一个对象创建了，它所代表的值就会伴随对象的生命周期而存在。但是你可以在任意时刻改变一个可变对象所封装的值。以下章节阐述了一个对象类型有可变和不可变两种变体的原因，描述了相关特性以及对象可变的边际效应，并对于当对象可变时产生的问题如何处理给出了建议。  
 ## 为什么有可变和不可变对象的两种变体？
