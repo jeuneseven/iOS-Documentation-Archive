@@ -779,6 +779,13 @@ NSMutableURLRequest
 
 ### 创建和转换可变对象
 
+	NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] init];
+
+	NSMutableArray *mutArray = [NSMutableArray arrayWithCapacity:[timeZones count]];
+
+	NSMutableSet *mutSet = [aSet mutableCopy];
+
+
 ### 存储和返回可变实例变量
 
 ### 接收可变对象
