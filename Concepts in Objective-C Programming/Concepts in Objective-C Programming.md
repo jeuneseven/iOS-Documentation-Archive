@@ -865,6 +865,20 @@ KVO通知调用了 observeValueForKeyPath:ofObject:change:context: 方法，它�
 
 ## 目标
 
+	- (void)capitalizeWord:(id)sender;
+
+	- (IBAction) deleteRecord:(id)sender;
+
+	- (void)nameEntered:(id) sender {
+	    NSString *name = [sender stringValue];
+	    if (![name isEqualToString:@""]) {
+	        NSMutableArray *names = [self nameList];
+	        [names addObject:name];
+	        [sender setStringValue:@""];
+	    }
+	}
+
+
 ## 动作
 
 ## AppKit框架中的目标-动作
