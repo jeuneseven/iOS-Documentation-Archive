@@ -885,6 +885,8 @@ KVO通知调用了 observeValueForKeyPath:ofObject:change:context: 方法，它�
 
 ### 控件、单元格和菜单项
 
+![](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/target_action.gif)
+
 ### 设置目标和动作
 
 ### AppKit定义的动作
