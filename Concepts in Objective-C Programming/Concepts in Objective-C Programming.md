@@ -889,6 +889,13 @@ KVO通知调用了 observeValueForKeyPath:ofObject:change:context: 方法，它�
 
 ### 设置目标和动作
 
+	- (void)setTarget:(id)anObject;
+	- (void)setAction:(SEL)aSelector;
+
+	[aCell setTarget:myController];
+	[aControl setAction:@selector(deleteRecord:)];
+	[aMenuItem setAction:@selector(showGuides:)];
+
 ### AppKit定义的动作
 
 ## UIKit中的目标-动作
