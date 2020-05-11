@@ -863,6 +863,8 @@ KVO通知调用了 observeValueForKeyPath:ofObject:change:context: 方法，它�
 
 # 目标-动作
 
+尽管代理，绑定和通知能够处理某些程序中的对象之间的某种形式的交互，但它们并非适合大部分可见的交互方式。一个典型的用户界面的应用程序由一定数量的图形对象所组成，最常见的可能是控件。
+
 ## 目标
 
 	- (void)capitalizeWord:(id)sender;
