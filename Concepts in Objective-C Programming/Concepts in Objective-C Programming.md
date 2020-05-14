@@ -889,6 +889,8 @@ KVO通知调用了 observeValueForKeyPath:ofObject:change:context: 方法，它�
 
 ### 控件、单元格和菜单项
 
+图 12-1 在控件-单元格结构中，目标-动作机制是如何工作的
+
 ![](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/target_action.gif)
 
 ### 设置目标和动作
