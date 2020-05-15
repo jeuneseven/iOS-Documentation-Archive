@@ -869,6 +869,8 @@ KVO通知调用了 observeValueForKeyPath:ofObject:change:context: 方法，它�
 
 ## 目标
 
+	iOS 提示：在 UIKit中，动作选择器还能够采用另外两种形式。参见“UIKit 中的 目标-动作”部分详情。
+
 	- (void)capitalizeWord:(id)sender;
 
 	- (IBAction) deleteRecord:(id)sender;
