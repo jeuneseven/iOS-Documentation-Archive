@@ -912,6 +912,7 @@ KVO通知调用了 observeValueForKeyPath:ofObject:change:context: 方法，它�
 	- (void)action:(id)sender
 	- (void)action:(id)sender forEvent:(UIEvent *)event
 
+要了解更多关于UIKit中的目标-动作机制，请阅读UIControl 类参考。
 # 无成本桥接
 
 有大量的Core Foundation 和 Foundation 框架的数据类型都是可以用来交换使用的。
