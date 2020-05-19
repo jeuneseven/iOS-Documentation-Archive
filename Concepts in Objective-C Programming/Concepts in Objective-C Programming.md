@@ -908,6 +908,8 @@ KVO通知调用了 observeValueForKeyPath:ofObject:change:context: 方法，它�
 
 ## UIKit中的目标-动作
 
+UIKit 框架也生命和实现了一系列的控件类；这些框架中的控件类继承自 UIControl 类，此类定义了iOS的大部分的目标-动作机制。不过AppKit和UIKit框架中的实现目标-动作的机制从原理上还是有一些不同的。其中一个不同是UIKit没有任何真实的单元类。UIKit中的控件不依赖于它们的单元来提供目标和动作信息。
+
 	- (void)action
 	- (void)action:(id)sender
 	- (void)action:(id)sender forEvent:(UIEvent *)event
