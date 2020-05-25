@@ -878,7 +878,11 @@ Cocoa 使用目标-动作机制来进行控件和其他对象的沟通。这种�
 
 ## 动作
 
+
+
 	- (void)capitalizeWord:(id)sender;
+
+动作方法由一些Cocoa类声明，并且会有等价的签名：
 
 	- (IBAction) deleteRecord:(id)sender;
 
