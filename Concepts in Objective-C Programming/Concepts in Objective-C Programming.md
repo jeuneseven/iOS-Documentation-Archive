@@ -886,6 +886,10 @@ Cocoa 使用目标-动作机制来进行控件和其他对象的沟通。这种�
 
 	- (IBAction) deleteRecord:(id)sender;
 
+```
+iOS注意：在UIKit中，动作的选择器能够接收两个其他的形式，参见UIKit中的“目标-动作”详情。
+```
+
 	- (void)nameEntered:(id) sender {
 	    NSString *name = [sender stringValue];
 	    if (![name isEqualToString:@""]) {
