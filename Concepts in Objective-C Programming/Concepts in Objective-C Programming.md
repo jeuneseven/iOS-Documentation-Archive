@@ -878,13 +878,15 @@ Cocoa 使用目标-动作机制来进行控件和其他对象的沟通。这种�
 
 ## 动作
 
-
+动作是控件发送给目标的消息，或者从目标的角度来说，方法的目标实现了响应动作消息。
 
 	- (void)capitalizeWord:(id)sender;
 
 动作方法由一些Cocoa类声明，并且会有等价的签名：
 
 	- (IBAction) deleteRecord:(id)sender;
+
+
 
 ```
 iOS注意：在UIKit中，动作的选择器能够接收两个其他的形式，参见UIKit中的“目标-动作”详情。
