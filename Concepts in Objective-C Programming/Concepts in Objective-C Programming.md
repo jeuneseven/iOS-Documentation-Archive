@@ -886,7 +886,7 @@ Cocoa 使用目标-动作机制来进行控件和其他对象的沟通。这种�
 
 	- (IBAction) deleteRecord:(id)sender;
 
-
+在这个示例当中，IBAction 没有为返回值设计一个数据类型；没有值返回。
 
 ```
 iOS注意：在UIKit中，动作的选择器能够接收两个其他的形式，参见UIKit中的“目标-动作”详情。
