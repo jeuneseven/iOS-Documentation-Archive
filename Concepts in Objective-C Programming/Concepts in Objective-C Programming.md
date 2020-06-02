@@ -912,6 +912,10 @@ AppKit在实现目标-动作时使用了特定的架构和惯例。
 
 ![](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/target_action.gif)
 
+```
+注意：参见"控件和单元格编程话题"和"应用程序菜单和弹窗列表变成话题"来了解更多有关控件单元格架构的信息。
+```
+
 ### 设置目标和动作
 
 	- (void)setTarget:(id)anObject;
