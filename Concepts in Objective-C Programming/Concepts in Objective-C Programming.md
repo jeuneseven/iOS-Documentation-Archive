@@ -892,6 +892,8 @@ Cocoa 使用目标-动作机制来进行控件和其他对象的沟通。这种�
 iOS注意：在UIKit中，动作的选择器能够接收两个其他的形式，参见UIKit中的“目标-动作”详情。
 ```
 
+sender 参数通常用来确定控件发送的动作消息（）
+
 	- (void)nameEntered:(id) sender {
 	    NSString *name = [sender stringValue];
 	    if (![name isEqualToString:@""]) {
