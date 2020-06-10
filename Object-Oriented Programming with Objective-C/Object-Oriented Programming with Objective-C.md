@@ -169,7 +169,20 @@ C的结构体和函数能够表达有意义的抽象，但它们会维持数据�
 
 ### 动态类型
 
+	incompatible types in assignment
+	assignment of integer from pointer lacks a cast
+
 ### 动态绑定
+
+	int strcmp(const char *, const char *);   /* case sensitive */
+	int strcasecmp(const char *, const char *); /*case insensitive*/
+	
+	int (* compare)(const char *, const char *);
+	
+	if ( **argv == 'i' )
+	    compare = strcasecmp;
+	else
+	    compare = strcmp;
 
 ### 动态加载
 
