@@ -694,6 +694,8 @@ MVC设计模式考虑到有三种类型的对象：模型，视图和控制器�
 
 ## MVC作为一个复合设计模式
 
+模型-试图-控制器是一种结合了若干种基本设计模式的设计模式。这些基本模式互相结合定义了功能分层和
+
 图 7-1 传统版本的MVC作为复合设计模式  
 
 ![](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/traditional_mvc.gif)
