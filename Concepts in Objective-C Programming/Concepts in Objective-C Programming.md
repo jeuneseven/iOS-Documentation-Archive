@@ -817,7 +817,7 @@ NSMutableURLRequest
 
 KVO通知调用了 observeValueForKeyPath:ofObject:change:context: 方法，它是被一个监听器实现的。
 
-图 11-1 
+图 11-1 KVO更新主操作队列反馈
 
 ![](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/receptionist.jpg)
 
