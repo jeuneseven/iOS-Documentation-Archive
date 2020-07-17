@@ -723,6 +723,7 @@ MVC设计模式考虑到有三种类型的对象：模型，视图和控制器�
 
 以下指南在设计MVC的应用程序时可以考虑：  
 
+* 虽然你可以使用一个继承于 NSObject 的自定义子类对象作为调度控制器，但是也没有必要将所有的工作都放在一个你自定义的类中。使用为Cocoa绑定技术所设计的现成的NSController对象来做这件事即可；意思就是使用 NSObjectController，NSArrayController，NSUserDefaultsController，或者 NSTreeController——或者自定义的结合 NSController 子类都可以。  
 
 
 ## Cocoa（osx）中的模型-视图-控制器
