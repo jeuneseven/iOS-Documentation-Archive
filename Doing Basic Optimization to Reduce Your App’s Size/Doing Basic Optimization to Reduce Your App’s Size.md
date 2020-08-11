@@ -6,6 +6,8 @@
 
 ## 概览
 
+![](https://docs-assets.developer.apple.com/published/03e280493c/dda8528d-7847-4b50-9d84-95b0fa7cc696.png)
+
 ### 为发布版本检查你的 target 的 Build Settings
 
 ### 确定并移除无用的资源
