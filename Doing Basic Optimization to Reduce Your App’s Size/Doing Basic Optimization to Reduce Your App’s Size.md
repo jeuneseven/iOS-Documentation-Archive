@@ -23,3 +23,6 @@
 ### 开启bitcode
 
 Bitcode 是一种Apple的技术，它能够让你重新编译你的应用来缩小其大小。当你上传你的应用到Apple Store Connect或者导出为Ad Hoc、开发或企业发布时就会重新编译。想了解更多关于Bitcode的相关内容，参见《发布选项》。
+
+## 另请查阅
+
