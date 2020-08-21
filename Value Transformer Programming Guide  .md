@@ -4,6 +4,16 @@
 
 # 值转换器的作用
 
+## NSNegateBooleanTransformerName
+
+## NSIsNilTransformerName
+
+## NSIsNotNilTransformerName
+
+## NSUnarchiveFromDataTransformerName
+
+## NSKeyedUnarchiveFromDataTransformerName
+
 # 值转换器的可用
 
 # 注册一个值转换器
