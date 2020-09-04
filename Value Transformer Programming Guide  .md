@@ -27,6 +27,9 @@
 
 # 值转换器的可用
 
+为了提供一种机制来注册你自己的值转换器，NSValueTransformer 提供了几种内置的转换器。  
+
+
 ## NSNegateBooleanTransformerName
 
 ## NSIsNilTransformerName
