@@ -32,9 +32,18 @@
 
 ## NSNegateBooleanTransformerName
 
+NSNegateBooleanTransformerName 值转换器会返回一个包含布尔值的 NSNumber 的实例对象。返回值是一个原值的反向布尔值，并且可逆。  
+这个值转换器在开启或禁用用户界面元素时很有用，以及在设置选项按钮或单选按钮时也有用。
+
 ## NSIsNilTransformerName
 
+NSIsNilTransformerName 值转换器会返回一个包含布尔值的 NSNumber 的实例对象。如果原值为 nil的话，那么返回值就是YES，否则返回值为NO。这个值转换器不可逆。  
+这个值转换器通常用在开启或禁用用户界面元素上。  
+
 ## NSIsNotNilTransformerName
+
+NSIsNotNilTransformerName 值转换器会返回一个包含布尔值的 NSNumber 的实例对象。如果原值不为nil，那么返回YES，否则返回NO。这个值转换器不可逆。  
+这个值转换器通常用在开启或禁用用户界面元素上。  
 
 ## NSUnarchiveFromDataTransformerName
 
