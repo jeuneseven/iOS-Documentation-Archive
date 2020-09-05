@@ -28,7 +28,7 @@
 # 值转换器的可用
 
 为了提供一种机制来注册你自己的值转换器，NSValueTransformer 提供了几种内置的转换器。  
-
+内置的转换器提供用于否定布尔值、测试零值或非零值以及将值存档和取消存档到NSData实例中的设施。
 
 ## NSNegateBooleanTransformerName
 
