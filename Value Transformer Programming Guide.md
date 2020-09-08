@@ -47,7 +47,11 @@ NSIsNotNilTransformerName 值转换器会返回一个包含布尔值的 NSNumber
 
 ## NSUnarchiveFromDataTransformerName
 
+NSUnarchiveFromDataTransformerName 
+
 ## NSKeyedUnarchiveFromDataTransformerName
+
+NSKeyedUnarchiveFromDataTransformerName
 
 # 注册一个值转换器
 
