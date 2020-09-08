@@ -47,7 +47,9 @@ NSIsNotNilTransformerName 值转换器会返回一个包含布尔值的 NSNumber
 
 ## NSUnarchiveFromDataTransformerName
 
-NSUnarchiveFromDataTransformerName 
+NSUnarchiveFromDataTransformerName 转换器会返回一个从 NSData 对象解档数据并当做值传递的对象。反向的转换器会返回一个被归档数据创建的 NSData 实例。  
+一个对象必须实现 NSCoding 协议，使用序列化归档以便使用这个转换器来归解档。  
+这个转换器主要与 NSUserDefaultsController实例一起使用。这个转换器允许你的应用存储对象在用户默认设置中，并且是本身不默认支持的类型，比如NSColor对象。
 
 ## NSKeyedUnarchiveFromDataTransformerName
 
