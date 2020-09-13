@@ -40,4 +40,24 @@
 
 ## 指定自定义的比较器
 
+清单3  
+
+	NSSortDescriptor *lastNameDescriptor = [[NSSortDescriptor alloc]
+              initWithKey:@"lastName" ascending:YES selector:@selector(localizedStandardCompare:)];
+	NSSortDescriptor * firstNameDescriptor = [[NSSortDescriptor alloc]
+	              initWithKey:@"firstName" ascending:YES selector:@selector(localizedStandardCompare:)];
+	NSArray *sortDescriptors = @[lastNameDescriptor, firstNameDescriptor];
+	NSArray *sortedArray = [peopleArray sortedArrayUsingDescriptors:sortDescriptors];
+
+
+表单 1
+
+比较方法  | 支持的类
+------------- | -------------
+compare:  | NSString, NSMutableString, NSDate, NSCalendarDate, NSValue(仅支持标准类型和无符号chat型), NSNumber
+caseInsensitiveCompare:  | NSString, NSMutableString
+localizedCompare:  | NSString, NSMutableString
+localizedCaseInsensitiveCompare:  | NSString, NSMutableString
+localizedStandardCompare:  | NSString, NSMutableString
+
 ## 必须的集合对象
