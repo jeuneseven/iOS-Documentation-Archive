@@ -50,7 +50,7 @@
 	NSArray *sortedArray = [peopleArray sortedArrayUsingDescriptors:sortDescriptors];
 
 
-表单 1
+表单 1 常用Foundation类和比较方法
 
 比较方法  | 支持的类
 ------------- | -------------
