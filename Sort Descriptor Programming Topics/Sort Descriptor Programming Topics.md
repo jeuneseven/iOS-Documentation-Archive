@@ -40,7 +40,7 @@
 
 ## 指定自定义的比较器
 
-清单3  
+清单3 使用本地化标准比较方法来排序数组
 
 	NSSortDescriptor *lastNameDescriptor = [[NSSortDescriptor alloc]
               initWithKey:@"lastName" ascending:YES selector:@selector(localizedStandardCompare:)];
@@ -59,5 +59,7 @@ caseInsensitiveCompare:  | NSString, NSMutableString
 localizedCompare:  | NSString, NSMutableString
 localizedCaseInsensitiveCompare:  | NSString, NSMutableString
 localizedStandardCompare:  | NSString, NSMutableString
+
+
 
 ## 必须的集合对象
