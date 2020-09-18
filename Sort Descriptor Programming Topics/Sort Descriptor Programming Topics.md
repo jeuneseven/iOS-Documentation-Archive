@@ -49,6 +49,7 @@
 	NSArray *sortDescriptors = @[lastNameDescriptor, firstNameDescriptor];
 	NSArray *sortedArray = [peopleArray sortedArrayUsingDescriptors:sortDescriptors];
 
+Foundation 类有一些方法能够用来排序，参见表单1.
 
 表单 1 常用Foundation类和比较方法
 
