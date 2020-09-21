@@ -36,9 +36,12 @@
 	NSArray *sortDescriptors = @[ageDescriptor, hireDateDescriptor];
 	NSArray *sortedArray = [employeesArray sortedArrayUsingDescriptors:sortDescriptors];
 
-无论哪种情况，都适用的默认的比较器方法 compare:。当使用age（NSNumber的实例）排序时，compare: 方法
+无论哪种情况，都适用的默认的比较器方法 compare:。当使用age（NSNumber的实例）排序时，使用NSNumber 实现的 compare: 方法。当使用受雇日期（值是NSDate的实例）进行排序时，使用的是 NSDate 的  compare: 方法。  
+不过，如果我们要使用名字对于雇员进行排序的话，那么姓名是字符串类型的，结果应该根据字母进行排序，并且应该根据用户的本地信息，并且很可能不需要关心大小写。NSString 默认的 compare: 方法并没有做这些，所以我们应该指定一个自定义方法来实现比较。
 
 ## 指定自定义的比较器
+
+之前的例子都是依赖于默认的 compare: 方法来根据年龄和雇佣日期进行排序。姓名是字符串类型，当你排序字符串并展示给用户时，你应该使用本地化比较方法（参见“字符串编程指南”中的搜索，比较和排序字符串部分）。通常你也可能要执行一种大小写不敏感的比较。清单3中的例子展示了如何指定一个合适的比较方法（localizedStandardCompare:）来通过姓名进行数组排序。
 
 清单3 使用本地化标准比较方法来排序数组
 
@@ -61,7 +64,7 @@ localizedCompare:  | NSString, NSMutableString
 localizedCaseInsensitiveCompare:  | NSString, NSMutableString
 localizedStandardCompare:  | NSString, NSMutableString
 
-
+你可以添加一个复合比较方法（比如集合对象中所述）来提供对其类提供支持。
 
 ## 集合对象必备条件
 
