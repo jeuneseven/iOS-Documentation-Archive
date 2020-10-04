@@ -48,6 +48,63 @@
 
 # 创建和转换字符串对象
 
+NSString和其子类NSMutableString提供了几种方法来创建字符串对象，大部分基于其支持的不同的字符编码。虽然字符串对象总是将其内容展示为Unicode字符，不过它也可以将其内容转换为或者从其他编码进行转换，比如7-bit ASCII, ISO Latin 1, EUC, 和 Shift-JIS。availableStringEncodings 类方法会返回支持的编码。在从一个C字符串转换或者从一个字符串对象转换的时候，你可以明确指定一种编码，或者使用默认的C字符串编码，这在平台间可能会有不同，它是由defaultCStringEncoding 类方法返回的。
+
+## 创建字符串
+
+最简单也最直接的在源代码中创建一个字符串对象等方式是使用OC的@"..."结构：  
+
+	NSString *temp = @"Contrafibularity";
+
+注意，当以这种方式创建一个字符串常量的时候，你应该使用的是UTF-8字符。你可以将实际的Unicode数据放在本地化文本的字符串中，如在NSString *hello = @"こんにちは"，你还可以在字符串中为非图形字符插入 \u 或者 \U。  
+OC字符串常量是在编译时创建的，并且贯穿你的程序执行期间都会存在。编译器会根据每个模块使此类对象常量唯一，并且它们永远不会被释放。还可以像使用任何其他字符串一样将消息直接发送给一个常量字符串。  
+
+	BOOL same = [@"comparison" isEqualToString:myString];
+
+### 从C字符和数据转换NSString
+
+	char *utf8String = /* Assume this exists. */ ;
+NSString *stringFromUTFString = [[NSString alloc] initWithUTF8String:utf8String];
+ 
+	char *macOSRomanEncodedString = /* assume this exists */ ;
+	NSString *stringFromMORString =
+	            [[NSString alloc] initWithCString:macOSRomanEncodedString
+	                              encoding:NSMacOSRomanStringEncoding];
+	 
+	NSData *shiftJISData =  /* assume this exists */ ;
+	NSString *stringFromShiftJISData =
+	            [[NSString alloc] initWithData:shiftJISData
+	                              encoding:NSShiftJISStringEncoding];
+	                              
+
+	unichar ellipsis = 0x2026;
+	NSString *theString = [NSString stringWithFormat:@"To be continued%C", ellipsis];
+	 
+	NSData *asciiData = [theString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+	 
+	NSString *asciiString = [[NSString alloc] initWithData:asciiData encoding:NSASCIIStringEncoding];
+	 
+	NSLog(@"Original: %@ (length %d)", theString, [theString length]);
+	NSLog(@"Converted: %@ (length %d)", asciiString, [asciiString length]);
+	 
+	// output:
+	// Original: To be continued… (length 16)
+	// Converted: To be continued... (length 18)
+
+```
+注意：NSString
+```
+
+### 不同的字符串
+
+### 展示给用户的字符串
+
+## 组合和提取字符串
+
+## 获取C字符串
+
+## 转换摘要
+
 # 格式化字符串对象
 
 # 字符串格式化指定符
