@@ -63,8 +63,10 @@ OC字符串常量是在编译时创建的，并且贯穿你的程序执行期间
 
 ### 从C字符和数据转换NSString
 
+要从一个C字符串来创建一个NSString对象的话，你可以使用类似 initWithCString:encoding: 的方法。你必须正确的指定C字符串的字符编码。类似的方法能够让你在不同的编码字符中创建字符串对象。initWithData:encoding: 方法能够让你从存储在NSData对象中的数据转换成NSString对象。  
+
 	char *utf8String = /* Assume this exists. */ ;
-NSString *stringFromUTFString = [[NSString alloc] initWithUTF8String:utf8String];
+	NSString *stringFromUTFString = [[NSString alloc] initWithUTF8String:utf8String];
  
 	char *macOSRomanEncodedString = /* assume this exists */ ;
 	NSString *stringFromMORString =
@@ -76,7 +78,7 @@ NSString *stringFromUTFString = [[NSString alloc] initWithUTF8String:utf8String]
 	            [[NSString alloc] initWithData:shiftJISData
 	                              encoding:NSShiftJISStringEncoding];
 	                              
-
+下列示例是从一个包含UTF-8字符的NSString对象转换为ASCII数据，然后转换为一个NSString对象。
 	unichar ellipsis = 0x2026;
 	NSString *theString = [NSString stringWithFormat:@"To be continued%C", ellipsis];
 	 
@@ -92,12 +94,25 @@ NSString *stringFromUTFString = [[NSString alloc] initWithUTF8String:utf8String]
 	// Converted: To be continued... (length 18)
 
 ```
-注意：NSString
+注意：NSString不用做任意字节序列的数据存储容器。有关这种类型的功能，请参阅NSData。
 ```
 
-### 不同的字符串
+### 变量字符串
+
+要创建一个变量字符串，通常使用 stringWithFormat: 或者 initWithFormat: 方法（对于本地化字符串，使用 localizedStringWithFormat: 方法）。这些方法以及它们类似的方法使用了一个格式化字符串作为模板来规范你提供的数据（字符串和其他对象，字符值等等）进行插入。支持的格式化指定符号在《格式化字符串对象》中有相关描述。  
+你还可以从一个已经存在的字符串对象构建一个字符串，使用 stringByAppendingString: 和 stringByAppendingFormat: 方法通过添加一个字符串到另一个后面来创建一个新的字符串，后一个方法使用的是一个格式化的字符串。  
+
+	NSString *hString = @"Hello";
+	NSString *hwString = [hString stringByAppendingString:@", world!"];
 
 ### 展示给用户的字符串
+
+当创建展示给用户的字符串时，你应该考虑你的应用程序的本地化的重要性。通常来讲，你应该避免直接通过代码创建用户可见的字符串。而是在你的代码中使用字符串作为本地字典的key，这就能支持用户偏好的语言的可见字符串了。通常来讲，这包含使用 NSLocalizedString 和其他类似的宏命令，见下述示例展示。  
+
+	NSString *greeting = NSLocalizedStringFromTable
+    (@"Hello", @"greeting to present in first launch panel", @"greetings");
+    
+更多关于你的应用程序的国际化信息，参见《国际化和本地化指南》。本地化字符串资源描述了如何在本地化字符串中工作以及重新排列变量参数。
 
 ## 组合和提取字符串
 
