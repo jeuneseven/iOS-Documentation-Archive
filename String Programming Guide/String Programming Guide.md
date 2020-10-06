@@ -153,6 +153,18 @@ OC字符串常量是在编译时创建的，并且贯穿你的程序执行期间
 
 ## 转换摘要
 
+这个表格概括了大部分常见的创建和装换字符串对象的意义：  
+
+来源  | 创建方法 | 提取方法
+------------- | ------------- | -------------
+在代码中  | @"..."编译器结构 | 无
+UTF8编码  | stringWithUTF8String: | UTF8String
+Unicode编码  | stringWithCharacters:length: | getCharacters:getCharacters:range:
+其他编码  | initWithData:encoding: | dataUsingEncoding:
+已经存在的字符串  | stringByAppendingString:stringByAppendingFormat: | 无
+格式化字符串  | localizedStringWithFormat:initWithFormat:locale: | 使用NSScanner
+本地化字符串  | NSLocalizedString和类似方法 | 无
+
 # 格式化字符串对象
 
 # 字符串格式化指定符
