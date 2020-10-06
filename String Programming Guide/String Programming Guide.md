@@ -116,7 +116,40 @@ OC字符串常量是在编译时创建的，并且贯穿你的程序执行期间
 
 ## 组合和提取字符串
 
+你可以通过多种方式组合和提取字符串。最简单的方式是将一个字符串拼接在另一个后面。stringByAppendingString: 方法会返回一个从接受者和给定参数格式化后的字符串对象。  
+
+	NSString *beginning = @"beginning";
+	NSString *alphaAndOmega = [beginning stringByAppendingString:@" and end"];
+	// alphaAndOmega is @"beginning and end"
+
+你还可以根据模板来拼接多个字符串：initWithFormat:, stringWithFormat:, 和 stringByAppendingFormat: 方法；这些在《格式化字符串对象》中有更详细的描述。  
+你可以使用 substringToIndex:, substringFromIndex:, 和 substringWithRange: 
+等方法从字符串的开始或者结束位置来指定一个特定的索引，或者指定一个区间来提取字符串。你还可以使用 componentsSeparatedByString: 方法来分割一个字符串为子串（基于一个分割字符串）。这些方法在后续示例中展示——注意基于索引的方法的索引开始为0：  
+
+	NSString *source = @"0123456789";
+	NSString *firstFour = [source substringToIndex:4];
+	// firstFour is @"0123"
+	 
+	NSString *allButFirstThree = [source substringFromIndex:3];
+	// allButFirstThree is @"3456789"
+	 
+	NSRange twoToSixRange = NSMakeRange(2, 4);
+	NSString *twoToSix = [source substringWithRange:twoToSixRange];
+	// twoToSix is @"2345"
+	 
+	NSArray *split = [source componentsSeparatedByString:@"45"];
+	// split contains { @"0123", @"6789" }
+
+如果你需要使用模式匹配而非索引的方式来提取字符串的话，你应该使用一个检索器——参见《检索器》。
+
 ## 获取C字符串
+
+要从一个字符串对象获取C字符串，推荐使用UTF8String方法。这会返回一个使用 UTF8字符串编码的 const char *。  
+
+	const char *cString = [@"Hello, world" UTF8String];
+
+你所接收到的C字符串是被一个临时对象所持有的，在自动释放时将会失效。如果要获取永久的C字符串，则必须创建一个缓冲区并将方法返回的 const char *的内容拷贝过去。  
+类似的方法能够让你在Unicode编码或者一个任意的编码中，从字符创建字符串对象，并且能够从这些编码中提取数据。initWithData:encoding: 和 dataUsingEncoding:会在NSData对象之间执行这些转换。  
 
 ## 转换摘要
 
