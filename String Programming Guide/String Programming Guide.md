@@ -167,6 +167,50 @@ Unicode编码  | stringWithCharacters:length: | getCharacters:getCharacters:rang
 
 # 格式化字符串对象
 
+本文描述了如何使用一个格式化的字符串来创建字符串，如何在一个格式化字符串中使用非ASCII字符，以及开发者在使用NSLog或NSLogv时的常见错误。  
+
+## 格式化的基础
+
+使用格式化的字符串的NSString的语法与其他格式化对象类似。它支持ANSI C 中 printf() 函数定义的格式化字符，加上%@支持任意对象（参见“字符串格式化指定符”和“IEEE打印指定符”）。若对象响应descriptionWithLocale: 消息，NSString会发送这样一个消息来检索文本陈述。否则，将会发送一个description 消息。本地化字符串资源描述了在本地化字符串中如何工作以及如何重新排列变量参数。  
+在格式化的字符串中，一个“%”符号为一个值声明了一个占位符，该符号能够判断是需要什么类型的值以及如何格式化。举个例子，"%d houses"格式化字符串需要一个整形值来描述格式化表达式'%d'。NSString支持ANSI C的printf()函数定义的格式化字符，加上 ‘@’ 支持任意对象。若对象响应descriptionWithLocale: 消息，NSString会发送这样一个消息来检索文本陈述。否则，将会发送一个description 消息。本地化字符串资源描述了在本地化字符串中如何工作以及如何重新排列变量参数。  
+值得格式化受用户当前位置影响，这是一个NSDictionary对象，指定了数字，日期，以及其他类型的格式。NSString对于小数分隔符只使用现场定义（名为NSDecimalSeparator的key给定）。如果你使用一个没有指定现场的方法，字符串会忽略默认现场。  
+你可以使用NSString的 stringWithFormat: 方法和其他相关想法来创建 printf-类型 的格式化指定以及参数列表的字符串，在“创建和转换字符串对象”中有相关描述。能够用不同的格式化指定服和参数创建字符串的这些例子在下述展示。  
+
+	NSString *string1 = [NSString stringWithFormat:@"A string: %@, a float: %1.2f",
+	                                               @"string", 31415.9265];
+	// string1 is "A string: string, a float: 31415.93"
+	 
+	NSNumber *number = @1234;
+	NSDictionary *dictionary = @{@"date": [NSDate date]};
+	NSString *baseString = @"Base string.";
+	NSString *string2 = [baseString stringByAppendingFormat:
+	        @" A number: %@, a dictionary: %@", number, dictionary];
+	// string2 is "Base string. A number: 1234, a dictionary: {date = 2005-10-17 09:02:01 -0700; }"
+
+## 字符串和非ASCII字符
+
+你可以在一个字符串中使用类似 stringWithFormat: 和 stringWithUTF8String: 的方法来包含非ASCII字符（包括Unicode）。  
+
+	NSString *s = [NSString stringWithFormat:@"Long %C dash", 0x2014];
+
+\xe2\x80\x94是0x2014一个3个自己的UTF-8字符串，你也可以写成：  
+
+	NSString *s = [NSString stringWithUTF8String:"Long \xe2\x80\x94   dash"];
+
+## NSLog 和 NSLogv
+
+工具函数 NSLog() 和 NSLogv() 使用了 NSString 字符串格式化服务来打印错误信息。注意这是一个结论，你应该在指定这些函数的参数时注意一些。一个常见的错误是指定一个字符串包含了格式化的字符，见后续示例。  
+
+	NSString *string = @"A contrived string %@";
+	NSLog(string);	
+	// The application will probably crash here due to signal 10 (SIGBUS)
+
+一个比较好的（安全的）使用格式化字符来输出其他字符串的方式，见后续示例。  
+
+	NSString *string = @"A contrived string %@";
+	NSLog(@"%@", string);
+	// Output: A contrived string %@
+
 # 字符串格式化指定符
 
 # 从文件读取字符串以及写入字符串到URL中
