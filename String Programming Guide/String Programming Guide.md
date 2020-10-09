@@ -213,6 +213,38 @@ Unicode编码  | stringWithCharacters:length: | getCharacters:getCharacters:rang
 
 # 字符串格式化指定符
 
+本文概括了字符串格式化方法和函数支持的格式化指定符。  
+
+## 格式化指定符
+
+列表1 
+
+指定符  | 描述
+------------- | -------------
+  | 
+  
+列表2 
+
+长度修饰  | 描述
+------------- | -------------
+  | 
+
+## 平台依赖
+
+列表3 
+
+类型  | 格式化指定符 | 注意事项
+------------- | ------------- | -------------
+  | 	| 
+
+	NSInteger i = 42;
+	printf("%ld\n", (long)i);
+	
+	CGFloat imageWidth;
+	double tmp;
+	sscanf (str, "%lf", &tmp);
+	imageWidth = tmp;
+
 # 从文件读取字符串以及写入字符串到URL中
 
 # 搜索，比较和排序字符串
