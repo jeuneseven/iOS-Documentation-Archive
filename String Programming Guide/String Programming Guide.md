@@ -215,6 +215,64 @@ Unicode编码  | stringWithCharacters:length: | getCharacters:getCharacters:rang
 
 # 从文件读取字符串以及写入字符串到URL中
 
+如果你知道源文件使用的编码方式，那么直接使用NSString提供的方法读取文件或者URL是最简单的——如果你不知道编码方式的话，那读取源文件就有些挑战了。当你向一个文件或者URL写入时，你必须指定使用的编码。（无论何时，你都应该使用URL，因为这是最高效的方式。）
+
+## 从文件和URL中读取
+
+NSString 提供了大量的方法来从文件和URL中读取数据。通常来讲，如果你知道编码方式的话，读取数据会很简单。如果你只有纯文本，并且不知道编码方式的话，那这就有些困难了。你应该尽可能不让自己处于这种位置——任何需要使用纯文本的文件都应该指定编码（最好是UTF-8 或 UTF-16+BOM）。  
+
+### 根据已知的编码读取数据
+
+对于已知编码的文件或者URL，在读取时你可以使用stringWithContentsOfFile:encoding:error: 或者 stringWithContentsOfURL:encoding:error: 方法，或者类似于init...的方法，如下例所示。  
+
+	NSURL *URL = ...;
+	NSError *error;
+	NSString *stringFromFileAtURL = [[NSString alloc]
+	                                      initWithContentsOfURL:URL
+	                                      encoding:NSUTF8StringEncoding
+	                                      error:&error];
+	if (stringFromFileAtURL == nil) {
+	    // an error occurred
+	    NSLog(@"Error reading file at %@\n%@",
+	              URL, [error localizedFailureReason]);
+	    // implementation continues ...
+
+你还可以使用数据对象初始化一个字符串，如下例所示。同样的，你必须指定正确的编码。
+
+	NSURL *URL = ...;
+	NSData *data = [NSData dataWithContentsOfURL:URL];
+	 
+	// Assuming data is in UTF8.
+	NSString *string = [NSString stringWithUTF8String:[data bytes]];
+	 
+	// if data is in another encoding, for example ISO-8859-1
+	NSString *string = [[NSString alloc]
+	            initWithData:data encoding: NSISOLatin1StringEncoding];
+
+### 根据未知编码读取数据
+
+## 写入文件和URL
+
+	NSURL *URL = ...;
+	NSString *string = ...;
+	NSError *error;
+	BOOL ok = [string writeToURL:URL atomically:YES
+	                  encoding:NSUnicodeStringEncoding error:&error];
+	if (!ok) {
+	    // an error occurred
+	    NSLog(@"Error writing file at %@\n%@",
+	              path, [error localizedFailureReason]);
+	    // implementation continues ...
+
+## 概括总结
+
+下表总结了从文件和URL中读写字符串对象的常用方法：  
+
+来源  | 创建方法 | 提取方法
+------------- | ------------- | -------------
+URL内容中  | stringWithContentsOfURL:encoding:error: stringWithContentsOfURL:usedEncoding:error: | writeToURL:atomically:encoding:error:
+文件内容中  | stringWithContentsOfFile:encoding:error: stringWithContentsOfFile:usedEncoding:error: | writeToFile:atomically:encoding:error:
+
 # 搜索，比较和排序字符串
 
 # 词组，段落和换行
