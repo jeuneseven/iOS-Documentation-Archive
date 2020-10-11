@@ -217,11 +217,32 @@ Unicode编码  | stringWithCharacters:length: | getCharacters:getCharacters:rang
 
 ## 格式化指定符
 
-列表1 
+格式化指定符由遵循 IEEE printf 指定符号的 NSString格式化方法和CFString格式化函数所支持；指定符在列表1中概括。注意你可以使用 “n$” 位置指定符来指定类似 %1$@ %2$s。更多信息，参见 “IEEE printf 指定符号”。在NSLog函数中你也可以使用这些格式化指定符号。  
+
+列表1 格式化指定符由遵循 IEEE printf 指定符号的 NSString格式化方法和CFString格式化函数所支持
 
 指定符  | 描述
 ------------- | -------------
-  | 
+%@ | OC对象，如支持descriptionWithLocale:，打印它返回的字符串，否则打印 description。同样对CFTypeRef对象适用，返回CFCopyDescription函数所返回的结果。
+%% | '%' 字符。
+%d, %D  | 有符号32位整形（int）。
+%u, %U | 无符号32位整形（unsigned int）。
+%x | 无符号32位整形（unsigned int），打印使用0-9的数字和小写的a-f组成的十六进制。
+%X | 无符号32位整形（unsigned int），打印使用0-9的数字和大写的A-F组成的十六进制。
+%o, %O | 无符号32位整形（unsigned int），打印八进制。
+%f | 64位浮点型数字（double）。
+%e | 64位浮点型数字（double），使用小写e来引入指数，打印科学计数法。
+%E | 64位浮点型数字（double），使用大写E来引入指数，打印科学计数法。
+%g | 64位浮点型数字（double），如果指数小于-4或大于等于精度，则以%e的样式打印，否则以%f的样式打印。
+%G | 64位浮点型数字（double），如果指数小于-4或大于等于精度，则以%E的样式打印，否则以%f的样式打印。
+%c | 8位无符号字符（unsigned char）。
+%C | 16位UTF-16代码集（unichar）。
+%s | 
+%S | 
+%p | 
+%a | 
+%A | 
+%F | 
   
 列表2 
 
