@@ -244,19 +244,30 @@ Unicode编码  | stringWithCharacters:length: | getCharacters:getCharacters:rang
 %A | 64位浮点型数字（double），以科学计数法打印，0X开头，并且是一个十六进制数字，在小数点前使用一个大写P来引入指数。
 %F | 64位浮点型数字（double），以小数计数打印。
   
-列表2 
+列表2 NSString格式化方法和CFString格式化函数支持的长度修饰符
 
 长度修饰  | 描述
 ------------- | -------------
-  | 
+h  | 
+hh | 
+l | 
+ll, q | 
+L | 
+z | 
+t | 
+j | 
 
 ## 平台依赖
 
-列表3 
+列表3 数据类型的格式化指定符
 
 类型  | 格式化指定符 | 注意事项
 ------------- | ------------- | -------------
-  | 	| 
+ NSInteger | 	%ld 或者 %lx| 
+NSUInteger | %lu 或者 %lx 	| 
+CGFloat | %f or %g | 
+CFIndex | %ld or %lx | 
+pointer | %p or %zx | 
 
 	NSInteger i = 42;
 	printf("%ld\n", (long)i);
