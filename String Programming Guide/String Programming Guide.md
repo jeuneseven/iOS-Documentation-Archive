@@ -248,14 +248,14 @@ Unicode编码  | stringWithCharacters:length: | getCharacters:getCharacters:rang
 
 长度修饰  | 描述
 ------------- | -------------
-h  | 
-hh | 
-l | 
-ll, q | 
-L | 
-z | 
-t | 
-j | 
+h  | 长度修饰符指定跟随的d, o, u, x, 或 X 转换指定，应用于short 或 unsigned short 参数。
+hh | 长度修饰符指定跟随的d, o, u, x, 或 X 转换指定，应用于signed char 或 unsigned char 参数。
+l | 长度修饰符指定跟随的d, o, u, x, 或 X 转换指定，应用于long 或 unsigned long 参数。
+ll, q | 长度修饰符指定跟随的d, o, u, x, 或 X 转换指定，应用于long long或 unsigned long  long 参数。
+L | 长度修饰符指定跟随的a, A, e, E, f, F, g, 或 G 转换指定，应用于long double 参数。
+z | 长度修饰符指定跟随的d, o, u, x, 或 X 转换指定，应用于size_t 参数。
+t | 长度修饰符指定跟随的d, o, u, x, 或 X 转换指定，应用于ptrdiff_t 参数。
+j | 长度修饰符指定跟随的d, o, u, x, 或 X 转换指定，应用于intmax_t 或 uintmax_t 参数。
 
 ## 平台依赖
 
