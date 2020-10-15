@@ -259,23 +259,31 @@ j | 长度修饰符指定跟随的d, o, u, x, 或 X 转换指定，应用于intm
 
 ## 平台依赖
 
+OSX使用了几种数据类型——NSInteger, NSUInteger,CGFloat, 和 CFIndex——来在32位和64位环境中提供一种固定值。在32位环境中，NSInteger 和 NSUInteger 分别被定义为int 和 unsigned int。在64位环境中，NSInteger 和 NSUInteger 分别被定义为long 和 unsigned long。为了避免会根据不同平台来使用不同的打印类型指定符，你可以使用列表3中的指定符。注意在某些情况下你需要注意值的强制转换。
+
 列表3 数据类型的格式化指定符
 
 类型  | 格式化指定符 | 注意事项
 ------------- | ------------- | -------------
- NSInteger | 	%ld 或者 %lx| 代表long值。
-NSUInteger | %lu 或者 %lx 	| 代表unsigned long 值。
+ NSInteger | 	%ld 或者 %lx| 强制转换成long值。
+NSUInteger | %lu 或者 %lx 	| 强制转换成unsigned long 值。
 CGFloat | %f or %g | %f 当格式化时代表浮点型；但注意下述用于扫描时的技术。
 CFIndex | %ld or %lx | 与NSInteger相同
-pointer | %p or %zx | %p 会添加0x 到输出的开始。如果你不想要的话，使用%zx并且无模式。
+pointer | %p or %zx | %p 会添加0x 到输出的开始。如果你不想要的话，使用%zx并且无类型转换。
+
+下例展示了使用%ld来格式化一个NSInteger，以及强制转换的使用。
 
 	NSInteger i = 42;
 	printf("%ld\n", (long)i);
 	
+为了考虑列表3中提到的内容，在扫描时有一个额外的强制转换：你必须区分float和double类型。对于float使用%f，对于double使用%lf。如果你需要对CGFloat使用scanf（或其变体），请切换到double，然后将double 复制给CGFloat。  
+
 	CGFloat imageWidth;
 	double tmp;
 	sscanf (str, "%lf", &tmp);
 	imageWidth = tmp;
+
+注意无论是32位或者64位平台，%lf不能够正确表示CGFloat。这不像%ld，它在所有情况下都代表long。
 
 # 从文件读取字符串以及写入字符串到URL中
 
