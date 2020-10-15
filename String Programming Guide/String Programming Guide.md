@@ -263,11 +263,11 @@ j | 长度修饰符指定跟随的d, o, u, x, 或 X 转换指定，应用于intm
 
 类型  | 格式化指定符 | 注意事项
 ------------- | ------------- | -------------
- NSInteger | 	%ld 或者 %lx| 
-NSUInteger | %lu 或者 %lx 	| 
-CGFloat | %f or %g | 
-CFIndex | %ld or %lx | 
-pointer | %p or %zx | 
+ NSInteger | 	%ld 或者 %lx| 代表long值。
+NSUInteger | %lu 或者 %lx 	| 代表unsigned long 值。
+CGFloat | %f or %g | %f 当格式化时代表浮点型；但注意下述用于扫描时的技术。
+CFIndex | %ld or %lx | 与NSInteger相同
+pointer | %p or %zx | %p 会添加0x 到输出的开始。如果你不想要的话，使用%zx并且无模式。
 
 	NSInteger i = 42;
 	printf("%ld\n", (long)i);
