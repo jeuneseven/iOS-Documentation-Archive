@@ -323,6 +323,11 @@ NSString 提供了大量的方法来从文件和URL中读取数据。通常来�
 
 ### 根据未知编码读取数据
 
+如果你发现你的文字是未知编码的，你最好确保有一种机制能够纠正错误。比如，Apple的邮件和浏览器应用有编码菜单，编辑器引用允许用户使用指定的编码重新打开文件。  
+如果你不得不需要猜测编码（）：  
+
+1.尝试 stringWithContentsOfFile:usedEncoding:error: 或者 initWithContentsOfFile:usedEncoding:error: 
+
 ## 写入文件和URL
 
 	NSURL *URL = ...;
