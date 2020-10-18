@@ -327,6 +327,9 @@ NSString 提供了大量的方法来从文件和URL中读取数据。通常来�
 如果你不得不需要猜测编码（）：  
 
 1.尝试 stringWithContentsOfFile:usedEncoding:error: 或者 initWithContentsOfFile:usedEncoding:error: 
+2.如果1失败
+3.如果2失败
+4.最终
 
 ## 写入文件和URL
 
