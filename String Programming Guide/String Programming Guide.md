@@ -329,7 +329,7 @@ NSString 提供了大量的方法来从文件和URL中读取数据。通常来�
 1.尝试 stringWithContentsOfFile:usedEncoding:error: 或者 initWithContentsOfFile:usedEncoding:error: （或者是基于URL的同等方法）。这些方法会试图判断源的编码，如果成功了会返回引用所使用的编码。
 2.如果1失败，尝试使用指定 UTF-8 作为编码来阅读源。
 3.如果2失败，尝试一个适当的遗留编码。“适当”在这里
-4.最终
+4.最后，你可以尝试NSAttributedString 的Application Kit的加载方法（类似initWithURL:options:documentAttributes:error:）。
 
 ## 写入文件和URL
 
