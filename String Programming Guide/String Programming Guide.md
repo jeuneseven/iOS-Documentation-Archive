@@ -333,6 +333,8 @@ NSString 提供了大量的方法来从文件和URL中读取数据。通常来�
 
 ## 写入文件和URL
 
+和从一个文件或URL读取数据相比，写操作更为直接——NSString提供了两个方便的方法，writeToFile:atomically:encoding:error: 和 writeToURL:atomically:encoding:error:。你必须指定应该使用的编码，并且选择是否自动写入源。如果你选择不自动写入的话，字符串
+
 	NSURL *URL = ...;
 	NSString *string = ...;
 	NSError *error;
