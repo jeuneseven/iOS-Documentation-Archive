@@ -357,6 +357,35 @@ URL内容中  | stringWithContentsOfURL:encoding:error: stringWithContentsOfURL:
 
 # 搜索，比较和排序字符串
 
+字符串类为在字符串中查找字符和子串以及比较字符串提供了方法。这些方法时遵循Unicode标准的，可以用来判断两个字符序列是否相等。字符串类提供比较方法用于正确处理组合字符序列，尽管当效率更重要的情况下，你可以选择指定文本搜索，并且可以保证组合字符序列的一些规范形式。  
+
+## 搜索和比较方法
+
+搜索和比较方法每个都有不同的变体。最简单的版本是整体搜索或比较字符串。其他变体能够让你筛选组成字符序列所执行的比较的方式以便制定一个特定的区间来对字符串进行搜索和比较；你还能够在一个给定的区域内的上下文中搜索和比较字符串。  
+这些是基本的搜索和比较方法：  
+
+搜索方法  | 比较方法
+------------- | -------------
+rangeOfString:  | compare:
+rangeOfString:options:  | compare:options:
+rangeOfString:options:range:  | compare:options:range:
+rangeOfString:options:range:locale:  | compare:options:range:locale:
+rangeOfCharacterFromSet:  | 
+rangeOfCharacterFromSet:options:  | 
+rangeOfCharacterFromSet:options:range:  | 
+
+### 搜索字符串
+
+### 比较和排序字符串
+
+## 搜索和比较选项
+
+## 示例
+
+### 比较字符串
+
+### 类似Finder一样排序字符串
+
 # 词组，段落和换行
 
 # 字符和字形群集
