@@ -328,12 +328,12 @@ NSString 提供了大量的方法来从文件和URL中读取数据。通常来�
 
 1.尝试 stringWithContentsOfFile:usedEncoding:error: 或者 initWithContentsOfFile:usedEncoding:error: （或者是基于URL的同等方法）。这些方法会试图判断源的编码，如果成功了会返回引用所使用的编码。
 2.如果1失败，尝试使用指定 UTF-8 作为编码来阅读源。
-3.如果2失败，尝试一个适当的遗留编码。“适当”在这里
-4.最后，你可以尝试NSAttributedString 的Application Kit的加载方法（类似initWithURL:options:documentAttributes:error:）。
+3.如果2失败，尝试一个适当的遗留编码。“适当”在这里会根据情况；可能是默认的C字符串编码，可能是ISO或者Windows Latin 1，或者其他的，根据你的数据从何而来。
+4.最后，你可以尝试NSAttributedString 的Application Kit的加载方法（类似initWithURL:options:documentAttributes:error:）。这些方法会尝试加载纯文本文件，然后返回使用的编码。它们可以用于或多或少的任意文本文档，如果你的应用程序在文本方面没有特殊指定的话，可以考虑这么做。它们可能不适合于基础级的工具或者非自然语言文本的文档。  
 
 ## 写入文件和URL
 
-和从一个文件或URL读取数据相比，写操作更为直接——NSString提供了两个方便的方法，writeToFile:atomically:encoding:error: 和 writeToURL:atomically:encoding:error:。你必须指定应该使用的编码，并且选择是否自动写入源。如果你选择不自动写入的话，字符串
+和从一个文件或URL读取数据相比，写操作更为直接——NSString提供了两个方便的方法，writeToFile:atomically:encoding:error: 和 writeToURL:atomically:encoding:error:。你必须指定应该使用的编码，并且选择是否自动写入源。如果你选择不自动写入的话，字符串会直接写入你指定的路径。如果你选择自动写入，它会首先写入一个辅助文件，然后辅助文件会重命名为路径。这种方式会确保文件即使在系统写入时崩溃了也不会损坏，并确保文件的存在。如果你写入一个URL，如果目标不是一种能够自动访问存取的类型的话，自动的选项将被忽略。
 
 	NSURL *URL = ...;
 	NSString *string = ...;
