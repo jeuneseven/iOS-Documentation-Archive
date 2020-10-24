@@ -376,6 +376,15 @@ rangeOfCharacterFromSet:options:range:  |
 
 ### 搜索字符串
 
+在接收者中使用 rangeOfString:... 方法来检索一个子串。rangeOfCharacterFromSet:... 方法是从提供的一个字符集合中检索单独的字符。  
+子串只会在完全包含在指定范围内才会被发现。如果你指定了一个区间来搜索或比较，但并没要求 NSLiteralSearch（见下文）的话，则该范围不得中断任意一端的组成字符序列。如果是这样，你会得到一个错误的结果。（请参阅 rangeOfComposedCharacterSequenceAtIndex: 的方法描述，对于调整范围以位于字符串序列边界上的代码示例）  
+你还可以使用 NSScanner 的实例对象扫描一个字符串对象的数字和字符串值。更多关于扫描器的信息，参见“扫描器”。NSString和NSScanner类簇都使用的是NSCharacterSet类簇来进行搜索操作。更多关于字符集，参见“字符集”。  
+如果你只是想要判断一个字符串是否包含一个给定的模式，你可以使用一个谓词：  
+
+	BOOL match = [myPredicate evaluateWithObject:myString];
+
+更多关于谓词，参见“谓词编程指南。”
+
 ### 比较和排序字符串
 
 ## 搜索和比较选项
