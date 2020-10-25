@@ -387,13 +387,98 @@ rangeOfCharacterFromSet:options:range:  |
 
 ### 比较和排序字符串
 
+compare:... 方法返回接收者的根据词汇排序和提供的字符串。其他的几个方法能够让你判断两个字符串是否相等或者一个的。  
+
+```
+重要：对于用户可见的排序列表，你应该始终使用本地化排序。通常不要使用 compare: 或者 caseInsensitiveCompare:，你应该使用localizedCompare: 或者 localizedCaseInsensitiveCompare:。
+```
+
+如果你想要在 Finder 中比较字符串来让它们以同样的方式展现在。举例来说，参见“像 Finder 那样排序字符串”。
+
 ## 搜索和比较选项
+
+搜索选项  | 效果
+------------- | -------------
+NSCaseInsensitiveSearch  | 
+NSLiteralSearch  | 
+NSBackwardsSearch  | 
+NSAnchoredSearch  | 
+NSNumericSearch  | 
+
+搜索和比较
 
 ## 示例
 
+### 不关心大小写检索前缀和后缀
+
+	NSString *searchString = @"age";
+ 
+	NSString *beginsTest = @"Agencies";
+	NSRange prefixRange = [beginsTest rangeOfString:searchString
+	    options:(NSAnchoredSearch | NSCaseInsensitiveSearch)];
+	 
+	// prefixRange = {0, 3}
+	 
+	NSString *endsTest = @"BRICOLAGE";
+	NSRange suffixRange = [endsTest rangeOfString:searchString
+	    options:(NSAnchoredSearch | NSCaseInsensitiveSearch | NSBackwardsSearch)];
+	 
+	// suffixRange = {6, 3}
+
 ### 比较字符串
 
+	NSString *string1 = @"string1";
+	NSString *string2 = @"string2";
+	NSComparisonResult result;
+	result = [string1 compare:string2];
+	// result = -1 (NSOrderedAscending)
+	
+	NSString *string10 = @"string10";
+	NSString *string2 = @"string2";
+	NSComparisonResult result;
+	 
+	result = [string10 compare:string2];
+	// result = -1 (NSOrderedAscending)
+	 
+	result = [string10 compare:string2 options:NSNumericSearch];
+	// result = 1 (NSOrderedDescending)
+	
+	NSString *string_a = @"Aardvark";
+	NSString *string_A = @"AARDVARK";
+	 
+	result = [string_a compare:string_A];
+	// result = 1 (NSOrderedDescending)
+	 
+	result = [string_a caseInsensitiveCompare:string_A];
+	// result = 0 (NSOrderedSame)
+	// equivalent to [string_a compare:string_A options:NSCaseInsensitiveSearch]
+
 ### 类似Finder一样排序字符串
+
+	int finderSortWithLocale(id string1, id string2, void *locale)
+	{
+	    static NSStringCompareOptions comparisonOptions =
+	        NSCaseInsensitiveSearch | NSNumericSearch |
+	        NSWidthInsensitiveSearch | NSForcedOrderingSearch;
+	 
+	    NSRange string1Range = NSMakeRange(0, [string1 length]);
+	 
+	    return [string1 compare:string2
+	                    options:comparisonOptions
+	                    range:string1Range
+	                    locale:(NSLocale *)locale];
+	}
+	
+	NSArray *stringsArray = @[@"string 1",
+                          @"String 21",
+                          @"string 12",
+                          @"String 11",
+                          @"String 02"];
+ 
+	NSArray *sortedArray = [stringsArray sortedArrayUsingFunction:finderSortWithLocale
+	                                     context:[NSLocale currentLocale]];
+	 
+	// sortedArray contains { "string 1", "String 02", "String 11", "string 12", "String 21" }
 
 # 词组，段落和换行
 
