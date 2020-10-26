@@ -383,17 +383,18 @@ rangeOfCharacterFromSet:options:range:  |
 
 	BOOL match = [myPredicate evaluateWithObject:myString];
 
-更多关于谓词，参见“谓词编程指南。”
+更多关于谓词，参见“谓词编程指南”。
 
 ### 比较和排序字符串
 
-compare:... 方法返回接收者的根据词汇排序和提供的字符串。其他的几个方法能够让你判断两个字符串是否相等或者一个的。  
+compare:... 方法返回接收方和提供的字符串的词法顺序。其他的几个方法能够让你判断两个字符串是否相等或者一个字符串是否是另一个字符串的前缀或后缀，但是它们并没有其他的变体让你能够制定搜索选项或者区间。  
+compare: 是你能够用来比较字符串的最简单的方法——这和调用 compare:options:range: 时不传选项参数和接收方的范围与范围相同。如果你想要指定比较选项（NSCaseInsensitiveSearch， NSLiteralSearch 或 NSNumericSearch）你可以使用 compare:options:；如果你想指定本地化，你可以使用compare:options:range:locale:。NSString 也提供了一些变体的比较方便的方法来让你执行常见的比较而不用直接指定区间或选项，比如 caseInsensitiveCompare: 和 localizedCompare:。  
 
 ```
 重要：对于用户可见的排序列表，你应该始终使用本地化排序。通常不要使用 compare: 或者 caseInsensitiveCompare:，你应该使用localizedCompare: 或者 localizedCaseInsensitiveCompare:。
 ```
 
-如果你想要在 Finder 中比较字符串来让它们以同样的方式展现在。举例来说，参见“像 Finder 那样排序字符串”。
+如果你想要像在 Finder 中比较字符串那样的方式来比较字符串的话，你应该使用compare:options:range:locale: 并且使用用户的本地化和以下选项：NSCaseInsensitiveSearch，NSNumericSearch，NSWidthInsensitiveSearch和 NSForcedOrderingSearch。举例来说，参见“像 Finder 那样排序字符串”。
 
 ## 搜索和比较选项
 
