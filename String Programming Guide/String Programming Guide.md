@@ -398,20 +398,19 @@ compare: 是你能够用来比较字符串的最简单的方法——这和调�
 
 ## 搜索和比较选项
 
-几个搜索和比较方法带了一个“选项”参数。
+几个搜索和比较方法带了一个“选项”参数。这是一个位掩码，为操作增加了进一步的约束。通过组合以下选项(并非所有选项都可用于每种方法)你可以创建掩码。
 
 搜索选项  | 效果
 ------------- | -------------
-NSCaseInsensitiveSearch  | 
-NSLiteralSearch  | 
-NSBackwardsSearch  | 
-NSAnchoredSearch  | 
-NSNumericSearch  | 
+NSCaseInsensitiveSearch  | 忽略字符串之间的大小写区别
+NSLiteralSearch  | 执行字节级别的比较。不同的文本序列（比如组合的字符序列）将被视为等效的，否则将被视为不匹配。使用此选项可以显著加快某些操作的速度。
+NSBackwardsSearch  | 执行从后到前的搜索。
+NSAnchoredSearch  | 只在字符在开始处进行检索或者如果指定了NSBackwardsSearch，只在结尾处进行检索。在开始或结尾没有匹配意味着没有发现，即使是一个匹配的字符序列在字符串中的其他位置出现了。
+NSNumericSearch  | 当使用compare:options: 方法时，对于比较而言，数字组合会被看做数字值。举例来说，Filename9.txt < Filename20.txt < Filename100.txt
 
-搜索和比较
+当前执行搜索和比较就像指定了NSLiteralSearch选项一样。
 
 ## 示例
-
 ### 不关心大小写检索前缀和后缀
 
 	NSString *searchString = @"age";
