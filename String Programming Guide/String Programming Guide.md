@@ -413,6 +413,8 @@ NSNumericSearch  | 当使用compare:options: 方法时，对于比较而言，�
 ## 示例
 ### 不关心大小写检索前缀和后缀
 
+对于严格匹配前缀或者后缀而言，NSString提供了 hasPrefix: 和 hasSuffix: 方法来让你使用。以下的例子展示了你可以使用rangeOfString:options:方法并结合选项来执行不关心大小写的检索。
+
 	NSString *searchString = @"age";
  
 	NSString *beginsTest = @"Agencies";
