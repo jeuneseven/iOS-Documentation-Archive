@@ -431,11 +431,15 @@ NSNumericSearch  | 当使用compare:options: 方法时，对于比较而言，�
 
 ### 比较字符串
 
+下例展示了不同的字符串比较方法的使用以及相关选项。第一个展示的是最简单的比较方法。
+
 	NSString *string1 = @"string1";
 	NSString *string2 = @"string2";
 	NSComparisonResult result;
 	result = [string1 compare:string2];
 	// result = -1 (NSOrderedAscending)
+	
+你还可以使用NSNumericSearch选项来比较字符串中的数字。
 	
 	NSString *string10 = @"string10";
 	NSString *string2 = @"string2";
@@ -446,7 +450,9 @@ NSNumericSearch  | 当使用compare:options: 方法时，对于比较而言，�
 	 
 	result = [string10 compare:string2 options:NSNumericSearch];
 	// result = 1 (NSOrderedDescending)
-	
+
+还可以使用方便的方法（caseInsensitiveCompare: 和 localizedCaseInsensitiveCompare:）执行不区分大小写的比较：
+
 	NSString *string_a = @"Aardvark";
 	NSString *string_A = @"AARDVARK";
 	 
