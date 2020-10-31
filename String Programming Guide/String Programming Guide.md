@@ -479,6 +479,8 @@ NSNumericSearch  | 当使用compare:options: 方法时，对于比较而言，�
 	                    locale:(NSLocale *)locale];
 	}
 	
+你可以传递函数作为参数给 sortedArrayUsingFunction:context: 并结合用户的当前区域作为上下文：  
+	
 	NSArray *stringsArray = @[@"string 1",
                           @"String 21",
                           @"string 12",
