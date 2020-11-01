@@ -463,7 +463,9 @@ NSNumericSearch  | 当使用compare:options: 方法时，对于比较而言，�
 	// result = 0 (NSOrderedSame)
 	// equivalent to [string_a compare:string_A options:NSCaseInsensitiveSearch]
 
-### 类似Finder一样排序字符串
+### 像Finder一样排序字符串
+
+如果想要以OSX v10.6和以后版本中的Finder的方式来排序字符串的话，使用localizedStandardCompare: 方法。
 
 	int finderSortWithLocale(id string1, id string2, void *locale)
 	{
