@@ -465,7 +465,7 @@ NSNumericSearch  | 当使用compare:options: 方法时，对于比较而言，�
 
 ### 像Finder一样排序字符串
 
-如果想要以OSX v10.6和以后版本中的Finder的方式来排序字符串的话，使用localizedStandardCompare: 方法。
+如果想要以OSX v10.6和以后版本中的Finder的方式来排序字符串的话，使用localizedStandardCompare: 方法。当文件名或其他字符串在列表或表单中展示时都可以使用。
 
 	int finderSortWithLocale(id string1, id string2, void *locale)
 	{
