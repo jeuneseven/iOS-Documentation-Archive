@@ -465,7 +465,8 @@ NSNumericSearch  | 当使用compare:options: 方法时，对于比较而言，�
 
 ### 像Finder一样排序字符串
 
-如果想要以OSX v10.6和以后版本中的Finder的方式来排序字符串的话，使用localizedStandardCompare: 方法。当文件名或其他字符串在列表或表单中展示时都可以使用。
+如果想要以OSX v10.6和以后版本中的Finder的方式来排序字符串的话，使用localizedStandardCompare: 方法。当文件名或其他字符串在列表或表单中展示时都可以使用。改方法准确的行为在不同的语言环境中不同，所以客户端不应该依赖于字符串的确切排序顺序。  
+下例展示了另一个类似函数的实现，像在Finder中展示那样比较字符串并对它们进行排序，并且展示如何排序字符串数组。首先，定义了一个排序函数，它包含了相关比较选项（为提高效率，将用户的当前上下文传递过去——这种方式只需要查询一次）
 
 	int finderSortWithLocale(id string1, id string2, void *locale)
 	{
@@ -495,6 +496,31 @@ NSNumericSearch  | 当使用compare:options: 方法时，对于比较而言，�
 	// sortedArray contains { "string 1", "String 02", "String 11", "string 12", "String 21" }
 
 # 词组，段落和换行
+
+本文描述了词语和段落的边界是如何定义的，换行是如何表达的，以及你该如何通过段落来分割字符串。  
+
+## 词语的边界
+
+文本系统在一个特定语言方式中判断一个词语的边界是根据“ Unicode Standard Annex #29”和额外的该文档中描述的自定义信息来判断的。在OS X上，Cocoa提供了有关词组边界的Api，比如NSAttributedString 方法的 doubleClickAtIndex: 和 nextWordFromIndex:forward:，但是你不能够修改词语边界算法本身工作的方式。  
+
+## 行和段落分隔符
+
+可以通过多种方式来表示行或段落中断。在过去，使用\n, \r, 和 \r\n。Unicode定义了一个明确的段落分隔符U+2029（其中Cocoa提供了常量NSParagraphSeparatorCharacter），以及一个明确的行分隔符，U+2028（Cocoa提供了常量NSLineSeparatorCharacter）。  
+在Cocoa文本系统中，NSParagraphSeparatorCharacter始终被当作段落中断来对待，NSLineSeparatorCharacter始终作为一行中断而非段落中断来对待——意思就是，一行中断在一个段落中。
+
+## 通过段落分隔字符串
+
+通常要达到分隔字符串的效果是使用分隔符，直接这么使用：  
+
+	NSArray *arr = [myString componentsSeparatedByString:@"\n"];
+
+
+
+	NSString *string = /* assume this exists */;
+	NSRange range = NSMakeRange(0, string.length);
+	[string enumerateSubstringsInRange:range
+	                           options:NSStringEnumerationByParagraphs
+	                        usingBlock:^(NSString * _Nullable paragraph, NSRange paragraphRange, NSRange enclosingRange, BOOL * _Nonnull stop) {             // ... }];
 
 # 字符和字形群集
 
