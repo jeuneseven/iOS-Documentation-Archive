@@ -538,7 +538,9 @@ NSNumericSearch  | 当使用compare:options: 方法时，对于比较而言，�
 
 ## 标准字符集和Unicode定义
 
-# 扫描
+# 扫描器
+
+NSScanner 对象可以扫描一个NSString对象的字符，
 
 ## 创建扫描器
 
