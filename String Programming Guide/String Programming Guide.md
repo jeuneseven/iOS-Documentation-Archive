@@ -544,6 +544,8 @@ NSScanner 对象可以扫描一个NSString对象的字符，
 
 ## 创建扫描器
 
+NSScanner 是一个有着单一公共类的类簇，NSScanner。通常来讲，
+
 ## 使用扫描器
 
 ## 示例
