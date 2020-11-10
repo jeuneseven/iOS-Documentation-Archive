@@ -545,6 +545,14 @@ NSScanner 对象可以扫描一个NSString对象的字符，
 ## 创建扫描器
 
 NSScanner 是一个有着单一公共类的类簇，NSScanner。通常来讲，
+	
+	float aFloat;
+	NSScanner *theScanner = [NSScanner scannerWithString:aString];
+	while ([theScanner isAtEnd] == NO) {
+	 
+	    [theScanner scanFloat:&aFloat];
+	    // implementation continues...
+	}
 
 ## 使用扫描器
 
