@@ -540,11 +540,11 @@ NSNumericSearch  | 当使用compare:options: 方法时，对于比较而言，�
 
 # 扫描器
 
-NSScanner 对象可以扫描一个NSString对象的字符，
+NSScanner 对象可以扫描一个NSString对象的字符，通常解释字符并将其转换为数字和字符串值。在创建时分配扫描器的字符串，扫描程序在请求项目时从头到尾完成该字符串的字符扫描。
 
 ## 创建扫描器
 
-NSScanner 是一个有着单一公共类的类簇，NSScanner。通常来讲，
+NSScanner 是一个有着单一公共类的类簇，NSScanner。通常来讲，通过调用类方法scannerWithString: 或者 localizedScannerWithString:来初始化一个扫描器对象。每个方法都会返回一个用你传给它的字符串初始化的扫描器对象。
 	
 	float aFloat;
 	NSScanner *theScanner = [NSScanner scannerWithString:aString];
