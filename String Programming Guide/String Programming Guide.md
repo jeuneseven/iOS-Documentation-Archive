@@ -556,6 +556,16 @@ NSScanner 是一个有着单一公共类的类簇，NSScanner。通常来讲，�
 
 ## 使用扫描器
 
+	NSString *bananas = @"137 small cases of bananas";
+	NSString *separatorString = @" of";
+	 
+	NSScanner *aScanner = [NSScanner scannerWithString:bananas];
+	 
+	NSInteger anInteger;
+	[aScanner scanInteger:&anInteger];
+	NSString *container;
+	[aScanner scanUpToString:separatorString intoString:&container];
+
 ## 示例
 
 ## 本地化
