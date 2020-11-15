@@ -554,7 +554,12 @@ NSScanner 是一个有着单一公共类的类簇，NSScanner。通常来讲，�
 	    // implementation continues...
 	}
 
+你可以使用 setCaseSensitive: 方法来配置一个扫描器，考虑或者忽略大小写。默认的一个扫描器是狐女大小写的。
+
 ## 使用扫描器
+
+	137 small cases of bananas
+
 
 	NSString *bananas = @"137 small cases of bananas";
 	NSString *separatorString = @" of";
