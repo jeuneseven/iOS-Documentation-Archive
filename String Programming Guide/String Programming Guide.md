@@ -544,7 +544,7 @@ NSScanner 对象可以扫描一个NSString对象的字符，通常解释字符�
 
 ## 创建扫描器
 
-NSScanner 是一个有着单一公共类的类簇，NSScanner。通常来讲，通过调用类方法scannerWithString: 或者 localizedScannerWithString:来初始化一个扫描器对象。每个方法都会返回一个用你传给它的字符串初始化的扫描器对象。
+NSScanner 是一个有着单一公共类的类簇，NSScanner。通常来讲，通过调用类方法scannerWithString: 或者 localizedScannerWithString:来初始化一个扫描器对象。每个方法都会返回一个用你传给它的字符串初始化的扫描器对象。新创建的扫描器会从字符串的开始进行扫描。你可以使用 scan... 方法，比如 scanInt:, scanDouble:, 和 scanString:intoString: 来扫描组件。如果你扫描多行的话，通常需要创建一个while循环来查找，直到扫描器到达字符串的尾部，如下列代码片段所示：  
 	
 	float aFloat;
 	NSScanner *theScanner = [NSScanner scannerWithString:aString];
