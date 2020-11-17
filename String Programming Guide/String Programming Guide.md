@@ -558,6 +558,8 @@ NSScanner 是一个有着单一公共类的类簇，NSScanner。通常来讲，�
 
 ## 使用扫描器
 
+
+
 	137 small cases of bananas
 
 
@@ -570,6 +572,12 @@ NSScanner 是一个有着单一公共类的类簇，NSScanner。通常来讲，�
 	[aScanner scanInteger:&anInteger];
 	NSString *container;
 	[aScanner scanUpToString:separatorString intoString:&container];
+	
+	[aScanner scanString:separatorString intoString:NULL];
+	NSString *product;
+	product = [[aScanner string] substringFromIndex:[aScanner scanLocation]];
+	// could also use:
+	// product = [bananas substringFromIndex:[aScanner scanLocation]];
 
 ## 示例
 
