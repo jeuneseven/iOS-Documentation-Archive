@@ -581,6 +581,14 @@ NSScanner 是一个有着单一公共类的类簇，NSScanner。通常来讲，�
 
 ## 示例
 
+假设你有一个字符串包含了几行例如：  
+
+Product: Acme Potato Peeler; Cost: 0.98 73  
+Product: Chef Pierre Pasta Fork; Cost: 0.75 19  
+Product: Chef Pierre Colander; Cost: 1.27 2
+
+下例使用了替代扫描操作
+
 	NSString *string = @"Product: Acme Potato Peeler; Cost: 0.98 73\n\
 	Product: Chef Pierre Pasta Fork; Cost: 0.75 19\n\
 	Product: Chef Pierre Colander; Cost: 1.27 2\n";
