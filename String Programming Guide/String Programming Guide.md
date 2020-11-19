@@ -619,6 +619,8 @@ Product: Chef Pierre Colander; Cost: 1.27 2
 
 ## 本地化
 
+一个扫描器会基于一个地理位置来进行扫描行为，地理位置指定了语言和值所代表的惯例。NSScanner 会只使用十进制分隔符（由名为NSDecimalSeparator的key给出）区域设置的定义。你可以使用用户的位置（通过使用localizedScannerWithString:）来创建一个扫描器，或者使用setLocale:来显式的设置位置。如果使用不指定位置的方法，扫描器将假定默认位置值为默认地址。
+
 # 字符串代表的文件路径
 
 ## 代表一个路径
