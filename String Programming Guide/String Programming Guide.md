@@ -524,17 +524,34 @@ NSNumericSearch  | 当使用compare:options: 方法时，对于比较而言，�
 
 # 字符和字形群集
 
-
-
 # 字符集合
 
 ## 字符集合基础
 
+	NSString *myString = @"some text in an NSString...";
+	NSCharacterSet *characterSet = [NSCharacterSet uppercaseLetterCharacterSet];
+	NSRange letterRange = [myString rangeOfCharacterFromSet:characterSet];
+
 ## 创建字符集
+
+	NSMutableCharacterSet *workingSet = [[NSCharacterSet alphanumericCharacterSet] mutableCopy];
+	[workingSet addCharactersInString:@";:,."];
+	NSCharacterSet *finalCharacterSet = [workingSet copy];
+	
+	UniChar chars[] = {0x000C, 0x2028};
+	NSString *string = [[NSString alloc] initWithCharacters:chars
+	                            length:sizeof(chars) / sizeof(UniChar)];
+	NSCharacterSet *characterSet = [NSCharacterSet characterSetWithCharactersInString:string];
+
 
 ## 性能考量
 
 ## 创建一个字符集文件
+
+	NSData *charSetRep = [finalCharacterSet bitmapRepresentation];
+	NSURL *dataURL = <#URL for character set#>;
+	NSError *error;
+	BOOL result = [charSetRep writeToURL:dataURL options:NSDataWritingAtomic error:&error];
 
 ## 标准字符集和Unicode定义
 
