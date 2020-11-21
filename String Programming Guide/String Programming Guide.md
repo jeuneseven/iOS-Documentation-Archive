@@ -649,3 +649,5 @@ Product: Chef Pierre Colander; Cost: 1.27 2
 ## 文件名结束
 
 # 绘制字符串
+
+在一个NSView钟使用类似 drawAtPoint:withAttributes: 的方法，你可以直接绘制字符串对象（要绘制多种属性比如多行文本字体的字符串，你必须使用 NSAttributedString 对象）。这些方法在《Cocoa绘制指南》中的“文本”中有简单描述。
