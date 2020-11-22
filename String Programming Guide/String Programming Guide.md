@@ -526,7 +526,12 @@ NSNumericSearch  | 当使用compare:options: 方法时，对于比较而言，�
 
 # 字符集合
 
+NSCharacterSet 对象代表Unicode字符集合。NSString和NSScanner对象使用NSCharacterSet对象来组合字符并用来进行检索操作，以便在搜索过程中查找到任意特定字符集合。
+
 ## 字符集合基础
+
+一个字符集合对象代表一个Unicode字符集合。字符集合由一个类簇的实例对象代表。类簇由两个公共类NSCharacterSet 和 NSMutableCharacterSet，分别声明的编程接口为不可变和可变字符集合。不可变字符集合当其被定义创建之后，随后就不能改变了。可变字符集合能够在其呗创建后改变。  
+字符集对象不能执行任何任务；它只能直接持有一个字符值集合来限制对字符串的操作。NSString 和 NSScanner类定义的方法会将 NSCharacterSet 对象作为参数用来查找任意字符。例如，以下代码查找
 
 	NSString *myString = @"some text in an NSString...";
 	NSCharacterSet *characterSet = [NSCharacterSet uppercaseLetterCharacterSet];
