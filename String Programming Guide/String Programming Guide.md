@@ -647,6 +647,23 @@ Product: Chef Pierre Colander; Cost: 1.27 2
 
 ## 代表一个路径
 
+	NSString *path = @"/usr/bin/./grep";
+	NSString *standardizedPath = [path stringByStandardizingPath];
+	// standardizedPath: /usr/bin/grep
+	 
+	path = @"~me";
+	standardizedPath = [path stringByStandardizingPath];
+	// standardizedPath (assuming conventional naming scheme): /Users/Me
+	 
+	path = @"/usr/include/objc/..";
+	standardizedPath = [path stringByStandardizingPath];
+	// standardizedPath: /usr/include
+	 
+	path = @"/private/usr/include";
+	standardizedPath = [path stringByStandardizingPath];
+	// standardizedPath: /usr/include
+
+
 ## 用户目录
 
 ## 路径组件
