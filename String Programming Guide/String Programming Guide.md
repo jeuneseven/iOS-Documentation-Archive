@@ -666,6 +666,14 @@ Product: Chef Pierre Colander; Cost: 1.27 2
 
 ## 用户目录
 
+	// Assuming that users’ home directories are stored in /Users
+ 
+	NSString *meHome = [@"~me" stringByExpandingTildeInPath];
+	// meHome = @"/Users/me"
+	 
+	NSString *mePublic = [@"~me/Public" stringByExpandingTildeInPath];
+	// mePublic = @"/Users/me/Public"
+
 ## 路径组件
 
 ## 文件名补全
