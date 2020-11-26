@@ -674,6 +674,14 @@ Product: Chef Pierre Colander; Cost: 1.27 2
 	NSString *mePublic = [@"~me/Public" stringByExpandingTildeInPath];
 	// mePublic = @"/Users/me/Public"
 
+
+	NSString *currentUserHomeDirectory = NSHomeDirectory();
+	NSString *meHomeDirectory = NSHomeDirectoryForUser(@"me");
+
+
+	NSString *documentsDirectory =
+                [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+
 ## 路径组件
 
 ## 文件名补全
