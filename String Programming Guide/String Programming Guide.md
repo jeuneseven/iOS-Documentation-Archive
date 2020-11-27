@@ -686,6 +686,20 @@ Product: Chef Pierre Colander; Cost: 1.27 2
 
 ## 文件名补全
 
+	NSString *partialPath = @"~/Demo/r";
+	NSString *longestCompletion;
+	NSArray *outputArray;
+	 
+	unsigned allMatches = [partialPath completePathIntoString:&longestCompletion
+	    caseSensitive:NO
+	    matchesIntoArray:&outputArray
+	    filterTypes:nil];
+	 
+	// allMatches = 3
+	// longestCompletion = @"~/Demo/re"
+	// outputArray = (@"~/Demo/readme.html", "~/Demo/readme.rtf", "~/Demo/recondite.txt")
+
+
 	NSArray *filterTypes = @[@"txt", @"rtf"];
  
 	unsigned textMatches = [partialPath completePathIntoString:&outputName
