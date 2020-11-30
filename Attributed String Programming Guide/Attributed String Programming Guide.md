@@ -52,3 +52,6 @@
 
 # 标准属性
 
+属性标识  | 值所属类  | 默认值
+------------- | -------------------------- | -------------
+NSAttachmentAttributeName  | NSTextAttachment  | none (no attachment)
