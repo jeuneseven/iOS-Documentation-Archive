@@ -52,6 +52,18 @@
 
 # 标准属性
 
+列表1中所列的标识事全局 NSString 常量所包含的属性名称。值的类是该值相关属性的类。
+
 属性标识  | 值所属类  | 默认值
 ------------- | -------------------------- | -------------
 NSAttachmentAttributeName  | NSTextAttachment  | none (no attachment)
+NSBackgroundColorAttributeName  | NSColor  | none (no attachment)
+NSBaselineOffsetAttributeName  | NSNumber，作为浮点型  | 0.0
+NSFontAttributeName  | NSFont  | 黑体 12号
+NSForegroundColorAttributeName  | NSColor  | black
+NSKernAttributeName  | NSNumber，作为浮点型   | 0.0
+NSLigatureAttributeName  | NSNumber，作为整形  | 1 (standard ligatures)
+NSLinkAttributeName  | id  | none (no link)
+NSParagraphStyleAttributeName  | NSParagraphStyle  | 返回 NSParagraphStyle 的 defaultParagraphStyle 方法
+NSSuperscriptAttributeName  | NSNumber，作为整形  | 0
+NSUnderlineStyleAttributeName  | NSNumber，作为整形  | none (no underline)
