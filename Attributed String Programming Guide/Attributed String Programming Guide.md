@@ -52,7 +52,9 @@
 
 # 标准属性
 
-列表1中所列的标识事全局 NSString 常量所包含的属性名称。值的类是该值相关属性的类。
+列表1中所列的标识是全局 NSString 常量所包含的属性名称。值的类是该值相关属性的类。
+
+列表1 标准属性列表
 
 属性标识  | 值所属类  | 默认值
 ------------- | -------------------------- | -------------
@@ -67,3 +69,7 @@ NSLinkAttributeName  | id  | none (no link)
 NSParagraphStyleAttributeName  | NSParagraphStyle  | 返回 NSParagraphStyle 的 defaultParagraphStyle 方法
 NSSuperscriptAttributeName  | NSNumber，作为整形  | 0
 NSUnderlineStyleAttributeName  | NSNumber，作为整形  | none (no underline)
+
+几个属性的性质从名称中看并不明显：  
+
+* 
