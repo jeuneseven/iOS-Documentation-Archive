@@ -38,13 +38,29 @@
 
 ## 检索属性值
 
+	NSAttributedString *attrStr;
+	unsigned int length;
+	NSRange effectiveRange;
+	id attributeValue;
+	 
+	length = [attrStr length];
+	effectiveRange = NSMakeRange(0, 0);
+	 
+	while (NSMaxRange(effectiveRange) < length) {
+	    attributeValue = [attrStr attribute:NSFontAttributeName
+	        atIndex:NSMaxRange(effectiveRange) effectiveRange:&effectiveRange];
+	    [analyzer tallyCharacterRange:effectiveRange font:attributeValue];
+	}
+
 ## 有效和最大区间
 
 # 改变一个属性字符串
 
 ## 修改属性
 
-## 
+## 修复不一致
+
+
 
 # 绘制属性字符串
 
