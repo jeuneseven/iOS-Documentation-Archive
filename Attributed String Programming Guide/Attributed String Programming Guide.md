@@ -49,6 +49,10 @@ NSAttributedString 和 NSMutableAttributedString 在 Core Foundation 中分别�
 
 ## 检索属性值
 
+
+
+## 有效和最大区间
+
 	NSAttributedString *attrStr;
 	unsigned int length;
 	NSRange effectiveRange;
@@ -62,8 +66,22 @@ NSAttributedString 和 NSMutableAttributedString 在 Core Foundation 中分别�
 	        atIndex:NSMaxRange(effectiveRange) effectiveRange:&effectiveRange];
 	    [analyzer tallyCharacterRange:effectiveRange font:attributeValue];
 	}
-
-## 有效和最大区间
+	
+	NSAttributedString *attrStr;
+	NSRange limitRange;
+	NSRange effectiveRange;
+	id attributeValue;
+	 
+	limitRange = NSMakeRange(0, [attrStr length]);
+	 
+	while (limitRange.length > 0) {
+	    attributeValue = [attrStr attribute:NSFontAttributeName
+	        atIndex:limitRange.location longestEffectiveRange:&effectiveRange
+	        inRange:limitRange];
+	    [analyzer recordFontChange:attributeValue];
+	    limitRange = NSMakeRange(NSMaxRange(effectiveRange),
+	        NSMaxRange(limitRange) - NSMaxRange(effectiveRange));
+	}
 
 # 改变一个属性字符串
 
