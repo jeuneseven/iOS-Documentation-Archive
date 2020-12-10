@@ -37,13 +37,18 @@ NSAttributedString 和 NSMutableAttributedString 在 Core Foundation 中分别�
 
 # 在Cocoa中创建属性字符串
 
-	NSFont *font = [NSFont fontWithName:@"Palatino-Roman" size:14.0];
-	NSDictionary *attrsDictionary =
-	        [NSDictionary dictionaryWithObject:font
-	                                    forKey:NSFontAttributeName];
-	NSAttributedString *attrString =
-	    [[NSAttributedString alloc] initWithString:@"strigil"
-	            attributes:attrsDictionary];
+你可以以多种方式创建 NSAttributedString 对象：  
+
+* 可以使用 initWithString:, initWithString:attributes: 或者 initWithAttributedString: 方法创建一个新字符串。这些方法会用你提供的数据初始化一个属性字符串，如下例所示：  
+
+
+		NSFont *font = [NSFont fontWithName:@"Palatino-Roman" size:14.0];
+		NSDictionary *attrsDictionary =
+		        [NSDictionary dictionaryWithObject:font
+		                                    forKey:NSFontAttributeName];
+		NSAttributedString *attrString =
+		    [[NSAttributedString alloc] initWithString:@"strigil"
+		            attributes:attrsDictionary];
 
 # 访问属性
 
