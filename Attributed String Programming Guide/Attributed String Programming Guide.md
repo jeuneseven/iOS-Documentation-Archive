@@ -33,7 +33,7 @@
 # 属性字符串
 
 属性字符串对象管理着字符串和相关属性集合（例如字体和字符间距），用来调整每个字符或者在字符串范围内的字符。NSAttributedString 和 NSMutableAttributedString 类为只读属性字符串和可变属性字符串分别声明了编程接口。Foundation 框架定义了基本的功能，其他的OC方法定义在Application框架当中。Application框架还使用了一个NSMutableAttributedString的子类，叫做NSTextStorage，用来为扩展文本处理系统提供存储（参见“文本系统存储层概览”）。  
-NSAttributedString 和 NSMutableAttributedString 在 Core Foundation 中分别有对应的桥接，CFAttributedString 和 CFMutableAttributedString。这意味着一个Foundation属性字符串是
+NSAttributedString 和 NSMutableAttributedString 在 Core Foundation 中分别有对应的桥接，CFAttributedString 和 CFMutableAttributedString。这意味着一个函数或方法中的Foundation属性字符串的调用时可以桥接到Core Foundation类型的。所以，当你见到一个 NSMutableAttributedString *参数时，你可以传递一个 CFMutableAttributedStringRef 类型的变量，在一个函数中你看到一个 CFAttributedStringRef参数，你可以传递一个NSAttributedString (或者 NSMutableAttributedString)的实例。
 
 # 在Cocoa中创建属性字符串
 
