@@ -92,6 +92,25 @@ NSAttributedString 和 NSMutableAttributedString 在 Core Foundation 中分别�
 
 ## 修改属性
 
+	NSMutableAttributedString *string; // assume string exists
+	NSRange selectedRange; // assume this is set
+	 
+	NSURL *linkURL = [NSURL URLWithString:@"http://www.apple.com/"];
+	 
+	[string beginEditing];
+	[string addAttribute:NSLinkAttributeName
+	               value:linkURL
+	               range:selectedRange];
+	 
+	[string addAttribute:NSForegroundColorAttributeName
+	               value:[NSColor blueColor]
+	               range:selectedRange];
+	 
+	[string addAttribute:NSUnderlineStyleAttributeName
+	               value:[NSNumber numberWithInt:NSSingleUnderlineStyle]
+	               range:selectedRange];
+	[string endEditing];
+
 ## 修复不一致
 
 
