@@ -123,6 +123,25 @@ NSAttributedString 和 NSMutableAttributedString 在 Core Foundation 中分别�
 
 ## 苹果的富文本扩展
 
+RTF顺序  | 描述 | 参数
+------------- | ------------- | -------------
+\CocoaLigatureN  | 连字符控制 | 值为 NSLigatureAttributeName 类型。0为无连字符，1为默认连字符，2位所有连字符。默认值为1。
+\expansionN  | | 
+\obliquenessN  | | 
+\fsmilliN  | | 
+\shadxN \shadyN  | | 
+\shadrN  | | 
+\strikecN  | | 
+\strikestyleN  | | 
+\strokecN  | | 
+\strokewidthN  | | 
+\ulstyleN  | | 
+{{\NeXTGraphic attachment \widthN \heightN} string}  | | 
+{{}{\*\glidN basestring}string}  | | 
+{{}{\*\glidN basestring\glcolN} string}  | | 
+{{}{\*\glid basestring\glnam glyphname}string}  | | 
+\AppleTypeServicesUN  | | 
+
 # 格式化文档和属性字符串
 
 ## 读取格式化文档
