@@ -41,7 +41,6 @@ NSAttributedString 和 NSMutableAttributedString 在 Core Foundation 中分别�
 
 * 可以使用 initWithString:, initWithString:attributes: 或者 initWithAttributedString: 方法创建一个新字符串。这些方法会用你提供的数据初始化一个属性字符串，如下例所示：  
 
-
 		NSFont *font = [NSFont fontWithName:@"Palatino-Roman" size:14.0];
 		NSDictionary *attrsDictionary =
 		        [NSDictionary dictionaryWithObject:font
@@ -49,6 +48,9 @@ NSAttributedString 和 NSMutableAttributedString 在 Core Foundation 中分别�
 		NSAttributedString *attrString =
 		    [[NSAttributedString alloc] initWithString:@"strigil"
 		            attributes:attrsDictionary];
+
+关于Application Kit框架提供的属性列表，参见Application Kit 中的 NSAttributedString 常量附加参考。  
+属性值赋值给一个属性字符串变为该字符串的一个属性，不应该被其他对象“在属性字符串下”改变。
 
 # 访问属性
 
