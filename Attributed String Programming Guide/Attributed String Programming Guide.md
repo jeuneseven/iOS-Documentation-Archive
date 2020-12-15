@@ -50,7 +50,19 @@ NSAttributedString 和 NSMutableAttributedString 在 Core Foundation 中分别�
 		            attributes:attrsDictionary];
 
 关于Application Kit框架提供的属性列表，参见Application Kit 中的 NSAttributedString 常量附加参考。  
-属性值赋值给一个属性字符串变为该字符串的一个属性，不应该被其他对象“在属性字符串下”改变。
+属性值赋值给一个属性字符串变为该字符串的一个属性，不应该被其他对象“在属性字符串下”改变。  
+
+* 可以使用从富文本(RTF)或者富文本附件(RTFD)数据的初始化方法来创建属性字符串，initWithRTF:documentAttributes:，initWithRTFD:documentAttributes:, 和 initWithRTFDFileWrapper:documentAttributes:，如下例所示：   
+
+		NSData *rtfData = ...;  // assume rtfData is an NSData object containing valid RTF data
+		NSDictionary *docAttributes;
+		NSSize paperSize;
+		NSAttributedString *attrString;
+		if ((attrString = [[NSAttributedString alloc]
+		        initWithRTF: rtfData documentAttributes: &docAttributes])) {
+		    NSValue *value = [docAttrs objectForKey:@"PaperSize"];
+		    paperSize = [value sizeValue];
+		    // implementation continues...
 
 # 访问属性
 
