@@ -64,6 +64,8 @@ NSAttributedString 和 NSMutableAttributedString 在 Core Foundation 中分别�
 		    paperSize = [value sizeValue];
 		    // implementation continues...
 
+* 可以从HTML数据中使用初始化方法 initWithHTML:documentAttributes: 和 initWithHTML:baseURL:documentAttributes: 来创建属性字符串。这些方法会返回HTML定义的文字属性作为字符串的属性。
+
 # 访问属性
 
 ## 检索属性值
