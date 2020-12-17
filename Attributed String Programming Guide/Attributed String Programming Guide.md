@@ -50,7 +50,7 @@ NSAttributedString 和 NSMutableAttributedString 在 Core Foundation 中分别�
 		            attributes:attrsDictionary];
 
 关于Application Kit框架提供的属性列表，参见Application Kit 中的 NSAttributedString 常量附加参考。  
-属性值赋值给一个属性字符串变为该字符串的一个属性，不应该被其他对象“在属性字符串下”改变。  
+属性值赋值给一个属性字符串变为该字符串的一个属性，不应该被其他对象“在属性字符串下”改变。这么做可以渲染不一致的属性字符串的内部状态。使用NSMutableAttributedString 的 setAttributes:range: 方法和相关方法来改变属性值。参见“改变一个属性字符串”了解更多。  
 
 * 可以使用从富文本(RTF)或者富文本附件(RTFD)数据的初始化方法来创建属性字符串，initWithRTF:documentAttributes:，initWithRTFD:documentAttributes:, 和 initWithRTFDFileWrapper:documentAttributes:，如下例所示：   
 
