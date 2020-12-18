@@ -68,6 +68,8 @@ NSAttributedString 和 NSMutableAttributedString 在 Core Foundation 中分别�
 
 # 访问属性
 
+一个属性字符串通过名称来标识属性，以一个属性名存储一个值在一个NSDictionary对象中，
+
 ## 检索属性值
 
 
