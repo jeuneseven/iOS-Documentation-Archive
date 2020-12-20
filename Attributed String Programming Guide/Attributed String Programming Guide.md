@@ -72,7 +72,12 @@ NSAttributedString 和 NSMutableAttributedString 在 Core Foundation 中分别�
 
 ## 检索属性值
 
-
+	attributesAtIndex:effectiveRange:
+	attributesAtIndex:longestEffectiveRange:inRange:
+	attribute:atIndex:effectiveRange:
+	attribute:atIndex:longestEffectiveRange:inRange:
+	fontAttributesInRange:
+	rulerAttributesInRange:
 
 ## 有效和最大区间
 
