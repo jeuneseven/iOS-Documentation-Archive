@@ -113,6 +113,8 @@ NSAttributedString 和 NSMutableAttributedString 在 Core Foundation 中分别�
 
 # 改变一个属性字符串
 
+NSMutableAttributedString 声明了一些方法来改变字符和属性。
+
 ## 修改属性
 
 	NSMutableAttributedString *string; // assume string exists
