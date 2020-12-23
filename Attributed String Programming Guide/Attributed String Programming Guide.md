@@ -64,7 +64,8 @@ NSAttributedString 和 NSMutableAttributedString 在 Core Foundation 中分别�
 		    paperSize = [value sizeValue];
 		    // implementation continues...
 
-* 可以从HTML数据中使用初始化方法 initWithHTML:documentAttributes: 和 initWithHTML:baseURL:documentAttributes: 来创建属性字符串。这些方法会返回HTML定义的文字属性作为字符串的属性。它们返回HTML定义的文档级的属性，比如文档和边距大小，通过引用一个 NSDictionary 对象，如“RTF文件和属性字符串”中所述。
+* 可以从HTML数据中使用初始化方法 initWithHTML:documentAttributes: 和 initWithHTML:baseURL:documentAttributes: 来创建属性字符串。这些方法会返回HTML定义的文字属性作为字符串的属性。它们返回HTML定义的文档级的属性，比如文档和边距大小，通过引用一个 NSDictionary 对象，如“RTF文件和属性字符串”中所述。这些方法尽可能将HTML转换为Cocoa文本系统结构，但Application Kit不会提供任意HTML的完整，真实的实现。  
+考虑多核：从OS X v10.4开始，NSAttributedString 对于所有从HTML文档中导入（不包括导出）的内容都使用WebKit。因为 WebKit 文档加载并非线程安全，就不能够安全的用在后台线程上。对于链接到OS X v10.5和之后版本的应用，如果 NSAttributedString 在主线程导入了HTML 文档，WebKit的使用将会通过 performSelectorOnMainThread:withObject:waitUntilDone: 转移到主线程上。这就确保了操作线程安全，但它需要主线程能够在一个常用模式之一下执行循环。这个行为能够被设置标准用户默认的 NSRunWebKitOnAppKitThread 为 YES（获取新的行为而无需联动）或 NO（获取旧行为而无需联动）来重写。
 
 # 访问属性
 
