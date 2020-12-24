@@ -69,9 +69,12 @@ NSAttributedString 和 NSMutableAttributedString 在 Core Foundation 中分别�
 
 # 访问属性
 
-一个属性字符串通过名称来标识属性，以一个属性名存储一个值在一个NSDictionary对象中，这对应关联着一个 NSRange指定每个字母让字典的属性进行应用。你可以赋值任意属性名-值的键值对给你想要的范围的字符，加上标准的属性。
+一个属性字符串通过名称来标识属性，以一个属性名存储一个值在一个NSDictionary对象中，这对应关联着一个 NSRange指定每个字母让字典中的属性进行应用。你可以赋值任意属性名-值的键值对给你想要的范围的字符，加上标准的属性。
 
 ## 检索属性值
+
+对于不可变属性字符串，你可以再创建该字符串时赋值所有的属性。在Java当中，你可以使用构建器物。在OC当中，你可以使用类似 initWithString:attributes: 的方法，它会明确指定一个名称-值键值对的字典对象，或者使用 initWithString:方法，它不会赋值任何属性。Application 框架扩展了 NSAttributedString，为其添加了RTF文件或者HTML文件的方法。参见“改变一个属性字符串”中的更多信息了解如何给一个可变属性字符串赋值属性。  
+要从任意类型的属性字符串中检索属性值，使用以下方法：  
 
 	attributesAtIndex:effectiveRange:
 	attributesAtIndex:longestEffectiveRange:inRange:
@@ -79,6 +82,9 @@ NSAttributedString 和 NSMutableAttributedString 在 Core Foundation 中分别�
 	attribute:atIndex:longestEffectiveRange:inRange:
 	fontAttributesInRange:
 	rulerAttributesInRange:
+
+头两个方法会返回给定索引的所有属性，attribute:... 类的方法会返回一个属性的对应值。Application 框架扩展了NSAttributedString，添加了fontAttributesInRange: 和 rulerAttributesInRange:方法，它们分别会返回应用在单个字符或者整个段落所定义的属性。  
+
 
 ## 有效和最大区间
 
