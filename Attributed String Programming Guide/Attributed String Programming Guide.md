@@ -145,7 +145,12 @@ NSMutableAttributedString 声明了一些方法来改变字符和属性。
 
 ## 修复不一致
 
-
+	fixAttributesInRange:
+	fixAttachmentAttributeInRange:
+	fixFontAttributeInRange:
+	fixParagraphStyleAttributeInRange:
+	beginEditing
+	endEditing
 
 # 绘制属性字符串
 
