@@ -120,7 +120,7 @@ NSAttributedString 和 NSMutableAttributedString 在 Core Foundation 中分别�
 
 # 改变一个属性字符串
 
-NSMutableAttributedString 声明了一些方法来改变字符和属性。
+NSMutableAttributedString 声明了一些方法来改变字符和属性。你必须注意不要在属性值传给一个属性字符串之后对其进行修改。还需要注意修复在你修改一个属性字符串之后引入的前后不一致的情况。
 
 ## 修改属性
 
