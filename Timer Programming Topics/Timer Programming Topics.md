@@ -58,6 +58,20 @@
 	- (NSDictionary *)userInfo;
 	 
 	@end
+	
+	- (NSDictionary *)userInfo {
+	    return @{ @"StartDate" : [NSDate date] };
+	}
+	 
+	- (void)targetMethod:(NSTimer*)theTimer {
+	    NSDate *startDate = [[theTimer userInfo] objectForKey:@"StartDate"];
+	    NSLog(@"Timer started on %@", startDate);
+	}
+	 
+	- (void)invocationMethod:(NSDate *)date {
+	    NSLog(@"Invocation for timer started on %@", date);
+	}
+
 
 ## 安排Timers
 
