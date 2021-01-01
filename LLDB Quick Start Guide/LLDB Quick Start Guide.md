@@ -3,7 +3,16 @@
 # 介绍
 ## 关于LLDB和Xcode
 
+随着Xcode 5的发布，LLDB 调试器变成了在OSX上调试的基础。  
+
+![](https://developer.apple.com/library/archive/documentation/IDEs/Conceptual/gdb_to_lldb_transition_guide/art/lldb_in_xc5_command_window_2x.png)  
+
+LLDB 是苹果“从0开始”中对于GDB的替代品，与LLVM编译器紧密协作开发，为你带来最先进的调试，在流程控制和数据监测方面具有广泛的功能。从Xcode 5开始，所有新的和已经存在的开发项目都会自动重新配置为使用LLDB。  
+标准LLDB的安装为你提供了大量与GDB命令类似并兼容的命令集合。再加上使用标准配置，你能够很容易的定制LLDB为你所需。
+
 ### 概览
+
+LLDB被完全整合到了Xcode 5
 
 #### 理解LLDB是基于未解锁的高级功能
 
