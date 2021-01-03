@@ -25,6 +25,7 @@ LLDB被完全整合到了Xcode 5来进行源代码开发以及提供构建-运�
 
 #### 使用LLDB等同于通用的GDB命令
 
+已交付的LLDB包括许多命令别名，这些别名被设计为与GDB命令相同。如果你已经体验过了GDB命令，你可以使用提供的表单来查找GDB中和LLDB命令等价的命令，包括规范和速记表格。
 
 ```
 相关章节：GDB和LLDB命令示例
@@ -32,13 +33,18 @@ LLDB被完全整合到了Xcode 5来进行源代码开发以及提供构建-运�
 
 #### 独立的LLDB工作流
 
-
+通常会使用Xcode调试功能来体验LLDB，使用Xcode控制台面板使用LLDB命令。不过，对于开源的开发和其他基于非图形界面的应用调试，你可以从终端窗口作为常用命令行调试来使用LLDB。  
+知晓LLDB如何作为一个命令行调试器是如何工作的，有利于帮助你理解和使用Xcode控制台面板中的LLDB的全部功能。  
 
 ```
 相关章节：使用LLDB作为独立调试
 ```
 
 ### 另请参见
+
+如要详细了解如何使用Xcode的调试功能，所有由LLDB调试引擎所提供的能力的话，参见WWDC 2013的“Tools #407 WWDC 2013: Debugging with Xcode”视频片段。  
+要了解最近的高级功能来帮助你高效的使用LLDB跟踪bug，参见WWDC 2013的“Tools #413 WWDC 2013: Advanced Debugging with LLDB”视频片段。  
+更多关于使用LLDB Python脚本和其他高级功能的信息，参见“The LLDB Debugger”。
 
 # 从使用LLDB开始
 
