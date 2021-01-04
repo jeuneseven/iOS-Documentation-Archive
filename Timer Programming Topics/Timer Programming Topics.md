@@ -25,6 +25,8 @@
 
 ## Timers的替代品
 
+如果你只是想要在未来的某个时间点发送一个消息的话，你可以不必使用timer，可以使用performSelector:withObject:afterDelay: 和相关方法来直接调用一个方法和其他对象。一些其他的变体，比如performSelectorOnMainThread:withObject:waitUntilDone:，能够让你在一个指定线程中调用方法。你还可以使用 cancelPreviousPerformRequestsWithTarget: 和相关方法来取消一个延迟的消息。
+
 # 使用Timers
 
 ## 创建和安排一个Timer
