@@ -48,9 +48,20 @@ LLDB被完全整合到了Xcode 5来进行源代码开发以及提供构建-运�
 
 # 从使用LLDB开始
 
+LLDB是一个和GDB功能相似的命令行调试环境。LLDB为Xcode提供了基础调试环境，包含在调试区域中的控制台来直接在Xcode IDE环境中能够访问LLDB命令。  
+本章节简单的解释了LLDB的语法和命令功能，为你介绍命令行别名功能的使用，并为你介绍LLDB的帮助系统。
+
 ## LLDB命令结构
 
+所有的用户开始使用LLDB都应该意识到LLDB命令结构和语法是为了触及LLDB的潜在功能和理解如何更多的对其进行使用。在很多情况下，LLDB命令行提供——比如list和b——都和GDB命令类似，并且有经验的GDB用户学习LLDB更简单。  
+
 ### 理解命令语法
+
+LLDB命令语法是结构和规律贯穿始终的。LLDB命令都是如下格式：  
+
+	<command> [<subcommand> [<subcommand>...]] <action> [-options [option-value]] [argument [argument...]]
+
+命令和子命令都是LLDB调试对象的名称。
 
 ### 使用命令选项
 
