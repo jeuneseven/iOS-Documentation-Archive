@@ -57,6 +57,8 @@
 
 ### Timer示例
 
+后续的示例，假设一个计时器控制对象声明了方法来开始和（在某些情况下）以不同的方式停止四个计时器配置。还提供了属性给两个计时器；一个属性记录一个计时器触发了多少次，以及三个计时器相关的方法（targetMethod:, invocationMethod:, 和 countedTimerFireMethod:）。控制器还提供了一个方法来提供用户信息字典。  
+
 	@interface TimerController : NSObject
 	 
 	// The repeating timer is a weak property.
@@ -83,6 +85,8 @@
 	 
 	@end
 	
+用户信息方法的实现和两个被计时器调用的方法在后面（countedTimerFireMethod: 在“停止一个计时器”中有相关描述）：  
+	
 	- (NSDictionary *)userInfo {
 	    return @{ @"StartDate" : [NSDate date] };
 	}
@@ -95,7 +99,6 @@
 	- (void)invocationMethod:(NSDate *)date {
 	    NSLog(@"Invocation for timer started on %@", date);
 	}
-
 
 ## 安排Timers
 
