@@ -102,6 +102,36 @@
 
 ## 安排Timers
 
+以下的两个类方法回自动的以默认模式（NSDefaultRunLoopMode）注册新的计时器到当前的 NSRunLoop 对象中：  
+
+* scheduledTimerWithTimeInterval:invocation:repeats:
+* scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:
+
+下例为你展示了你该如何安排使用一个selector来使用一次性的计时器：  
+
+	- (IBAction)startOneOffTimer:sender {
+	    [NSTimer scheduledTimerWithTimeInterval:2.0
+	             target:self
+	             selector:@selector(targetMethod:)
+	             userInfo:[self userInfo]
+	             repeats:NO];
+	}
+
+计时器自动的在运行循环的2秒后开启，然后从运行循环移除。  
+下例展示了你该如何安排一个重复的计时器，同样也用了一个selector（失效的部分在“停止一个计时器”中）：  
+
+	- (IBAction)startRepeatingTimer:sender {
+	    // Cancel a preexisting timer.
+	    [self.repeatingTimer invalidate];
+	 
+	    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.5
+	                              target:self selector:@selector(targetMethod:)
+	                              userInfo:[self userInfo] repeats:YES];
+	    self.repeatingTimer = timer;
+	}
+
+如果你创建了一个重复的计时器，通常你需要保存一个它的引用以便你能够在随后的阶段停止它（参见“使用一个开始日期初始化一个计时器”，会举例何时不是这种情况）。
+
 ## 解除Timers
 
 ## 用一个日期初始化一个Timer
