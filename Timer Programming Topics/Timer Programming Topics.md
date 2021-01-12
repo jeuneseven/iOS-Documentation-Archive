@@ -134,6 +134,34 @@
 
 ## 解除Timers
 
+下列方法创建的计时器需要你在随后的某个时间通过发送消息 addTimer:forMode: 给一个 NSRunLoop 对象来安排。  
+
+* timerWithTimeInterval:invocation:repeats:
+* timerWithTimeInterval:target:selector:userInfo:repeats:
+
+下例展示了你可以用一个invocation对象在一个方法中创建一个计时器，然后在另一个方法中通过将其添加到一个运行循环中开启一个计时器。  
+
+	- (IBAction)createUnregisteredTimer:sender {
+	 
+	    NSMethodSignature *methodSignature = [self methodSignatureForSelector:@selector(invocationMethod:)];
+	    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
+	    [invocation setTarget:self];
+	    [invocation setSelector:@selector(invocationMethod:)];
+	    NSDate *startDate = [NSDate date];
+	    [invocation setArgument:&startDate atIndex:2];
+	 
+	    NSTimer *timer = [NSTimer timerWithTimeInterval:0.5 invocation:invocation repeats:YES];
+	    self.unregisteredTimer = timer;
+	}
+	 
+	- (IBAction)startUnregisteredTimer:sender {
+	 
+	    if (self.unregisteredTimer != nil) {
+	        NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+	        [runLoop addTimer:self.unregisteredTimer forMode:NSDefaultRunLoopMode];
+	    }
+	}
+
 ## 用一个日期初始化一个Timer
 
 ## 停止一个Timer
