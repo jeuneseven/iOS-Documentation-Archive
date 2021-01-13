@@ -164,4 +164,51 @@
 
 ## 用一个日期初始化一个Timer
 
+你可以自己分配一个 NSTimer 对象，然后发送 initWithFireDate:interval:target:selector:userInfo:repeats: 消息。这会让你可以指定一个独立于重复间隔的初始化开启时间。一旦你创建了一个计时器，你唯一可以修改的属性就是开启时间了（使用setFireDate:）。所有其他的参数在创建计时器之后都是不可变的。要触发计时器开始启动，你必须将其添加到一个运行循环中。  
+下例展示了你该如何使用一个给定的开启时间来创建一个计时器（在这个例子中，是在未来的一秒后），然后通过将它添加到一个运行循环中来开启：  
+	
+	- (IBAction)startFireDateTimer:sender {
+ 
+	    NSDate *fireDate = [NSDate dateWithTimeIntervalSinceNow:1.0];
+	    NSTimer *timer = [[NSTimer alloc] initWithFireDate:fireDate
+	                                      interval:0.5
+	                                      target:self
+	                                      selector:@selector(countedTimerFireMethod:)
+	                                      userInfo:[self userInfo]
+	                                      repeats:YES];
+	 
+	    self.timerCount = 1;
+	    NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+	    [runLoop addTimer:timer forMode:NSDefaultRunLoopMode];
+	}
+
+在这个例子中，尽管计时器被设置成了重复的，但它会在它开启三次之后在countedTimerFireMethod：中停止——参见“停止一个计时器”部分。
+
 ## 停止一个Timer
+
+如果你创建了一个不会重复的计时器，那么就没有必要做更多的操作了。它会自动的在它的开始时间之后停止。比如，没有必要停止“用一个日期初始化一个Timer”中创建的计时器。不过，如果你创建了一个重复的计时器，你可以通过给它发送一个invalidate消息让它停止。你还可以在非重复性的计时器开启之前发送一个invalidate消息给它阻止它开启。
+下例展示了前例中创建的计时器是如何停止的。
+
+	- (IBAction)stopRepeatingTimer:sender {
+	    [self.repeatingTimer invalidate];
+	    self.repeatingTimer = nil;
+	}
+	 
+	- (IBAction)stopUnregisteredTimer:sender {
+	    [self.unregisteredTimer invalidate];
+	    self.unregisteredTimer = nil;
+	}
+	
+你还可以从一个计时器调用的方法中让该计时器失效。举例来说，在“用一个日期初始化一个Timer”中被计时器调用的方法可能会是这样：  	
+	
+	- (void)countedTimerFireMethod:(NSTimer*)theTimer {
+	    NSDate *startDate = [[theTimer userInfo] objectForKey:@"StartDate"];
+	    NSLog(@"Timer started on %@; fire count %d", startDate, self.timerCount);
+	 
+	    self.timerCount++;
+	    if (self.timerCount > 3) {
+	        [theTimer invalidate];
+	    }
+	}
+	
+这将会在计时器启动三次之后让其失效。由于计时器是作为参数传递给它所调用的方法的，所以就没有必要持有计时器作为一个变量了。不过，通常来讲，你可能想要选择保留对于计时器的引用，以防你希望选择更早的停止计时器。
