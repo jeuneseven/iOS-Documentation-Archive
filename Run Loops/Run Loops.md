@@ -49,3 +49,20 @@ NSEventTrackingRunLoopMode | 使用这种模式来做事件跟踪循环。
 # 添加输入源
 
 # 运行运行循环
+
+	[[NSRunLoop currentRunLoop] run];
+
+	[[NSRunLoop currentRunLoop] runUntilDate:aDate];
+
+	while ( [[NSRunLoop currentRunLoop] runMode:NSModalPanelRunLoopMode
+                beforeDate:[NSDate distantFuture]] );
+
+
+	double resolution = 1.0;
+	BOOL endRunLoop = NO;
+	BOOL isRunning;
+	do {
+	    NSDate* next = [NSDate dateWithTimeIntervalSinceNow:resolution];
+	    isRunning = [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+	                beforeDate:next];
+	} while (isRunning && !endRunLoop);
