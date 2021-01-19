@@ -46,6 +46,21 @@ NSEventTrackingRunLoopMode | 使用这种模式来做事件跟踪循环。
 
 # 获取运行循环
 
+当使用一个用Application框架构建的应用时，运行循环会自动创建和运行。如果你需要访问这个运行循环，使用NSRunLoop的类方法currentRunLoop。  
+其他的运行循环由其他的NSThread创建，并且也能够通过调用currentRunLoop从每个线程中访问到。这些运行循环不会有任何输入源，并且在线程开始时不会运行。你必须将输入源添加进去，然后自己启动。  
+
+```
+警告：NSRunLoop类通常不会考虑线程安全，它的方法应该只被在当前线程的上下文中调用。你不应该尝试调用一个NSRunLoop对象运行在不同线程中的方法，这样做可能会引起意想不到的结果。
+```
+
 # 添加输入源
 
+在大部分情况下，输入源对象会将其本身根据需要添加到当前运行循环中，但是你可以手动将其添加以获得对其行为的更好的控制。  
+举例来说，NSTimer类的方法 scheduledTimerWithTimeInterval:invocation:repeats:创建了一个新的计时器对象，然后将其以NSDefaultRunLoopMode模式添加到当前运行循环中。如果你使用timerWithTimeInterval:invocation:repeats: 创建计时器，你必须将其手动添加到运行循环中，使用 NSRunLoop 的实例方法addTimer:forMode:，该方法会让你能够指定不同的模式。  
+NSPort对象通常作为 NSConnection 的一部分使用，它会根据需要自动的添加它收到的端口到适当的模式中。如果你有一个单独的端口对象，你可以用NSRunLoop的方法 addPort:forMode: 手动将其添加到运行循环中。  
+
 # 运行运行循环
+
+
+
+	[[NSRunLoop currentRunLoop] run];
