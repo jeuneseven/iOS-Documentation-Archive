@@ -61,6 +61,33 @@ NSPort对象通常作为 NSConnection 的一部分使用，它会根据需要自
 
 # 运行运行循环
 
-
+有很多种方式来运行运行循环。使用run，控制权会交给运行循环，直到NSDefaultRunLoopMode模式中的所有输入源都已经被移除；如果没有输入源，运行循环会立即返回：  
 
 	[[NSRunLoop currentRunLoop] run];
+
+若要指定一个时间让运行循环终止处理并返回控制权，使用runUntilDate: ：  
+
+	[[NSRunLoop currentRunLoop] runUntilDate:aDate];
+
+若要指定一个模式而非NSDefaultRunLoopMode，使用runMode:beforeDate:。该方法只会在第一次运行运行循环；在其执行一个单一输入源之后或者beforeDate的时间到达之后它会返回。要持续运行任意模式，要在一个循环中调用 runMode:beforeDate:，并且时间参数要传远在将来：  
+
+	while ( [[NSRunLoop currentRunLoop] runMode:NSModalPanelRunLoopMode
+                beforeDate:[NSDate distantFuture]] );
+
+runMode:beforeDate:的返回值会表示运行循环是否还在运行中；如果运行循环已经空了（换句话说，它没有了任何输入源）runMode:beforeDate:会返回NO，并且while循环会停止。  
+最后，若要对运行循环进行条件化以便可以定义退出条件，请将测试包含在循环中，并围绕runMode:beforeDate:调用：  
+
+	double resolution = 1.0;
+	BOOL endRunLoop = NO;
+	BOOL isRunning;
+	do {
+	    NSDate* next = [NSDate dateWithTimeIntervalSinceNow:resolution];
+	    isRunning = [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+	                beforeDate:next];
+	} while (isRunning && !endRunLoop);
+
+在这个片段中，endRunLoop变量是测试条件，它表示何时该跳出运行循环。它可能会是一个全局变量或者是一个实例变量，当是时候终止运行循环时，将其设置为YES跳出运行循环。  
+
+```
+注意：不论你在runMode:beforeDate: 和 runUntilDate:中指定的日期是什么，运行循环都会什么都不做（没有接收到输入源）而立即退出。你必须在你开始运行循环之前将输入源添加到运行循环模式中。系统的其他部分可能会添加它们自己的源到一个特定的运行循环模式中，但是不要始终依赖于这种情况。如果你需要确保它不会立即退出，请添加一个空的NSPort到一个运行循环中。
+```
