@@ -65,6 +65,15 @@ LLDB命令语法是结构和规律贯穿始终的。LLDB命令都是如下格式
 
 ### 使用命令选项
 
+	breakpoint set
+       -M <method> ( --method <method> )
+       -S <selector> ( --selector <selector> )
+       -b <function-name> ( --basename <function-name> )
+       -f <filename> ( --file <filename> )
+       -l <linenum> ( --line <linenum> )
+       -n <function-name> ( --name <function-name> )
+	…
+
 ### 使用原始命令
 
 ### 在LLDB中使用command completion
