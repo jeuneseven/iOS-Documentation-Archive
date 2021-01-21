@@ -624,7 +624,6 @@ Cocoa 有大量的带参数的初始化例子。以下是一部分（定义的�
 
 ## 实现一个初始化
 
-
 * 始终先调用父类的（super）初始化方法。
 	
 	- (id)initWithAccountID:(NSString *)identifier {

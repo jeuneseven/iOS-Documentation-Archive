@@ -1,0 +1,1 @@
+[Data Management Starting Point](https://developer.apple.com/library/archive/referencelibrary/GettingStarted/GS_DataManagement_iPhone/index.html#//apple_ref/doc/uid/TP40007299)
