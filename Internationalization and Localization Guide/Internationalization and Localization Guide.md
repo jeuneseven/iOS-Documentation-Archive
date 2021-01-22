@@ -1,0 +1,1 @@
+[Internationalization and Localization Guide](https://developer.apple.com/library/archive/documentation/MacOSX/MacOSX/Conceptual/BPInternational/Introduction/Introduction.html#//apple_ref/doc/uid/10000171i)

@@ -1,0 +1,1 @@
+[Core Data Utility Tutorial](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreDataUtilityTutorial/Articles/01_introduction.html#//apple_ref/doc/uid/TP40001800)
