@@ -88,6 +88,20 @@ LLDB命令语法是结构和规律贯穿始终的。LLDB命令都是如下格式
 
 ### 使用LLDB帮助
 
+	(lldb) help
+	The following is a list of built-in, permanent debugger commands:
+	 
+	_regexp-attach    -- Attach to a process id if in decimal, otherwise treat the
+	                     argument as a process name to attach to.
+	_regexp-break     -- Set a breakpoint using a regular expression to specify the
+	                     location, where <linenum> is in decimal and <address> is
+	                     in hex.
+	_regexp-bt        -- Show a backtrace.  An optional argument is accepted; if
+	                     that argument is a number, it specifies the number of
+	                     frames to display.  If that argument is 'all', full
+	                     backtraces of all threads are displayed.
+	 … and so forth …
+
 # GDB和LLDB命令示例
 
 ## 执行类命令
