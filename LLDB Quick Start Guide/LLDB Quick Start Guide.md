@@ -124,6 +124,9 @@ LLDB命令语法是结构和规律贯穿始终的。LLDB命令都是如下格式
 
 ## 指定程序debug
 
+	$ lldb /Projects/Sketch/build/Debug/Sketch.app
+	Current executable set to '/Projects/Sketch/build/Debug/Sketch.app' (x86_64).
+
 ## 设置断点
 
 ## 设置观察点
