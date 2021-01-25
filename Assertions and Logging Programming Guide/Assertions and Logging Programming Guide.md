@@ -24,6 +24,10 @@
 本文档描述了如何使用Assert（以及相关）宏定义来判断一个条件并创建一个断言。  
 
 
+	NSAssert1((0 <= component) && (component <= 255),
+        @"Value %i out of range!", component);
+
+
 # 日志消息
 
 # 使用自定义断言句柄
