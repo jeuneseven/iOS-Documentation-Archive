@@ -30,4 +30,10 @@
 
 # 日志消息
 
+	int recNum;
+	NSString *recName;
+	/* ... */
+	NSLog( @"Record %d is %@", recNum, recName );
+
+
 # 使用自定义断言句柄
