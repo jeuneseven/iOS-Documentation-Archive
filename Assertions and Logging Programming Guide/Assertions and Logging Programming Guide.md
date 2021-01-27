@@ -22,7 +22,7 @@
 # 使用断言宏定义
 
 本文档描述了如何使用Assert（以及相关）宏定义来判断一个条件并创建一个断言。  
-
+使用各种宏定义来判断一个条件——这些宏定义会用做 NSAssertionHandler 的前端。这些宏定义氛围两类：在OC方法中使用的和在C函数中使用的。举例来说，NSAssert就是用在方法中，NSCAssert就是用在函数中的。每个宏定义都有两个参数：
 
 	NSAssert1((0 <= component) && (component <= 255),
         @"Value %i out of range!", component);
