@@ -37,3 +37,5 @@
 
 
 # 使用自定义断言句柄
+
+在某些情况下，你可能要定义你自己的断言具柄来打印错误信息到不同的错误控制台或者抛出自定义异常，用来替代常见的NSInternalInconsistencyException。要实现这些功能，你必须定义一个NSAssertionHandler的子类并重写其handleFailureInMethod:object:file:lineNumber:description:和handleFailureInFunction:file:lineNumber:description:方法来分别处理方法和函数中的断言。
