@@ -1,5 +1,7 @@
 [Security Starting Point for iOS](https://developer.apple.com/library/archive/referencelibrary/GettingStarted/GS_Security_iPhone/index.html#//apple_ref/doc/uid/TP40007302)
 
+![](https://developer.apple.com/library/archive/referencelibrary/GettingStarted/GS_Security_iPhone/Art/security-layers.jpg)
+
 # 快速建立和运行
 
 # 成为专家
