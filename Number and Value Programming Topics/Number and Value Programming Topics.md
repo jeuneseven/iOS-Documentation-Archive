@@ -60,7 +60,7 @@ NSValue对象是一个C语言或者OC数据元素简单的容器。它能够包�
 
 # 使用数字
 
-NSNumber是NSValue的子类，它提供
+NSNumber是NSValue的子类，它能够提供任何C标量类型的值。它为创建数字对象和访问这些值（signed 或 unsigned char, short int, int, NSInteger, long int, long long int, float, 或 double, 或 BOOL）定义了一系列的方法。  
 
 	NSInteger nine = 9;
 	float ten = 10.0;
@@ -68,11 +68,13 @@ NSNumber是NSValue的子类，它提供
 	NSNumber *nineFromInteger = [NSNumber alloc] initWithInteger:nine];
 	NSNumber *tenFromFloat = [NSNumber numberWithFloat:ten];
 
-
+你可以使用字面量@来直接创建一个数字对象：
 
 	NSNumber *nineFromInteger = @9;
 	NSNumber *tenFromFloat = @10.0;
 	NSNumber *nineteenFromExpression = @(nine + ten);
+
+NSNumber定义了一个 compare: 方法来判断两个NSNumber对象的大小：  
 
 	NSComparisonResult comparison = [nineFromInteger compare:tenFromFloat];
 	// comparison = NSOrderedAscending
@@ -82,6 +84,9 @@ NSNumber是NSValue的子类，它提供
 	BOOL ok = [tenFromFloat boolValue];
 	// ok = YES
 
+一个NSNumber对象会记录它所创建的数字类型，并在比较NSNumber对象的不同数字类型以及返回值是C数字类型时使用C语言规则。参见标准C参考了解类型转换的详情。（不过，如果你请求一个数字的objCType，返回值类型不一定会与创建接收方的方法匹配。）  
+如果你使用一个不能够保留值的类型请求一个NSNumber对象，你会得到一个错误的结果——举例来说，如果你请求一个创建时是double，并比FLT_MAX大的float值的话，或者请求一个创建时是float，比NSInteger的最大值要大的integer值。
+
 	NSNumber *bigNumber = @(FLT_MAX);
 	NSInteger badInteger = [bigNumber integerValue];
 	NSLog(@"bigNumber: %@; badInteger: %d", bigNumber, badInteger);
@@ -89,6 +94,50 @@ NSNumber是NSValue的子类，它提供
 
 # 使用小数
 
+NSDecimalNumber 是一个 NSNumber 类的不可变子类，它提供了基于十进制的运算的面向对象封装。一个实例可以表现为mantissa x 10 exponent的表达式，可以表示任何数字，尾数部分是一个最长38位的小数，指数是一个-128到127之间的整数。  
+由于是做算术运算，方法可能会产生计算错误，比如除以0。也可能会遇到需要选择取整的情况。方法在此处表现的行为被称作“behavior”。  
+行为是在NSDecimalNumberBehaviors协议的方法设置的。每个NSDecimalNumber参数被称作behavior，需要一个遵循这个协议的对象。更多行为，参见NSDecimalNumberBehaviors 协议和NSDecimalNumberHandler 类的规范。另外查看defaultBehavior 方法的描述。  
+
 ## 小数的C语言接口
 
+你可以通过NSDecimalNumber的一组C函数访问算数和取整方法：  
+
+NSDecimalAdd	
+NSDecimalCompact	
+NSDecimalCompare	
+NSDecimalCopy	
+NSDecimalDivide	  
+NSDecimalIsNotANumber	
+NSDecimalMultiply	
+NSDecimalMultiplyByPowerOf10	
+NSDecimalNormalize	
+NSDecimalPower	
+NSDecimalRound	
+NSDecimalString	  
+NSDecimalSubtract  
+
+如果你不需要将小数看作对象，你可能需要参考C语言接口——意思是，如果你不需要将它们存储到一个类似NSArray 或者 NSDictionary的实例的面向对象的集合中的话。如果你需要最大限度的发挥作用的话，你可能也要考虑C语言接口。C语言接口更快，并且相比较NSDecimalNumber 类使用更少的内存。  
+如果你需要可变性，就要将两个接口结合。使用C语言接口的函数并将其结果转换为NSDecimalNumber的实例。  
+
 # 使用NSNull
+
+NSNull类定义了一个单例对象，你可以用它在禁止使用nil作为一个值的地方来表示一个null值（通常是在一个数组或者字典的集合对象中）。
+
+	NSNull *nullValue = [NSNull null];
+	NSArray *arrayWithNull = @[nullValue];
+	NSLog(@"arrayWithNull: %@", arrayWithNull);
+	// Output: "arrayWithNull: (<null>)"
+
+理解NSNull实例从字面上与NO 或 false不同很重要——都是代表一个逻辑值；NSNull实例代表没有值。NSNull实例从字面量与nil相等，不过要理解它与nil也不相等。要测试一个null对象的值，你必须做一个对象的比较。  
+
+	id aValue = [arrayWithNull objectAtIndex:0];
+	if (aValue == nil) {
+	    NSLog(@"equals nil");
+	}
+	else if (aValue == [NSNull null]) {
+	    NSLog(@"equals NSNull instance");
+	    if ([aValue isEqual:nil]) {
+	        NSLog(@"isEqual:nil");
+	    }
+	}
+	// Output: "equals NSNull instance"
