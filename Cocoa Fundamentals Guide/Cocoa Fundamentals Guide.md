@@ -149,7 +149,56 @@ OC突出了四种扩展性，都是在软件开发领域非常有力的工具：
 
 #### 协议
 
-OC的另一个扩展protocol非常像Java中的接口。
+OC的另一个扩展protocol非常像Java中的接口。都是直接把一系列方法声明在一个公开的接口中，其他类都可以选择实现。协议中的方法被某些其他类的实例对象发送的消息调用。  
+协议的主要价值是它们很像分类，能够替代子类。它产生了在C++中的多重继承的优势，能够共享接口（如果没有实现）。接口也是一种让类声明一个接口时想要隐藏其身份的一种方式。接口可能会暴露一个类要提供的所有或者（通常来讲）一部分服务。整个类继承等级的其他类，不一定在任何继承关系（甚至不到根类），可以实现该协议的方法，因而访问已经公开的服务。使用协议，即使对另一个类的身份一无所知（即类的类型）也能够与该类以协议发布的特定目的进行通信。  
+有两种类型的协议：正式和非正式。非正式协议在“协议”中简单提过。即NSObject的分类；因此，每个以NSObject作为其根类的对象（类对象也是）隐含的已经采用了在分类中公开的接口。要使用一个非正式协议，一个类不需要实现它其中声明的每个方法，只需要实现它想要实现的即可。至于非正式协议是如何工作的，类声明的非正式协议在给目标对象发送协议消息之前必须正确响应从一个目标对象发出的respondsToSelector: 方法消息。（如果目标对象没有实现方法，会有一个运行时异常。）  
+正式协议在Cocoa中通常被设计为protocol。它让一个类正式的声明一系列的需要公开服务的接口。OC语言和运行时系统支持正式协议；编译器会检测基于协议的类型，对象可以在运行时进行内省来检验一个协议的一致性。正式协议有其自己的术语和语法。对于发布者和客户端术语有所不同：  
+
+* 发布者（通常是一个类）声明正式协议。
+* 客户端类采用一个正式协议，这样做既为同意实现所有协议中要求的方法。
+* 如果一个类采用了或者继承了一个类采用的一个协议，那么类要遵循一个正式协议（协议是可以被子类继承的。）
+
+在OC中，无论是声明还是遵循一个协议，都有其自己的语法格式。要声明一个协议，必须使用@protocol编译器指令。下例展示了 NSCoding 协议的声明（在Foundation框架的头文件NSObject.h中）。  
+
+	@protocol NSCoding
+	- (void)encodeWithCoder:(NSCoder *)aCoder;
+	- (id)initWithCoder:(NSCoder *)aDecoder;
+	@end
+
+OC2.0版本通过基于你选择声明可选协议和必选协议方法来改进了正式协议。在OC1.0版本中，采用一个协议必须实现所有该协议的方法。在OC2.0中，协议方法默认必须，但可以指定@required指令作为标记。不过你也可以使用@optional指令标记协议方法作为可选实现；所有在此指令后声明的方法，除非中间遇到@required，都可以选择是否实现。看如下声明：  
+
+	@protocol MyProtocol
+	// implementation of this method is required implicitly
+	- (void)requiredMethod;
+	 
+	@optional
+	// implementation of these methods is optional
+	- (void)anOptionalMethod;
+	- (void)anotherOptionalMethod;
+	 
+	@required
+	// implementation of this method is required
+	- (void)anotherRequiredMethod;
+	@end
+
+声明协议方法的类通常不用实现这些方法；不过，应该在遵循协议的类的实例中调用这些方法。在调用可选方法之前，应该使用respondsToSelector:方法检查该方法是否被实现。  
+通过指定协议，一个类可以采用一个协议，包裹在一个尖括号中，在其@interface指令的末尾，跟随其父类。一个类可以采用多个协议，通过逗号分隔即可。Foundation的NSData类是如何采用三个协议的：  
+
+	@interface NSData : NSObject <NSCopying, NSMutableCopying, NSCoding>
+
+采用了三个协议，NSData其本身实现了在这些协议中声明的所有必须实现的方法。还可以选择实现标记为@optional的可选方法。分类也可以采用协议，并且它们的采用也会变成其类的一部分。  
+OC按照类遵循的协议以及其继承的类进行分类。你可以通过发送一个conformsToProtocol: 消息来判断一个类是否遵守了一个特定协议：  
+
+	if ([anObject conformsToProtocol:@protocol(NSCoding)]) {
+	        // do something appropriate
+	}
+
+在一种类型的声明中——一个方法，实例变量或者函数——你可以指定遵循协议作为该类型的一部分。你同样获取到了另一层编译器提供的类型检查机制，这更加抽象，因为它并没有绑定到某个指定的实现上。作为遵循协议，你可以使用同样的语法约定：将协议名放在尖括号指定该类型遵循的协议。通常会看到动态对象类型，id，用在这些声明当中，比如：  
+
+	- (void)draggingEnded:(id <NSDraggingInfo>)sender;
+
+在这里参数中提及的对象可以为任意类型，但它必须遵循 NSDraggingInfo 协议。  
+Cocoa提供了很多种协议的示范，不止目前所展示的这些。一个比较有意思的是 NSObject 协议。毫无意外的，NSObject 类遵循它，但其他根类也是如此，比如NSProxy。通过该协议，NSProxy类可以与OC运行时各个部分进行交互，这些部分对于引用计数、内省和其他基本的对象行为都至关重要。  
 
 #### 声明属性
 
