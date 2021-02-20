@@ -202,7 +202,53 @@ Cocoa提供了很多种协议的示范，不止目前所展示的这些。一个
 
 #### 声明属性
 
+在对象的模型设计模式中（参见“对象模式”）对象拥有属性。属性组成了一个对象的特性，比如作为一个标题和颜色，一个对象与另一个对象的关系。在传统OC代码中，通过声明一个实例变量来定义属性，并且为了强制封装，通过实现访问器方法来获取和设置这些变量的值。这是一个乏味且容易出错的任务，尤其当内存管理是一个问题的时候（参见“存储和访问属性”）。  
+在OC2.0中，在OS X v10.5中已经引入，提供了一种语法来声明属性并指定它们该如何被访问。声明一个属性变为一种声明设置和获取方法的速记方式。使用属性，你不用必须实现存取方法。通过一个点语法直接访问属性值也是可以的。属性的语法有三个方面：声明，实现和访问。  
+无论是在类，分类或者协议声明部分都可以声明属性。声明属性的语法是：  
+
+	@property(attributes...)type propertyName
+
+当attributes是一个或多个可选属性时（如果是多个的话用逗号分隔）会影响编译器如何存储实例变量以及合成存取器方法。type元素指定一个元素的类型，声明类型或者标准类型，比如id, NSString *, NSRange, 或者 float。属性必须由一个同样类型和名称的实例变量支持。  
+在属性中可选的attributes声明在列表2-1中。  
+
+列表2-1 可以用来声明在属性中的attributes 
+
+属性  | 效果
+------------- | -------------
+getter=getterName，setter=setterName  | 指定getter和setter存取器方法的名称（参见“存储和访问属性”）。当你实现你自己的存取方法并想要控制其名称时你可以指定这些属性。
+readonly | 标明属性只能被读取，不能被写入。编译器不会合成setter存取方法或者允许一个非同步的方法调用。
+readwrite | 标明属性能够被读写。若readonly没有指定，默认为此。
+assign | 指定在实现setter方法时只需要实现赋值；这为默认。如果是声明在非垃圾回收的程序中，必须指定对象属性为retain或者copy。
+retain | 指定在赋值前，retain应该发送给属性（必须为对象类型）。注意retain在垃圾自动回收环境中禁用retain。
+copy | 指定在赋值前，retain应该发送给属性（必须为对象类型）。对象的类必须实现了NSCopying协议。
+nonatomic | 指定存取方法合成为非原子化的方法。默认的，所有的存取方法都是原子化的：getter方法保证返回一个有效值，即使是在其他线程同时在执行。有关原子化和非原子化的属性的相关讨论，尤其是和性能相关的部分，参见《OC编程语言》的“声明属性”部分。  
+如果你没指定属性并在实现中指定类@synthesize，编译器会直接使用赋值以及以propertyName作为getter setPropertyName: 作为setter名称合成属性的getter和setter方法。  
+在一个类的定义的@implementation块中，你可以使用@dynamic 和 @synthesize 指令直接控制编译器对于某个属性合成存取方法。两个指令有同样的语法：  
+
+	@dynamic propertyName [, propertyName2...];
+	@synthesize propertyName [, propertyName2...];
+
+@dynamic指令会告诉编译器你要自己为属性实现存取方法，无论是直接或者动态的（比如在动态加载代码时）。另一方面@synthesize指令告诉编译器如果存取方法没有在@implementation块中，那么就去合成存取方法。@synthesize的语法同样包含一个扩展能够让你使用不同的名称来给属性和其实例变量存储。看下如下语句：  
+
+	@synthesize title, directReports, role = jobDescrip;
+
+这会告诉计算机给title, directReports, 和 role合成存取方法，并使用jobDescrip实例变量返回role属性。  
+最后，OC属性功能通过使用点语法和直接赋值对于存取属性支持一个简化的语法。下例展示了如何简单的使用并获取属性的值以及使用该语法对其进行设置：  
+
+	NSString *title = employee.title; // assigns employee title to local variable
+	employee.ID = "A542309"; // assigns literal string to employee ID
+	// gets last name of this employee's manager
+	NSString *lname = employee.manager.lastName;
+	
+注意点语法只在属性和简单的一对一关系中才有用，对于一对多的关系无用。  
+
+```
+扩展阅读：要更多的了解声明属性，阅读《OC编程语言》中的“声明属性”部分。
+```
+
 #### 快速枚举
+
+
 
 ### 使用OC
 
