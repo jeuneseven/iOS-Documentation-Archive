@@ -282,6 +282,17 @@ expression必须必须是一个遵循NSFastEnumeration 协议的类。快速枚�
 
 ### 使用OC
 
+在面向对象的程序中，是通过消息来完成工作的；一个对象给另一个对象发送消息。通过消息，发送对象从接收对象请求某事。它请求接收方执行某个动作，返回某个对象或者值，或者两种都有。  
+OC为消息采用了一种独特的语法。下面的语句是在SimpleCocoaTool代码中的，清单2-2:  
+
+	NSEnumerator *enm = [sorted_args objectEnumerator];
+
+消息表达式是在语句的右边，被方括号包裹。消息的最左方是接收者，一个变量或者表达式表示是该对象发送的消息。在这个示例中，接收者是sorted_args，一个NSArray类的实例。跟着接收者的是消息本身，在本例中是objectEnumerator。（现在，讨论只聚焦在消息语法而非深入了解这到底是什么以及SimpleCocoaTool中的其他消息到底做了什么。）消息objectEnumerator调用了sorted_args对象的一个叫做objectEnumerator的方法，它会返回一个对象的引用，该引用会被语句左边的enm变量持有。这个变量作为 NSEnumerator 类的实例静态类型。你可以用图表表达这个语句：  
+
+	NSClassName *variable = [receiver message];
+
+不过，这种图表是简化的并且不精确。
+
 ## 根类
 
 # 给一个Cocoa程序添加行为
