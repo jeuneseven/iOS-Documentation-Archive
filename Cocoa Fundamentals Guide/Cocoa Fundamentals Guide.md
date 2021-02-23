@@ -291,7 +291,54 @@ OC为消息采用了一种独特的语法。下面的语句是在SimpleCocoaTool
 
 	NSClassName *variable = [receiver message];
 
-不过，这种图表是简化的并且不精确。
+不过，这种图表是简化的并且不精确。一条消息是由一个消息名和消息的参数组成。OC运行时使用了消息名，类似上面的objectEnumerator，要在一个列表当中查找到一个消息名，然后调用。消息名是唯一的身份认证，它代表了一个方法并拥有一个特殊的类型，SEL。由于这密切相关，用于查找消息的消息名也经常作为消息。上述语句更正确的展示如下：  
+
+	NSClassName *variable = [receiver selector];
+
+消息通常都有参数，一般叫做arguments。一条消息有一个参数的要在消息名后加一个冒号，然后跟着参数名。这种结构叫做一个keyword；一个keyword末尾跟着一个冒号，然后一个参数在冒号后。因此我们展示一条带有一个参数的消息表达式如下：  
+
+	NSClassName *variable = [receiver keyword:parameter];
+
+如果一条消息有多个参数，消息名就有多个关键字。一个消息名包含所有的关键字，包括冒号，但不包括其他内容，比如返回值或者参数类型。一条含有多个关键字的消息表达式（加上赋值）展示如下：  
+
+	NSClassName *variable = [receiver keyword1:param1 keyword2:param2];
+
+由于有函数参数，一个参数的类型必须与方法声明中指定的类型匹配。看下SimpleCocoaTool中的如下消息表达式：  
+
+	NSCountedSet *cset = [[NSCountedSet alloc] initWithArray:param];
+
+这里的param，也是一个NSArray类的实例，它是叫做initWithArray:的消息的参数。  
+上述引用的initWithArray:展示了嵌套。你可以将一条消息嵌套在另一条消息当中；由一条消息表达式返回的对象被包围它的消息表达用作接收者。所以要解释嵌套消息表达式，从内部表达式向外操作。上述语句的解释如下：  
+
+1. alloc 消息发送给 NSCountedSet 类，这会创建一个未初始化的类的实例（给其分配了内存空间）。
+	```
+	注意：OC的类是对象，在其右边你可以给它发送消息，也个可以给其实例发送消息。在一条消息表达式中，一个类消息的接收者始终是一个类对象。
+	```
+2. initWithArray:消息发送给未初始化的实例，它会用数组args将其初始化，然后返回它自身的一个引用。
+	
+SimpleCocoaTool的main函数中的语句中下一个需要注意的是：  
+
+	NSArray *sorted_args = [[cset allObjects] sortedArrayUsingSelector:@selector(compare:)];
+
+这条消息表达式显著的特征是sortedArrayUsingSelector:的参数。这个参数需要使用@selector编译器指令来创建一个消息名当作一个参数。  
+我们先暂停重新看下消息和方法的术语。方法本质上是由消息接收者为成员的类定义和实现的函数。消息是一个消息名（可能有一个或多个关键字组成）和参数；一条消息发送给接收者以及它的结果在方法的调用中（或者执行）。一条消息表达式包括接收者和消息。图2-2描述了这些关系。  
+
+图2-2 消息术语  
+
+![](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaFundamentals/Art/message_terms.jpg)
+
+OC会使用一些在ANSI C中没有的定义类型和字面量。在某些情况下，这些类型和字面量会替代其ANSI C的对应部分。列表2-2描述了一些重要的，包括每种类型的可用字面量。  
+
+列表2-2 部分OC定义的类型和字面量  
+
+类型  | 描述和字面量
+------------- | -------------
+id  | 动态对象类型。它的否定是nil。
+Class  | 动态类类型，它的否定是Nil。
+SEL  | 一个选择器的数据类型（typedef）。该类型的否定是NULL。
+BOOL  | 一个布尔类型。它的字面值是YES和NO。
+
+
 
 ## 根类
 
