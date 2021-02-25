@@ -415,6 +415,24 @@ NSObject根类，和采用NSObject协议以及其他根协议，为所有非转�
 
 NSObject 还有一些其他的方法，包括用于版本和乔装的类方法（后者允许一个类以另一个类的形式呈现在运行时）。它还包括允许你访问运行时数据结构的方法，比如方法选择器和方法实现的函数指针。
 
+### 接口约定
+
+一些NSObject的方法仅仅是要被调用的，而另一些是被设计用来重写的。比如，大部分子类都不应该重写allocWithZone:，但都应该实现init——或者至少是一个初始化方法，该方法最终会调用根类的init（参见“对象的创建”）。这些方法是希望被子类重写的，NSObject实现这些方法要么是什么都没做，要么就是返回了某些合理的默认值，比如self。这些默认的实现使得发送基本的类似init给任何Cocoa对象成为可能——甚至是给一个没有重写这些方法的类的对象——并且也不会造成运行时异常。在发送消息之前也没有必要进行检查（使用respondsToSelector:）。更重要的是，NSObject的“占位”方法为Cocoa对象定义了一个通用架构，并创建了这一惯例，当所有的类都遵守时，这让对象的交互更加可靠。  
+
+### 实例和类方法
+
+运行时系统对定义在根类中的方法是特殊对待的。根类中定义的实例方法能够被实例和类对象执行。所以，所有的类对象都可以访问定义在根类中的实例方法。任何类对象都可以执行任何实例方法，前提是它没有具有相同名称的类方法。  
+比如，一个类对象能够发送消息来执行NSObject实例方法respondsToSelector:和performSelector:withObject: 如下所示：  
+
+	SEL method = @selector(riskAll:);
+ 
+	if ([MyClass respondsToSelector:method])
+	    [MyClass performSelector:method withObject:self];
+
+注意只有定义在根类中的实例方法对于类对象才可用。在上例中，如果MyClass重新实现了respondsToSelector: 或者 performSelector:withObject:，这些新版本的方法只有对于实例对象可用。MyClass的类对象只能执行定义在NSObject类当中的版本。（当然，如果MyClass实现了respondsToSelector: 或 performSelector:withObject: 作为类方法，而非实例方法，该类也能够执行这些新版本。）
+
+## 对象的持有和释放
+
 # 给一个Cocoa程序添加行为
 
 # Cocoa设计模式
