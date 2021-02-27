@@ -466,6 +466,106 @@ iOS注意：垃圾回收不支持iOS
 
 ## 内省
 
+内省是一个面向对象语言和环境的强有力的工具，OC和Cocoa中的内省也不例外。内省指的是在运行时对象暴露其作为对象本身的信息的一种能力。这种信息包括对象在其继承链中的位置，它是否遵循某个特定协议，它是否响应某个消息。NSObject 协议和类定义了很多内省方法，你可以用来在运行时查询对象的特性。   
+使用得当的话，内省会让面向对象程序更加高效和健壮。它能够帮助你避免消息分发的错误，对象相等性的错误假设以及类似的问题。以下章节展示了你该如何在你的代码中高效使用NSObject的内省方法。  
+
+### 评估继承关系
+
+一旦你知道了一个对象的所属的类，你应该对于对象有了一定的了解。你可能会知道其功能，它所代表的属性，以及它能够接收什么样的消息。即使在内省之后你依旧对于一个对象所属的类不够熟悉，你也至少知道不要给它发送什么消息了。  
+NSObject协议声明了一些方法来判断一个对象在类的继承链中的位置。这些方法是以不同的时间粒度操作的。比如，class和superclass实例方法返回的Class对象分别代表接收者的类和父类。这些方法需要你用一个Class对象和另一个进行比较。清单2-7给出了一个简单的（也可以说是不太重要）的使用示例。  
+
+清单2-7 使用类和父类方法  
+
+	// ...
+	while ( id anObject = [objectEnumerator nextObject] ) {
+	    if ( [self class] == [anObject superclass] ) {
+	        // do something appropriate...
+	    }
+	}
+
+```
+注意：有时候你使用class或者superclass方法来为一个类消息获取一个恰当的接收者。
+```
+
+更常见的，检查一个对象的从属关系，可以发送一条isKindOfClass: 或 isMemberOfClass: 消息。前者会返回接收者是否是一个给定类的实例或者是任意从该类继承的类的实例。另一方面，isMemberOfClass: 会告诉你接收者是否是一个指定类的实例。isKindOfClass: 方法更加常用，因为你可以通过它立刻获取你给一个对象发消息的完整范围。看下清单2-8中的代码块。  
+
+清单2-8 使用isKindOfClass:  
+
+	if ([item isKindOfClass:[NSData class]]) {
+	    const unsigned char *bytes = [item bytes];
+	    unsigned int length = [item length];
+	    // ...
+	}
+
+通过了解到对象item继承自 NSData 类，这段代码知道了它能够发送NSData 的bytes 和 length 消息。如果你假设item是一个NSMutableData 的实例的话，那么isKindOfClass: 和 isMemberOfClass: 的区别就很显然了。如果你使用isMemberOfClass: 代替 isKindOfClass:，条件语句中的代码就不会被执行了，因为item并非是NSData的实例，而是NSMutableData的，它是NSData的子类。
+
+### 方法的实现和协议的一致性
+
+另外两个NSObject更有用的方法是respondsToSelector: 和 conformsToProtocol:。这些方法会分别告诉你一个对象是否实现了某个方法以及一个对象是否遵循了一个特定的正式协议（意思是采用了协议，如果需要的话，实现了协议中所有的方法）。  
+在你的代码中类似的情况下使用这些方法。它们让你能够在发送消息之前发现某些潜在的匿名对象可以适当的响应一个特定的消息，或者一组消息。通过在发送消息之前做这些检测，你能够避免产生运行时的不可识别的消息的异常。AppKit 框架实现了这些非正式协议——基于代理——通过在调用那个方法之前检测代理是否实现了这个代理方法（使用respondsToSelector: ）。  
+清单2-9展示了在你的代码中该如何使用respondsToSelector:方法。  
+
+清单2-9 使用respondsToSelector:  
+
+	- (void)doCommandBySelector:(SEL)aSelector {
+	    if ([self respondsToSelector:aSelector]) {
+	        [self performSelector:aSelector withObject:nil];
+	    } else {
+	        [_client doCommandBySelector:aSelector];
+	    }
+	}
+
+清单2-10 展示了在你的代码中该如何使用 conformsToProtocol:方法。  
+
+清单2-10 使用conformsToProtocol:  
+
+	// ...
+	if (!([((id)testObject) conformsToProtocol:@protocol(NSMenuItem)])) {
+	    NSLog(@"Custom MenuItem, '%@', not loaded; it must conform to the
+	        'NSMenuItem' protocol.\n", [testObject class]);
+	    [testObject release];
+	    testObject = nil;
+	}
+
+### 对象的比较
+
+虽然严格来讲hash 和 isEqual:并不是严格的内省方法，但它们都履行了类似的指责。在运行时它们是不可或缺的验证和比较对象的工具。但它并非在运行时检索关于一个对象的信息，而是依赖于特定类的比较逻辑。  
+hash 和 isEqual: 方法都是声明在NSObject 协议中的，并且密切相关。hash方法实现的时候必须返回一个整数用作哈希表结构的表地址。如果两个对象相等（由isEqual:方法判断），它们必须有同样的哈希值。如果你的对象能够被类似NSSet这样的集合包含，你需要定义hash方法并验证如果两个对象相等，则它们返回相等的哈希值。NSObject中isEqual:的默认实现是直接检查指针是否相等。  
+使用 isEqual: 方法很简单；它会比较接收者与作为参数提供的对象进行比较。对象比较经常为运行时应该如何处理对象提供信息。在清单2-11中展示了使用isEqual: 来判断是否执行一个动作，在这种情况下，保存已经修改的用户首选项。  
+
+清单2-11 使用isEqual:  
+
+	- (void)saveDefaults {
+	    NSDictionary *prefs = [self preferences];
+	    if (![origValues isEqual:prefs])
+	        [Preferences savePreferencesToDefaults:prefs];
+	}
+
+如果你创建了一个子类，你可能需要重载isEqual:并为指针是否相等添加进一步的检查。子类可能定义了额外的属性，如果两个实例要判定为相等那么属性也应该相等。比如，假设你创建了一个NSObject 的子类叫做 MyWidget，它包括两个实例变量name 和 data。这两个变量必须都相等，两个MyWidget的实例才会被视作相等。清单2-12 展示了MyWidget 的isEqual:实现。   
+
+清单2-12 重载isEqual:  
+
+	- (BOOL)isEqual:(id)other {
+	    if (other == self)
+	        return YES;
+	    if (!other || ![other isKindOfClass:[self class]])
+	        return NO;
+	    return [self isEqualToWidget:other];
+	}
+	 
+	- (BOOL)isEqualToWidget:(MyWidget *)aWidget {
+	    if (self == aWidget)
+	        return YES;
+	    if (![(id)[self name] isEqual:[aWidget name]])
+	        return NO;
+	    if (![[self data] isEqualToData:[aWidget data]])
+	        return NO;
+	    return YES;
+	}
+
+isEqual:方法首先检查指针是否相等，然后是类是否相等，最终调用一个对象的比较方法，其名称表示参与比较的对象类别。这种类型的比较方法会强制检测传入的对象，这在Cocoa中是惯例；NSString的 isEqualToString: 方法以及NSTimeZone 类的isEqualToTimeZone: 方法就是两个例子。类特定的比较方法——在本例中是 isEqualToWidget: ——执行名称和数据是否相等的检查。  
+在所有的Cocoa 框架中的 isEqualTo类型：的方法中，nil不是一个有效的参数并且实现这些方法时可能会产生接收到nil的异常。不过，对于向后兼容，Cocoa 框架的 isEqual: 是可以接受nil的，它会返回nil。
+
 ## 对象的可变
 
 ## 类簇
