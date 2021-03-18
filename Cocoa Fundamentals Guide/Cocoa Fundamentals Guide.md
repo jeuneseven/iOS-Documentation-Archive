@@ -677,11 +677,17 @@ iOS注意：UIKit实现的响应链和AppKit实现的不同。如果一个视图
 
 #### Invocation对象
 
-NSInvocation 类的实例封装了一个OC消息。
+NSInvocation 类的实例封装了一个OC消息。invocation对象包含目标对象，方法选择器和方法参数。你可以通过invocation对象动态的改变分发的消息的目标和参数；一旦invocation被执行，你还可以从对象获取到返回值。通过一个invocation对象，你可以用不同的目标和参数重复的调用消息。  
+NSInvocation 对象的创建需要NSMethodSignature 对象，它是一个封装与参数相关的类型信息的对象，并返回一个方法。反过来说，NSMethodSignature 对象是由一个方法选择器创建的。NSInvocation的实现也利用了OC运行时的功能。  
 
 ##### 使用和局限
 
+NSInvocation对象是分发对象、撤销管理、消息转发和计时器的编程接口的一部分。在你需要解藕发送消息的对象和接受消息的对象时也可以使用invocation对象在这种类似上下文中。  
+分发对象技术是为了中间处理交流。参见“Proxy”了解更多关于分发对象的信息。
 
+```
+深度阅读：《NSInvocation类参考》了解invocation对象详情。同样，可以查看一下文档来了解相关技术的信息：《撤销架构》，《Timer编程话题》和《OC编程语言》中的“运行时系统”部分。
+```
 
 ### 目标-动作机制
 
