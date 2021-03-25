@@ -747,9 +747,17 @@ Cocoa使用装饰模式在实现以下几个类当中，包括NSAttributedString
 
 ![](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaFundamentals/Art/delegation.gif)
 
-
+委托，简单的说，就是一个对象将任务委托给另一个对象，是面向对象编程中的一种常见技术。不过，Cocoa以一种独特的方式实现了代理。主类使用了正式或非正式协议
 
 ##### 使用和局限
+
+在Cocoa框架中，代理是一种常见的设计模式。很多在AppKit和UIKit框架中的类都会发送消息给代理，包括 NSApplication, UIApplication, UITableView 和NSView的一些子类。某些在Foundation框架中的类，比如NSXMLParser 和 NSStream，也会维护代理。你应当始终使用类的代理机制代替类的子类机制，除非代理方法不能够让你完成你的目的。  
+尽管你可以动态的改变代理，在同一时刻只有一个对象可以被代理。所以如果你想要  
+在AppKit中的代理对象不会持有它的代理或者数据源。参见“代理的所有权，监听和目标”了解更多信息。  
+
+```
+深度阅读：更多关于代理的信息，参见“代理和数据源”。
+```
 
 #### 分类
 
