@@ -800,9 +800,13 @@ AppKit 框架的NSImage类提供了统一的接口来加载和使用图片，这
 
 #### Enumerators
 
-Foundation框架中的 NSEnumerator 类实现了迭代模式。
+Foundation框架中的 NSEnumerator 类实现了迭代模式。抽象了NSEnumator类的私有、具体子类将按照顺序穿过各种类型的集合——数组、集合、字典（键值对）——的列举返回到客户端。   
+NSDirectoryEnumerator 是一个遥远的相关类。该类的实例会在文件系统中递归枚举一个目录的内容。
 
 ##### 使用和局限
+
+类似 NSArray, NSSet, 和 NSDictionary 的集合类包含的方法会返回一个适合集合类型的枚举器。所有的枚举器都是以同样的方式运行的。在循环中发送一个 nextObject 消息给枚举对象，当为nil时返回退出，否则返回集合中的下一个对象。   
+你还可以使用快速枚举来访问集合的元素；这一语言特性在《快速枚举》中有描述。
 
 ### 中介模式
 
