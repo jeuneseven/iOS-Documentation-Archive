@@ -45,7 +45,7 @@ Xcode提供了一组工具来帮助你进行这些结构上的变更。但在你
 
 在例子当中，+factoryMethodA 消息发出的返回MyObjectSubclass类型的对象，也就是接收者的类型。编译器会适当的判断 +factoryMethodA 的返回类型应该为MyObjectSubclass的子类，而非工厂方法致歉声明的子类。  
 
-## 如何适配
+## 如何采用
 
 在你的代码中只要出现返回值类型是id的都可以替换为 instancetype。这通常是 init 方法这种案例以及类工厂方法。虽然编译器自动的转换开头为 “alloc,” “init,” or “new” 的方法并将返回id的转换为返回 instancetype 的，但它不会转换其他方法。OC的惯例是为所有方法显式的写上 instancetype。  
 注意你应该只在返回值中将id替换为 instancetype，不是你的代码中的所有地方。instancetype关键字和id不同，它只能被用做方法声明的返回值类型。  
@@ -91,9 +91,43 @@ Xcode提供了一组工具来帮助你进行这些结构上的变更。但在你
 * init方法
 * copy、mutableCopy方法
 * 类工厂方法
+* 以动作开始并返回一个BOOL结果的方法
+* 显式的改变内部的状态作为getter方法的副作用的方法
 
+此外，在你的代码中当判断潜在的属性时考虑如下一组规则：  
+
+* 一个读、写的属性有两个存取方法。setter带一个参数并不返回任何内容，getter不带参数并返回一个值。如果你将这组方法转换为一个属性，标记为关键字 readwrite。 
+* 一个只读的方法只有一个存取方法，即getter，不带参数返回一个值。如果你转换这个方法为一个属性，标记以readonly关键字。
+* getter应该是幂等的（若一个getter被调用两次，第二次调用的结果应该和第一次一样）。不过，可以接受一个getter方法每次被调用的时候计算其结果。
+
+## 如何采用
+
+判断一组方法是否有资格能够被转换为一个属性，类似这些：  
+
+	- (NSColor *)backgroundColor;
+	- (void)setBackgroundColor:(NSColor *)color;
+
+并使用@property语法配合恰当的关键字进行声明：  
+
+	@property (copy) NSColor *backgroundColor;
+
+更多关于属性关键字和其注意事项，参见《封装数据》。  
+作为一种选择，你可以使用Xcode中的现代OC转换器来对你的代码自动的做出这一改变。更多信息，参见《使用Xcode在你的代码中进行重构》。
 
 # 枚举指令
+
+NS_ENUM和NS_OPTIONS宏定义提供了一种简洁的方式来在基于C的语言中定义枚举和选项。这些宏定义提升了Xcode中的代码完成度并显式的指定你的枚举和选项的类型和大小。此外，这些句法声明的枚举被旧的编译器判断为正确的方式，并被新的编译器表达底层的类型信息。  
+使用NS_ENUM宏定义来定义枚举，一组互相独有的值：  
+
+	typedef NS_ENUM(NSInteger, UITableViewCellStyle) {
+	        UITableViewCellStyleDefault,
+	        UITableViewCellStyleValue1,
+	        UITableViewCellStyleValue2,
+	        UITableViewCellStyleSubtitle
+	};
+
+NS_ENUM 宏定义帮助定义名称和枚举的类型，在这个例子中名称为UITableViewCellStyle，类型为NSInteger。枚举的类型应该为NSInteger。  
+
 
 # 对象初始化
 
