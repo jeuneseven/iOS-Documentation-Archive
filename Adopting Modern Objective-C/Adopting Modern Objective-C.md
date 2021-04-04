@@ -127,9 +127,86 @@ NS_ENUM和NS_OPTIONS宏定义提供了一种简洁的方式来在基于C的语�
 	};
 
 NS_ENUM 宏定义帮助定义名称和枚举的类型，在这个例子中名称为UITableViewCellStyle，类型为NSInteger。枚举的类型应该为NSInteger。  
+使用NS_OPTIONS宏定义来定义选项，一组可能会互相结合的位掩码的值：  
 
+	typedef NS_OPTIONS(NSUInteger, UIViewAutoresizing) {
+	        UIViewAutoresizingNone                 = 0,
+	        UIViewAutoresizingFlexibleLeftMargin   = 1 << 0,
+	        UIViewAutoresizingFlexibleWidth        = 1 << 1,
+	        UIViewAutoresizingFlexibleRightMargin  = 1 << 2,
+	        UIViewAutoresizingFlexibleTopMargin    = 1 << 3,
+	        UIViewAutoresizingFlexibleHeight       = 1 << 4,
+	        UIViewAutoresizingFlexibleBottomMargin = 1 << 5
+	};
+
+就像枚举一样，NS_OPTIONS宏定义定义了名字和联系。不过，选项的类型应该通常是NSUInteger的。  
+
+## 如何采用
+
+替换你的enum声明，类似这种：  
+
+	enum {
+	        UITableViewCellStyleDefault,
+	        UITableViewCellStyleValue1,
+	        UITableViewCellStyleValue2,
+	        UITableViewCellStyleSubtitle
+	};
+	typedef NSInteger UITableViewCellStyle;
+
+加上NS_ENUM语法：  
+
+	typedef NS_ENUM(NSInteger, UITableViewCellStyle) {
+	        UITableViewCellStyleDefault,
+	        UITableViewCellStyleValue1,
+	        UITableViewCellStyleValue2,
+	        UITableViewCellStyleSubtitle
+	};
+	
+不过当你使用enum定义位掩码的时候，类似这个：  
+
+	enum {
+	        UIViewAutoresizingNone                 = 0,
+	        UIViewAutoresizingFlexibleLeftMargin   = 1 << 0,
+	        UIViewAutoresizingFlexibleWidth        = 1 << 1,
+	        UIViewAutoresizingFlexibleRightMargin  = 1 << 2,
+	        UIViewAutoresizingFlexibleTopMargin    = 1 << 3,
+	        UIViewAutoresizingFlexibleHeight       = 1 << 4,
+	        UIViewAutoresizingFlexibleBottomMargin = 1 << 5
+	};
+	typedef NSUInteger UIViewAutoresizing;
+	
+使用 NS_OPTIONS 宏定义：  
+
+	typedef NS_OPTIONS(NSUInteger, UIViewAutoresizing) {
+	        UIViewAutoresizingNone                 = 0,
+	        UIViewAutoresizingFlexibleLeftMargin   = 1 << 0,
+	        UIViewAutoresizingFlexibleWidth        = 1 << 1,
+	        UIViewAutoresizingFlexibleRightMargin  = 1 << 2,
+	        UIViewAutoresizingFlexibleTopMargin    = 1 << 3,
+	        UIViewAutoresizingFlexibleHeight       = 1 << 4,
+	        UIViewAutoresizingFlexibleBottomMargin = 1 << 5
+	};
+
+作为选项，你可以使用Xcode中的现代OC转换器来自动的对你的代码作出变更。更多信息，参见《使用Xcode重构你的代码》。
 
 # 对象初始化
+
+在OC中，对象的初始化是基于一种“设定初始化器”的概念，一个初始化方法需要负责首先调用其父类的初始化方法然后初始化其自己的实例变量。非设定初始化器的方法被称作“便捷初始化器”。便捷初始化器通常代理其他的初始化器——最终的链条会在设定初始化器——而非自己执行初始化。  
+设定初始化模式帮助确保继承的初始化方法都能够适当的初始化所有的实例变量。子类需要执行所有重要的初始化方法，应该重写所有父类的设定初始化方法，不过不用重写便捷初始化器。更多关于初始化器的信息，参见《对象的初始化》。  
+为清晰的阐明初始化器和设定初始化器之间的区分，你可以添加NS_DESIGNATED_INITIALIZER宏定义给init家族中的任何方法，表示它是一个设定初始化器。使用该宏定义引入了一些限制条件：  
+
+* 设定初始化器的实现必须链接到一个父类的init方法（使用[super init...]）它是一个父类的设定初始化器。
+* 一个便捷初始化器（一个没有被标记为设定初始化器的初始化器，它所在类中至少有一个初始化器被标记为设定初始化器）的实现必须代理到另一个初始化器（使用[self init...]）。
+* 如果一个类提供了一个或更多的设定初始化器，它必须实现所有的弗雷中的设定初始化器。
+
+任何一条被违反了，你都会收到编译器警告。  
+若你在你的类中使用NS_DESIGNATED_INITIALIZER宏定义，你需要用此标记你所有的设定初始化器。所有其他的初始化器都会被试做便捷初始化器。  
+
+## 如何采用
+
+在你的类中判断出设定初始化器，使用NS_DESIGNATED_INITIALIZER宏定义对其进行标记。比如：  
+
+	- (instancetype)init NS_DESIGNATED_INITIALIZER;
 
 # 自动引用计数(ARC)
 
