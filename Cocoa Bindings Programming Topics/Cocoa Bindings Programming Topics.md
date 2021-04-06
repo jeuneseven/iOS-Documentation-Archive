@@ -1,6 +1,39 @@
-[Cocoa Bindings Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaBindings/CocoaBindings.html#//apple_ref/doc/uid/10000167i)
+[Cocoa Bindings Programming Topics（适合macOS开发）](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaBindings/CocoaBindings.html#//apple_ref/doc/uid/10000167i)
 
 # 介绍
+
+cocoa绑定是一组技术，你可以将它用在你的应用程序中，完全实现一个MVC范式中模型封装应用数据，视图展示和编辑数据以及控制器调和两者。cocoa绑定降低了模型、视图和控制器之间代码的耦合，支持多种方式查看你的数据，并自动的在模型数据改变的时候同步给视图。cocoa绑定提供了扩展控制器、协议给模型和视图来适配，以及Foundation 和 Application 框架中额外的类。你可以通过使用界面构建器消除大量的胶水代码来连接控制器和模型、视图。  
+
+## 谁该阅读本文档
+
+对于熟悉cocoa以及想要简化清理或消除已经存在的代码的程序员来说，cocoa绑定是一个理想工具。大部分情况下，cocoa绑定都能被用在取代传统的cocoa机制，比如目标-动作，代理，和某些数据源协议。不过，我们非常小心的确保这两种方式能够用在同一个应用中。  
+本文档假设你已经阅读了《KVC编程指南》，《KVO编程指南》和《值转换编程指南》。  
+
+```
+重要：cocoa绑定在运行OSX 10.3和之后的版本中的cocoa oc程序中可用。
+```
+
+## 本文档组织结构
+
+下列文章覆盖了理解cocoa绑定是如何工作的关键概念：  
+
+* 《什么是cocoa绑定？》
+* 《绑定是如何工作的？》
+* 《用户默认和绑定》
+* 《提供控制器内容》
+* 《与控制器选择协作》
+* 《绑定信息流》
+
+这些文章包含的任务能够教你如何使用Cocoa绑定：  
+
+* 《创建一个主从界面》
+* 《使用绑定展示图片》
+* 《使用Pop-up菜单实现对一的关系》
+* 《使用自定义数组控制器过滤》
+* 《控制器KVC遵循》
+* 《排查cocoa绑定》
+
+## 另请参阅
 
 # 什么是Cocoa绑定？
 

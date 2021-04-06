@@ -231,4 +231,4 @@ Xcode提供了一个现代OC转换器在现代化过程中帮助你。虽然转�
 * 转化字面量，一个像[NSNumber numberWithInt:3]这样的表达式，变为@3。
 * 使用下标，一个像[dictionary setObject:@3 forKey:key]这样的表达式，变为dictionary[key] = @3。
 
-要使用县嗲吗OC转换器，选择编辑>重构>转换为现代化OC句法。
+要使用现代OC转换器，选择编辑>重构>转换为现代化OC句法。
