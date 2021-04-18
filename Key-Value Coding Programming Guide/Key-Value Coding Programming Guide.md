@@ -95,6 +95,17 @@ key path是一个用点分隔符制定一系列来回的对象属性的字符串
 
 当你使用key path来定位一个属性时，如果key path中的最终key是多对多关系（即它引用了集合），返回值会是一个根据key到对多key的右侧的包含了所有值的集合。比如，请求key path transactions.payee的值会返回一个包含所有交易的所有payee对象的数组，这在key path中对于可变数组也有效。accounts.transactions.payee 这个 key path会返回所有账户中所有交易的所有payee对象。
 
+### 使用Keys设置属性值
+
+和getters方法一样，符合KVC的对象也会根据NSObject的NSKeyValueCoding协议基于默认行为的实现提供一组小的通用的setters：  
+
+* setValue:forKey: -以给定值给相关对象的接受者根据特定key设置值。setValue:forKey:的默认实现会自动的解包NSNumber和NSValue对象为标量和结构体，然后将其赋值给属性。参见《表示非对对象值》了解封包和解包语法的细节。  
+如果指定的key相关的属性，即接收setter的对象调用没有该属性的话，对象会发送一条 setValue:forUndefinedKey: 消息给其本身。setValue:forUndefinedKey: 的默认实现是生成一个NSUndefinedKeyException异常。不过子类可以重载该方法来处理自定义管理中的请求。
+* setValue:forKeyPath: -根据指定key path相关的接收者设定给定值。任何在key path序列中的对象只要不符合给定key的KVC协议，就会收到一条 setValue:forUndefinedKey: 消息。
+* setValuesForKeysWithDictionary: -使用指定字典中的值设置接受者的属性，使用字典的key来匹配属性。默认的 setValue:forKey: 调用的实现是每个键值对，根据需要用nil代替NSNull对象。
+
+在默认实现中，当你试图用一个nil设置一个非对象的属性时，符合KVC的对象会给其自身发送一条 setNilValueForKey: 消息。 setNilValueForKey: 的默认实现是会生成一个NSInvalidArgumentException异常，但是对象可以重载该方法用一个默认值代替或者标记值代替，这在《处理非对象值》中有相关描述。
+
 ## 访问集合属性
 
 ## 使用集合操作符
