@@ -80,6 +80,21 @@ key path是一个用点分隔符制定一系列来回的对象属性的字符串
 在Swift中，你可以使用 #keyPath 表达式来代替使用字符串来表达一个key或key path。这也提供了编译时的检查，这在《结合Cocoa和OC（Swift 3）使用Swift指南》中的Keys 和 Key Paths段落有相关描述。
 ```
 
+### 使用keys获取属性值
+
+当一个对象遵守NSKeyValueCoding协议的时候，该对象就是符合KVC的。一个继承自NSObject的对象，它会提供协议根本方法的默认实现，自动的以某种默认行为遵循该协议。这样的一个对象至少实现了以下几种基本的基于Key的获取方法：  
+
+* valueForKey:-通过key参数返回属性名的值。如果通过key不能够根据《存取器检索模式》中描述的规则找到属性名的话，对象会给其本身发送valueForUndefinedKey:消息。valueForUndefinedKey: 的默认实现是产生一个NSUndefinedKeyException异常，但其子类可以重写这个行为并更好的处理这种情况。
+* valueForKeyPath:-给相关接收者返回指定key path的值。任何在key path序列中不符合KVC的特定key——意思是valueForKey: 的默认实现不能够找到存取器方法——会收到一条valueForUndefinedKey: 消息。
+* dictionaryWithValuesForKeys:-给接收者返回相关的keys的数组值。该方法会调用每个在数组中的key的 valueForKey: 。返回的NSDictionary包含所有在数组中的key的值。
+
+```
+注意  
+集合类的对象，比如NSArray, NSSet, 和 NSDictionary，不能包含nil作为值。你可以使用NSNull对象代表nil值。NSNull会提供一个单独的实例给对象的属性表示nil值。dictionaryWithValuesForKeys: 的默认实现一机相关的 setValuesForKeysWithDictionary: 会在NSNull（在字典的参数中） 和 nil（在存储的属性中）之间自动转换。
+```
+
+当你使用key path来定位一个属性时，如果key path中的最终key是多对多关系（即它引用了集合），返回值会是一个根据key到对多key的右侧的包含了所有值的集合。比如，请求key path transactions.payee的值会返回一个包含所有交易的所有payee对象的数组，这在key path中对于可变数组也有效。accounts.transactions.payee 这个 key path会返回所有账户中所有交易的所有payee对象。
+
 ## 访问集合属性
 
 ## 使用集合操作符
