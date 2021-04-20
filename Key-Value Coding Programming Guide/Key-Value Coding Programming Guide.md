@@ -106,6 +106,35 @@ key path是一个用点分隔符制定一系列来回的对象属性的字符串
 
 在默认实现中，当你试图用一个nil设置一个非对象的属性时，符合KVC的对象会给其自身发送一条 setNilValueForKey: 消息。 setNilValueForKey: 的默认实现是会生成一个NSInvalidArgumentException异常，但是对象可以重载该方法用一个默认值代替或者标记值代替，这在《处理非对象值》中有相关描述。
 
+### 使用Keys来简化对象的访问
+
+要见识到基于key的getters和setters是如何简化你的代码的，请参考如下示例。在macOS中，NSTableView 和 NSOutlineView 对象会结合一个标识符字符串给每行。如果模型对象
+
+清单2-2   
+
+	- (id)tableView:(NSTableView *)tableview objectValueForTableColumn:(id)column row:(NSInteger)row
+	{
+	    id result = nil;
+	    Person *person = [self.people objectAtIndex:row];
+	 
+	    if ([[column identifier] isEqualToString:@"name"]) {
+	        result = [person name];
+	    } else if ([[column identifier] isEqualToString:@"age"]) {
+	        result = @([person age]);  // Wrap age, a scalar, as an NSNumber
+	    } else if ([[column identifier] isEqualToString:@"favoriteColor"]) {
+	        result = [person favoriteColor];
+	    } // And so on...
+	 
+	    return result;
+	}
+
+清单2-3   
+
+	- (id)tableView:(NSTableView *)tableview objectValueForTableColumn:(id)column row:(NSInteger)row
+	{
+	    return [[self.people objectAtIndex:row] valueForKey:[column identifier]];
+	}
+
 ## 访问集合属性
 
 ## 使用集合操作符
