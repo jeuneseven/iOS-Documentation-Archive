@@ -108,9 +108,9 @@ key path是一个用点分隔符制定一系列来回的对象属性的字符串
 
 ### 使用Keys来简化对象的访问
 
-要见识到基于key的getters和setters是如何简化你的代码的，请参考如下示例。在macOS中，NSTableView 和 NSOutlineView 对象会结合一个标识符字符串给每行。如果模型对象
+要见识到基于key的getters和setters是如何简化你的代码的，请参考如下示例。在macOS中，NSTableView 和 NSOutlineView 对象会结合一个标识符字符串给每行。如果在列表后的模型对象不符合KVC，列表的数据源方法会强制检查每行的标识符，目的为了查找到正确的属性返回，如清单2-2所示。更甚者，在未来，当你添加另一个属性给你的模型对象时，本例中是Person对象，你必须再重新过一遍数据源方法，添加其他的条件来为新的属性和返回相关值来进行测试。
 
-清单2-2   
+清单2-2  不使用KVC实现数据源方法  
 
 	- (id)tableView:(NSTableView *)tableview objectValueForTableColumn:(id)column row:(NSInteger)row
 	{
@@ -128,7 +128,9 @@ key path是一个用点分隔符制定一系列来回的对象属性的字符串
 	    return result;
 	}
 
-清单2-3   
+另一方面，清单2-3 展示了一个更加简洁的同样的数据源方法的实现，它利用了符合KVC的Person对象。仅使用了 valueForKey: 获取，数据源方法使用列的标识符作为key返回了适当的值。为了更加简短，也更加通用，由于其在随后添加新行时会继续不改变的工作，只要行的标识符始终符合模型对象的属性名。
+
+清单2-3  使用KVC实现数据源方法 
 
 	- (id)tableView:(NSTableView *)tableview objectValueForTableColumn:(id)column row:(NSInteger)row
 	{
