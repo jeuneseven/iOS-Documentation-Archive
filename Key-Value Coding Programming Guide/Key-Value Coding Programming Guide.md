@@ -139,6 +139,15 @@ key path是一个用点分隔符制定一系列来回的对象属性的字符串
 
 ## 访问集合属性
 
+和暴露其他属性一样，符合KVC的对象会以同样的方式暴露他们的对多的属性。你可以使用get或set一个集合对象，就像你对其他的对象那样使用valueForKey: 和 setValue:forKey:（或者同样的使用key path）。不过，当你想要操作这些集合的内容的时候，通常使用协议定义的可变的代理方法更为高效。  
+协议定义了三个不同的代理方法用于集合对象的访问，每个都有一个key和key path变体：  
+
+* mutableArrayValueForKey: 和 mutableArrayValueForKeyPath: 这些会返回一个代理对象，它的行为就像一个NSMutableArray对象。
+* mutableSetValueForKey: 和 mutableSetValueForKeyPath: 这些会返回一个代理对象，它的行为就像一个NSMutableSet对象。
+* mutableOrderedSetValueForKey: 和 mutableOrderedSetValueForKeyPath: 这些会返回一个代理对象，它的行为就像一个NSMutableOrderedSet对象。
+
+当你操作协议对象的时候，给它添加对象，移除对象，或者替换它当中的对象，协议的默认实现会修改相应的底层属性。这比用valueForKey: 持有一个不可变的集合对象，创建一个修改内容的方法，然后用 setValue:forKey: 消息将其存储回对象更加高效。在很多情况下，它也比直接操作一个可变属性更加高效。这些方法对于集合对象中持有的对象符合KVO提供了额外的收益（参见KVO编程指南了解细节）。
+
 ## 使用集合操作符
 
 ## 表示非对象值
