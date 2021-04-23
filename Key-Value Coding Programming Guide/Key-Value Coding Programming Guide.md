@@ -150,6 +150,11 @@ key path是一个用点分隔符制定一系列来回的对象属性的字符串
 
 ## 使用集合操作符
 
+
+图4-1 操作符key path格式  
+
+![](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/art/keypath.jpg)
+
 ## 表示非对象值
 
 ## 校验属性
