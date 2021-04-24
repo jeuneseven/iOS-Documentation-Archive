@@ -151,15 +151,54 @@ key path是一个用点分隔符制定一系列来回的对象属性的字符串
 ## 使用集合操作符
 
 
+
 图4-1 操作符key path格式  
 
 ![](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/art/keypath.jpg)
 
 ### 示例数据
 
+清单4-1 Transaction对象的接口声明  
+
+	@interface Transaction : NSObject
+	 
+	@property (nonatomic) NSString* payee;   // To whom
+	@property (nonatomic) NSNumber* amount;  // How much
+	@property (nonatomic) NSDate* date;      // When
+	 
+	@end
+
+列表 4-1 Transactions对象的示例数据  
+
+payee 值  | amount值格式化为货币 | date 值格式化为月日年
+------------- | ------------- | -------------
+Green Power  | $120.00 | Dec 1, 2015
+
 ### 集合操作符
 
+#### @avg
+
+#### @count
+
+#### @max
+
+#### @min
+
+#### @sum
+
 ### 数组操作符
+
+#### @distinctUnionOfObjects
+
+#### @unionOfObjects
+
+### 嵌套操作符
+
+#### @distinctUnionOfArrays
+
+#### @unionOfArrays
+
+#### @distinctUnionOfSets
 
 ## 表示非对象值
 
