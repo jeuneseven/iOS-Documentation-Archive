@@ -155,6 +155,12 @@ key path是一个用点分隔符制定一系列来回的对象属性的字符串
 
 ![](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/art/keypath.jpg)
 
+### 示例数据
+
+### 集合操作符
+
+### 数组操作符
+
 ## 表示非对象值
 
 ## 校验属性
