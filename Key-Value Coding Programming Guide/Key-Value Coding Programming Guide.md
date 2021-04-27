@@ -181,6 +181,18 @@ key path是一个用点分隔符制定一系列来回的对象属性的字符串
 payee 值  | amount值格式化为货币 | date 值格式化为月日年
 ------------- | ------------- | -------------
 Green Power  | $120.00 | Dec 1, 2015
+Green Power  | $150.00 | Jan 1, 2016
+Green Power  | $170.00 | Feb 1, 2016
+Car Loan  | $250.00 | Jan 15, 2016
+Car Loan  | $250.00 | Feb 15, 2016
+Car Loan  | $250.00 | Mar 15, 2016
+General Cable  | $120.00 | Dec 1, 2015
+General Cable  | $155.00 | Jan 1, 2016
+General Cable  | $120.00 | Feb 1, 2016
+Mortgage  | $1,250.00 | Jan 15, 2016
+Mortgage  | $1,250.00 | Feb 15, 2016
+Mortgage  | $1,250.00 | Mar 15, 2016
+Animal Hospital  | $600.00 | Jul 15, 2016
 
 ### 集合操作符
 
