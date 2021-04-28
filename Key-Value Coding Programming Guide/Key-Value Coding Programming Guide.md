@@ -166,6 +166,8 @@ key path是一个用点分隔符制定一系列来回的对象属性的字符串
 
 ### 示例数据
 
+
+
 清单4-1 Transaction对象的接口声明  
 
 	@interface Transaction : NSObject
@@ -198,13 +200,23 @@ Animal Hospital  | $600.00 | Jul 15, 2016
 
 #### @avg
 
+	NSNumber *transactionAverage = [self.transactions valueForKeyPath:@"@avg.amount"];
+
 #### @count
+
+	NSNumber *numberOfTransactions = [self.transactions valueForKeyPath:@"@count"];
 
 #### @max
 
+	NSDate *latestDate = [self.transactions valueForKeyPath:@"@max.date"];
+
 #### @min
 
+	NSDate *earliestDate = [self.transactions valueForKeyPath:@"@min.date"];
+
 #### @sum
+
+	NSNumber *amountSum = [self.transactions valueForKeyPath:@"@sum.amount"];
 
 ### 数组操作符
 
