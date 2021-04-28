@@ -166,7 +166,7 @@ key path是一个用点分隔符制定一系列来回的对象属性的字符串
 
 ### 示例数据
 
-
+下述包含的代码块描述了你该如何调用每个操作符，以及结果是什么。这依赖于 BankAccount 类，展示在清单2-1中，它持有一个 Transaction 对象的数组。如清单4-1所示，每个都代表一个单一的支票簿实体。  
 
 清单4-1 Transaction对象的接口声明  
 
@@ -177,6 +177,8 @@ key path是一个用点分隔符制定一系列来回的对象属性的字符串
 	@property (nonatomic) NSDate* date;      // When
 	 
 	@end
+
+处于讨论的目的，假设你的 BankAccount 实例有一个由列表4-1中所示数据组成的事物数据，并且由内部的 BankAccount 对象所调用。  
 
 列表 4-1 Transactions对象的示例数据  
 
@@ -196,11 +198,18 @@ Mortgage  | $1,250.00 | Feb 15, 2016
 Mortgage  | $1,250.00 | Mar 15, 2016
 Animal Hospital  | $600.00 | Jul 15, 2016
 
-### 集合操作符
+### 聚合操作符
+
+聚合操作符无论是在数组还是一组属性中都可用，它会产出一个反应集合的某些方面的值。
 
 #### @avg
 
+当你指定 @avg 操作符时，valueForKeyPath：会读取集合中每个元素右key path指定的属性。转换为一个double类型（代替0或者nil值），并计算它们的算术平均值。然后会返回一个存储在NSNumber实例中的结果。  
+要获取列表4-1中的示例代码的平均值事物数量：  
+
 	NSNumber *transactionAverage = [self.transactions valueForKeyPath:@"@avg.amount"];
+
+格式化后transactionAverage的结果是¥456.54。
 
 #### @count
 
