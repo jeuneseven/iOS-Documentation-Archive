@@ -213,9 +213,16 @@ Animal Hospital  | $600.00 | Jul 15, 2016
 
 #### @count
 
+当你指定 @count 操作符的时候，valueForKeyPath：会返回一个NSNumber实例，它是集合中的元素个数。如果有右侧key path会被省略。  
+要获得 transactions 中 Transaction 的数量：  
+
 	NSNumber *numberOfTransactions = [self.transactions valueForKeyPath:@"@count"];
+	
+numberOfTransactions 的值是13。
 
 #### @max
+
+当你指定 @max 操作符的时候，valueForKeyPath：
 
 	NSDate *latestDate = [self.transactions valueForKeyPath:@"@max.date"];
 
