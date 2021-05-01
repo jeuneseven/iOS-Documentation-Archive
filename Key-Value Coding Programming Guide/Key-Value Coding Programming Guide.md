@@ -205,8 +205,7 @@ Animal Hospital  | $600.00 | Jul 15, 2016
 #### @avg
 
 当你指定 @avg 操作符时，valueForKeyPath：会读取集合中每个元素右key path指定的属性。转换为一个double类型（代替0或者nil值），并计算它们的算术平均值。然后会返回一个存储在NSNumber实例中的结果。  
-要获取列表4-1中的示例代码的平均值事物数量：  
-
+要获取列表4-1中的示例代码的平均值事物数量：                                                               
 	NSNumber *transactionAverage = [self.transactions valueForKeyPath:@"@avg.amount"];
 
 格式化后transactionAverage的结果是¥456.54。
@@ -231,11 +230,21 @@ numberOfTransactions 的值是13。
 
 #### @min
 
+当你指定 @min 操作符的时候，valueForKeyPath：方法会沿着集合名称通过右侧key path和返回的最小值来进行寻找。检索行为的比较是使用的compare：方法，这在很多 Foundation 类中都有定义，比如NSNumber类。所以，通过右侧key path表示的属性必须持有一个对象，并能够有意义的响应这个消息。检索时会忽略集合条目的nil值。  
+要获得日期值的最小值，即最早的交易日期，通过列表4-1中的交易列表：  
+
 	NSDate *earliestDate = [self.transactions valueForKeyPath:@"@min.date"];
+
+格式化的earliestDate值是Dec 1, 2015。
 
 #### @sum
 
+当你指定 @ sum 操作符时，valueForKeyPath：会读取集合中每个元素右key path指定的属性。转换为一个double类型（代替0或者nil值），并计算它们的和。然后会返回一个存储在NSNumber实例中的结果。  
+要获取列表4-1中的示例代码的事物数量和：           
+
 	NSNumber *amountSum = [self.transactions valueForKeyPath:@"@sum.amount"];
+
+格式化的amountSum结果是$5,935.00。
 
 ### 数组操作符
 
