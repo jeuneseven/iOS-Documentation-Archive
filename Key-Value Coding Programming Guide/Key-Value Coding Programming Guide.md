@@ -222,9 +222,12 @@ numberOfTransactions 的值是13。
 
 #### @max
 
-当你指定 @max 操作符的时候，valueForKeyPath：
+当你指定 @max 操作符的时候，valueForKeyPath：方法会沿着集合名称通过右侧key path和返回的最大值来进行寻找。检索行为的比较是使用的compare：方法，这在很多 Foundation 类中都有定义，比如NSNumber类。所以，通过右侧key path表示的属性必须持有一个对象，并能够有意义的响应这个消息。检索时会忽略集合条目的nil值。  
+要获得日期值的最大值，即最近的交易日期，通过列表4-1中的交易列表：  
 
 	NSDate *latestDate = [self.transactions valueForKeyPath:@"@max.date"];
+
+格式化的latestDate值是Jul 15, 2016。
 
 #### @min
 
