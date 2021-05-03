@@ -248,7 +248,16 @@ numberOfTransactions 的值是13。
 
 ### 数组操作符
 
+数组操作符会触发 valueForKeyPath: 方法，返回一个由右侧keypath表示的相应地特定集合的对象的一组数组对象。  
+
+```
+重要：  
+valueForKeyPath: 方法在使用数组操作符时，遇到任何子节点对象是nil的时候会产生异常。
+```
+
 #### @distinctUnionOfObjects
+
+
 
 #### @unionOfObjects
 
