@@ -285,16 +285,27 @@ valueForKeyPath: 方法在使用数组操作符时，遇到任何子节点对象
 
 ### 嵌套操作符
 
-```
-重要  
+嵌套操作符是作用于嵌套集合的，即每个集合本身还包含了一个集合。  
 
 ```
+重要  
+valueForKeyPath: 方法在使用前套操作符时，遇到任何子节点对象是nil的时候会产生异常。
+```
+
+为后续介绍，假设有第二个数据数组叫做moreTransactions，构成列表4-2中的数据，它是集合了原始的transactions 数组（引自“示例数据”一节）为一个嵌套数组：  
 
 	NSArray* moreTransactions = @[<# transaction data #>];
 	NSArray* arrayOfArrays = @[self.transactions, moreTransactions];
 
+列表4-2 假设 moreTransactions 数组中的 Transaction 数据  
+
+payee 值  | amount值格式化为货币 | date 值格式化为月日年
+------------- | ------------- | -------------
+General Cable - Cottage  | $120.00 | Dec 18, 2015
 
 #### @distinctUnionOfArrays
+
+
 
 #### @unionOfArrays
 
