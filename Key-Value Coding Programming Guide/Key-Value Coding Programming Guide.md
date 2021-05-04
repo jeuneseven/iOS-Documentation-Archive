@@ -257,11 +257,42 @@ valueForKeyPath: 方法在使用数组操作符时，遇到任何子节点对象
 
 #### @distinctUnionOfObjects
 
+当你指定 @distinctUnionOfObjects 操作符的时候，valueForKeyPath：会创建并返回一个通过右侧keypath指定的集合中相应属性的不同对象。  
+要获取一个payee属性值的集合，省略重复值的transactions中的事物：  
 
+	NSArray *distinctPayees = [self.transactions valueForKeyPath:@"@distinctUnionOfObjects.payee"];
+
+结果 distinctPayees 数组会包含一个实例，即下述字符串： Car Loan, General Cable, Animal Hospital, Green Power, Mortgage。
+
+```
+注意  
+@unionOfObjects 操作符提供类似行为，但不会移除重复对象。	
+```
 
 #### @unionOfObjects
 
+当你指定 @unionOfObjects 操作符的时候，valueForKeyPath：会创建并返回一个通过右侧keypath指定的集合中相应属性的所有对象。与@distinctUnionOfObjects不同，重复的对象不会被移除。  
+要获取一个payee属性值的集合，取到transactions中的事物：  
+
+	NSArray *payees = [self.transactions valueForKeyPath:@"@unionOfObjects.payee"];
+
+结果 payees 数组会下述字符串：Green Power, Green Power, Green Power, Car Loan, Car Loan, Car Loan, General Cable, General Cable, General Cable, Mortgage, Mortgage, Mortgage, Animal Hospital。注意重复。
+
+```
+注意  
+@distinctUnionOfArrays 操作符提供类似行为，但会移除重复对象。
+```
+
 ### 嵌套操作符
+
+```
+重要  
+
+```
+
+	NSArray* moreTransactions = @[<# transaction data #>];
+	NSArray* arrayOfArrays = @[self.transactions, moreTransactions];
+
 
 #### @distinctUnionOfArrays
 
