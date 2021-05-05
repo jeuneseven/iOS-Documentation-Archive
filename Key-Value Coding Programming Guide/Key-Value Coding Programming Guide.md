@@ -305,11 +305,36 @@ General Cable - Cottage  | $120.00 | Dec 18, 2015
 
 #### @distinctUnionOfArrays
 
+当你指定@distinctUnionOfArrays 操作符时，valueForKeyPath：会创建并返回一个数组，该数组包含通过右侧keypath所指定的结合所有集合相应的属性的不同对象。  
+要在所有的arrayOfArrays：中的数组中获取不同的payee 值：  
+	
+	NSArray *collectedDistinctPayees = [arrayOfArrays valueForKeyPath:@"@distinctUnionOfArrays.payee"];
 
+结果 collectedDistinctPayees 数组包含以下值：Hobby Shop, Mortgage, Animal Hospital, Second Mortgage, Car Loan, General Cable - Cottage, General Cable, Green Power。
+
+```
+注意  
+@unionOfArrays 操作符类似，但不移除重复对象。
+```
 
 #### @unionOfArrays
 
+当你指定@unionOfArrays 操作符时，valueForKeyPath：会创建并返回一个数组，该数组包含通过右侧keypath所指定的结合所有集合相应的属性的不同对象，而不移除重复项。  
+要在所有的arrayOfArrays：中的数组中获取不同的payee 值：  
+
+	NSArray *collectedPayees = [arrayOfArrays valueForKeyPath:@"@unionOfArrays.payee"];
+
+结果 collectedDistinctPayees 数组包含以下值：Green Power, Green Power, Green Power, Car Loan, Car Loan, Car Loan, General Cable, General Cable, General Cable, Mortgage, Mortgage, Mortgage, Animal Hospital, General Cable - Cottage, General Cable - Cottage, General Cable - Cottage, Second Mortgage, Second Mortgage, Second Mortgage, Hobby Shop。
+
+```
+注意  
+@distinctUnionOfArrays 操作符类似，但移除重复对象。
+```
+
 #### @distinctUnionOfSets
+
+当你指定@distinctUnionOfSets 操作符时，valueForKeyPath：会创建并返回一个NSSet 对象，该对象包含通过右侧keypath所指定的结合所有集合相应的属性的不同对象，而不移除重复项。  
+这个操作符的行为类似@distinctUnionOfArrays，只不过它要的是一个NSSet实例，包含NSSet对象的实例，而非一个NSArray实例包含NSArray实例。同样的，它会返回一个NSSet实例。假设示例数据已经被存在一个集合而非数组中，示例调用和结果也会和@distinctUnionOfArrays 展示的一样。
 
 ## 表示非对象值
 
