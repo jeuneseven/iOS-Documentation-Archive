@@ -88,10 +88,8 @@ key path是一个用点分隔符制定一系列来回的对象属性的字符串
 * valueForKeyPath:-给相关接收者返回指定key path的值。任何在key path序列中不符合KVC的特定key——意思是valueForKey: 的默认实现不能够找到存取器方法——会收到一条valueForUndefinedKey: 消息。
 * dictionaryWithValuesForKeys:-给接收者返回相关的keys的数组值。该方法会调用每个在数组中的key的 valueForKey: 。返回的NSDictionary包含所有在数组中的key的值。
 
-```
-注意  
-集合类的对象，比如NSArray, NSSet, 和 NSDictionary，不能包含nil作为值。你可以使用NSNull对象代表nil值。NSNull会提供一个单独的实例给对象的属性表示nil值。dictionaryWithValuesForKeys: 的默认实现一机相关的 setValuesForKeysWithDictionary: 会在NSNull（在字典的参数中） 和 nil（在存储的属性中）之间自动转换。
-```
+>	注意  
+	集合类的对象，比如NSArray, NSSet, 和 NSDictionary，不能包含nil作为值。你可以使用NSNull对象代表nil值。NSNull会提供一个单独的实例给对象的属性表示nil值。dictionaryWithValuesForKeys: 的默认实现一机相关的 setValuesForKeysWithDictionary: 会在NSNull（在字典的参数中） 和 nil（在存储的属性中）之间自动转换。
 
 当你使用key path来定位一个属性时，如果key path中的最终key是多对多关系（即它引用了集合），返回值会是一个根据key到对多key的右侧的包含了所有值的集合。比如，请求key path transactions.payee的值会返回一个包含所有交易的所有payee对象的数组，这在key path中对于可变数组也有效。accounts.transactions.payee 这个 key path会返回所有账户中所有交易的所有payee对象。
 
@@ -250,10 +248,8 @@ numberOfTransactions 的值是13。
 
 数组操作符会触发 valueForKeyPath: 方法，返回一个由右侧keypath表示的相应地特定集合的对象的一组数组对象。  
 
-```
-重要：  
-valueForKeyPath: 方法在使用数组操作符时，遇到任何子节点对象是nil的时候会产生异常。
-```
+>	重要：  
+	valueForKeyPath: 方法在使用数组操作符时，遇到任何子节点对象是nil的时候会产生异常。
 
 #### @distinctUnionOfObjects
 
@@ -264,10 +260,8 @@ valueForKeyPath: 方法在使用数组操作符时，遇到任何子节点对象
 
 结果 distinctPayees 数组会包含一个实例，即下述字符串： Car Loan, General Cable, Animal Hospital, Green Power, Mortgage。
 
-```
-注意  
-@unionOfObjects 操作符提供类似行为，但不会移除重复对象。	
-```
+>	注意  
+	@unionOfObjects 操作符提供类似行为，但不会移除重复对象。
 
 #### @unionOfObjects
 
@@ -278,19 +272,15 @@ valueForKeyPath: 方法在使用数组操作符时，遇到任何子节点对象
 
 结果 payees 数组会下述字符串：Green Power, Green Power, Green Power, Car Loan, Car Loan, Car Loan, General Cable, General Cable, General Cable, Mortgage, Mortgage, Mortgage, Animal Hospital。注意重复。
 
-```
-注意  
-@distinctUnionOfArrays 操作符提供类似行为，但会移除重复对象。
-```
+>	注意  
+	@distinctUnionOfArrays 操作符提供类似行为，但会移除重复对象。
 
 ### 嵌套操作符
 
 嵌套操作符是作用于嵌套集合的，即每个集合本身还包含了一个集合。  
 
-```
-重要  
-valueForKeyPath: 方法在使用前套操作符时，遇到任何子节点对象是nil的时候会产生异常。
-```
+>	重要  
+	valueForKeyPath: 方法在使用前套操作符时，遇到任何子节点对象是nil的时候会产生异常。
 
 为后续介绍，假设有第二个数据数组叫做moreTransactions，构成列表4-2中的数据，它是集合了原始的transactions 数组（引自“示例数据”一节）为一个嵌套数组：  
 
@@ -312,10 +302,8 @@ General Cable - Cottage  | $120.00 | Dec 18, 2015
 
 结果 collectedDistinctPayees 数组包含以下值：Hobby Shop, Mortgage, Animal Hospital, Second Mortgage, Car Loan, General Cable - Cottage, General Cable, Green Power。
 
-```
-注意  
-@unionOfArrays 操作符类似，但不移除重复对象。
-```
+>	注意  
+	@unionOfArrays 操作符类似，但不移除重复对象。
 
 #### @unionOfArrays
 
@@ -326,10 +314,8 @@ General Cable - Cottage  | $120.00 | Dec 18, 2015
 
 结果 collectedDistinctPayees 数组包含以下值：Green Power, Green Power, Green Power, Car Loan, Car Loan, Car Loan, General Cable, General Cable, General Cable, Mortgage, Mortgage, Mortgage, Animal Hospital, General Cable - Cottage, General Cable - Cottage, General Cable - Cottage, Second Mortgage, Second Mortgage, Second Mortgage, Hobby Shop。
 
-```
-注意  
-@distinctUnionOfArrays 操作符类似，但移除重复对象。
-```
+>	注意  
+	@distinctUnionOfArrays 操作符类似，但移除重复对象。
 
 #### @distinctUnionOfSets
 
@@ -340,20 +326,38 @@ General Cable - Cottage  | $120.00 | Dec 18, 2015
 
 KVC协议方法的默认实现由NSObject提供，同时作用于对象和非对象属性。默认实现会自动的从对象参数或返回值到非对象属性之间进行转换。这让基于key签名的getter和setter能够保持不变，即使存储的属性是一个标量或者结构体。  
 
-```
-注意  
-由于所有Swift中的属性都是对象，本段落只用于OC属性。
-```
+>	注意  
+	由于所有Swift中的属性都是对象，本段落只用于OC属性。
 
 当你调用协议中的一个getter方法时，类似valueForKey：，默认的实现会判断特定的访问方法或者实例变量（根据“存取搜索模式”中描述的规则支持的特定key和值）。若返回值不是一个对象，getter会使用该值初始化一个NSNumber对象（对于标量而言），或一个NSValue对象（对于结构体而言）然后将其返回。  
 类似的，默认的，类似 setValue:forKey: 的 setter方法会根据存取属性或实例变量判断数据类型，给定一个特定的key。若数据类型不是一个对象，setter首先会发送一个适当的<type>Value消息给到来的值对象来提取底层数据，然后将其存储。  
 
-```
-注意
-当你调用一个KVC协议的setter方法，设置一个nil值给非对象属性时，setter并不会察觉，照常触发动作来应用。然后，它会发送一条setNilValueForKey：消息给对象接收者的setter调用。该方法的默认实现会产生NSInvalidArgumentException异常，但子类可以重写这个方法的行为，在“处理非对象值”中有相关描述，所以请设置标记值，或提供一个有意义的默认值。
-```
+>	注意  
+	当你调用一个KVC协议的setter方法，设置一个nil值给非对象属性时，setter并不会察觉，照常触发动作来应用。然后，它会发送一条setNilValueForKey：消息给对象接收者的setter调用。该方法的默认实现会产生NSInvalidArgumentException异常，但子类可以重写这个方法的行为，在“处理非对象值”中有相关描述，所以请设置标记值，或提供一个有意义的默认值。
 
 ### 封包和解包标量类型
+
+列表5-1 列出了默认KVC使用NSNumber实例实现封装的标量类型。对于每种数据类型，列表都展示了用来从底层属性值创建一个NSNumber实例的方法到支持一个getter返回值。随后展示了在set操作中用来从setter输入参数扩展值的存取方法。  
+列表5-1 NSNumber对象中的封装标量
+
+数据类型  | 创建方法 | 存取方法
+------------- | ------------- | -------------
+BOOL| numberWithBool:| boolValue(iOS中) charValue(macOS中)
+char | numberWithChar:| charValue
+double | numberWithDouble:| doubleValue
+float | numberWithFloat:| floatValue
+int | numberWithInt:| intValue
+long | numberWithLong:| longValue
+long long | numberWithLongLong:| longLongValue
+short | numberWithShort:| shortValue
+unsigned char| numberWithUnsignedChar:| unsignedChar
+unsigned int| numberWithUnsignedInt:| unsignedInt
+unsigned long| numberWithUnsignedLong:| unsignedLong
+unsigned long long| numberWithUnsignedLongLong:| unsignedLongLong
+unsigned short| numberWithUnsignedShort:| unsignedShort
+
+> 注意 
+> 在macOS中，由于历史原因，BOOL被定义成signed char类型，KVC并不能区分两者。因此，当key是BOOL类型时，你不应该传递一个类似 @“true” 或 @“YES” 的字符串值给setValue:forKey:方法。KVC会试图调用charValue（由于BOOL本质上就是一个char），但NSString没有实现该方法，这会引起运行时错误。取而代之的，当key是BOOL类型时，传递NSNumber对象，类似@(1) 或 @(YES)，作为参数传递给setValue:forKey:。这种限制不应该应用在iOS中，在iOS中BOOL类型被定义为一个本地化的布尔类型bool，KVC会调用boolValue，这在 NSNumber对象或者一个格式为NSString的对象中都能够起作用。
 
 ### 封包和解包结构体
 
