@@ -361,6 +361,7 @@ unsigned short| numberWithUnsignedShort:| unsignedShort
 
 ### 封包和解包结构体
 
+列表5-2 展示了默认存取方法用来封包和解包常见 NSPoint, NSRange, NSRect, 和 NSSize 等结构体的创建和存取方法。
 
 列表5-2 使用NSValue封装常用结构体类型  
 
@@ -371,6 +372,10 @@ NSRange | valueWithRange:| rangeValue
 NSRect | valueWithRect:(macOS有效)| rectValue
 NSSize | valueWithSize:| sizeValue
 
+自动的封包解包并不限于 NSPoint, NSRange, NSRect, 和 NSSize。结构体类型（意思是在OC字符串编码中以{开头的类型）都能被以一个 NSValue 对象封包。比如，看下清单5-1中声明的结构体和类接口。  
+
+列表5-1 一个使用自定义结构体的示例类  
+
 	typedef struct {
 	    float x, y, z;
 	} ThreeFloats;
@@ -378,12 +383,19 @@ NSSize | valueWithSize:| sizeValue
 	@interface MyClass
 	@property (nonatomic) ThreeFloats threeFloats;
 	@end
+
+使用这个叫做 myClass 的类的实例，你就能使用KVC获取 threeFloats 的值：  
 	
 	NSValue* result = [myClass valueForKey:@"threeFloats"];
+
+valueForKey: 的默认实现调用了threeFloats的getter方法，然后返回以 NSValue 对象封装的结果。  
+同样的，你可以使用KVC设置 threeFloats 的值：  
 
 	ThreeFloats floats = {1., 2., 3.};
 	NSValue* value = [NSValue valueWithBytes:&floats objCType:@encode(ThreeFloats)];
 	[myClass setValue:value forKey:@"threeFloats"];
+
+解包的默认实现是使用 getValue: 消息，然后用结果的结构体调用 setThreeFloats:。
 
 ## 校验属性
 
