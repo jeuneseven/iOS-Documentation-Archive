@@ -361,6 +361,30 @@ unsigned short| numberWithUnsignedShort:| unsignedShort
 
 ### 封包和解包结构体
 
+
+列表5-2 使用NSValue封装常用结构体类型  
+
+数据类型  | 创建方法 | 存取方法
+------------- | ------------- | -------------
+NSPoint | valueWithPoint:| pointValue
+NSRange | valueWithRange:| rangeValue
+NSRect | valueWithRect:(macOS有效)| rectValue
+NSSize | valueWithSize:| sizeValue
+
+	typedef struct {
+	    float x, y, z;
+	} ThreeFloats;
+	 
+	@interface MyClass
+	@property (nonatomic) ThreeFloats threeFloats;
+	@end
+	
+	NSValue* result = [myClass valueForKey:@"threeFloats"];
+
+	ThreeFloats floats = {1., 2., 3.};
+	NSValue* value = [NSValue valueWithBytes:&floats objCType:@encode(ThreeFloats)];
+	[myClass setValue:value forKey:@"threeFloats"];
+
 ## 校验属性
 
 ## 存取器搜索模式
