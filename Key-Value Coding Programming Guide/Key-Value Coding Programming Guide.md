@@ -399,6 +399,15 @@ valueForKey: 的默认实现调用了threeFloats的getter方法，然后返回�
 
 ## 校验属性
 
+KVC 协议还定义了方法来支持校验属性。就像你使用基于key的存取方法来读写一个符合KVC的对象的属性一样，你也可以通过key(或key path)校验属性。当你调用validateValue:forKey:error:（或validateValue:forKeyPath:error:）方法时，协议的默认实现会搜索接收验证消息的对象（或在key path末尾的对象） 以寻找名字符合模式 validate<Key>:error: 的方法。如果对象没有这个方法，默认校验成功，默认的实现返回YES。如果一个指定属性的校验方法存在，默认实现返回该方法的调用。  
+
+> 注意  
+> 通常只在OC中使用这里描述的校验。在Swift中，属性的校验通常由依赖的编译器所处理，支持可选和强类型检查，当使用内置的willSet 和 didSet 属性检测任何运行时API联系，如《Swift编程语言(Swift 3)》中所描述的“属性检测”一节。  
+
+
+
+### 自动校验
+
 ## 存取器搜索模式
 
 # 采用KVC
