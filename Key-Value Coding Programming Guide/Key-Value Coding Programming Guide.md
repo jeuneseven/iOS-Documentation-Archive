@@ -454,9 +454,50 @@ valueForKey: 的默认实现会将一个key作为输入参数，承载着以下�
 
 ### 基本的getters
 
+	- (NSString*)title
+	{
+	   // Extra getter logic…
+	 
+	   return _title;
+	}
+
+	
+	- (BOOL)isHidden
+	{
+	   // Extra getter logic…
+	 
+	   return _hidden;
+	}
+
 ### 基本的setters
 
+	- (void)setHidden:(BOOL)hidden
+	{
+	    // Extra setter logic…
+	 
+	   _hidden = hidden;
+	}
+
+	- (void)setNilValueForKey:(NSString *)key
+	{
+	    if ([key isEqualToString:@"hidden"]) {
+	        [self setValue:@(NO) forKey:@”hidden”];
+	    } else {
+	        [super setNilValueForKey:key];
+	    }
+	}
+
 ### 实例变量
+
+	@synthesize title = _title;
+	
+	@interface MyObject : NSObject {
+	    NSString* _title;
+	}
+	 
+	@property (nonatomic) NSString* title;
+	 
+	@end
 
 ## 定义集合方法
 
