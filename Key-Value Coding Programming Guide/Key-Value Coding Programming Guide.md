@@ -440,6 +440,14 @@ valueForKey: 的默认实现会将一个key作为输入参数，承载着以下�
 2. 如果没有直接查找到存取方法，沿着名称匹配模式 `countOf<Key>` 和 `objectIn<Key>AtIndex:` (相关方法由NSArray 类最初定义) 以及 `<key>AtIndexes:`(对应NSArray的 objectsAtIndexes: 方法) 的实例进行查找。  
 如果这些当中的第一个，或者至少在另外两个当中的一个被找到了，创建一个集合代理对象，该对象会响应所有的 NSArray 方法并将其返回。否则，执行步骤3。  
 代理对象随后会转换任何它所接收的 NSArray 消息给一些 `countOf<Key>`, `objectIn<Key>AtIndex:`, 和 `<key>AtIndexes:` 消息的组合给它创建的复合KVC协议的对象发消息。如果原对象也实现了名称类似 `get<Key>:range:` 的可选方法，代理对象也会在适当的时机使用它。实际上，代理对象会和符合KVC的对象共同协作，让底层属性表现的像一个NSArray，即使它没有这个对象。
+3. 如果没有找到简单的存取方法或者一组数组存取方法，会查找三个名为 `countOf<Key>`, `enumeratorOf<Key>`, 和 `memberOf<Key>:` 的方法（相关的原始方法被NSSet类定义）。  
+如果三个方法都被找到，会创建一个集合代理对象，该对象会响应所有的NSSet方法并将其返回。否则，跳转到步骤4。  
+这个代理对象随后会转换所有它所接收到的NSSet的消息，结合 `countOf<Key>`, `enumeratorOf<Key>`, 和 `memberOf<Key>:` 消息给到它所创建的对象。实际上，代理对象会和符合KVC的对象共同协作，让底层属性的表象像一个NSSet，即使它没有这个对象。
+4. 如果没有找到简单的存取方法或者一组集合存取方法，并且接受者的类方法 accessInstanceVariablesDirectly 返回的YES，这时会按顺序检索名为 `_<key>`, `_is<Key>`, `<key>`, 或 `is<Key>` 的实例变量。如果找到，直接获取该实例变量的值，然后执行步骤5。否则，跳转到步骤6。
+5. 如果接收到的属性值是一个对象指针，直接返回结果。  
+如果值是一个NSNumber所支持的标量，将其存储为一个NSNumber实例，并将其返回。  
+如果值是一个NSNumber不支持的标量，将其转换为NSValue对象，并将其返回。
+6. 如果所有的else都失败了，调用 valueForUndefinedKey:。这默认会产生一个异常，但NSObject的子类可以提供指定key的行为。
 
 ### 基本的setter的检索模式
 
