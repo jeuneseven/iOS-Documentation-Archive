@@ -30,6 +30,11 @@ KVO提供了一种让对象在其他的对象的指定属性改变的时候被�
 
 ![](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/Art/kvo_objects_remove.png)  
 
+"为KVO进行注册"描述了注册、接收、解除注册KVO通知的完整生命周期。  
+KVO 首要目的是你无需实现每当一个属性变更时就要发送通知。它将基础结构在框架层就进行了支持，并且很容易遵循——通常你无需添加任何代码到你的工程当中。此外，基础架构已经是功能完备的，因此很容易为单个属性和相关值支持多个观察者。  
+与使用NSNotificationCenter的通知不同，没有一个中心的对象给所有的监听者提供变更通知。取而代之的是，当变更发生的时候，通知直接发送给正在监听的对象。NSObject 提供了这种KVO的基本实现，你只需要重写这些方法。  
+"KVO实现细节"描述了KVO是如何实现的。
+
 # 注册KVO
 
 ## 注册为监听器
