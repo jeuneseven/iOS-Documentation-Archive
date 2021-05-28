@@ -37,7 +37,19 @@ KVO 首要目的是你无需实现每当一个属性变更时就要发送通知�
 
 # 注册KVO
 
+你必须执行以下步骤来让一个对象能够接收KVO通知的符合KVO的属性：  
+
+* 使用 addObserver:forKeyPath:options:context: 方法注册监听对象。
+* 在监听对象接收变更通知消息的地方实现  observeValueForKeyPath:ofObject:change:context: 。
+* 当不再需要接收消息使用 removeObserver:forKeyPath: 方法来移除监听。这样至少在调用这个方法的之前就从内存中移除了该监听器。
+
+```
+重要：不是所有的类都是符合KVO的。你可以让你的类按照《遵守KVO》中描述的步骤来确保它遵守了KVO。通常Apple提供的框架中的属性只有在记录在此类框架中时才符合KVO标准。
+```
+
 ## 注册为监听器
+
+监听对象首先通过发送addObserver:forKeyPath:options:context: 消息来让其本身注册为监听器，传递其本身作为监听器，属性的 key path 被监听。
 
 ### 选项
 
@@ -47,7 +59,7 @@ KVO 首要目的是你无需实现每当一个属性变更时就要发送通知�
 
 ## 移除作为监听器的对象
 
-# KVO遵循
+# 遵守KVO
 
 ## 自动变更通知
 
