@@ -49,7 +49,7 @@ KVO 首要目的是你无需实现每当一个属性变更时就要发送通知�
 
 ## 注册为监听器
 
-监听对象首先通过发送addObserver:forKeyPath:options:context: 消息来让其本身注册为监听器，传递其本身作为监听器，属性的 key path 被监听。
+监听对象首先通过发送addObserver:forKeyPath:options:context: 消息来让其本身注册为监听器，传递其本身作为监听器，属性的 key path 被监听。监听器还会额外指定一个选项参数和一个上下文的指针来管理通知方面的内容。
 
 ### 选项
 
