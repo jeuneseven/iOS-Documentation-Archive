@@ -56,7 +56,7 @@ KVO 首要目的是你无需实现每当一个属性变更时就要发送通知�
 选项参数，对于选项的常量指定了按位OR运算，在通知中受提供的变更字典的内容以及通知是被哪个管理者所生成的所影响。  
 你可以通过选项 NSKeyValueObservingOptionOld 来监听接收更改前观察到的属性的值。设置 NSKeyValueObservingOptionNew 可以请求到改变后的新值。使用按位OR运算将两者结合，就可以接收新值和旧值了。  
 通过设置选项 NSKeyValueObservingOptionInitial 来让监听对象立刻发送通知（在 addObserver:forKeyPath:options:context: 返回前)。你可以使用这种附加来在监听者的一开始就一次性确定属性的初始值。  
-
+通过指定包含选项 NSKeyValueObservingOptionPrior 来设定监听对象在一个属性刚发生变更的时候优先发送一个通知(与常见的在发生变更之后才通知对比)。变更的字典通过包含 NSKeyValueChangeNotificationIsPriorKey 和 NSNumber包裹的YES的这组字典来展示一个预变化通知。该key不会在另一方面进行展示。当监听者拥有KVO编译需求，调用一个 -willChange... 方法来给其依赖于监听属性之一的时候，你可以使用预变更通知。调用 willChange… 的时机比常用的发送通知变更而言要提前。
 
 ### 上下文
 
