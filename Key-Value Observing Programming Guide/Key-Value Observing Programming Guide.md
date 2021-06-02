@@ -60,6 +60,8 @@ KVO 首要目的是你无需实现每当一个属性变更时就要发送通知�
 
 ### 上下文
 
+addObserver:forKeyPath:options:context: 方法中的 context 指针包含了在相关变更通知中将要传递给监听者的原始数据。
+
 ## 接收变更通知
 
 ## 移除作为监听器的对象
