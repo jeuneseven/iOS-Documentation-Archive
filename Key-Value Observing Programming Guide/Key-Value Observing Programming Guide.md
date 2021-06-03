@@ -60,7 +60,28 @@ KVO 首要目的是你无需实现每当一个属性变更时就要发送通知�
 
 ### 上下文
 
-addObserver:forKeyPath:options:context: 方法中的 context 指针包含了在相关变更通知中将要传递给监听者的原始数据。
+addObserver:forKeyPath:options:context: 方法中的 context 指针包含了在相关变更通知中将要传递给监听者的原始数据。  
+
+清单 1 创建 context 指针  
+
+	static void *PersonAccountBalanceContext = &PersonAccountBalanceContext;
+	static void *PersonAccountInterestRateContext = &PersonAccountInterestRateContext;
+
+清单 2 为balance 和 interestRate 属性注册监听器  
+
+	- (void)registerAsObserverForAccount:(Account*)account {
+	    [account addObserver:self
+	              forKeyPath:@"balance"
+	                 options:(NSKeyValueObservingOptionNew |
+	                          NSKeyValueObservingOptionOld)
+	                 context:PersonAccountBalanceContext];
+	 
+	    [account addObserver:self
+	              forKeyPath:@"interestRate"
+	                 options:(NSKeyValueObservingOptionNew |
+	                          NSKeyValueObservingOptionOld)
+	                  context:PersonAccountInterestRateContext];
+	}
 
 ## 接收变更通知
 
