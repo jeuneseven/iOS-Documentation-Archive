@@ -85,6 +85,30 @@ addObserver:forKeyPath:options:context: 方法中的 context 指针包含了在�
 
 ## 接收变更通知
 
+
+清单 3 实现observeValueForKeyPath:ofObject:change:context:  
+
+	- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+ 
+	    if (context == PersonAccountBalanceContext) {
+	        // Do something with the balance…
+	 
+	    } else if (context == PersonAccountInterestRateContext) {
+	        // Do something with the interest rate…
+	 
+	    } else {
+	        // Any unrecognized context must belong to super
+	        [super observeValueForKeyPath:keyPath
+	                             ofObject:object
+	                               change:change
+	                               context:context];
+	    }
+	}
+
+
 ## 移除作为监听器的对象
 
 # 遵守KVO
