@@ -111,6 +111,18 @@ addObserver:forKeyPath:options:context: 方法中的 context 指针包含了在�
 
 ## 移除作为监听器的对象
 
+清单4 移除balance和interestRate的监听指示器  
+
+	- (void)unregisterAsObserverForAccount:(Account*)account {
+	    [account removeObserver:self
+	                 forKeyPath:@"balance"
+	                    context:PersonAccountBalanceContext];
+	 
+	    [account removeObserver:self
+	                 forKeyPath:@"interestRate"
+	                    context:PersonAccountInterestRateContext];
+	}
+
 # 遵守KVO
 
 ## 自动变更通知
