@@ -127,6 +127,23 @@ addObserver:forKeyPath:options:context: 方法中的 context 指针包含了在�
 
 ## 自动变更通知
 
+
+清单 1   
+
+	// Call the accessor method.
+	[account setName:@"Savings"];
+	 
+	// Use setValue:forKey:.
+	[account setValue:@"Savings" forKey:@"name"];
+	 
+	// Use a key path, where 'account' is a kvc-compliant property of 'document'.
+	[document setValue:@"Savings" forKeyPath:@"account.name"];
+	 
+	// Use mutableArrayValueForKey: to retrieve a relationship proxy object.
+	Transaction *newTransaction = <#Create a new transaction for the account#>;
+	NSMutableArray *transactions = [account mutableArrayValueForKey:@"transactions"];
+	[transactions addObject:newTransaction];
+
 ## 手动变更通知
 
 # 注册依赖Keys
