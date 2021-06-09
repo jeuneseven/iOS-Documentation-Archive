@@ -156,6 +156,20 @@ NSObject 提供了一种自动的键值对变更通知的基本实现。
 
 ## 手动变更通知
 
+清单2 automaticallyNotifiesObserversForKey: 的实现示例
+
+	+ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)theKey {
+	 
+	    BOOL automatic = NO;
+	    if ([theKey isEqualToString:@"balance"]) {
+	        automatic = NO;
+	    }
+	    else {
+	        automatic = [super automaticallyNotifiesObserversForKey:theKey];
+	    }
+	    return automatic;
+	}
+
 # 注册依赖Keys
 
 ## 对一关系
