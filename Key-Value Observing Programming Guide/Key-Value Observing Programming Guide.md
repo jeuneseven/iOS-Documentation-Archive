@@ -174,7 +174,52 @@ NSObject 提供了一种自动的键值对变更通知的基本实现。
 
 ## 对一关系
 
+	- (NSString *)fullName {
+	    return [NSString stringWithFormat:@"%@ %@",firstName, lastName];
+	}
+	
+	+ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
+ 
+	    NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+	 
+	    if ([key isEqualToString:@"fullName"]) {
+	        NSArray *affectingKeys = @[@"lastName", @"firstName"];
+	        keyPaths = [keyPaths setByAddingObjectsFromArray:affectingKeys];
+	    }
+	    return keyPaths;
+	}
+	
+	+ (NSSet *)keyPathsForValuesAffectingFullName {
+	    return [NSSet setWithObjects:@"lastName", @"firstName", nil];
+	}
+
 ## 对多关系
+
+	- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	 
+	    if (context == totalSalaryContext) {
+	        [self updateTotalSalary];
+	    }
+	    else
+	    // deal with other observations and/or invoke super...
+	}
+	 
+	- (void)updateTotalSalary {
+	    [self setTotalSalary:[self valueForKeyPath:@"employees.@sum.salary"]];
+	}
+	 
+	- (void)setTotalSalary:(NSNumber *)newTotalSalary {
+	 
+	    if (totalSalary != newTotalSalary) {
+	        [self willChangeValueForKey:@"totalSalary"];
+	        _totalSalary = newTotalSalary;
+	        [self didChangeValueForKey:@"totalSalary"];
+	    }
+	}
+	 
+	- (NSNumber *)totalSalary {
+	    return _totalSalary;
+	}
 
 # KVO实现细节
 
