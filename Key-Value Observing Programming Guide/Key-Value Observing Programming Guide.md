@@ -178,6 +178,8 @@ NSObject 提供了一种自动的键值对变更通知的基本实现。
 	    return [NSString stringWithFormat:@"%@ %@",firstName, lastName];
 	}
 	
+清单1 keyPathsForValuesAffectingValueForKey: 的实现示例	
+
 	+ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
  
 	    NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
@@ -189,6 +191,8 @@ NSObject 提供了一种自动的键值对变更通知的基本实现。
 	    return keyPaths;
 	}
 	
+清单2 keyPathsForValuesAffecting<Key>名称转换的实现示例
+
 	+ (NSSet *)keyPathsForValuesAffectingFullName {
 	    return [NSSet setWithObjects:@"lastName", @"firstName", nil];
 	}
