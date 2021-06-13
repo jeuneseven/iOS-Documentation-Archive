@@ -139,7 +139,7 @@ KVO和KVC所支持的数据类型相同，包含OC对象以及在“标量和结
 
 NSObject 提供了一种自动的键值对变更通知的基本实现。
 
-清单 1   
+清单 1 调用方法会触发KVO变更通知发出  
 
 	// Call the accessor method.
 	[account setName:@"Savings"];
