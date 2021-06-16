@@ -42,11 +42,11 @@ KVC是一个很多其他Cocoa技术的底层基础，比如KVO，Cocoa绑定，C
 
 一个对象通常会在其接口声明中指定属性，这些属性属于以下几种分类之一：  
 
-* 特性。这些事简单的值，比如一些标量，字符串，或者布尔值。类似NSNumber的值对象和其他的类似NSColor的不可变类型也可以考虑作为特性。
-* 对一的关系。这些可变对象有其自身的属性。一个对象的属性能够在对象本身不改变的情况下改变。比如，一个银行账户对象可能有个它自己的属性是Person对象的实例，该对象也有个地址属性。地址的持有者可能需要持有银行账户，在不改变拥有者的引用的情况下改变本身。银行账户的拥有者不会变更。只改变地址。
-* 对多的关系。这些是集合对象。通常使用NSArray或NSSet的实例来持有类似一个集合的内容，虽然自定义集合类也可以。
+* 特性。这些简单的值，比如一些标量，字符串，或者布尔值。类似 NSNumber 的值对象和其他的类似 NSColor 的不可变类型也可以考虑作为特性。
+* 一对一的关系。这些可变对象有其自身的属性。一个对象的属性能够在对象本身不改变的情况下改变。比如，一个银行账户对象可能有个它自己的属性是 Person 对象的实例，该对象也有个地址属性。地址的持有者可能需要持有银行账户，在不改变拥有者的引用的情况下改变本身。银行账户的拥有者不会变更。只改变地址。
+* 一对多的关系。这些是集合对象。通常使用 NSArray 或 NSSet 的实例来持有类似一个集合的内容，虽然自定义集合类也可以。
 
-BankAccount对象声明在清单2-1中，展示了属性的每种类型。  
+BankAccount 对象声明在清单2-1中，展示了属性的每种类型。  
 
 清单2-1 BankAccount对象的属性  
 
@@ -58,7 +58,7 @@ BankAccount对象声明在清单2-1中，展示了属性的每种类型。
 	 
 	@end
 
-为了维持封装性，一个对象通常在其接口中为属性提供存取方法。对象的作者可能会显式的编写这些方法，或者依赖编译器自动合成它们。不论哪种方法，使用这些存取方法的代码的作者都必须在编译之前将属性名写到代码中。存取器方法的名称会变为代码的静态部分然后使用。比如，给定清单2-1中声明的银行账户对象，编译器会合成一个setter方法，让你给myAccount实例对象调用：  
+为了维持封装性，一个对象通常在其接口中为属性提供存取方法。对象的作者可能会显式的编写这些方法，或者依赖编译器自动合成它们。不论哪种方法，使用这些存取方法的代码的作者都必须在编译之前将属性名写到代码中。存取器方法的名称会变为代码的静态部分然后使用。比如，给定清单2-1中声明的银行账户对象，编译器会合成一个 setter 方法，让你给 myAccount 实例对象调用：  
 
 	[myAccount setCurrentBalance:@(100.0)];
 
@@ -67,40 +67,40 @@ BankAccount对象声明在清单2-1中，展示了属性的每种类型。
 ### 使用key和key路径来定位一个对象的属性
 
 key是一个字符串，它会定位一个特定的属性。通常，按照惯例，key代表的属性就是出现在代码中的属性名本身。key都必须使用ASCII编码，可能不包含空格，通常开始是小写字母（虽然有例外，比如在很多类中都会看到的URL属性）。  
-由于在清单2-1中的BankAccount类是符合KVC的，它会识别key owner，currentBalance, 和 transactions，这些都是属性名。除了调用 setCurrentBalance: 方法，你可以使用key设置它的值：  
+由于在清单2-1中的 BankAccount 类是符合KVC的，它会识别key owner，currentBalance, 和 transactions，这些都是属性名。除了调用 setCurrentBalance: 方法，你可以使用key设置它的值：  
 
 	[myAccount setValue:@(100.0) forKey:@"currentBalance"];
 
-实际上，你可以使用同样的方法设置所有的myAccount对象的属性，使用不同的key参数即可。由于参数是一个字符串，它可以在运行时变为可操作的变量。  
-key path是一个用点分隔符制定一系列来回的对象属性的字符串。这个串中的第一个key是关于接受者的，并且随后的每个key都和前一个属性的值相关。key path在使用一个方法调用深入一组层级对象中很有用。  
-比如，key path owner.address.street用在一个银行账户实例时指的是存储在银行账户拥有者的地址中的街道名称，假设Person和Address类也是符合KVC的。  
+实际上，你可以使用同样的方法设置所有的 myAccount 对象的属性，使用不同的key参数即可。由于参数是一个字符串，它可以在运行时变为可操作的变量。  
+key path是一个用点分隔符制定一系列来回的对象属性的字符串。这个串中的第一个key是关于接收者的，并且随后的每个key都和前一个属性的值相关。key path在使用一个方法调用深入一组层级对象中很有用。  
+比如，key path owner.address.street 用在一个银行账户实例时指的是存储在银行账户拥有者的地址中的街道名称，假设 Person和Address类也是符合KVC的。  
 
 ```
 注意  
-在Swift中，你可以使用 #keyPath 表达式来代替使用字符串来表达一个key或key path。这也提供了编译时的检查，这在《结合Cocoa和OC（Swift 3）使用Swift指南》中的Keys 和 Key Paths段落有相关描述。
+在Swift中，你可以使用 #keyPath 表达式来代替使用字符串来表达一个 key 或 key path。这也提供了编译时的检查，这在《结合Cocoa和OC（Swift 3）使用Swift指南》中的 Keys 和 Key Paths 段落有相关描述。
 ```
 
 ### 使用keys获取属性值
 
-当一个对象遵守NSKeyValueCoding协议的时候，该对象就是符合KVC的。一个继承自NSObject的对象，它会提供协议根本方法的默认实现，自动的以某种默认行为遵循该协议。这样的一个对象至少实现了以下几种基本的基于Key的获取方法：  
+当一个对象遵守 NSKeyValueCoding 协议的时候，该对象就是符合 KVC 的。一个继承自 NSObject 的对象，它会提供协议根本方法的默认实现，自动的以某种默认行为遵循该协议。这样的一个对象至少实现了以下几种基本的基于Key的获取方法：  
 
-* valueForKey:-通过key参数返回属性名的值。如果通过key不能够根据《存取器检索模式》中描述的规则找到属性名的话，对象会给其本身发送valueForUndefinedKey:消息。valueForUndefinedKey: 的默认实现是产生一个NSUndefinedKeyException异常，但其子类可以重写这个行为并更好的处理这种情况。
-* valueForKeyPath:-给相关接收者返回指定key path的值。任何在key path序列中不符合KVC的特定key——意思是valueForKey: 的默认实现不能够找到存取器方法——会收到一条valueForUndefinedKey: 消息。
+* valueForKey:-通过key参数返回属性名的值。如果通过key不能够根据《存取器检索模式》中描述的规则找到属性名的话，对象会给其本身发送 valueForUndefinedKey: 消息。valueForUndefinedKey: 的默认实现是产生一个 NSUndefinedKeyException 异常，但其子类可以重写这个行为并更好的处理这种情况。
+* valueForKeyPath:-给相关接收者返回指定 key path 的值。任何在 key path 序列中不符合 KVC 的特定 key——意思是valueForKey: 的默认实现不能够找到存取器方法——会收到一条 valueForUndefinedKey: 消息。
 * dictionaryWithValuesForKeys:-给接收者返回相关的keys的数组值。该方法会调用每个在数组中的key的 valueForKey: 。返回的NSDictionary包含所有在数组中的key的值。
 
 >	注意  
 	集合类的对象，比如NSArray, NSSet, 和 NSDictionary，不能包含nil作为值。你可以使用NSNull对象代表nil值。NSNull会提供一个单独的实例给对象的属性表示nil值。dictionaryWithValuesForKeys: 的默认实现一机相关的 setValuesForKeysWithDictionary: 会在NSNull（在字典的参数中） 和 nil（在存储的属性中）之间自动转换。
 
-当你使用key path来定位一个属性时，如果key path中的最终key是多对多关系（即它引用了集合），返回值会是一个根据key到对多key的右侧的包含了所有值的集合。比如，请求key path transactions.payee的值会返回一个包含所有交易的所有payee对象的数组，这在key path中对于可变数组也有效。accounts.transactions.payee 这个 key path会返回所有账户中所有交易的所有payee对象。
+当你使用 key path 来定位一个属性时，如果 key path 中的最终 key 是多对多关系（即它引用了集合），返回值会是一个根据 key到对多 key 的右侧的包含了所有值的集合。比如，请求 key path transactions.payee 的值会返回一个包含所有交易的所有payee 对象的数组，这在 key path 中对于可变数组也有效。accounts.transactions.payee 这个 key path 会返回所有账户中所有交易的所有 payee 对象。
 
 ### 使用Keys设置属性值
 
-和getters方法一样，符合KVC的对象也会根据NSObject的NSKeyValueCoding协议基于默认行为的实现提供一组小的通用的setters：  
+和getters方法一样，符合 KVC 的对象也会根据 NSObject 的 NSKeyValueCoding 协议基于默认行为的实现提供一组小的通用的setters：  
 
-* setValue:forKey: -以给定值给相关对象的接受者根据特定key设置值。setValue:forKey:的默认实现会自动的解包NSNumber和NSValue对象为标量和结构体，然后将其赋值给属性。参见《表示非对对象值》了解封包和解包语法的细节。  
-如果指定的key相关的属性，即接收setter的对象调用没有该属性的话，对象会发送一条 setValue:forUndefinedKey: 消息给其本身。setValue:forUndefinedKey: 的默认实现是生成一个NSUndefinedKeyException异常。不过子类可以重载该方法来处理自定义管理中的请求。
+* setValue:forKey: -以给定值给相关对象的接受者根据特定key设置值。setValue:forKey: 的默认实现会自动的解包NSNumber 和 NSValue 对象为标量和结构体，然后将其赋值给属性。参见《表示非对对象值》了解封包和解包语法的细节。  
+如果指定的key相关的属性，即接收 setter 的对象调用没有该属性的话，对象会发送一条 setValue:forUndefinedKey: 消息给其本身。setValue:forUndefinedKey: 的默认实现是生成一个 NSUndefinedKeyException 异常。不过子类可以重载该方法来处理自定义管理中的请求。
 * setValue:forKeyPath: -根据指定key path相关的接收者设定给定值。任何在key path序列中的对象只要不符合给定key的KVC协议，就会收到一条 setValue:forUndefinedKey: 消息。
-* setValuesForKeysWithDictionary: -使用指定字典中的值设置接受者的属性，使用字典的key来匹配属性。默认的 setValue:forKey: 调用的实现是每个键值对，根据需要用nil代替NSNull对象。
+* setValuesForKeysWithDictionary: -使用指定字典中的值设置接受者的属性，使用字典的key来匹配属性。默认的 setValue:forKey: 调用的实现是每个键值对，根据需要用 nil 代替 NSNull 对象。
 
 在默认实现中，当你试图用一个nil设置一个非对象的属性时，符合KVC的对象会给其自身发送一条 setNilValueForKey: 消息。 setNilValueForKey: 的默认实现是会生成一个NSInvalidArgumentException异常，但是对象可以重载该方法用一个默认值代替或者标记值代替，这在《处理非对象值》中有相关描述。
 
