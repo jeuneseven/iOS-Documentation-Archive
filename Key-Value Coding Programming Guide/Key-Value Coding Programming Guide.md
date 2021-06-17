@@ -102,11 +102,11 @@ key path是一个用点分隔符制定一系列来回的对象属性的字符串
 * setValue:forKeyPath: -根据指定key path相关的接收者设定给定值。任何在key path序列中的对象只要不符合给定key的KVC协议，就会收到一条 setValue:forUndefinedKey: 消息。
 * setValuesForKeysWithDictionary: -使用指定字典中的值设置接受者的属性，使用字典的key来匹配属性。默认的 setValue:forKey: 调用的实现是每个键值对，根据需要用 nil 代替 NSNull 对象。
 
-在默认实现中，当你试图用一个nil设置一个非对象的属性时，符合KVC的对象会给其自身发送一条 setNilValueForKey: 消息。 setNilValueForKey: 的默认实现是会生成一个NSInvalidArgumentException异常，但是对象可以重载该方法用一个默认值代替或者标记值代替，这在《处理非对象值》中有相关描述。
+在默认实现中，当你试图用一个 nil 设置一个非对象的属性时，符合KVC的对象会给其自身发送一条 setNilValueForKey: 消息。 setNilValueForKey: 的默认实现是会生成一个 NSInvalidArgumentException 异常，但是对象可以重载该方法用一个默认值代替或者标记值代替，这在《处理非对象值》中有相关描述。
 
 ### 使用Keys来简化对象的访问
 
-要见识到基于key的getters和setters是如何简化你的代码的，请参考如下示例。在macOS中，NSTableView 和 NSOutlineView 对象会结合一个标识符字符串给每行。如果在列表后的模型对象不符合KVC，列表的数据源方法会强制检查每行的标识符，目的为了查找到正确的属性返回，如清单2-2所示。更甚者，在未来，当你添加另一个属性给你的模型对象时，本例中是Person对象，你必须再重新过一遍数据源方法，添加其他的条件来为新的属性和返回相关值来进行测试。
+想要看下基于key的 getters 和 setters 是如何简化你的代码的，请参考如下示例。在 macOS 中，NSTableView 和 NSOutlineView 对象会结合一个标识符字符串给每行。如果在列表后的模型对象不符合KVC，列表的数据源方法会强制检查每行的标识符，目的为了查找到正确的属性返回，如清单2-2所示。更甚者，在未来，当你添加另一个属性给你的模型对象时，本例中是Person对象，你必须再重新过一遍数据源方法，添加其他的条件来为新的属性和返回相关值来进行测试。
 
 清单2-2  不使用KVC实现数据源方法  
 
@@ -126,7 +126,7 @@ key path是一个用点分隔符制定一系列来回的对象属性的字符串
 	    return result;
 	}
 
-另一方面，清单2-3 展示了一个更加简洁的同样的数据源方法的实现，它利用了符合KVC的Person对象。仅使用了 valueForKey: 获取，数据源方法使用列的标识符作为key返回了适当的值。为了更加简短，也更加通用，由于其在随后添加新行时会继续不改变的工作，只要行的标识符始终符合模型对象的属性名。
+另一方面，清单2-3 展示了一个更加简洁的同样的数据源方法的实现，它利用了符合KVC的 Person 对象。仅使用了 valueForKey: 获取，数据源方法使用列的标识符作为key返回了恰当的值。为了更加简短，也更加通用，由于需要在随后添加新行时能够持续作用，只要行的标识符始终符合模型对象的属性名即可。
 
 清单2-3  使用KVC实现数据源方法 
 
@@ -137,14 +137,14 @@ key path是一个用点分隔符制定一系列来回的对象属性的字符串
 
 ## 访问集合属性
 
-和暴露其他属性一样，符合KVC的对象会以同样的方式暴露他们的对多的属性。你可以使用get或set一个集合对象，就像你对其他的对象那样使用valueForKey: 和 setValue:forKey:（或者同样的使用key path）。不过，当你想要操作这些集合的内容的时候，通常使用协议定义的可变的代理方法更为高效。  
-协议定义了三个不同的代理方法用于集合对象的访问，每个都有一个key和key path变体：  
+和暴露其他属性一样，符合KVC的对象会以同样的方式暴露它们的一对多的属性。你可以使用 get 或 set 一个集合对象，就像你对其他的对象那样使用 valueForKey: 和 setValue:forKey:（或者同样的使用key path）。不过，当你想要操作这些集合的内容的时候，通常使用协议定义的可变的代理方法更为高效。  
+协议定义了三个不同的代理方法用于集合对象的访问，每个都有一个 key 和 key path 变体：  
 
 * mutableArrayValueForKey: 和 mutableArrayValueForKeyPath: 这些会返回一个代理对象，它的行为就像一个NSMutableArray对象。
 * mutableSetValueForKey: 和 mutableSetValueForKeyPath: 这些会返回一个代理对象，它的行为就像一个NSMutableSet对象。
-* mutableOrderedSetValueForKey: 和 mutableOrderedSetValueForKeyPath: 这些会返回一个代理对象，它的行为就像一个NSMutableOrderedSet对象。
+* mutableOrderedSetValueForKey: 和 mutableOrderedSetValueForKeyPath: 这些会返回一个代理对象，它的行为就像一个 NSMutableOrderedSet 对象。
 
-当你操作协议对象的时候，给它添加对象，移除对象，或者替换它当中的对象，协议的默认实现会修改相应的底层属性。这比用valueForKey: 持有一个不可变的集合对象，创建一个修改内容的方法，然后用 setValue:forKey: 消息将其存储回对象更加高效。在很多情况下，它也比直接操作一个可变属性更加高效。这些方法对于集合对象中持有的对象符合KVO提供了额外的收益（参见KVO编程指南了解细节）。
+当你操作协议对象的时候，给它添加对象，移除对象，或者替换它当中的对象，协议的默认实现会修改相应的底层属性。这比用valueForKey: 持有一个不可变的集合对象，创建一个修改内容的方法，然后用 setValue:forKey: 消息将其存储回对象更加高效。在很多情况下，它也比直接操作一个可变属性更加高效。这些方法对于集合对象中持有的对象符合 KVO 提供了额外的收益（参见KVO编程指南了解细节）。
 
 ## 使用集合操作符
 
