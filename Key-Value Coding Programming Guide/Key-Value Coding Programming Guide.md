@@ -149,8 +149,8 @@ key path是一个用点分隔符制定一系列来回的对象属性的字符串
 ## 使用集合操作符
 
 当你给一个符合KVC的对象发送 valueForKeyPath: 消息时，你可以在key path中嵌入一个集合操作符。集合操作符是一小组由符号@开头的关键字，它指定了一个操作来执行某种方式操作数据在其返回之前。valueForKeyPath: 的默认实现由 NSObject 实现这种行为。  
-当一个key path包含一个集合操作符时，任何在操作符之前的key path部分被称作左key path，表明操作相关的集合与消息接收者关联。如果你直接给一个集合对象发送消息，比如 NSArray 实例，左key path可能被省略。  
-操作符之后的key path部分被称作右key path，指定集合中操作符作用的属性。所有的集合操作符（除了 @count） 都需要一个有一个右key path。如图 4-1 所示操作符key path格式。
+当一个 key path 包含一个集合操作符时，任何在操作符之前的key path部分被称作左key path，表明操作相关的集合与消息接收者关联。如果你直接给一个集合对象发送消息，比如 NSArray 实例，左key path可能被省略。  
+操作符之后的 key path 部分被称作右 key path，指定集合中操作符作用的属性。所有的集合操作符（除了 @count） 都需要一个有一个右key path。如图 4-1 所示操作符key path格式。
 
 图4-1 操作符key path格式  
 
