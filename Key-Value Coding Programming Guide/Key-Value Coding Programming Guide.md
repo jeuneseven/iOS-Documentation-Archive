@@ -148,9 +148,9 @@ key path是一个用点分隔符制定一系列来回的对象属性的字符串
 
 ## 使用集合操作符
 
-当你给一个符合KVC的对象发送 valueForKeyPath: 消息时，你可以在key path中嵌入一个集合操作符。集合操作符是一小组由符号@开头的关键字，它指定了一个操作来执行某种方式操作数据在其返回之前。valueForKeyPath: 的默认实现由 NSObject 实现这种行为。  
-当一个 key path 包含一个集合操作符时，任何在操作符之前的key path部分被称作左key path，表明操作相关的集合与消息接收者关联。如果你直接给一个集合对象发送消息，比如 NSArray 实例，左key path可能被省略。  
-操作符之后的 key path 部分被称作右 key path，指定集合中操作符作用的属性。所有的集合操作符（除了 @count） 都需要一个有一个右key path。如图 4-1 所示操作符key path格式。
+当你给一个符合KVC的对象发送 valueForKeyPath: 消息时，你可以在key path中嵌入一个集合操作符。集合操作符是一小组由符号@开头的关键字，它指定了一个操作来执行某种方式在数据返回之前进行操作。valueForKeyPath: 的默认实现由 NSObject 实现这种行为。  
+当一个 key path 包含一个集合操作符时，任何在操作符之前的 key path 部分被称作左 key path，表明操作相关的集合与消息接收者关联。如果你直接给一个集合对象发送消息，比如 NSArray 实例，左 key path 可能被省略。  
+操作符之后的 key path 部分被称作右 key path，指定集合中操作符作用的属性。所有的集合操作符（除了 @count）都需要一个右 key path。如图 4-1 所示操作符 key path 格式。
 
 图4-1 操作符key path格式  
 
@@ -158,9 +158,9 @@ key path是一个用点分隔符制定一系列来回的对象属性的字符串
 
 集合操作符展示了三种基本行为类型：  
 
-* 聚合操作 以某种方式合并一个集合的对象，并返回一个对象，该对象通常会匹配右key path中命名的属性的数据类型。@count操作符是一个例外——它没有右key path，并始终返回一个NSNumber实例。
-* 数组操作 返回一个NSArray实例，它包含某些集合中持有的对象的子集。
-* 嵌套操作 作用于包含其他集合的集合中，根据操作符不同返回一个NSArray 或 NSSet 实例，它会以某种方式将嵌套集合的对象结合起来。
+* 聚合操作 以某种方式合并一个集合的对象，并返回一个对象，该对象通常会匹配右 key path 中命名的属性的数据类型。@count 操作符是一个例外——它没有右 key path，并始终返回一个 NSNumber 实例。
+* 数组操作 返回一个 NSArray 实例，它包含某些集合中持有的对象的子集。
+* 嵌套操作 作用于包含其他集合的集合中，根据操作符不同返回一个 NSArray 或 NSSet 实例，它会以某种方式将嵌套集合的对象结合起来。
 
 ### 示例数据
 
@@ -198,12 +198,13 @@ Animal Hospital  | $600.00 | Jul 15, 2016
 
 ### 聚合操作符
 
-聚合操作符无论是在数组还是一组属性中都可用，它会产出一个反应集合的某些方面的值。
+聚合操作符无论是在数组还是一组属性中都可用，它会产出一个反映集合的某些方面的值。
 
 #### @avg
 
-当你指定 @avg 操作符时，valueForKeyPath：会读取集合中每个元素右key path指定的属性。转换为一个double类型（代替0或者nil值），并计算它们的算术平均值。然后会返回一个存储在NSNumber实例中的结果。  
-要获取列表4-1中的示例代码的平均值事物数量：                                                               
+当你指定 @avg 操作符时，valueForKeyPath：会读取集合中每个元素右 key path 指定的属性。转换为一个 double 类型（代替0或者nil值），并计算它们的算术平均值。然后会返回一个存储在 NSNumber 实例中的结果。  
+要获取列表4-1中的示例代码的平均值事物数量：                     
+                                          
 	NSNumber *transactionAverage = [self.transactions valueForKeyPath:@"@avg.amount"];
 
 格式化后transactionAverage的结果是¥456.54。
@@ -219,25 +220,25 @@ numberOfTransactions 的值是13。
 
 #### @max
 
-当你指定 @max 操作符的时候，valueForKeyPath：方法会沿着集合名称通过右侧key path和返回的最大值来进行寻找。检索行为的比较是使用的compare：方法，这在很多 Foundation 类中都有定义，比如NSNumber类。所以，通过右侧key path表示的属性必须持有一个对象，并能够有意义的响应这个消息。检索时会忽略集合条目的nil值。  
+当你指定 @max 操作符的时候，valueForKeyPath：方法会沿着集合名称通过右侧 key path 和返回的最大值来进行寻找。检索行为的比较是使用的 compare: 方法，这在很多 Foundation 类中都有定义，比如 NSNumber 类。所以，通过右侧 key path 表示的属性必须持有一个对象，并能够有意义的响应这个消息。检索时会忽略集合条目的nil值。  
 要获得日期值的最大值，即最近的交易日期，通过列表4-1中的交易列表：  
 
 	NSDate *latestDate = [self.transactions valueForKeyPath:@"@max.date"];
 
-格式化的latestDate值是Jul 15, 2016。
+格式化的 latestDate 值是Jul 15, 2016。
 
 #### @min
 
-当你指定 @min 操作符的时候，valueForKeyPath：方法会沿着集合名称通过右侧key path和返回的最小值来进行寻找。检索行为的比较是使用的compare：方法，这在很多 Foundation 类中都有定义，比如NSNumber类。所以，通过右侧key path表示的属性必须持有一个对象，并能够有意义的响应这个消息。检索时会忽略集合条目的nil值。  
+当你指定 @min 操作符的时候，valueForKeyPath：方法会沿着集合名称通过右侧 key path 和返回的最小值来进行寻找。检索行为的比较是使用的 compare: 方法，这在很多 Foundation 类中都有定义，比如NSNumber类。所以，通过右侧 key path 表示的属性必须持有一个对象，并能够有意义的响应这个消息。检索时会忽略集合条目的nil值。  
 要获得日期值的最小值，即最早的交易日期，通过列表4-1中的交易列表：  
 
 	NSDate *earliestDate = [self.transactions valueForKeyPath:@"@min.date"];
 
-格式化的earliestDate值是Dec 1, 2015。
+格式化的 earliestDate 值是Dec 1, 2015。
 
 #### @sum
 
-当你指定 @ sum 操作符时，valueForKeyPath：会读取集合中每个元素右key path指定的属性。转换为一个double类型（代替0或者nil值），并计算它们的和。然后会返回一个存储在NSNumber实例中的结果。  
+当你指定 @sum 操作符时，valueForKeyPath：会读取集合中每个元素右 key path 指定的属性。转换为一个 double 类型（代替0或者nil值），并计算它们的和。然后会返回一个存储在 NSNumber 实例中的结果。  
 要获取列表4-1中的示例代码的事物数量和：           
 
 	NSNumber *amountSum = [self.transactions valueForKeyPath:@"@sum.amount"];
@@ -246,15 +247,15 @@ numberOfTransactions 的值是13。
 
 ### 数组操作符
 
-数组操作符会触发 valueForKeyPath: 方法，返回一个由右侧keypath表示的相应地特定集合的对象的一组数组对象。  
+数组操作符会触发 valueForKeyPath: 方法，返回一个由右侧 key path 表示的相应地特定集合的对象的一组数组对象。  
 
 >	重要：  
 	valueForKeyPath: 方法在使用数组操作符时，遇到任何子节点对象是nil的时候会产生异常。
 
 #### @distinctUnionOfObjects
 
-当你指定 @distinctUnionOfObjects 操作符的时候，valueForKeyPath：会创建并返回一个通过右侧keypath指定的集合中相应属性的不同对象。  
-要获取一个payee属性值的集合，省略重复值的transactions中的事物：  
+当你指定 @distinctUnionOfObjects 操作符的时候，valueForKeyPath：会创建并返回一个通过右侧 key path 指定的集合中相应属性的不同对象。  
+要获取一个 payee 属性值的集合，省略重复值的 transactions 中的事物：  
 
 	NSArray *distinctPayees = [self.transactions valueForKeyPath:@"@distinctUnionOfObjects.payee"];
 
@@ -265,8 +266,8 @@ numberOfTransactions 的值是13。
 
 #### @unionOfObjects
 
-当你指定 @unionOfObjects 操作符的时候，valueForKeyPath：会创建并返回一个通过右侧keypath指定的集合中相应属性的所有对象。与@distinctUnionOfObjects不同，重复的对象不会被移除。  
-要获取一个payee属性值的集合，取到transactions中的事物：  
+当你指定 @unionOfObjects 操作符的时候，valueForKeyPath：会创建并返回一个通过右侧 key path 指定的集合中相应属性的所有对象。与 @distinctUnionOfObjects 不同，重复的对象不会被移除。  
+要获取一个 payee 属性值的集合，取到 transactions 中的事物：  
 
 	NSArray *payees = [self.transactions valueForKeyPath:@"@unionOfObjects.payee"];
 
@@ -280,9 +281,9 @@ numberOfTransactions 的值是13。
 嵌套操作符是作用于嵌套集合的，即每个集合本身还包含了一个集合。  
 
 >	重要  
-	valueForKeyPath: 方法在使用前套操作符时，遇到任何子节点对象是nil的时候会产生异常。
+	valueForKeyPath: 方法在使用前套操作符时，遇到任何子节点对象是 nil 的时候会产生异常。
 
-为后续介绍，假设有第二个数据数组叫做moreTransactions，构成列表4-2中的数据，它是集合了原始的transactions 数组（引自“示例数据”一节）为一个嵌套数组：  
+为后续介绍，假设有第二个数据数组叫做 moreTransactions，构成列表4-2中的数据，它是集合了原始的 transactions 数组（引自“示例数据”一节）为一个嵌套数组：  
 
 	NSArray* moreTransactions = @[<# transaction data #>];
 	NSArray* arrayOfArrays = @[self.transactions, moreTransactions];
@@ -292,10 +293,16 @@ numberOfTransactions 的值是13。
 payee 值  | amount值格式化为货币 | date 值格式化为月日年
 ------------- | ------------- | -------------
 General Cable - Cottage  | $120.00 | Dec 18, 2015
+General Cable - Cottage  | $155.00 | Jan 9, 2016
+General Cable - Cottage  | $120.00 | Dec 1, 2016
+Second Mortgage  | $1,250.00 | Nov 15, 2016
+Second Mortgage  | $1,250.00 | Sep 20, 2016
+Second Mortgage  | $1,250.00 | Feb 12, 2016
+Hobby Shop  | $600.00 | Jun 14, 2016
 
 #### @distinctUnionOfArrays
 
-当你指定@distinctUnionOfArrays 操作符时，valueForKeyPath：会创建并返回一个数组，该数组包含通过右侧keypath所指定的结合所有集合相应的属性的不同对象。  
+当你指定 @distinctUnionOfArrays 操作符时，valueForKeyPath：会创建并返回一个数组，该数组包含通过右侧 key path 所指定的结合所有集合相应的属性的不同对象。  
 要在所有的arrayOfArrays：中的数组中获取不同的payee 值：  
 	
 	NSArray *collectedDistinctPayees = [arrayOfArrays valueForKeyPath:@"@distinctUnionOfArrays.payee"];
@@ -307,7 +314,7 @@ General Cable - Cottage  | $120.00 | Dec 18, 2015
 
 #### @unionOfArrays
 
-当你指定@unionOfArrays 操作符时，valueForKeyPath：会创建并返回一个数组，该数组包含通过右侧keypath所指定的结合所有集合相应的属性的不同对象，而不移除重复项。  
+当你指定 @unionOfArrays 操作符时，valueForKeyPath：会创建并返回一个数组，该数组包含通过右侧 key path 所指定的结合所有集合相应的属性的不同对象，而不移除重复项。  
 要在所有的arrayOfArrays：中的数组中获取不同的payee 值：  
 
 	NSArray *collectedPayees = [arrayOfArrays valueForKeyPath:@"@unionOfArrays.payee"];
@@ -319,8 +326,8 @@ General Cable - Cottage  | $120.00 | Dec 18, 2015
 
 #### @distinctUnionOfSets
 
-当你指定@distinctUnionOfSets 操作符时，valueForKeyPath：会创建并返回一个NSSet 对象，该对象包含通过右侧keypath所指定的结合所有集合相应的属性的不同对象，而不移除重复项。  
-这个操作符的行为类似@distinctUnionOfArrays，只不过它要的是一个NSSet实例，包含NSSet对象的实例，而非一个NSArray实例包含NSArray实例。同样的，它会返回一个NSSet实例。假设示例数据已经被存在一个集合而非数组中，示例调用和结果也会和@distinctUnionOfArrays 展示的一样。
+当你指定 @distinctUnionOfSets 操作符时，valueForKeyPath：会创建并返回一个NSSet 对象，该对象包含通过右侧keypath所指定的结合所有集合相应的属性的不同对象，而不移除重复项。  
+这个操作符的行为类似 @distinctUnionOfArrays，只不过它要的是一个NSSet实例，包含 NSSet 对象的实例，而非一个 NSArray 实例包含NSArray实例。同样的，它会返回一个 NSSet 实例。假设示例数据已经被存在一个集合而非数组中，示例调用和结果也会和@distinctUnionOfArrays 展示的一样。
 
 ## 表示非对象值
 
