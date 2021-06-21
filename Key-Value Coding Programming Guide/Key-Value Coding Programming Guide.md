@@ -334,18 +334,19 @@ Hobby Shop  | $600.00 | Jun 14, 2016
 KVC协议方法的默认实现由 NSObject 提供，同时作用于对象和非对象属性。默认实现会自动的从对象参数或返回值到非对象属性之间进行转换。这让基于key签名的 getter 和 setter 能够保持不变，即使存储的属性是一个标量或者结构体。  
 
 >	注意  
-	由于所有 Swift 中的属性都是对象，本段落只用于OC属性。
+	由于所有 Swift 中的属性都是对象，本段落只应用于OC属性。
 
-当你调用协议中的一个 getter 方法时，类似 valueForKey:，默认的实现会判断特定的访问方法或者实例变量（根据“存取搜索模式”中描述的规则支持的特定key和值）。若返回值不是一个对象，getter会使用该值初始化一个 NSNumber 对象（对于标量而言），或一个NSValue对象（对于结构体而言）然后将其返回。  
-类似的，默认的，类似 setValue:forKey: 的 setter方法会根据存取属性或实例变量判断数据类型，给定一个特定的key。若数据类型不是一个对象，setter首先会发送一个适当的<type>Value消息给到来的值对象来提取底层数据，然后将其存储。  
+当你调用协议中的一个 getter 方法时，类似 valueForKey:，默认的实现会判断特定的访问方法或者实例变量（根据“存取搜索模式”中描述的规则支持的特定 key 和值）。若返回值不是一个对象，getter 会使用该值初始化一个 NSNumber 对象（对于标量而言），或一个 NSValue 对象（对于结构体而言）然后将其返回。  
+默认的，类似 setValue:forKey: 的 setter 方法会根据存取属性或实例变量判断数据类型，给定一个特定的 key。若数据类型不是一个对象，setter首先会发送一个适当的 `<type>Value` 消息给到来的值对象来提取底层数据，然后将其存储。  
 
 >	注意  
-	当你调用一个KVC协议的setter方法，设置一个nil值给非对象属性时，setter并不会察觉，照常触发动作来应用。然后，它会发送一条setNilValueForKey：消息给对象接收者的setter调用。该方法的默认实现会产生NSInvalidArgumentException异常，但子类可以重写这个方法的行为，在“处理非对象值”中有相关描述，所以请设置标记值，或提供一个有意义的默认值。
+	当你调用一个 KVC 协议的 setter 方法，设置一个 nil 值给非对象属性时，setter 并不会察觉，照常触发动作来应用。然后，它会发送一条 setNilValueForKey: 消息给对象接收者的 setter 调用。该方法的默认实现会产生 NSInvalidArgumentException 异常，但子类可以重写这个方法的行为，在“处理非对象值”中有相关描述，所以请设置标记值，或提供一个有意义的默认值。
 
 ### 封包和解包标量类型
 
-列表5-1 列出了默认KVC使用NSNumber实例实现封装的标量类型。对于每种数据类型，列表都展示了用来从底层属性值创建一个NSNumber实例的方法到支持一个getter返回值。随后展示了在set操作中用来从setter输入参数扩展值的存取方法。  
-列表5-1 NSNumber对象中的封装标量
+列表5-1 列出了默认 KVC 使用 NSNumber 实例实现封装的标量类型。对于每种数据类型，列表都展示了用来从底层属性值创建一个NSNumber 实例的方法到支持一个 getter 返回值。随后展示了在 set 操作中用来从 setter 输入参数扩展值的存取方法。  
+
+列表5-1 NSNumber对象中的封装标量  
 
 数据类型  | 创建方法 | 存取方法
 ------------- | ------------- | -------------
@@ -364,7 +365,7 @@ unsigned long long| numberWithUnsignedLongLong:| unsignedLongLong
 unsigned short| numberWithUnsignedShort:| unsignedShort
 
 > 注意 
-> 在macOS中，由于历史原因，BOOL被定义成signed char类型，KVC并不能区分两者。因此，当key是BOOL类型时，你不应该传递一个类似 @“true” 或 @“YES” 的字符串值给setValue:forKey:方法。KVC会试图调用charValue（由于BOOL本质上就是一个char），但NSString没有实现该方法，这会引起运行时错误。取而代之的，当key是BOOL类型时，传递NSNumber对象，类似@(1) 或 @(YES)，作为参数传递给setValue:forKey:。这种限制不应该应用在iOS中，在iOS中BOOL类型被定义为一个本地化的布尔类型bool，KVC会调用boolValue，这在 NSNumber对象或者一个格式为NSString的对象中都能够起作用。
+> 在macOS中，由于历史原因，BOOL被定义成 signed char 类型，KVC 并不能区分两者。因此，当 key 是 BOOL 类型时，你不应该传递一个类似 @“true” 或 @“YES” 的字符串值给 setValue:forKey: 方法。KVC会试图调用 charValue（由于BOOL本质上就是一个char），但 NSString 没有实现该方法，这会引起运行时错误。取而代之的，当 key 是 BOOL 类型时，传递 NSNumber 对象，类似 @(1) 或 @(YES)，作为参数传递给 setValue:forKey:。这种限制不应该应用在 iOS 中，在 iOS 中 BOOL 类型被定义为一个本地化的布尔类型 bool，KVC 会调用 boolValue，这在 NSNumber 对象或者一个格式为 NSString 的对象中都能够起作用。
 
 ### 封包和解包结构体
 
