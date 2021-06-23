@@ -459,7 +459,7 @@ valueForKey: 的默认实现会将一个key作为输入参数，承载着以下�
 
 ### 基本的setter的检索模式
 
-默认的 setValue:forKey: 实现，给定 key 和 value 作为输入参数，会尝试使用一个名为 key 的属性设置 value（对于非对象属性，会使用解包 value 的版本，如“展示非对象值”一节中所描述）内部对象会接收调用，使用步骤如下：  
+默认的 setValue:forKey: 实现是给定 key 和 value 作为输入参数，会尝试使用一个名为 key 的属性设置 value（对于非对象属性，会使用解包 value 的版本，如“展示非对象值”一节中所描述）内部对象会接收调用，使用步骤如下：  
 
 1. 首先按顺序查找名为`set<Key>:` 或 `_set<Key>`的存取方法。如果找到了，调用它，传入输入值（或根据需要的解包值）并结束。
 2. 如果没有直接查找到存取方法，若类方法 accessInstanceVariablesDirectly 返回 YES，按顺序查找名为 `_<key>`, `_is<Key>`, `<key>`, 或 `is<Key>` 的实例变量。如果找到，直接以输入值（或解包值）设置该实例变量并结束。
@@ -469,9 +469,17 @@ valueForKey: 的默认实现会将一个key作为输入参数，承载着以下�
 
 mutableArrayValueForKey: 的默认实现，给定一个key作为输入参数，返回一个可变代理数组给名为key的属性，让内部的对象接收存取器调用，使用如下步骤：  
 
-1. 查找成对的名为 insertObject:in<Key>AtIndex: 和 removeObjectFrom<Key>AtIndex: 的方法（分别对应 NSMutableArray 的  insertObject:atIndex: 和 removeObjectAtIndex: 方法），或者是名为insert<Key>:atIndexes: 和 remove<Key>AtIndexes: （分别对应NSMutableArray 的 insertObjects:atIndexes: 和 removeObjectsAtIndexes: 方法）的方法。  
-若对象至少有一个插入和移除方法，返回一个通过发送某些 insertObject:in<Key>AtIndex:, removeObjectFrom<Key>AtIndex:, insert<Key>:atIndexes:, 和 remove<Key>AtIndexes: 消息来响应NSMutableArray消息代理对象，消息发送给原 mutableArrayValueForKey: 的接收者。  
-当对象接收到 mutableArrayValueForKey: 消息，并且实现了一个名为 replaceObjectIn<Key>AtIndex:withObject: o或 replace<Key>AtIndexes:with<Key>: 的可选的替代对象方法，代理对象会在适当的时机利用这些方法达到最佳性能。  
+1. 查找成对的名为 `insertObject:in<Key>AtIndex:` 和 `removeObjectFrom<Key>AtIndex:` 的方法（分别对应 NSMutableArray 的 insertObject:atIndex: 和 removeObjectAtIndex: 方法），或者是名为 `insert<Key>:atIndexes:` 和 `remove<Key>AtIndexes:` （分别对应NSMutableArray 的 insertObjects:atIndexes: 和 removeObjectsAtIndexes: 方法）的方法。)  
+若对象至少有一个插入和移除方法，这时会返回一个通过发送 `insertObject:in<Key>AtIndex:`, `removeObjectFrom<Key>AtIndex:`, `insert<Key>:atIndexes:`, 和 `remove<Key>AtIndexes:` 消息来响应NSMutableArray 的消息代理对象，消息发送给原 mutableArrayValueForKey: 的接收者。  
+当对象接收到 mutableArrayValueForKey: 消息，并且实现了一个名为 `replaceObjectIn<Key>AtIndex:withObject:` 或 `replace<Key>AtIndexes:with<Key>:` 的可选的替代对象方法，代理对象会在适当的时机利用这些方法达到最佳性能。  
+2. 如果对象没有可变数组方法，回开始查找名称匹配 `set<Key>:` 模式的存取方法作为替代。在这种情况下，返回一个响应 NSMutableArray 消息的代理对象，消息会发送到原来的 mutableArrayValueForKey: 的接收者。  
+
+	> 注意 
+	> 这个步骤所描述的机制要远比前一步骤低效，因为它可能包含重复创建新的集合对象，而非修改一个已经存在的。所以，你应该在设计你自己的复合 KVC 的对象时候避免。
+3. 如果既没有可变数组方法，也没有存取方法被发现，当接收者的类方法 accessInstanceVariablesDirectly 返回 YES 时，会开始按顺序检索实例变量的名为 `_<key>` 或 `<key>` 方法。  
+	如果发现了实例变量，返回一个代理方法，它会转发它所接收到的 NSMutableArray 消息给实例变量的值，这通常是一个 NSMutableArray 的实例，或者它的一个子类。  
+4. 如果所有 else 都失败了，无论何时接收到 NSMutableArray 的消息，都会返回一个可变集合代理对象，并生成一个 setValue:forUndefinedKey: 消息给原  mutableArrayValueForKey: 消息的接收者。  
+setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException 异常，但它的子类可以重写该行为。
 
 ### 可变有序集合的检索模式
 
