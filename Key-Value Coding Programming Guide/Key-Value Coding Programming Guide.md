@@ -488,8 +488,8 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 # 采用KVC
 ## 获取基本的KVC合规
 
-当给一个对象采用了KVC，你就可以通过让你的对象继承自NSObject（或其众多的子类之一）来获得NSKeyValueCoding协议的默认实现了。反过来说，默认的实现依赖于你定义你的对象的实例变量（或者ivars）以及遵循特定的定义好的模式的存取方法了，这样，它就能够在接收到键值编码方法(比如valueForKey: 和 setValue:forKey:)时通过字符串key关联属性。  
-通常遵守OC中的标准模式，只需要使用@property语句，然后编译器自动合成ivar和存取器方法。编译器默认遵循预期模式。  
+当给一个对象采用了 KVC，你就可以通过让你的对象继承自 NSObject（或其众多的子类之一）来获得 NSKeyValueCoding 协议的默认实现了。反过来说，默认的实现依赖于你定义你的对象的实例变量（或者ivars）以及遵循特定的定义好的模式的存取方法了，这样，它就能够在接收到键值编码方法(比如 valueForKey: 和 setValue:forKey:)时通过字符串key关联属性。  
+通常遵守OC中的标准模式，只需要使用 @property 语句，然后编译器自动合成 ivar 和存取器方法。编译器默认遵循预期模式。  
 
 > 注意  
 > 在Swift中
