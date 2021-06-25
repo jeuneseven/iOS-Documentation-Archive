@@ -547,6 +547,23 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 
 #### 索引集合的getter
 
+	- (NSUInteger)countOfTransactions {
+	    return [self.transactions count];
+	}
+
+	- (id)objectInTransactionsAtIndex:(NSUInteger)index {
+	    return [self.transactions objectAtIndex:index];
+	}
+	 
+	- (NSArray *)transactionsAtIndexes:(NSIndexSet *)indexes {
+	    return [self.transactions objectsAtIndexes:indexes];
+	}
+	
+	- (void)getTransactions:(Transaction * __unsafe_unretained *)buffer
+               range:(NSRange)inRange {
+	    [self.transactions getObjects:buffer range:inRange];
+	}
+
 #### 索引集合的改变
 
 ### 访问无序的集合
