@@ -566,6 +566,37 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 
 #### 索引集合的改变
 
+	- (void)insertObject:(Transaction *)transaction
+	  inTransactionsAtIndex:(NSUInteger)index {
+	    [self.transactions insertObject:transaction atIndex:index];
+	}
+	 
+	- (void)insertTransactions:(NSArray *)transactionArray
+	              atIndexes:(NSIndexSet *)indexes {
+	    [self.transactions insertObjects:transactionArray atIndexes:indexes];
+	}
+	
+	- (void)removeObjectFromTransactionsAtIndex:(NSUInteger)index {
+	    [self.transactions removeObjectAtIndex:index];
+	}
+	 
+	- (void)removeTransactionsAtIndexes:(NSIndexSet *)indexes {
+	    [self.transactions removeObjectsAtIndexes:indexes];
+	}
+
+
+	- (void)replaceObjectInTransactionsAtIndex:(NSUInteger)index
+                             withObject:(id)anObject {
+	    [self.transactions replaceObjectAtIndex:index
+	                              withObject:anObject];
+	}
+	 
+	- (void)replaceTransactionsAtIndexes:(NSIndexSet *)indexes
+	                    withTransactions:(NSArray *)transactionArray {
+	    [self.transactions replaceObjectsAtIndexes:indexes
+	                                withObjects:transactionArray];
+	}
+
 ### 访问无序的集合
 
 ## 处理非对象值
