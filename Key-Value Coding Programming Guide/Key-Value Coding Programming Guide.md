@@ -613,7 +613,27 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 
 ## 处理非对象值
 
+通常来讲，如同《展示非对象的值》中所描述的那样，你的符合 KVC 的对象会依赖于 KVC 自动封包和解包非对象属性的默认实现。不过，你可以重写默认行为。这样做最常见的原因是处理尝试存储一个 nil 值给非对象属性。  
 
+> 注意  
+> 由于在 Swift 中所有的属性都是对象，本章节只作用于 OC 属性。
+
+如果你的复合 KVC 的对象通过 setValue:forKey: 消息接收到了一个 nil 作为值传递给非对象属性，那么默认实现是没有适当的、通用的操作过程的。它会给其自身发送 setNilValueForKey: 消息，这你可以重写。setNilValueForKey: 的默认实现会产生一个 NSInvalidArgumentException 异常，但你可以提供一个适当的，指定实现的行为。  
+比如，清单10-1 中的代码是尝试将设置一个人的年龄为 nil 值替换为设置为0，这比一个浮点值更合适。注意重写的方法在不能够准确处理的某些 keys 时候会调用其对象的父类。  
+
+清单10-1 setNilValueForKey: 的实现示例  
+
+	- (void)setNilValueForKey:(NSString *)key
+	{
+	    if ([key isEqualToString:@"age"]) {
+	        [self setValue:@(0) forKey:@”age”];
+	    } else {
+	        [super setNilValueForKey:key];
+	    }
+	}
+
+> 注意  
+> 对于向后兼容性，当一个对象重写了废弃的 unableToSetNilForKey: 方法，setValue:forKey: 会调用该方法代替 setNilValueForKey:。
 
 ## 增加校验
 
@@ -640,3 +660,4 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 ### 无序一对多关系匹配
 
 ### 校验
+
