@@ -637,7 +637,39 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 
 ## 增加校验
 
+### 实现校验方法
+
+	- (BOOL)validateName:(id *)ioValue error:(NSError * __autoreleasing *)outError{
+	    if ((*ioValue == nil) || ([(NSString *)*ioValue length] < 2)) {
+	        if (outError != NULL) {
+	            *outError = [NSError errorWithDomain:PersonErrorDomain
+	                                            code:PersonInvalidNameCode
+	                                        userInfo:@{ NSLocalizedDescriptionKey
+	                                                    : @"Name too short" }];
+	        }
+	        return NO;
+	    }
+	    return YES;
+	}
+
+
 ### 校验标量
+	
+	- (BOOL)validateAge:(id *)ioValue error:(NSError * __autoreleasing *)outError {
+	    if (*ioValue == nil) {
+	        // Value is nil: Might also handle in setNilValueForKey
+	        *ioValue = @(0);
+	    } else if ([*ioValue floatValue] < 0.0) {
+	        if (outError != NULL) {
+	            *outError = [NSError errorWithDomain:PersonErrorDomain
+	                                            code:PersonInvalidAgeCode
+	                                        userInfo:@{ NSLocalizedDescriptionKey
+	                                                    : @"Age cannot be negative" }];
+	        }
+	        return NO;
+	    }
+	    return YES;
+	}
 
 ## 描述属性关系
 
