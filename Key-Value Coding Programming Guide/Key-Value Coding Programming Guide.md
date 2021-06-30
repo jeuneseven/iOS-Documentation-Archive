@@ -637,6 +637,8 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 
 ## 增加校验
 
+KVC 协议定义了方法来通过 key 或 key path 对于属性进行校验。这些方法的默认实现依赖于你定义的遵循名称模式的方法，近似于使用存取方法。尤其是你提供了 `validate<Key>:error:` 方法给任何属性以名称 key 来进行校验。默认实现会对其进行检索以便响应键编码的 validateValue:forKey:error: 消息。
+
 ### 实现校验方法
 
 	- (BOOL)validateName:(id *)ioValue error:(NSError * __autoreleasing *)outError{
