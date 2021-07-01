@@ -637,7 +637,11 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 
 ## 增加校验
 
-KVC 协议定义了方法来通过 key 或 key path 对于属性进行校验。这些方法的默认实现依赖于你定义的遵循名称模式的方法，近似于使用存取方法。尤其是你提供了 `validate<Key>:error:` 方法给任何属性以名称 key 来进行校验。默认实现会对其进行检索以便响应键编码的 validateValue:forKey:error: 消息。
+KVC 协议定义了方法来通过 key 或 key path 对于属性进行校验。这些方法的默认实现依赖于你定义的遵循名称模式的方法，近似于使用存取方法。尤其是你提供了 `validate<Key>:error:` 方法给任何属性以名称 key 来进行校验。默认实现会对其进行检索以便响应键编码的 validateValue:forKey:error: 消息。  
+如果你不想讲一个校验方法应用在一个属性上，协议的默认实现会假设该属性的校验是成功的，无论值为什么。这意味着你选择了按照属性来进行验证。  
+
+> 注意  
+> 通常只在 OC 中使用这里描述的校验方法。在 Swift 中，属性的校验更加依赖于编译器所支持的复合语言习惯的可选项以及强类型检查，即使用内置的 willSet 和 didSet 属性监听来检测任何运行时 API 关联，如《Swift 编程语言(Swift 3)》中的“属性监听”段落所描述的。
 
 ### 实现校验方法
 
