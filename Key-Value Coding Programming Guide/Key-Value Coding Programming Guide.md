@@ -599,6 +599,8 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 
 ### 访问无序的集合
 
+#### 无序集合的获取
+
 * `countOf<Key>`
 	
 		-(NSUInteger)countOfEmployees {
@@ -616,6 +618,14 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 		-(Employee *)memberOfEmployees:(Employee *)anObject {
 		    return [self.employees member:anObject];
 		}
+
+#### 无序集合的可变
+
+* `add<Key>Object:` 或 `add<Key>:`
+
+* `remove<Key>Object:` 或 `remove<Key>:`
+
+* `intersect<Key>:`
 
 ## 处理非对象值
 
