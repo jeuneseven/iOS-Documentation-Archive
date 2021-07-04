@@ -661,18 +661,26 @@ KVC 协议定义了方法来通过 key 或 key path 对于属性进行校验。�
 
 ### 实现校验方法
 
-	- (BOOL)validateName:(id *)ioValue error:(NSError * __autoreleasing *)outError{
-	    if ((*ioValue == nil) || ([(NSString *)*ioValue length] < 2)) {
-	        if (outError != NULL) {
-	            *outError = [NSError errorWithDomain:PersonErrorDomain
-	                                            code:PersonInvalidNameCode
-	                                        userInfo:@{ NSLocalizedDescriptionKey
-	                                                    : @"Name too short" }];
-	        }
-	        return NO;
-	    }
-	    return YES;
-	}
+当你给一个属性提供校验方法时，该方法会通过引用接收到两个参数：需要校验的值对象以及用来返回错误信息的 NSError 对象。作为结果，你的校验方法可以采取以下三种行为之一：  
+
+- 当值对象有效时，返回 YES，而无需替换值对象或者 error 对象。
+- 当值对象无效时，你无需提供一个有效值作为替代，只需要设置 error 参数为一个能够表示失败原因的 NSError 对象，然后返回 NO 即可。
+	
+	> 重要  
+	> 在尝试设置一个 error 引用对象之前永远都要检测它是否是 NULL。
+
+		-(BOOL)validateName:(id *)ioValue error:(NSError * __autoreleasing *)outError{
+		    if ((*ioValue == nil) || ([(NSString *)*ioValue length] < 2)) {
+		        if (outError != NULL) {
+		            *outError = [NSError errorWithDomain:PersonErrorDomain
+		                                            code:PersonInvalidNameCode
+		                                        userInfo:@{ NSLocalizedDescriptionKey
+		                                                    : @"Name too short" }];
+		        }
+		        return NO;
+		    }
+		    return YES;
+		}
 
 
 ### 校验标量
