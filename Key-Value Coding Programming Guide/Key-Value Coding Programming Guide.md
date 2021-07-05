@@ -668,7 +668,12 @@ KVC 协议定义了方法来通过 key 或 key path 对于属性进行校验。�
 	
 	> 重要  
 	> 在尝试设置一个 error 引用对象之前永远都要检测它是否是 NULL。
+- 当值对象无效时，但你知道一个有效的替代的话，创建一个有效的对象，将值引用复制给新的对象，然后返回 YES 无需修改 error 引用。如果你提供另一个值，应该始终返回一个新的对象而非修改一个已经经过校验的对象，即使是原对象是可变的。 
 
+清单 11-1 展示了一个名为 name 的字符串属性校验方法，它会确保值对象不为nil，并且名字是最小长度。如果校验失败了，这个方法不会代替另一个值。  
+
+清单 11-1 name属性校验方法
+		
 		-(BOOL)validateName:(id *)ioValue error:(NSError * __autoreleasing *)outError{
 		    if ((*ioValue == nil) || ([(NSString *)*ioValue length] < 2)) {
 		        if (outError != NULL) {
