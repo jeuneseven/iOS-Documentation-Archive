@@ -674,21 +674,23 @@ KVC 协议定义了方法来通过 key 或 key path 对于属性进行校验。�
 
 清单 11-1 name属性校验方法
 		
-		-(BOOL)validateName:(id *)ioValue error:(NSError * __autoreleasing *)outError{
-		    if ((*ioValue == nil) || ([(NSString *)*ioValue length] < 2)) {
-		        if (outError != NULL) {
-		            *outError = [NSError errorWithDomain:PersonErrorDomain
-		                                            code:PersonInvalidNameCode
-		                                        userInfo:@{ NSLocalizedDescriptionKey
-		                                                    : @"Name too short" }];
-		        }
-		        return NO;
-		    }
-		    return YES;
-		}
+	-(BOOL)validateName:(id *)ioValue error:(NSError * __autoreleasing *)outError{
+	    if ((*ioValue == nil) || ([(NSString *)*ioValue length] < 2)) {
+	        if (outError != NULL) {
+	            *outError = [NSError errorWithDomain:PersonErrorDomain
+	                                            code:PersonInvalidNameCode
+	                                        userInfo:@{ NSLocalizedDescriptionKey
+	                                                    : @"Name too short" }];
+	        }
+	        return NO;
+	    }
+	    return YES;
+	}
 
 
 ### 校验标量
+
+清单 11-2 标量属性的校验方法
 	
 	- (BOOL)validateAge:(id *)ioValue error:(NSError * __autoreleasing *)outError {
 	    if (*ioValue == nil) {
