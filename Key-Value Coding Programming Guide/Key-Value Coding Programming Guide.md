@@ -690,6 +690,8 @@ KVC 协议定义了方法来通过 key 或 key path 对于属性进行校验。�
 
 ### 校验标量
 
+校验方法会希望参数值是一个对象，并且如果是非对象的属性会被封装为 NSValue 或 NSNumber 对象，如《展示非对象值》中讨论的那样。清单 11-2 中的示例展示了一个标量属性 age 的校验方法。在这种情况下，一个潜在的无效条件，假设一个 nil 的 age 值，会被处理成创建一个有效值，并设置为0，然后返回 YES。你还可以再你自己的重写 setNilValueForKey: 方法中处理这种特定条件，因为你的类的调用者可能不会调用校验方法。  
+
 清单 11-2 标量属性的校验方法
 	
 	- (BOOL)validateAge:(id *)ioValue error:(NSError * __autoreleasing *)outError {
