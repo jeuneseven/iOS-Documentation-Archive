@@ -716,7 +716,9 @@ KVC 协议定义了方法来通过 key 或 key path 对于属性进行校验。�
 
 ### 类描述
 
-
+NSClassDescription 是一个提供获取关于一个类元数据接口的基本类。一个类的描述对象记录了在对象和类以及其他对象之间的指定类的可用对象属性和关系（一对一，一对多以及反过来）。比如 attributeKeys 方法会返回一个类的所有属性列表；toManyRelationshipKeys 和 toOneRelationshipKeys 两个方法会返回定义一对多和一对一关系的 key 数组；inverseRelationshipKey: 会根据提供的 key 从目标关系返回给指向接收者的指针的关系名称。  
+NSClassDescription 不会定义用来定义关系的方法。具体的子类必须定义这些方法。一旦创建，你需要使用 NSClassDescription 的类方法 registerClassDescription:forClass: 注册一个类的描述。  
+NSScriptClassDescription 是在 Cocoa 中唯一提供的 NSClassDescription 的具体子类。它封装了一个应用的脚本信息。
 
 ## 性能设计
 
