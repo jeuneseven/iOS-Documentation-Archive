@@ -722,6 +722,8 @@ NSScriptClassDescription 是在 Cocoa 中唯一提供的 NSClassDescription 的�
 
 ## 性能设计
 
+KVC 很高效，尤其是当你依赖于默认实现来做大部分工作的时候，不过它比直接方法调用增加了一层微慢的转接。只有当你体会到它所提供的灵活性时再使用 KVC，或者让你的对象参与 Cocoa 所依赖的技术。
+
 ### 重写KVC方法
 
 ### 优化一对多关系
