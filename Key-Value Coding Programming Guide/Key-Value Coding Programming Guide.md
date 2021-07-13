@@ -734,11 +734,54 @@ KVC 很高效，尤其是当你依赖于默认实现来做大部分工作的时�
 
 ## 合规检查表
 
+本段中总结的下述步骤能够确保你的对象是复合 KVC 的。参见前一章节了解详情。  
+
 ### 属性和一对一关系匹配
+
+对于每个 property，即一个属性或一对一关系：  
+
+- 实现一个名为 `<key>` 或 `is<Key>` 的方法，或者创建一个名为 `<key>` 或 `_<key>` 的实例变量。在自动合成属性的时候，编译器通常会为你这么做了。  
+
+		注意  
+		虽然属性名通常以小写字母开头，但协议的默认实现对于大写字母开头也同样有效，比如 URL。
+
+- 如果属性是可变的，实现 `set<Key>:` 方法。在自动合成属性的时候，编译器通常会为你这么做了。
+
+		重要  
+		如果你重写了默认的 setter，要确保不要调用任何协议的校验方法。
+
+
+- 如果属性是个标量，重写 setNilValueForKey: 方法来优雅的处理当一个 nil 值赋值给标量属性的时候的情况。在自动合成属性的时候，编译器通常会为你这么做了。
 
 ### 索引一对多关系匹配
 
+对于属性是有序的，一对多关系（比如 NSArray 对象）：  
+
+- 实现名为 `<key>` 的方法，返回一个数组，或者名为 `<key>` 或 `_<key>` 的数组的实例变量。在自动合成属性的时候，编译器通常会为你这么做了。
+- 或者作为替代，实现 `countOf<Key>` 方法和 `objectIn<Key>AtIndex:` 和 `<key>AtIndexes:` 方法中的其中一个或两个都实现。
+- 可选的，实现 `get<Key>:range:` 方法来提高性能。
+
+此外，如果属性是可变的：  
+
+- 实现 `insertObject:in<Key>AtIndex:` 和 `insert<Key>:atIndexes:` 之一或都实现。
+- 实现 `removeObjectFrom<Key>AtIndex:` 和 `remove<Key>AtIndexes:` 之一或都实现。
+- 可选的，实现 `replaceObjectIn<Key>AtIndex:withObject:` 或 `replace<Key>AtIndexes:with<Key>:` 来提高性能。
+
 ### 无序一对多关系匹配
+
+对于属性是无序的，一对多关系（比如 NSSet 对象）：  
+
+- 实现名为 `<key>` 的方法，返回一个集合，或者名为 `<key>` 或 `_<key>` 的集合的实例变量。在自动合成属性的时候，编译器通常会为你这么做了。
+- 或者作为替代，实现 `countOf<Key>`, `enumeratorOf<Key>` 和 `memberOf<Key>` 方法。
+
+此外，如果属性是可变的：  
+
+- 实现 `add<Key>Object:` 和 `add<Key>:` 之一或都实现。
+- 实现 `remove<Key>Object:` 和 `remove<Key>:` 之一或都实现。
+- 可选的，实现 `intersect<Key>:` 来提高性能。
 
 ### 校验
 
+对于需要的属性选择加入校验方法：  
+
+- 实现 validate<Key>:error: 方法，返回一个布尔值来表示值的校验结果，以及在恰当的时候返回一个 error 对象的引用。
