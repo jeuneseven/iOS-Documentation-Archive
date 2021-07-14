@@ -486,7 +486,7 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 ### 可变集合的检索模式
 
 # 采用KVC
-## 获取基本的KVC合规
+## 实现基本的 KVC 合规
 
 当给一个对象采用了 KVC，你就可以通过让你的对象继承自 NSObject（或其众多的子类之一）来获得 NSKeyValueCoding 协议的默认实现了。反过来说，默认的实现依赖于你定义你的对象的实例变量（或者ivars）以及遵循特定的定义好的模式的存取方法了，这样，它就能够在接收到键值编码方法(比如 valueForKey: 和 setValue:forKey:)时通过字符串key关联属性。  
 通常遵守OC中的标准模式，只需要使用 @property 语句，然后编译器自动合成 ivar 和存取器方法。编译器默认遵循预期模式。  
@@ -496,6 +496,8 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 
 ### 基本的getters
 
+要实现一个返回一个属性值的 getter 方法，这时可能需要添加一些额外的自定义工作，使用一个类似于属性的方法名，比如 title 字符串属性：  
+
 	- (NSString*)title
 	{
 	   // Extra getter logic…
@@ -503,6 +505,7 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 	   return _title;
 	}
 
+对于处理布尔值的属性，你可以使用一个前缀是 is 的方法作为替代，比如对于 hidden 布尔属性：  
 	
 	- (BOOL)isHidden
 	{
@@ -510,6 +513,8 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 	 
 	   return _hidden;
 	}
+
+当属性是一个标量或者是一个结构体时，KVC 的默认实现会以一个对象来封装该值，用来作为协议方法的接口，如《表示非对象值》中所描述的那样。你不需要做任何特殊的事情来支持这一行为。
 
 ### 基本的setters
 
