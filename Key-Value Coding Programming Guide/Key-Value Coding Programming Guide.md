@@ -518,6 +518,8 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 
 ### 基本的setters
 
+实现一个 setter 来存储一个属性的值，使用一个前缀为 set 的大写字母开头的属性。对于 hidden 属性：  
+
 	- (void)setHidden:(BOOL)hidden
 	{
 	    // Extra setter logic…
