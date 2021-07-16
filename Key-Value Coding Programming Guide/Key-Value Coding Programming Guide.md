@@ -527,6 +527,9 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 	   _hidden = hidden;
 	}
 
+> 警告  
+> 永远不要在《校验属性》中描述的校验方法中调用 `set<Key>:` 方法。
+
 	- (void)setNilValueForKey:(NSString *)key
 	{
 	    if ([key isEqualToString:@"hidden"]) {
