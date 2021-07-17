@@ -492,7 +492,12 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 通常遵守OC中的标准模式，只需要使用 @property 语句，然后编译器自动合成 ivar 和存取器方法。编译器默认遵循预期模式。  
 
 > 注意  
-> 在Swift中
+> 在Swift中，
+
+如果你确实在 OC 中需要手动实现存取方法或者 ivars，  
+
+> 注意  
+>  
 
 ### 基本的getters
 
@@ -530,6 +535,8 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 > 警告  
 > 永远不要在《校验属性》中描述的校验方法中调用 `set<Key>:` 方法。
 
+当一个属性是一个非对象类型的时候，比如一个布尔值 hidden，协议的默认实现会检测底层数据类型，在该值应用在你的 setter 方法之前，从 setValue:forKey: 解包对象的值（在本例中是一个 NSNumber 实例）
+
 	- (void)setNilValueForKey:(NSString *)key
 	{
 	    if ([key isEqualToString:@"hidden"]) {
@@ -538,6 +545,8 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 	        [super setNilValueForKey:key];
 	    }
 	}
+
+如果时机合适的话，你可以提供上述方法重写，即使是在你允许编译器自动合成 setter 的时候。  
 
 ### 实例变量
 
