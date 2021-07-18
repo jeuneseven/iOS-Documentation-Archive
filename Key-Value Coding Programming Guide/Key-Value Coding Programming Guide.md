@@ -492,7 +492,7 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 通常遵守OC中的标准模式，只需要使用 @property 语句，然后编译器自动合成 ivar 和存取器方法。编译器默认遵循预期模式。  
 
 > 注意  
-> 在Swift中，
+> 在Swift中，直接以常用方式声明一个属性会自动生成适当的存取方法，你无需与 ivars 进行交互。更多关于 Swift 中的属性相关信息，阅读《Swift 编程语言指南》中的“属性”部分。有关 Swift 与 OC 属性交互的信息，阅读《使用 Swift 与Cocoa 和 OC》中的访问属性一节。
 
 如果你确实在 OC 中需要手动实现存取方法或者 ivars，  
 
