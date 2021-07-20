@@ -550,7 +550,12 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 
 ### 实例变量
 
+当一个 KVC 的存取方法的默认实现不能够找到属性的存取方法时，它会检测类方法 accessInstanceVariablesDirectly 来看下类是否允许直接使用实例变量。默认的，该类方法返回 YES，不过你可以重写该方法返回 NO。  
+如果你确实允许使用 ivars，要确保它们的命名是常用方式，使用属性名前缀是下划线(_)。通常来讲，编译器在自动合成属性的时候已经为你做了这件事，不过如果你直接使用 @synthesize 命令，你可以强制命名：  
+
 	@synthesize title = _title;
+	
+在某些情况下，代替使用 @synthesize 指令或者直接让编译器自动合成一个属性，你可以使用 @dynamic 命令直接通知编译器你可能要在运行时提供 getter 和 setter 方法。你可能这么做来避免自动合成 getter，以便你能够提供集合存取方法作为替代，如《定义集合方法》中所描述的那样。在本例中你自己声明 ivar 作为接口声明的一部分：  
 	
 	@interface MyObject : NSObject {
 	    NSString* _title;
