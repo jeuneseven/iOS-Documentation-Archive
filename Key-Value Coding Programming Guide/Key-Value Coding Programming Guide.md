@@ -580,24 +580,43 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 
 ### 访问索引集合
 
+你可以给有序关系添加索引存取方法给计数，取回，增加和替换对象等提供机制。底层对象通常是一个 NSArray 或 NSMutableArray 的实例，不过如果你提供了集合存取方法，你就能够让实现这些方法的对象的属性表现的像一个数组一样。  
+
 #### 索引集合的getter
 
-	- (NSUInteger)countOfTransactions {
-	    return [self.transactions count];
-	}
+对于一个没有默认 getter 的集合属性而言，如果你提供了以下的索引集合 getter 方法，协议的默认实现会响应 valueForKey: 消息，返回一个代理对象表现的像是一个 NSArray，但调用的是如下的集合方法做的这件事。  
 
-	- (id)objectInTransactionsAtIndex:(NSUInteger)index {
-	    return [self.transactions objectAtIndex:index];
-	}
-	 
-	- (NSArray *)transactionsAtIndexes:(NSIndexSet *)indexes {
-	    return [self.transactions objectsAtIndexes:indexes];
-	}
-	
-	- (void)getTransactions:(Transaction * __unsafe_unretained *)buffer
-               range:(NSRange)inRange {
-	    [self.transactions getObjects:buffer range:inRange];
-	}
+> 注意  
+> 在现代 OC 当中，编译器给每个属性默认的合成了 getter，所以默认的实现不会创建一个只读的代理来使用本章节中的方法（注意《基本的 getter 的检索模式》中描述的存取方法的检索顺序）。你可以通过不声明属性（完全依赖一个 ivar）或者使用 @dynamic 声明一个属性（这标志着你打算在运行时支持存取方法）就能达到这一点。无论哪种方法，编译器都不会提供一个默认的 getter，默认的实现会使用如下方法。
+
+* `countOf<Key>`
+
+
+
+		- (NSUInteger)countOfTransactions {
+		    return [self.transactions count];
+		}
+
+* `objectIn<Key>AtIndex:` 或者 `<key>AtIndexes:`
+
+
+
+		- (id)objectInTransactionsAtIndex:(NSUInteger)index {
+		    return [self.transactions objectAtIndex:index];
+		}
+		 
+		- (NSArray *)transactionsAtIndexes:(NSIndexSet *)indexes {
+		    return [self.transactions objectsAtIndexes:indexes];
+		}
+
+* `get<Key>:range:`
+
+
+
+		- (void)getTransactions:(Transaction * __unsafe_unretained *)buffer
+	               range:(NSRange)inRange {
+		    [self.transactions getObjects:buffer range:inRange];
+		}
 
 #### 索引集合的改变
 
