@@ -591,7 +591,8 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 
 * `countOf<Key>`
 
-
+该方法会返回一个一对多关系中的对象的数量，NSUInteger类型。就像 NSArray 的原始方法 count。实际上，当底层的属性是一个 NSArray，你可以使用它来提供结果。  
+比如，对于一对多关系，展示一系列银行交易并返回一个叫做 transactions 的 NSArray：  
 
 		- (NSUInteger)countOfTransactions {
 		    return [self.transactions count];
