@@ -600,7 +600,7 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 
 * `objectIn<Key>AtIndex:` 或者 `<key>AtIndexes:`
 
-
+第一个方法返回的对象是在对多关系中的指定索引，而第二个方法返回的对象的数组是 NSIndexSet 参数指定的索引集合的对象。这些分别对应 NSArray 的方法 objectAtIndex: 和 objectsAtIndexes:。你只需要实现其中一个。相应的 transactions 数组方法是：  
 
 		- (id)objectInTransactionsAtIndex:(NSUInteger)index {
 		    return [self.transactions objectAtIndex:index];
