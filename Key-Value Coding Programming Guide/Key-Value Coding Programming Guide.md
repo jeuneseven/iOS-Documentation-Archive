@@ -594,32 +594,39 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 该方法会返回一个一对多关系中的对象的数量，NSUInteger类型。就像 NSArray 的原始方法 count。实际上，当底层的属性是一个 NSArray，你可以使用它来提供结果。  
 比如，对于一对多关系，展示一系列银行交易并返回一个叫做 transactions 的 NSArray：  
 
-		- (NSUInteger)countOfTransactions {
-		    return [self.transactions count];
-		}
+	- (NSUInteger)countOfTransactions {
+	    return [self.transactions count];
+	}
 
 * `objectIn<Key>AtIndex:` 或者 `<key>AtIndexes:`
 
 第一个方法返回的对象是在对多关系中的指定索引，而第二个方法返回的对象的数组是 NSIndexSet 参数指定的索引集合的对象。这些分别对应 NSArray 的方法 objectAtIndex: 和 objectsAtIndexes:。你只需要实现其中一个。相应的 transactions 数组方法是：  
 
-		- (id)objectInTransactionsAtIndex:(NSUInteger)index {
-		    return [self.transactions objectAtIndex:index];
-		}
-		 
-		- (NSArray *)transactionsAtIndexes:(NSIndexSet *)indexes {
-		    return [self.transactions objectsAtIndexes:indexes];
-		}
+	- (id)objectInTransactionsAtIndex:(NSUInteger)index {
+	    return [self.transactions objectAtIndex:index];
+	}
+	 
+	- (NSArray *)transactionsAtIndexes:(NSIndexSet *)indexes {
+	    return [self.transactions objectsAtIndexes:indexes];
+	}
 
 * `get<Key>:range:`
 
+该方法是可选的，但可以增加性能。它会返回在一定指定范围内的对象的集合，相对应 NSArray 的方法 getObjects:range:。transactions 数组的实现是：  
 
-
-		- (void)getTransactions:(Transaction * __unsafe_unretained *)buffer
-	               range:(NSRange)inRange {
-		    [self.transactions getObjects:buffer range:inRange];
-		}
+	- (void)getTransactions:(Transaction * __unsafe_unretained *)buffer
+               range:(NSRange)inRange {
+	    [self.transactions getObjects:buffer range:inRange];
+	}
 
 #### 索引集合的改变
+
+要用索引存取方法支持一个可变的对多关系需要实现一组不同的方法。当你提供这些 setter 方法时，默认的实现会响应 mutableArrayValueForKey: 消息，返回一个代理对象，行为表现的像 NSMutableArray 对象，但你可以用你的对象的方法来做这些事。这通常比直接返回一个 NSMutableArray 对象更高效。这还能让对多关系的内容符合 KVO（参见《KVO 编程指南》）。  
+为了能够让你的的对象对于可变有序关系符合 KVC，实现下述方法：  
+
+* `insertObject:in<Key>AtIndex:` 或 `insert<Key>:atIndexes:`
+
+第一个方法接收要插入的
 
 	- (void)insertObject:(Transaction *)transaction
 	  inTransactionsAtIndex:(NSUInteger)index {
