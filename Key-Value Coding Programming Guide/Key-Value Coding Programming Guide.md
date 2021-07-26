@@ -626,7 +626,8 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 
 * `insertObject:in<Key>AtIndex:` 或 `insert<Key>:atIndexes:`
 
-第一个方法接收要插入的
+第一个方法接收要插入的对象和一个 NSUInteger 类型的指定的需要插入的索引。第二个方法插入一组对象到集合中，通过指定的 NSIndexSet 的索引。这与 NSMutableArray 的 insertObject:atIndex: 和 insertObjects:atIndexes: 方法类似。这些方法只有一个是必须实现的。  
+对于一个 transactions 对象声明一个 NSMutableArray：  
 
 	- (void)insertObject:(Transaction *)transaction
 	  inTransactionsAtIndex:(NSUInteger)index {
@@ -638,6 +639,11 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 	    [self.transactions insertObjects:transactionArray atIndexes:indexes];
 	}
 	
+* `removeObjectFrom<Key>AtIndex:` 或 `remove<Key>AtIndexes:`  
+
+第一个方法接收一个 NSUInteger 类型的值，指定需要从关系中移除的对象的索引。第二个方法接收一个 NSIndexSet 对象，指定需要从关系中移除的对象的索引集合。这些方法分别对应 NSMutableArray 的方法removeObjectAtIndex: 和 removeObjectsAtIndexes:。只需要实现这些方法的其中一个就行。   
+对于 transactions 对象：  
+	
 	- (void)removeObjectFromTransactionsAtIndex:(NSUInteger)index {
 	    [self.transactions removeObjectAtIndex:index];
 	}
@@ -646,6 +652,10 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 	    [self.transactions removeObjectsAtIndexes:indexes];
 	}
 
+* `replaceObjectIn<Key>AtIndex:withObject:` 或者 `replace<Key>AtIndexes:with<Key>:`  
+
+这些替代存取器提供代理对象，意在直接在集合中替代一个对象，无需连续的移除一个对象并添加另一个。它们对应 NSMutableArray 的方法 replaceObjectAtIndex:withObject: 和 replaceObjectsAtIndexes:withObjects:。当分析应用时，你可以选择性的提供这些方法，以显示性能问题。  
+对于 transactions 对象：  
 
 	- (void)replaceObjectInTransactionsAtIndex:(NSUInteger)index
                              withObject:(id)anObject {
