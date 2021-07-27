@@ -671,33 +671,75 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 
 ### 访问无序的集合
 
+添加无序集合存取方法可以为无序关系中的对象的存取和修改提供机制。通常来讲，这种关系是一个 NSSet 或 NSMutableSet 对象的实例。不过，当你实现这些存取方法时，你就能够让任何类对于模型关系以及使用 KVC 操作了，就像该类有一个 NSSet 实例一样。  
+
 #### 无序集合的获取
+
+当你提供下述集合的获取方法来返回集合中对象的数量，迭代集合对象，以及检查一个对象是否已经存在于集合中时，协议的默认实现会反应 valueForKey: 消息，返回一个代理对象，表现的像一个 NSSet，但调用的是如下的集合方法来做的这些工作。  
+
+> 注意  
+> 在现代 OC 中，编译器会默认的给每个属性合成一个 getter，所以默认的实现不会创建一个只读的代理对象用到本章节的方法（注意 《基本的 getter 的检索模式》中的存取搜索顺序）。你可以声明一个属性（依赖于一个 ivar），或者声明一个 @dynamic 属性（这表示你打算在运行时支持存取方法的行为）就能够避免这一点。无论哪种方式，编译器都不会提供一个默认的 getter，默认的实现会使用下述方法。  
 
 * `countOf<Key>`
 	
-		-(NSUInteger)countOfEmployees {
-		    return [self.employees count];
-		}
+这个必须实现的方法会返回关系中的元素数量，对应的 NSSet 的方法 count。当底层对象是一个 NSSet 时，你可以直接调用这个方法。比如，对于一个 NSSet 对象调用 employees，其中包含 Employee 对象的话：  
+		
+	-(NSUInteger)countOfEmployees {
+	    return [self.employees count];
+	}
 
 * `enumeratorOf<Key>`
 
-		-(NSEnumerator *)enumeratorOfEmployees {
-		    return [self.employees objectEnumerator];
-		}
+这个必须实现的方法会返回一个 NSEnumerator 实例，它用来迭代关系中的元素。参见《集合编程主题》中的“枚举：遍历一个集合的元素”部分了解更多关于枚举器的信息。该方法对应 NSSet 的 objectEnumerator 方法。对于 employees 集合：  
+
+	-(NSEnumerator *)enumeratorOfEmployees {
+	    return [self.employees objectEnumerator];
+	}
 
 * `memberOf<Key>:`
 
-		-(Employee *)memberOfEmployees:(Employee *)anObject {
-		    return [self.employees member:anObject];
-		}
+该方法会将一个需要比较的对象和集合的内容当作参数传递，并返回一个匹配的对象作为结果，如果没有查找到匹配的对象，返回nil。如果你手动实现了比较方法，通常使用 isEqual: 来比较对象。当底层对象是一个 NSSet 对象，你可以等价使用 member: 方法。
+
+	-(Employee *)memberOfEmployees:(Employee *)anObject {
+	    return [self.employees member:anObject];
+	}
 
 #### 无序集合的可变
 
-* `add<Key>Object:` 或 `add<Key>:`
+用无序存取方法支持一个可变的对多关系需要实现额外的一些方法。实现可变的无序存取方法来让你的对象支持一个无序集合代理对象，以响应  mutableSetValueForKey: 方法。实现这些存取器比依赖于一个直接返回可变对象来在关系中作出改变数据要高效的多。这也让你的类对于集合对象符合来 KVO（参见《KVO编程指南》）。  
+为了让一个可变的无序对多关系符合 KVC，需要实现以下方法：  
+
+* `add<Key>Object:` 或 `add<Key>:`  
+
+这些方法会给关系增加一个单独的元素或者一组元素。当添加一组元素给关系时，要确保相等的对象没有存在在关系当中。这些与 NSMutableSet 的方法 addObject: 和 unionSet: 类似。这两个方法只实现一个即可。对于 employees 集合：  
+
+	- (void)addEmployeesObject:(Employee *)anObject {
+	    [self.employees addObject:anObject];
+	}
+	 
+	- (void)addEmployees:(NSSet *)manyObjects {
+	    [self.employees unionSet:manyObjects];
+	}
 
 * `remove<Key>Object:` 或 `remove<Key>:`
 
+这些方法会从关系中移除一个或一组元素。它们与 NSMutableSet 的  removeObject: 和 minusSet: 类似。只需要实现其中一个即可。比如：  
+
+	- (void)removeEmployeesObject:(Employee *)anObject {
+	    [self.employees removeObject:anObject];
+	}
+	 
+	- (void)removeEmployees:(NSSet *)manyObjects {
+	    [self.employees minusSet:manyObjects];
+	}
+
 * `intersect<Key>:`
+
+该方法会接收一个 NSSet 参数，从关系中移除所有不是输入集合和集合本身的对象。这与 NSMutableSet 的方法 intersectSet: 等价。当分析有关集合内容的性能问题时你可以选择实现这个方法。比如：  
+
+	- (void)intersectEmployees:(NSSet *)otherObjects {
+	    return [self.employees intersectSet:otherObjects];
+	}
 
 ## 处理非对象值
 
