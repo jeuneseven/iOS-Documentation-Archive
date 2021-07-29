@@ -80,33 +80,33 @@ key path 是一个用点分隔符制定一系列来回的对象属性的字符�
 
 ### 使用 keys 获取属性值
 
-当一个对象遵守 NSKeyValueCoding 协议的时候，该对象就是符合 KVC 的。一个继承自 NSObject 的对象，它会提供协议根本方法的默认实现，自动的以某种默认行为遵循该协议。这样的一个对象至少实现了以下几种基本的基于 Key 的获取方法：  
+当一个对象遵守 NSKeyValueCoding 协议的时候，该对象就是符合 KVC 的。一个继承自 NSObject 的对象，它会提供协议基本方法的默认实现，自动的以某种默认行为遵循该协议。这样的一个对象至少实现了以下几种基本的基于 Key 的获取方法：  
 
-* valueForKey:-通过key参数返回属性名的值。如果通过key不能够根据《存取器检索模式》中描述的规则找到属性名的话，对象会给其本身发送 valueForUndefinedKey: 消息。valueForUndefinedKey: 的默认实现是产生一个 NSUndefinedKeyException 异常，但其子类可以重写这个行为并更好的处理这种情况。
+* valueForKey:-通过 key 参数返回属性名的值。如果通过 key 不能够根据《存取器检索模式》中描述的规则找到属性名的话，对象会给其本身发送 valueForUndefinedKey: 消息。valueForUndefinedKey: 的默认实现是产生一个 NSUndefinedKeyException 异常，但其子类可以重写这个行为并更好的处理这种情况。
 * valueForKeyPath:-给相关接收者返回指定 key path 的值。任何在 key path 序列中不符合 KVC 的特定 key——意思是valueForKey: 的默认实现不能够找到存取器方法——会收到一条 valueForUndefinedKey: 消息。
-* dictionaryWithValuesForKeys:-给接收者返回相关的keys的数组值。该方法会调用每个在数组中的key的 valueForKey: 。返回的NSDictionary包含所有在数组中的key的值。
+* dictionaryWithValuesForKeys:-给接收者返回相关的 keys 的数组值。该方法会调用每个在数组中的 key 的 valueForKey: 。返回的 NSDictionary 包含所有在数组中的 key 的值。
 
 >	注意  
-	集合类的对象，比如NSArray, NSSet, 和 NSDictionary，不能包含nil作为值。你可以使用NSNull对象代表nil值。NSNull会提供一个单独的实例给对象的属性表示nil值。dictionaryWithValuesForKeys: 的默认实现一机相关的 setValuesForKeysWithDictionary: 会在NSNull（在字典的参数中） 和 nil（在存储的属性中）之间自动转换。
+	集合类的对象，比如 NSArray, NSSet, 和 NSDictionary，不能包含 nil 作为值。你可以使用 NSNull 对象代表 nil 值。NSNull 会提供一个单独的实例给对象的属性表示 nil 值。dictionaryWithValuesForKeys: 的默认实现以及相关的 setValuesForKeysWithDictionary: 会在 NSNull（在字典的参数中）和 nil（在存储的属性中）之间自动转换。
 
-当你使用 key path 来定位一个属性时，如果 key path 中的最终 key 是多对多关系（即它引用了集合），返回值会是一个根据 key到对多 key 的右侧的包含了所有值的集合。比如，请求 key path transactions.payee 的值会返回一个包含所有交易的所有payee 对象的数组，这在 key path 中对于可变数组也有效。accounts.transactions.payee 这个 key path 会返回所有账户中所有交易的所有 payee 对象。
+当你使用 key path 来定位一个属性时，如果 key path 中的最终 key 是对多关系（即它引用了集合），返回值会是一个根据 key到对多 key 的右侧的包含了所有值的集合。比如，请求 key path transactions.payee 的值会返回一个包含所有交易的所有payee 对象的数组，这在 key path 中对于可变数组也有效。accounts.transactions.payee 这个 key path 会返回所有账户中所有交易的所有 payee 对象。
 
-### 使用Keys设置属性值
+### 使用 Keys 设置属性值
 
-和getters方法一样，符合 KVC 的对象也会根据 NSObject 的 NSKeyValueCoding 协议基于默认行为的实现提供一组小的通用的setters：  
+和 getters 方法一样，符合 KVC 的对象也会根据 NSObject 的 NSKeyValueCoding 协议基于默认行为的实现提供一组小的通用的 setters：  
 
-* setValue:forKey: -以给定值给相关对象的接受者根据特定key设置值。setValue:forKey: 的默认实现会自动的解包NSNumber 和 NSValue 对象为标量和结构体，然后将其赋值给属性。参见《表示非对对象值》了解封包和解包语法的细节。  
-如果指定的key相关的属性，即接收 setter 的对象调用没有该属性的话，对象会发送一条 setValue:forUndefinedKey: 消息给其本身。setValue:forUndefinedKey: 的默认实现是生成一个 NSUndefinedKeyException 异常。不过子类可以重载该方法来处理自定义管理中的请求。
-* setValue:forKeyPath: -根据指定key path相关的接收者设定给定值。任何在key path序列中的对象只要不符合给定key的KVC协议，就会收到一条 setValue:forUndefinedKey: 消息。
-* setValuesForKeysWithDictionary: -使用指定字典中的值设置接受者的属性，使用字典的key来匹配属性。默认的 setValue:forKey: 调用的实现是每个键值对，根据需要用 nil 代替 NSNull 对象。
+* setValue:forKey: -以给定值给相关对象的接受者根据特定 key 设置值。setValue:forKey: 的默认实现会自动的解包NSNumber 和 NSValue 对象为标量和结构体，然后将其赋值给属性。参见《表示非对对象值》了解封包和解包语法的细节。  
+如果指定的 key 相关的属性，即接收 setter 的对象调用没有该属性的话，对象会发送一条 setValue:forUndefinedKey: 消息给其本身。setValue:forUndefinedKey: 的默认实现是生成一个 NSUndefinedKeyException 异常。不过子类可以重载该方法来处理自定义管理中的请求。
+* setValue:forKeyPath: -根据指定 key path 相关的接收者设定给定值。任何在 key path 序列中的对象只要不符合给定 key 的 KVC 协议，就会收到一条 setValue:forUndefinedKey: 消息。
+* setValuesForKeysWithDictionary: -使用指定字典中的值设置接受者的属性，使用字典的 key 来匹配属性。默认的 setValue:forKey: 调用的实现是每个键值对，根据需要用 nil 代替 NSNull 对象。
 
-在默认实现中，当你试图用一个 nil 设置一个非对象的属性时，符合KVC的对象会给其自身发送一条 setNilValueForKey: 消息。 setNilValueForKey: 的默认实现是会生成一个 NSInvalidArgumentException 异常，但是对象可以重载该方法用一个默认值代替或者标记值代替，这在《处理非对象值》中有相关描述。
+在默认实现中，当你试图用一个 nil 设置一个非对象的属性时，符合 KVC 的对象会给其自身发送一条 setNilValueForKey: 消息。 setNilValueForKey: 的默认实现是会生成一个 NSInvalidArgumentException 异常，但是对象可以重载该方法用一个默认值代替或者标记值代替，这在《处理非对象值》中有相关描述。
 
-### 使用Keys来简化对象的访问
+### 使用 Keys 来简化对象的访问
 
-想要看下基于key的 getters 和 setters 是如何简化你的代码的，请参考如下示例。在 macOS 中，NSTableView 和 NSOutlineView 对象会结合一个标识符字符串给每行。如果在列表后的模型对象不符合KVC，列表的数据源方法会强制检查每行的标识符，目的为了查找到正确的属性返回，如清单2-2所示。更甚者，在未来，当你添加另一个属性给你的模型对象时，本例中是Person对象，你必须再重新过一遍数据源方法，添加其他的条件来为新的属性和返回相关值来进行测试。
+想要看下基于 key 的 getters 和 setters 是如何简化你的代码的，请参考如下示例。在 macOS 中，NSTableView 和 NSOutlineView 对象会结合一个标识符字符串给每行。如果在列表后的模型对象不符合 KVC，列表的数据源方法会强制检查每行的标识符，目的为了查找到正确的属性返回，如 清单2-2 所示。更甚者，在未来，当你添加另一个属性给你的模型对象时，本例中是 Person 对象，你必须再重新过一遍数据源方法，添加其他的条件来为新的属性和返回相关值来进行测试。
 
-清单2-2  不使用KVC实现数据源方法  
+清单2-2 不使用 KVC 实现数据源方法  
 
 	- (id)tableView:(NSTableView *)tableview objectValueForTableColumn:(id)column row:(NSInteger)row
 	{
