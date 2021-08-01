@@ -329,26 +329,26 @@ Hobby Shop  | $600.00 | Jun 14, 2016
 
 ## 表示非对象值
 
-KVC协议方法的默认实现由 NSObject 提供，同时作用于对象和非对象属性。默认实现会自动的从对象参数或返回值到非对象属性之间进行转换。这让基于key签名的 getter 和 setter 能够保持不变，即使存储的属性是一个标量或者结构体。  
+KVC 协议方法的默认实现由 NSObject 提供，同时作用于对象和非对象属性。默认实现会自动的从对象参数或返回值到非对象属性之间进行转换。这让基于 key 签名的 getter 和 setter 能够保持不变，即使存储的属性是一个标量或者结构体。  
 
 >	注意  
 	由于所有 Swift 中的属性都是对象，本段落只应用于OC属性。
 
 当你调用协议中的一个 getter 方法时，类似 valueForKey:，默认的实现会判断特定的访问方法或者实例变量（根据“存取搜索模式”中描述的规则支持的特定 key 和值）。若返回值不是一个对象，getter 会使用该值初始化一个 NSNumber 对象（对于标量而言），或一个 NSValue 对象（对于结构体而言）然后将其返回。  
-默认的，类似 setValue:forKey: 的 setter 方法会根据存取属性或实例变量判断数据类型，给定一个特定的 key。若数据类型不是一个对象，setter首先会发送一个适当的 `<type>Value` 消息给到来的值对象来提取底层数据，然后将其存储。  
+默认的，类似 setValue:forKey: 的 setter 方法会根据存取属性或实例变量判断数据类型，给定一个特定的 key。若数据类型不是一个对象，setter 首先会发送一个适当的 `<type>Value` 消息给到来的值对象来提取底层数据，然后将其存储。  
 
 >	注意  
 	当你调用一个 KVC 协议的 setter 方法，设置一个 nil 值给非对象属性时，setter 并不会察觉，照常触发动作来应用。然后，它会发送一条 setNilValueForKey: 消息给对象接收者的 setter 调用。该方法的默认实现会产生 NSInvalidArgumentException 异常，但子类可以重写这个方法的行为，在“处理非对象值”中有相关描述，所以请设置标记值，或提供一个有意义的默认值。
 
 ### 封包和解包标量类型
 
-列表5-1 列出了默认 KVC 使用 NSNumber 实例实现封装的标量类型。对于每种数据类型，列表都展示了用来从底层属性值创建一个NSNumber 实例的方法到支持一个 getter 返回值。随后展示了在 set 操作中用来从 setter 输入参数扩展值的存取方法。  
+列表5-1 列出了默认 KVC 使用 NSNumber 实例实现封装的标量类型。对于每种数据类型，列表都展示了用来从底层属性值创建一个 NSNumber 实例的方法到支持一个 getter 返回值。随后展示了在 set 操作中用来从 setter 输入参数扩展值的存取方法。  
 
 列表5-1 NSNumber对象中的封装标量  
 
 数据类型  | 创建方法 | 存取方法
 ------------- | ------------- | -------------
-BOOL| numberWithBool:| boolValue(iOS中) charValue(macOS中)
+BOOL| numberWithBool:| boolValue(iOS 中) charValue(macOS 中)
 char | numberWithChar:| charValue
 double | numberWithDouble:| doubleValue
 float | numberWithFloat:| floatValue
@@ -362,23 +362,23 @@ unsigned long| numberWithUnsignedLong:| unsignedLong
 unsigned long long| numberWithUnsignedLongLong:| unsignedLongLong
 unsigned short| numberWithUnsignedShort:| unsignedShort
 
-> 注意 
-> 在macOS中，由于历史原因，BOOL被定义成 signed char 类型，KVC 并不能区分两者。因此，当 key 是 BOOL 类型时，你不应该传递一个类似 @“true” 或 @“YES” 的字符串值给 setValue:forKey: 方法。KVC会试图调用 charValue（由于BOOL本质上就是一个char），但 NSString 没有实现该方法，这会引起运行时错误。取而代之的，当 key 是 BOOL 类型时，传递 NSNumber 对象，类似 @(1) 或 @(YES)，作为参数传递给 setValue:forKey:。这种限制不应该应用在 iOS 中，在 iOS 中 BOOL 类型被定义为一个本地化的布尔类型 bool，KVC 会调用 boolValue，这在 NSNumber 对象或者一个格式为 NSString 的对象中都能够起作用。
+> 注意  
+> 在macOS中，由于历史原因，BOOL 被定义成 signed char 类型，KVC 并不能区分两者。因此，当 key 是 BOOL 类型时，你不应该传递一个类似 @“true” 或 @“YES” 的字符串值给 setValue:forKey: 方法。KVC会试图调用 charValue（由于 BOOL 本质上就是一个char），但 NSString 没有实现该方法，这会引起运行时错误。取而代之的，当 key 是 BOOL 类型时，传递 NSNumber 对象，类似 @(1) 或 @(YES)，作为参数传递给 setValue:forKey:。这种限制不应该应用在 iOS 中，在 iOS 中 BOOL 类型被定义为一个本地化的布尔类型 bool，KVC 会调用 boolValue，这在 NSNumber 对象或者一个格式为 NSString 的对象中都能够起作用。
 
 ### 封包和解包结构体
 
 列表5-2 展示了默认存取方法用来封包和解包常见 NSPoint, NSRange, NSRect, 和 NSSize 等结构体的创建和存取方法。
 
-列表5-2 使用NSValue封装常用结构体类型  
+列表5-2 使用 NSValue 封装常用结构体类型  
 
 数据类型  | 创建方法 | 存取方法
 ------------- | ------------- | -------------
 NSPoint | valueWithPoint:| pointValue
 NSRange | valueWithRange:| rangeValue
-NSRect | valueWithRect:(macOS有效)| rectValue
+NSRect | valueWithRect:(macOS 有效)| rectValue
 NSSize | valueWithSize:| sizeValue
 
-自动的封包解包并不限于 NSPoint, NSRange, NSRect, 和 NSSize。结构体类型（意思是在OC字符串编码中以{开头的类型）都能被以一个 NSValue 对象封包。比如，看下清单5-1中声明的结构体和类接口。  
+自动的封包解包并不限于 NSPoint, NSRange, NSRect, 和 NSSize。结构体类型（意思是在 OC 字符串编码中以{开头的类型）都能被以一个 NSValue 对象封包。比如，看下 清单5-1 中声明的结构体和类接口。  
 
 列表5-1 一个使用自定义结构体的示例类  
 
@@ -390,12 +390,12 @@ NSSize | valueWithSize:| sizeValue
 	@property (nonatomic) ThreeFloats threeFloats;
 	@end
 
-使用这个叫做 myClass 的类的实例，你就能使用KVC获取 threeFloats 的值：  
+使用这个叫做 myClass 的类的实例，你就能使用 KVC 获取 threeFloats 的值：  
 	
 	NSValue* result = [myClass valueForKey:@"threeFloats"];
 
-valueForKey: 的默认实现调用了threeFloats的getter方法，然后返回以 NSValue 对象封装的结果。  
-同样的，你可以使用KVC设置 threeFloats 的值：  
+valueForKey: 的默认实现调用了 threeFloats 的 getter 方法，然后返回以 NSValue 对象封装的结果。  
+同样的，你可以使用 KVC 设置 threeFloats 的值：  
 
 	ThreeFloats floats = {1., 2., 3.};
 	NSValue* value = [NSValue valueWithBytes:&floats objCType:@encode(ThreeFloats)];
