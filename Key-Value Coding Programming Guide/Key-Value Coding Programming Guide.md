@@ -405,16 +405,16 @@ valueForKey: 的默认实现调用了 threeFloats 的 getter 方法，然后返�
 
 ## 校验属性
 
-KVC 协议还定义了方法来支持校验属性。就像你使用基于 key 的存取方法来读写一个符合 KVC 的对象的属性一样，你也可以通过key(或key path)校验属性。当你调用 validateValue:forKey:error:（或 validateValue:forKeyPath:error:）方法时，协议的默认实现会搜索接收验证消息的对象（或在 key path 末尾的对象）以寻找名字符合模式 `validate<Key>:error:` 的方法。如果对象没有这个方法，默认校验成功，默认的实现返回YES。如果一个指定属性的校验方法存在，默认实现返回该方法的调用。  
+KVC 协议还定义了方法来支持校验属性。就像你使用基于 key 的存取方法来读写一个符合 KVC 的对象的属性一样，你也可以通过 key (或 key path)校验属性。当你调用 validateValue:forKey:error:（或 validateValue:forKeyPath:error:）方法时，协议的默认实现会搜索接收验证消息的对象（或在 key path 末尾的对象）以寻找名字符合模式 `validate<Key>:error:` 的方法。如果对象没有这个方法，默认校验成功，默认的实现返回YES。如果一个指定属性的校验方法存在，默认实现返回该方法的调用。  
 
 > 注意  
-> 通常只在OC中使用这里描述的校验。在 Swift 中，属性的校验通常由依赖的编译器所处理，支持可选和强类型检查，当使用内置的willSet 和 didSet 属性检测任何运行时 API 联系，如《Swift编程语言(Swift 3)》中所描述的“属性检测”一节。  
+> 通常只在OC中使用这里描述的校验。在 Swift 中，属性的校验通常由依赖的编译器所处理，支持可选和强类型检查，当使用内置的willSet 和 didSet 属性检测任何运行时的 API 关联，如《Swift 编程语言(Swift 3)》中所描述的“属性检测”一节。  
 
 由于指定属性的校验方法接收的值和 error 参数是引用方式的，校验有三个可能的结果：  
 
-1. 校验方法视值对象为有效，并返回YES，并且不用改变值或者error。
+1. 校验方法视值对象为有效，并返回  YES，并且不用改变值或者 error。
 2. 校验方法视值对象无效，但选择不修改它。在这种情况下，方法会返回NO，并设置 error 引用（如果调用者提供的话）为一个 NSError 对象，并解释失败的原因。
-3. 校验方法视值对象无效，但创建一个新的、有效的作为替代。在这种情况下，方法会返回YES，并且不触碰 error 对象。在返回前，方法会修改值的引用，将其指向一个新的值对象。当作出一个改变的时候，方法始终会创建一个新的对象，而非修改旧的，即使是值对象是可变的。
+3. 校验方法视值对象无效，但创建一个新的、有效的作为替代。在这种情况下，方法会返回 YES，并且不触碰 error 对象。在返回前，方法会修改值的引用，将其指向一个新的值对象。当作出一个改变的时候，方法始终会创建一个新的对象，而非修改旧的，即使是值对象是可变的。
 
 清单 6-1 展示了一个如何调用名称字符串校验的例子。  
 清单 6-1 校验名称属性  
@@ -429,7 +429,7 @@ KVC 协议还定义了方法来支持校验属性。就像你使用基于 key �
 ### 自动校验
 
 通常来讲，无论是 KVC 协议，还是其默认实现定义的任何机制都不会自动执行校验。而你应该确保在你的应用中的适当位置使用校验方法。  
-某些其他的Cocoa技术会在某些情况下自动执行校验。比如，Core Data 会在管理对象上下文被保存的时候自动的执行校验（参见《Core Data 编程指南》）。同样的，在 macOS 中，Cocoa 绑定能够让你指定校验应该自动的发生（参见《Cocoa绑定编程话题》了解更多信息）。
+某些其他的 Cocoa 技术会在某些情况下自动执行校验。比如，Core Data 会在管理对象上下文被保存的时候自动的执行校验（参见《Core Data 编程指南》）。同样的，在 macOS 中，Cocoa 绑定能够让你指定校验应该自动的发生（参见《Cocoa 绑定编程话题》了解更多信息）。
 
 ## 存取器搜索模式
 
@@ -438,18 +438,18 @@ KVC 协议还定义了方法来支持校验属性。就像你使用基于 key �
 > 注意
 > 本段使用的 `<key>` 或者 `<Key>` 是作为 key 字符串的占位符出现在 KVC 协议函数的一个参数当中的，随后该参数将会被作为一个二次调用的方法或者变量名所检索。映射的属性名遵从占位符的情况。比如，对于 getter 的 `<key>` 或者 `<Key>` ，属性名会隐藏映射到 hidden 和 isHidden。
 
-### 基本的getter的检索模式
+### 基本的 getter 的检索模式
 
 valueForKey: 的默认实现会将一个key作为输入参数，承载着以下程序，在类的实例接收到 valueForKey: 调用的时候进行操作：  
 
 1. 从名称类似 get`<Key>`, `<key>`, `is<Key>`, 或 `_<key>`的实例的存取方法中以这种顺序首先进行检索。如果找到，调用它，然后跳转到第五步作为结果。否则执行下一步。  
-2. 如果没有直接查找到存取方法，沿着名称匹配模式 `countOf<Key>` 和 `objectIn<Key>AtIndex:` (相关方法由 NSArray  类最初定义) 以及 `<key>AtIndexes:`(对应NSArray的 objectsAtIndexes: 方法) 的实例进行查找。  
+2. 如果没有直接查找到存取方法，沿着名称匹配模式 `countOf<Key>` 和 `objectIn<Key>AtIndex:` (相关方法由 NSArray  类最初定义) 以及 `<key>AtIndexes:` (对应 NSArray 的 objectsAtIndexes: 方法) 的实例进行查找。  
 如果这些当中的第一个，或者至少在另外两个当中的一个被找到了，创建一个集合代理对象，该对象会响应所有的 NSArray 方法并将其返回。否则，执行步骤3。  
 代理对象随后会转换任何它所接收的 NSArray 消息给一些 `countOf<Key>`, `objectIn<Key>AtIndex:`, 和 `<key>AtIndexes:` 消息的组合，给它创建的符合 KVC 协议的对象发消息。如果原对象也实现了名称类似 `get<Key>:range:` 的可选方法，代理对象也会在适当的时机使用它。实际上，代理对象会和符合 KVC 的对象共同协作，让底层属性表现的像一个 NSArray，即使它没有这个对象。
 3. 如果没有找到简单的存取方法或者一组数组存取方法，会查找三个名为 `countOf<Key>`, `enumeratorOf<Key>`, 和 `memberOf<Key>:` 的方法（相关的原始方法被 NSSet 类定义）。  
 如果三个方法都被找到，会创建一个集合代理对象，该对象会响应所有的 NSSet 方法并将其返回。否则，跳转到步骤4。  
 这个代理对象随后会转换所有它所接收到的 NSSet 的消息，结合 `countOf<Key>`, `enumeratorOf<Key>`, 和 `memberOf<Key>:` 消息给到它所创建的对象。实际上，代理对象会和符合 KVC 的对象共同协作，让底层属性的表象像一个 NSSet，即使它没有这个对象。
-4. 如果没有找到简单的存取方法或者一组集合存取方法，并且接受者的类方法 accessInstanceVariablesDirectly 返回的YES，这时会按顺序检索名为 `_<key>`, `_is<Key>`, `<key>`, 或 `is<Key>` 的实例变量。如果找到，直接获取该实例变量的值，然后执行步骤5。否则，跳转到步骤6。
+4. 如果没有找到简单的存取方法或者一组集合存取方法，并且接收者的类方法 accessInstanceVariablesDirectly 返回的 YES，这时会按顺序检索名为 `_<key>`, `_is<Key>`, `<key>`, 或 `is<Key>` 的实例变量。如果找到，直接获取该实例变量的值，然后执行步骤5。否则，跳转到步骤6。
 5. 如果接收到的属性值是一个对象指针，直接返回结果。  
 如果值是一个 NSNumber 所支持的标量，将其存储为一个 NSNumber 实例，并将其返回。  
 如果值是一个 NSNumber 不支持的标量，将其转换为 NSValue 对象，并将其返回。
@@ -467,12 +467,12 @@ valueForKey: 的默认实现会将一个key作为输入参数，承载着以下�
 
 mutableArrayValueForKey: 的默认实现，给定一个key作为输入参数，返回一个可变代理数组给名为key的属性，让内部的对象接收存取器调用，使用如下步骤：  
 
-1. 查找成对的名为 `insertObject:in<Key>AtIndex:` 和 `removeObjectFrom<Key>AtIndex:` 的方法（分别对应 NSMutableArray 的 insertObject:atIndex: 和 removeObjectAtIndex: 方法），或者是名为 `insert<Key>:atIndexes:` 和 `remove<Key>AtIndexes:` （分别对应NSMutableArray 的 insertObjects:atIndexes: 和 removeObjectsAtIndexes: 方法）的方法。)  
+1. 查找成对的名为 `insertObject:in<Key>AtIndex:` 和 `removeObjectFrom<Key>AtIndex:` 的方法（分别对应 NSMutableArray 的 insertObject:atIndex: 和 removeObjectAtIndex: 方法），或者是名为 `insert<Key>:atIndexes:` 和 `remove<Key>AtIndexes:` （分别对应 NSMutableArray 的 insertObjects:atIndexes: 和 removeObjectsAtIndexes: 方法）的方法。)  
 若对象至少有一个插入和移除方法，这时会返回一个通过发送 `insertObject:in<Key>AtIndex:`, `removeObjectFrom<Key>AtIndex:`, `insert<Key>:atIndexes:`, 和 `remove<Key>AtIndexes:` 消息来响应NSMutableArray 的消息代理对象，消息发送给原 mutableArrayValueForKey: 的接收者。  
 当对象接收到 mutableArrayValueForKey: 消息，并且实现了一个名为 `replaceObjectIn<Key>AtIndex:withObject:` 或 `replace<Key>AtIndexes:with<Key>:` 的可选的替代对象方法，代理对象会在适当的时机利用这些方法达到最佳性能。  
 2. 如果对象没有可变数组方法，回开始查找名称匹配 `set<Key>:` 模式的存取方法作为替代。在这种情况下，返回一个响应 NSMutableArray 消息的代理对象，消息会发送到原来的 mutableArrayValueForKey: 的接收者。  
 
-	> 注意 
+	> 注意   
 	> 这个步骤所描述的机制要远比前一步骤低效，因为它可能包含重复创建新的集合对象，而非修改一个已经存在的。所以，你应该在设计你自己的复合 KVC 的对象时候避免。
 3. 如果既没有可变数组方法，也没有存取方法被发现，当接收者的类方法 accessInstanceVariablesDirectly 返回 YES 时，会开始按顺序检索实例变量的名为 `_<key>` 或 `<key>` 方法。  
 	如果发现了实例变量，返回一个代理方法，它会转发它所接收到的 NSMutableArray 消息给实例变量的值，这通常是一个 NSMutableArray 的实例，或者它的一个子类。  
@@ -481,7 +481,31 @@ setValue:forUndefinedKey: 的默认实现会产生一个 NSUndefinedKeyException
 
 ### 可变有序集合的检索模式
 
+mutableOrderedSetValueForKey: 的默认实现会识别相同的简单存取方法，类似 valueForKey: 的有序集合存方法（参见《基本 getter 的默认检索模式》），并遵循相同的实例变量访问规则，但始终返回一个可变的集合代理对象，而非一个 valueForKey: 返回的不可变的集合。此外，它还做了以下几点：  
+
+1. 检索名称类似 insertObject:in<Key>AtIndex: 和 removeObjectFrom<Key>AtIndex: 的方法（对应 NSMutableOrderedSet 类定义的两个方法），以及 insert<Key>:atIndexes: 和 remove<Key>AtIndexes: （对应 insertObjects:atIndexes: 和 removeObjectsAtIndexes:）。  
+如果至少有一个插入方法和移除方法被查找到了，当 mutableOrderedSetValueForKey: 消息的原始接收者接收到 NSMutableOrderedSet 消息时，返回的代理对象会发送 insertObject:in<Key>AtIndex:, removeObjectFrom<Key>AtIndex:, insert<Key>:atIndexes:, 和 remove<Key>AtIndexes: 的消息集合。  
+当原对象当中已经存在类似方法，代理对象还会使用类似 replaceObjectIn<Key>AtIndex:withObject: 或 replace<Key>AtIndexes:with<Key>: 的方法。
+2. 如果可变集合方法没有被查找到，会检索名称类似 `set<Key>:` 的存取方法。在这种情况下，返回的代理对象每当接收到一条 NSMutableOrderedSet 的消息就会发送一条 `set<Key>:` 消息给 mutableOrderedSetValueForKey: 的原消息接收者。
+> 注意  
+本步骤描述的机制比前一步骤低效的多，因为它可能包含重复创建新的集合对象，而非修改一个已经存在的。所以，你应该尽量避免在设计你自己的 KVC 对象中使用。
+
+3. 如果无论是可变集合消息或者是存取方法都没查找到，如果接收者的 accessInstanceVariablesDirectly 类方法返回 YES，会按顺序开始检索名称类似 `_<key>` 或 `<key>` 的实例变量。如果有一个这样的实例变量被查找到，返回的代理对象会转发任何它接收到的 NSMutableOrderedSet 的消息给实例变量的值，这和一个 NSMutableOrderedSet 的实例或者其子类类似。 
+4. 如果所有的 else 都失败了，返回的代理对象会在接收到一个可变集合消息的时候发送一条 setValue:forUndefinedKey: 消息给原 mutableOrderedSetValueForKey: 消息的接收者。  
+setValue:forUndefinedKey: 的默认实现是产生一个 NSUndefinedKeyException 异常，单对象可以重写这一行为。
+
 ### 可变集合的检索模式
+
+mutableSetValueForKey: 的默认实现会给定一个 key 作为输入，返回一个可变代理集合，名为 key 的一个数组属性在其中接受存取方法调用，使用如下步骤：  
+
+1. 检索名称类似 `add<Key>Object:` 和 `remove<Key>Object:` 的方法（分别对应 NSMutableSet 的 addObject: 和 removeObject: 方法）以及 `add<Key>:` 和 `remove<Key>:` （对应 NSMutableSet 的 unionSet: 和 minusSet:）。如果至少有一额增加方法和一个移除方法被查找到，返回一个代理对象会在接收到 NSMutableSet 消息的时候发送 `add<Key>Object:`, `remove<Key>Object:`, `add<Key>:`, 和 `remove<Key>:` 消息集合给原 mutableSetValueForKey: 的接收者。
+2. 如果 mutableSetValueForKey: 的接收者的调用时一个 managed 对象，如果是非managed 对象的话，检索模式不会继续。参见《Core Data 编程指南》中的 管理对象存取方法 了解更多信息。
+3. 如果可变集合方法没被查到，并且如果对象不是一个 managed 对象，会查找类似 `set<Key>:` 的存取方法。如果该方法被查找到，返回的代理对象会在接收到 NSMutableSet 消息的时候发送一条 `set<Key>:` 消息给 mutableSetValueForKey: 的消息接收者。
+> 注意  
+本步骤描述的机制比第一步骤低效的多，因为它可能包含重复创建新的集合对象，而非修改一个已经存在的。所以，你应该尽量避免在设计你自己的 KVC 对象中使用。
+
+4. 如果可变集合方法和存取方法都没查到，并且如果接收者的 accessInstanceVariablesDirectly 类方法返回 YES，会按顺序开始检索名称类似 `_<key>` 或 `<key>` 的实例变量。如果有一个这样的实例变量被查找到，返回的代理对象会转发任何它接收到的 NSMutableSet 的消息给实例变量的值，这和一个 NSMutableSet 的实例或者其子类类似。
+5. 如果所有的 else 都失败了，返回的代理对象会在接收到一个 NSMutableSet 消息的时候发送一条 setValue:forUndefinedKey: 消息给原 mutableSetValueForKey: 消息的接收者。  
 
 # 采用KVC
 ## 实现基本的 KVC 合规
