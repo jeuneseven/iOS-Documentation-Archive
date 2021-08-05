@@ -123,9 +123,9 @@ addObserver:forKeyPath:options:context: 方法中的 context 指针包含了在�
 	                    context:PersonAccountInterestRateContext];
 	}
 
-# 遵守KVO
+# 遵守 KVO
 
-对于一个特定属性，为了能够遵守KVO，一个类必须确保以下：  
+对于一个特定属性，为了能够遵守 KVO，一个类必须确保以下：  
 
 * 该类的属性必须遵守KVC，如“确保遵守KVC”中所描述的。  
 KVO和KVC所支持的数据类型相同，包含OC对象以及在“标量和结构体支持”中所列出的标量和结构体类型。
@@ -138,7 +138,7 @@ KVO和KVC所支持的数据类型相同，包含OC对象以及在“标量和结
 ## 自动变更通知
 
 NSObject 提供了一种自动的键值对变更通知的基本实现。自动的键值变更通知会使用符合键值的存取器和KVC方法来通知变更。自动的通知同样支持返回的集合代理对象，比如，mutableArrayValueForKey:。  
-清单1中展示了属性 name 在变更时通知监听器的结果。  
+清单1 中展示了属性 name 在变更时通知监听器的结果。  
 
 清单 1 调用方法会触发KVO变更通知发出  
 
@@ -157,6 +157,8 @@ NSObject 提供了一种自动的键值对变更通知的基本实现。自动�
 	[transactions addObject:newTransaction];
 
 ## 手动变更通知
+
+在某些情況下，你可能需要控制同志的过程，比如，要最小化触发通知
 
 清单2 automaticallyNotifiesObserversForKey: 的实现示例
 
