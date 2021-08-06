@@ -174,6 +174,39 @@ NSObject 提供了一种自动的键值对变更通知的基本实现。自动�
 	    return automatic;
 	}
 
+	- (void)setBalance:(double)theBalance {
+	    [self willChangeValueForKey:@"balance"];
+	    _balance = theBalance;
+	    [self didChangeValueForKey:@"balance"];
+	}
+
+	- (void)setBalance:(double)theBalance {
+	    if (theBalance != _balance) {
+	        [self willChangeValueForKey:@"balance"];
+	        _balance = theBalance;
+	        [self didChangeValueForKey:@"balance"];
+	    }
+	}
+
+	- (void)setBalance:(double)theBalance {
+	    [self willChangeValueForKey:@"balance"];
+	    [self willChangeValueForKey:@"itemChanged"];
+	    _balance = theBalance;
+	    _itemChanged = _itemChanged+1;
+	    [self didChangeValueForKey:@"itemChanged"];
+	    [self didChangeValueForKey:@"balance"];
+	}
+
+	- (void)removeTransactionsAtIndexes:(NSIndexSet *)indexes {
+	    [self willChange:NSKeyValueChangeRemoval
+	        valuesAtIndexes:indexes forKey:@"transactions"];
+	 
+	    // Remove the transaction objects at the specified indexes.
+	 
+	    [self didChange:NSKeyValueChangeRemoval
+	        valuesAtIndexes:indexes forKey:@"transactions"];
+	}
+	
 # 注册依赖Keys
 
 ## 对一关系
