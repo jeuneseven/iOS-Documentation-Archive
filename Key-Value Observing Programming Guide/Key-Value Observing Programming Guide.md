@@ -18,11 +18,11 @@ KVO 提供了一种让对象在其他的对象的指定属性改变的时候被�
 
 如果这些属性是 Account 的公开属性，Person 可以定期获取 Account 来察觉变更，当然这并不高效，并且也不现实。一个更好的方案是使用 KVO，这就类似于 Person 在有变化发生的时候接收到中断。  
 要使用 KVO，首先你必须确保被监听的对象（本例中是 Account），是符合 KVO 的。通常来讲，如果你的对象继承自 NSObject，并且你在创建属性的时候是常用的方式，你的对象及其属性就会自动的遵从 KVO。也可以手动的实现遵循。“KVO 的遵守”描述了自动和手动之间的区别，以及如何实现两者。  
-下一步，你必须注册你的监听实例，即Person，给被监听实例，即 Account。Person 会发送一个addObserver:forKeyPath:options:context: 消息给 Account，每当监听到 key path，它就会命名自己为监听者。  
+下一步，你必须注册你的监听实例，即 Person，给被监听实例，即 Account。Person 会发送一个addObserver:forKeyPath:options:context: 消息给 Account，每当监听到 key path，它就会命名自己为监听者。  
 
 ![](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/Art/kvo_objects_add.png)  
 
-为了能够从 Account 接收到变更通知，Person 需要实现 observeValueForKeyPath:ofObject:change:context: 方法，所有的监听者都如此。Account 将会在注册的key path变更的任意时机发送这条消息给 Person。Person 随后就能够基于上述变更通知来作出适当的动作。  
+为了能够从 Account 接收到变更通知，Person 需要实现 observeValueForKeyPath:ofObject:change:context: 方法，所有的监听者都如此。Account 将会在注册的 key path 变更的任意时机发送这条消息给 Person。Person 随后就能够基于上述变更通知来作出适当的动作。  
 
 ![](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/Art/kvo_objects_observe.png)  
 
@@ -31,7 +31,8 @@ KVO 提供了一种让对象在其他的对象的指定属性改变的时候被�
 ![](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/Art/kvo_objects_remove.png)  
 
 "为 KVO 进行注册"描述了注册、接收、解除注册 KVO 通知的完整生命周期。  
-KVO 首要目的是你无需实现每当一个属性变更时就要发送通知。它将基础结构在框架层就进行了支持，并且很容易遵循——通常你无需添加任何代码到你的工程当中。此外，基础架构已经是功能完备的，因此很容易为单个属性和相关值支持多个观察者。  
+KVO 首要目的是你无需实现每当一个属性变更时就要发送通知。它将基础结构在框架层就进行了支持，并且很容易遵循——通常你无需添加任何代码到你的工程当中。此外，基础架构已经是功能完备的，因此很容易为单个属性和相关值支持多个观察者，当然所依赖的值也是。  
+“注册依赖的 Keys”解释了如何指定一个 key 的值是依赖于另一个 key 的值的。  
 与使用 NSNotificationCenter 的通知不同，没有一个中心的对象给所有的监听者提供变更通知。取而代之的是，当变更发生的时候，通知直接发送给正在监听的对象。NSObject 提供了这种 KVO 的基本实现，你只需要重写这些方法。  
 "KVO 实现细节"描述了 KVO 是如何实现的。
 
@@ -264,7 +265,7 @@ NSObject 提供了一种自动的键值对变更通知的基本实现。自动�
 
 # KVO实现细节
 
-自动KVO的实现是使用的一种叫做 **isa交换** 的技术。  
-isa指针，如其名，是指向维护调度表的对象的类的。这种调度表基本上包含了只想类实现的方法的指针，也包含其他数据。  
-当一个监听者注册了一个对象的一个属性，监听者对象的isa指针就被修改了，指向了一个中间类，而非真实的一个类。因此，isa指针的值并不一定真实反应实例的实际类别。  
-你不应该依赖于isa指针判断类的从属关系。而是应该使用class方法来判断一个对象实例的类。  
+自动 KVO 的实现是使用的一种叫做 **isa交换** 的技术。  
+isa 指针，如其名，是指向维护调度表的对象的类的。这种调度表基本上包含了只想类实现的方法的指针，也包含其他数据。  
+当一个监听者注册了一个对象的一个属性，监听者对象的 isa 指针就被修改了，指向了一个中间类，而非真实的一个类。因此，isa 指针的值并不一定真实反应实例的实际类别。  
+你不应该依赖于 isa 指针判断类的从属关系。而是应该使用 class 方法来判断一个对象实例的类。  
