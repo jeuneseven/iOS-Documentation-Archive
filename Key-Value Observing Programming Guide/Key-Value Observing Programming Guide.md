@@ -175,6 +175,8 @@ NSObject 提供了一种自动的键值对变更通知的基本实现。自动�
 	    return automatic;
 	}
 
+清单 3 存取方法实现手动通知的示例
+
 	- (void)setBalance:(double)theBalance {
 	    [self willChangeValueForKey:@"balance"];
 	    _balance = theBalance;
