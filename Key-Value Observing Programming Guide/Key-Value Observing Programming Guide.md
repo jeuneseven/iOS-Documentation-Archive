@@ -61,7 +61,9 @@ KVO 首要目的是你无需实现每当一个属性变更时就要发送通知�
 
 ### 上下文
 
-addObserver:forKeyPath:options:context: 方法中的 context 指针包含了在相关变更通知中将要传递给监听者的原始数据。  
+addObserver:forKeyPath:options:context: 方法中的 context 指针包含了在相关变更通知中将要传递给监听者的原始数据。你可以将其设置为 NULL，并整体依赖于 key path 字符串来判断变更通知的原因，但这种处理方式对于父类出于不同原因也是监听同样的 key path 的对象可能会引发问题。  
+一种更加安全和扩展性更好的方案是使用 context 来确保你接收到的通知是以你的监听器为目标而非父类的。  
+
 
 清单 1 创建 context 指针  
 
