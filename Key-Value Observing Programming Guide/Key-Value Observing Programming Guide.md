@@ -63,12 +63,14 @@ KVO 首要目的是你无需实现每当一个属性变更时就要发送通知�
 
 addObserver:forKeyPath:options:context: 方法中的 context 指针包含了在相关变更通知中将要传递给监听者的原始数据。你可以将其设置为 NULL，并整体依赖于 key path 字符串来判断变更通知的原因，但这种处理方式对于父类出于不同原因也是监听同样的 key path 的对象可能会引发问题。  
 一种更加安全和扩展性更好的方案是使用 context 来确保你接收到的通知是以你的监听器为目标而非父类的。  
-
+在你的类中的唯一的静态变量名可的地址可以构造一个完美的 context。context 选择以一种类似父类或子类而非层叠的方式出现。你可以给整个类选择一个 context，并依赖于通知消息中的 key path 字符串来判断改变的内容。或者，你可以给每个监听 key path 创建一个不同的 context，从而完全绕过字符串比较的需要，并产生更有效的通知分析。清单 1 展示了余额和利息属性选择这种方式的 context。
 
 清单 1 创建 context 指针  
 
 	static void *PersonAccountBalanceContext = &PersonAccountBalanceContext;
 	static void *PersonAccountInterestRateContext = &PersonAccountInterestRateContext;
+
+清单2 中的示例展示了一个 Person 实例使用给定的 context 指针将其本身注册为一个 Account 实例的 balance 和 interestRate 属性的监听者。
 
 清单 2 为balance 和 interestRate 属性注册监听器  
 
@@ -86,8 +88,15 @@ addObserver:forKeyPath:options:context: 方法中的 context 指针包含了在�
 	                  context:PersonAccountInterestRateContext];
 	}
 
+```
+注意：KVO 的 addObserver:forKeyPath:options:context: 方法对于监听对象、被监听的对象或者 context不会维持强引用。你应该根据需要对于监听对象、被监听的对象或者 context 维持强引用。
+```
+
 ## 接收变更通知
 
+当一个被监听的对象的属性值变更的时候，监听器会接收到 observeValueForKeyPath:ofObject:change:context: 消息。所有的监听器必须实现该方法。  
+监听对象提供触发通知的 key path，它本身作为关联对象，一个字典会包含关于变更的详情，context 指针会在通知注册该 key path 的时候提供上下文。  
+变更字典的入口 NSKeyValueChangeKindKey 提供发生变更的类型信息。如果是被监听的对象值已经变更，NSKeyValueChangeKindKey 实体会返回 NSKeyValueChangeSetting。根据监听器注册时候指定的选项不同，NSKeyValueChangeOldKey 和 NSKeyValueChangeNewKey 
 
 清单 3 实现observeValueForKeyPath:ofObject:change:context:  
 
