@@ -194,6 +194,8 @@ NSObject 提供了一种自动的键值对变更通知的基本实现。自动�
 	    [self didChangeValueForKey:@"balance"];
 	}
 
+清单 4 在提供通知之前检测值变更
+
 	- (void)setBalance:(double)theBalance {
 	    if (theBalance != _balance) {
 	        [self willChangeValueForKey:@"balance"];
@@ -201,6 +203,8 @@ NSObject 提供了一种自动的键值对变更通知的基本实现。自动�
 	        [self didChangeValueForKey:@"balance"];
 	    }
 	}
+
+清单 5 在提供通知之前检测值变更
 
 	- (void)setBalance:(double)theBalance {
 	    [self willChangeValueForKey:@"balance"];
