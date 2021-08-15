@@ -204,7 +204,7 @@ NSObject 提供了一种自动的键值对变更通知的基本实现。自动�
 	    }
 	}
 
-清单 5 在提供通知之前检测值变更
+清单 5 为多个 keys 嵌套变更通知
 
 	- (void)setBalance:(double)theBalance {
 	    [self willChangeValueForKey:@"balance"];
@@ -214,6 +214,8 @@ NSObject 提供了一种自动的键值对变更通知的基本实现。自动�
 	    [self didChangeValueForKey:@"itemChanged"];
 	    [self didChangeValueForKey:@"balance"];
 	}
+
+清单 6 在对多关系中实现手动监听通知
 
 	- (void)removeTransactionsAtIndexes:(NSIndexSet *)indexes {
 	    [self willChange:NSKeyValueChangeRemoval
