@@ -123,7 +123,9 @@ addObserver:forKeyPath:options:context: 方法中的 context 指针包含了在�
 
 ## 移除作为监听器的对象
 
-清单4 移除balance和interestRate的监听指示器  
+通过给被监听的对象发送 removeObserver:forKeyPath:context: 消息来移除 KVO，指定监听对象，key path，以及 context。清单 4中的示例展示了 Person 移除它自身作为 balance 和 interestRate 的监听者。  
+
+清单4 移除 balance 和 interestRate 的监听指示器  
 
 	- (void)unregisterAsObserverForAccount:(Account*)account {
 	    [account removeObserver:self
@@ -134,6 +136,13 @@ addObserver:forKeyPath:options:context: 方法中的 context 指针包含了在�
 	                 forKeyPath:@"interestRate"
 	                    context:PersonAccountInterestRateContext];
 	}
+
+在接收到 removeObserver:forKeyPath:context: 消息之后，监听对象将不再接收任何指定 key path 和对象的 observeValueForKeyPath:ofObject:change:context: 消息。  
+当移除一个监听器的时候，记住以下几点：  
+
+- 如果没有准备注册一个将要导致 NSRangeException 的结果的话，要求作为监听器被移除的时候需要注意。要么调用 removeObserver:forKeyPath:context: 正好一次用于呼应 addObserver:forKeyPath:options:context:，要么如果该方法在你的应用中不可行，将其替换为 try/catch 块来处理潜在的异常。
+- 在被释放的时候，一个监听器是不会将其本身自动移除的。被监听的对象会持续发送通知，不会察觉到监听者的状态。不过，一个变更通知不像其他消息一样，发送给一个已经释放的对象，触发一个内存访问异常。所以你应该确保监听器在其本身从内存中消失之前移除它本身。
+- 如果是一个监听器或者被监听的对象的话，协议不提供方式来查询该对象。结构化你的代码来避免释放相关的错误。一种比较典型的模式是在监听的初始化的时候注册为一个监听器（比如在 init 或者 viewDidLoad 中），并且在释放的时候（通常在 dealloc 中）解除注册，确保正确的配对并排序好添加和移除消息，在监听器从内存中被释放之前要解除注册。
 
 # 遵守 KVO
 
