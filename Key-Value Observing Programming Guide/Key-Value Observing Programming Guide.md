@@ -96,7 +96,10 @@ addObserver:forKeyPath:options:context: 方法中的 context 指针包含了在�
 
 当一个被监听的对象的属性值变更的时候，监听器会接收到 observeValueForKeyPath:ofObject:change:context: 消息。所有的监听器必须实现该方法。  
 监听对象提供触发通知的 key path，它本身作为关联对象，一个字典会包含关于变更的详情，context 指针会在通知注册该 key path 的时候提供上下文。  
-变更字典的入口 NSKeyValueChangeKindKey 提供发生变更的类型信息。如果是被监听的对象值已经变更，NSKeyValueChangeKindKey 实体会返回 NSKeyValueChangeSetting。根据监听器注册时候指定的选项不同，NSKeyValueChangeOldKey 和 NSKeyValueChangeNewKey 
+变更字典的入口 NSKeyValueChangeKindKey 提供发生变更的类型信息。如果是被监听的对象值已经变更，NSKeyValueChangeKindKey 实体会返回 NSKeyValueChangeSetting。根据监听器注册时候指定的选项不同，NSKeyValueChangeOldKey 和 NSKeyValueChangeNewKey 在变更字典中的实体包含之前、之后以及变更的属性值。如果属性是一个对象，直接提供值。如果属性是一个标量或者 C 结构体，值会被封装在一个 NSValue 对象中（就像 KVC）。  
+如果被监听的属性是一个对多的关系，NSKeyValueChangeKindKey 条目也会分别通过返回 NSKeyValueChangeInsertion, NSKeyValueChangeRemoval, 或 NSKeyValueChangeReplacement 表示插入、删除、替换操作。  
+入口 NSKeyValueChangeIndexesKey 的变更词典是一个 NSIndexSet 对象，指定关系中的变更索引。如果在监听器注册的时候 NSKeyValueObservingOptionNew 或 NSKeyValueObservingOptionOld 被指定作为选项，变更字典中的 NSKeyValueChangeOldKey 和 NSKeyValueChangeNewKey 即表示包含之前的、之后的以及变更的相关值的数组。  
+清单 3 的例子展示了 observeValueForKeyPath:ofObject:change:context: 的实现，监听器 Person 打印了旧的和新的 balance 和 interestRate 属性值，如清单 2中注册的。
 
 清单 3 实现observeValueForKeyPath:ofObject:change:context:  
 
