@@ -182,7 +182,8 @@ NSObject 提供了一种自动的键值对变更通知的基本实现。自动�
 
 ## 手动变更通知
 
-在某些情況下，你可能需要控制通知的过程，比如，出于应用特定原因或者要最小化触发通知
+在某些情況下，你可能需要控制通知的过程，比如，出于应用特定原因或者将一组变更变更融合进一个通知等情况，要最小化触发不必要的通知。手动改变通知提供了一种方式来做这件事。  
+手动和自动通知并不互斥。你可以自由的在已经有自动通知的地方分发手动通知来加强。更常见的，你可能想要对某个特定属性完全控制通知。在这种情况下，你可以重写 NSObject 的 automaticallyNotifiesObserversForKey: 实现。对于你想要排除的自动通知的属性，子类在实现 automaticallyNotifiesObserversForKey: 的时候应该返回 NO。子类在实现的时候应该调用 super 给任何不可识别的 keys。清单 2 中的示例给 balance 属性开启了手动通知，让父类能判断所有其他 keys 的通知。
 
 清单2 automaticallyNotifiesObserversForKey: 的实现示例
 
@@ -198,6 +199,8 @@ NSObject 提供了一种自动的键值对变更通知的基本实现。自动�
 	    return automatic;
 	}
 
+要实现手动的监听通知，你需要在值改变之前调用 willChangeValueForKey:，并且在值变更后调用 didChangeValueForKey:。清单 3 中的示例实现了 balance 属性的手动通知。
+
 清单 3 存取方法实现手动通知的示例
 
 	- (void)setBalance:(double)theBalance {
@@ -205,6 +208,8 @@ NSObject 提供了一种自动的键值对变更通知的基本实现。自动�
 	    _balance = theBalance;
 	    [self didChangeValueForKey:@"balance"];
 	}
+
+要最小化发送不必要的通知，你可以首先检查值是否发生了变更。清单 4 中的示例检测了 balance 的值并只在它改变的时候提供了通知。
 
 清单 4 在提供通知之前检测值变更
 
@@ -216,6 +221,8 @@ NSObject 提供了一种自动的键值对变更通知的基本实现。自动�
 	    }
 	}
 
+如果一个单一的操作会触发多个 keys 的变更，你必须嵌套变更通知，如 清单 5 中展示的。
+
 清单 5 为多个 keys 嵌套变更通知
 
 	- (void)setBalance:(double)theBalance {
@@ -226,6 +233,9 @@ NSObject 提供了一种自动的键值对变更通知的基本实现。自动�
 	    [self didChangeValueForKey:@"itemChanged"];
 	    [self didChangeValueForKey:@"balance"];
 	}
+
+在一个有序的对多关系中，你必须不仅要指定改变的 key，还要指定改变的类型以及所包含的对象的索引集合。改变的类型是一个NSKeyValueChange 类型，它指定了 NSKeyValueChangeInsertion，NSKeyValueChangeRemoval，或 NSKeyValueChangeReplacement。影响的对象的索引集合是以 NSIndexSet 对象传递的。  
+清单 6 中的代码块演示了对多关系 transactions 是如何封装一个删除对象的操作的。
 
 清单 6 在对多关系中实现手动监听通知
 
