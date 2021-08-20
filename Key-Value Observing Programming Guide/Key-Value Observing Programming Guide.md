@@ -255,9 +255,15 @@ NSObject 提供了一种自动的键值对变更通知的基本实现。自动�
 
 ## 对一关系
 
+要触发自动通知给一对一关系，你应该实现 keyPathsForValuesAffectingValueForKey: 和遵循注册依赖 keys 定义的适当的方法之一。  
+比如，一个人的全名是根据其姓和名组成的。返回全名的方法应该被写为这样：  
+
 	- (NSString *)fullName {
 	    return [NSString stringWithFormat:@"%@ %@",firstName, lastName];
 	}
+	
+一个监听 fullName 属性的应用	必须在 firstName 或 lastName 属性发生变更的时候收到监听，因为它们都影响属性的值。  
+一种解决方案是重写 keyPathsForValuesAffectingValueForKey: 来指定人的 fullName 属性是依赖于 lastName 和 firstName 属性。清单 1 展示了一个这种依赖实现的示例：  
 	
 清单1 keyPathsForValuesAffectingValueForKey: 的实现示例	
 
@@ -271,8 +277,10 @@ NSObject 提供了一种自动的键值对变更通知的基本实现。自动�
 	    }
 	    return keyPaths;
 	}
+
+在重写的时候通常要调用 super 并返回一个包含能够做某些结果的成员的集合（）。
 	
-清单2 keyPathsForValuesAffecting<Key>名称转换的实现示例
+清单2 `keyPathsForValuesAffecting<Key>` 名称转换的实现示例
 
 	+ (NSSet *)keyPathsForValuesAffectingFullName {
 	    return [NSSet setWithObjects:@"lastName", @"firstName", nil];
