@@ -288,6 +288,8 @@ NSObject 提供了一种自动的键值对变更通知的基本实现。自动�
 
 ## 对多关系
 
+有两种可能的方案在同时两种情形下：  
+
 	- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	 
 	    if (context == totalSalaryContext) {
