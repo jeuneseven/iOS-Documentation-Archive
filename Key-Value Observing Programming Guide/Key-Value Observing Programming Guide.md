@@ -288,6 +288,8 @@ NSObject 提供了一种自动的键值对变更通知的基本实现。自动�
 
 ## 对多关系
 
+keyPathsForValuesAffectingValueForKey: 方法不会支持包含一个对多关系的 key-paths。比如，假设你有一个 Department 对象，有一个对多关系（employees）代表 Employee，Employee 有一个 salary  属性。你可能想要让 Department 对象，有一个 totalSalary 属性，它在关系中依赖于所有 Employees 的 salaries。你不能够这么做，比如，keyPathsForValuesAffectingTotalSalary 并且返回 employees.salary 作为一个 key。
+
 有两种可能的方案在同时两种情形下：  
 
 	- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
