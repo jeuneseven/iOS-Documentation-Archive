@@ -278,7 +278,8 @@ NSObject 提供了一种自动的键值对变更通知的基本实现。自动�
 	    return keyPaths;
 	}
 
-在重写的时候通常要调用 super 并返回一个包含能够做某些结果的成员的集合（）。
+在重写的时候通常要调用 super 并返回一个包含因为这样做而导致的成员的集合（以免干扰父类中此方法的重写）。  
+你还可以通过实现一个遵循明明规范 `keyPathsForValuesAffecting<Key>` 的类方法来达到同样的效果，`<Key>` 是属性的名称（首字母大写）它依赖于值。使用 清单 1 中的模式代码能够被重写为一个名为 keyPathsForValuesAffectingFullName 的类方法，如 清单 2 所示。
 	
 清单2 `keyPathsForValuesAffecting<Key>` 名称转换的实现示例
 
@@ -286,12 +287,19 @@ NSObject 提供了一种自动的键值对变更通知的基本实现。自动�
 	    return [NSSet setWithObjects:@"lastName", @"firstName", nil];
 	}
 
+在你添加一个计算属性给一个使用分类的已经存在的类的时候，你不能重写 keyPathsForValuesAffectingValueForKey: 方法，因为你不能假设在分类中重写方法。在这种情况下，实现一个 `keyPathsForValuesAffecting<Key>` 的类方法来利用这种机制。  
+
+> 注意：你不能够通过实现 keyPathsForValuesAffectingValueForKey: 设定依赖于对多的关系。而是必须监听在对多关系中的每个对象的适当的属性，并通过自己更新依赖 key 来响应值的变更。后续章节展示了一个处理这种情况的策略。
+
 ## 对多关系
 
 keyPathsForValuesAffectingValueForKey: 方法不会支持包含一个对多关系的 key-paths。比如，假设你有一个 Department 对象，有一个对多关系（employees）代表 Employee，Employee 有一个 salary  属性。你可能想要让 Department 对象，有一个 totalSalary 属性，它在关系中依赖于所有 Employees 的 salaries。你不能够这么做，比如，keyPathsForValuesAffectingTotalSalary 并且返回 employees.salary 作为一个 key。
 
-有两种可能的方案在同时两种情形下：  
+在同时两种情形下有两种可能的方案：  
 
+1. 你可以使用 KVO 来注册父类（本例中是 Department），作为所有子类（本例中是 Employees）的相关属性的监听者。在子类对象被从关系中添加和移除的时候必须添加和移除父类作为监听者（参见“注册为 KVO”）。在 observeValueForKeyPath:ofObject:change:context: 方法中你应该更新依赖值来响应变化，如下属代码块所述：  
+
+```
 	- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	 
 	    if (context == totalSalaryContext) {
@@ -317,6 +325,9 @@ keyPathsForValuesAffectingValueForKey: 方法不会支持包含一个对多关�
 	- (NSNumber *)totalSalary {
 	    return _totalSalary;
 	}
+```
+
+2. 如果你使用了 Core Data，你可以将父类和应用的通知中心注册为 managed object 的 context。父类应该响应相应的子类在管理器中发送的变更通知，类似于 KVO。
 
 # KVO实现细节
 
