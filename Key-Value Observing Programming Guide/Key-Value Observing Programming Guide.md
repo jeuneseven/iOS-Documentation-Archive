@@ -123,6 +123,10 @@ addObserver:forKeyPath:options:context: 方法中的 context 指针包含了在�
 	    }
 	}
 
+当注册为一个监听器的时候，如果指定一个 NULL context，你应该用通知的 key path 与你注册用来判断的变更的 key path 进行比较。如果你使用了一个单独的 context 给所有监听的 key paths，首先你要检查通知的 context，然后找到匹配的，使用 key path 字符串比较来判断到底是哪个发生了变更。如果你提供了一个唯一的 context 给每个 key path，如这里所述，一系列的直接指针比较会直接告诉你到底是不是这个监听的通知，并且如果是这样，到底是哪个 key path 发生了变更。  
+在任何情况下，监听器都应该是始终调用父类的 observeValueForKeyPath:ofObject:change:context: 实现（或者在一些简单的情况下，任意 key paths），当它不能够辨别 context 的时候，因为这意味着父类也注册了通知。
+
+> 注意：如果一个通知传播到类继承链的顶部，NSObject 会抛出 NSInternalInconsistencyException，因为这是一个编程错误：一个子类不能消耗一个它注册的通知。
 
 ## 移除作为监听器的对象
 
