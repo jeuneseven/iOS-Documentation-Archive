@@ -552,6 +552,10 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 
 ## 概念
 
+图 6-1 类层级  
+
+![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/example_final_screen_2x.png)
+
 ## 初始化
 
 ## 准备布局
