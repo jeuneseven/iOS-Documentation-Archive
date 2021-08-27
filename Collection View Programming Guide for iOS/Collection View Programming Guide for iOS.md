@@ -558,6 +558,12 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 
 ## 初始化
 
+清单 6-1 链接到自定义协议  
+
+	@interface MyCustomLayout : UICollectionViewLayout
+	@property (nonatomic, weak) id<MyCustomProtocol> customDataSource;
+	@end
+
 ## 准备布局
 
 ### 创建布局属性
