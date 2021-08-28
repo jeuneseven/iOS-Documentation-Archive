@@ -528,6 +528,15 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 
 ### 创建布局属性
 
+你布局的属性对象是 UICollectionViewLayoutAttributes 由类的实例负责。这些实例能够以多种不同的方法在你的应用中创建。当你的应用不处理上千个元素的时候，创建这些实例的同时准备布局就很正常了，因为布局信息能够被缓存并且引用，而非滚动的时候计算。如果计算所有的属性的代价超过在缓存到应用中的好处的话，则在请求属性时创建属性同样容易。  
+无论如何，当创建 UICollectionViewLayoutAttributes 类的新的实例时，使用以下类方法之一：  
+
+- layoutAttributesForCellWithIndexPath:
+- layoutAttributesForSupplementaryViewOfKind:withIndexPath:
+- layoutAttributesForDecorationViewOfKind:withIndexPath:
+
+
+
 ### 为布局做准备
 
 ### 在给定矩形区域为单元格提供布局属性
