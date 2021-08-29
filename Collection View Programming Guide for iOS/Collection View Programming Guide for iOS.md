@@ -541,6 +541,8 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 
 ### 在给定矩形区域为单元格提供布局属性
 
+![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/cv_visible_elements_2x.png)
+
 ### 按照请求提供布局属性
 
 ### 连接你的自定义布局
