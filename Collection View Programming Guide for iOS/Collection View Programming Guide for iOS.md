@@ -555,6 +555,8 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 
 ### 让插入和删除动画更有趣
 
+![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/custom_insert_animations_2x.png)
+
 ### 提升你的布局的滚动体验
 
 ## 实现自定义布局的一些建议
