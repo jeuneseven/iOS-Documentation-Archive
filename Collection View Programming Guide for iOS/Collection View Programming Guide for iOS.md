@@ -564,6 +564,23 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 	@property (nonatomic, weak) id<MyCustomProtocol> customDataSource;
 	@end
 
+	@interface MyCustomLayout()
+
+清单 6-2 初始化变量
+
+	@property (nonatomic) NSDictionary *layoutInformation;
+	@property (nonatomic) NSInteger maxNumRows;
+	@property (nonatomic) UIEdgeInsets insets;
+	 
+	@end
+	 
+	-(id)init {
+	    if(self = [super init]) {
+	        self.insets = UIEdgeInsetsMake(INSET_TOP, INSET_LEFT, INSET_BOTTOM, INSET_RIGHT);
+	    }
+	    return self;
+	}
+
 ## 准备布局
 
 ### 创建布局属性
