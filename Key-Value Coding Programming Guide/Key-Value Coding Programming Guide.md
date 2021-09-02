@@ -76,7 +76,7 @@ key path 是一个用点分隔符指定一系列来回的对象属性的字符�
 比如，key path owner.address.street 用在一个银行账户实例时指的是存储在银行账户拥有者的地址中的街道名称，假设 Person 和 Address 类也是符合 KVC 的。  
 
 > 注意  
-> 在Swift中，你可以使用 #keyPath 表达式来代替使用字符串来表达一个 key 或 key path。这也提供了编译时的检查，这在《结合 Cocoa 和 OC（Swift 3）使用Swift指南》中的 Keys 和 Key Paths 段落有相关描述。
+> 在 Swift 中，你可以使用 #keyPath 表达式来代替使用字符串来表达一个 key 或 key path。这也提供了编译时的检查，这在《结合 Cocoa 和 OC（Swift 3）使用Swift指南》中的 Keys 和 Key Paths 段落有相关描述。
 
 ### 使用 keys 获取属性值
 
@@ -91,7 +91,7 @@ key path 是一个用点分隔符指定一系列来回的对象属性的字符�
 
 当你使用 key path 来定位一个属性时，如果 key path 中的最终 key 是对多关系（即它引用了集合），返回值会是一个根据 key到对多 key 的右侧的包含了所有值的集合。比如，请求 key path transactions.payee 的值会返回一个包含所有交易的所有payee 对象的数组，这在 key path 中对于可变数组也有效。accounts.transactions.payee 这个 key path 会返回所有账户中所有交易的所有 payee 对象。
 
-### 使用 Keys 设置属性值
+### 使用 keys 设置属性值
 
 和 getters 方法一样，符合 KVC 的对象也会根据 NSObject 的 NSKeyValueCoding 协议基于默认行为的实现提供一组小的通用的 setters：  
 
