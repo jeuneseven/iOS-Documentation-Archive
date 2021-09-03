@@ -28,7 +28,7 @@ KVC 是一个很多其他 Cocoa 技术的底层基础，比如 KVO，Cocoa 绑�
 所以，当 KVC 协议方法直接转移到 Swift 时，本指南主要聚焦在 OC 上，在你需要做的更多来确保稳定性以及 KVC 更常用的地方。在整个指南中都注意到了在 Swift 中要求采用明显不同方法的情况。  
 更多关于使用 Cocoa 技术的 Swift，阅读《使用Cocoa和OC（Swift3）》。有关 Swift 的详细介绍，阅读《Swift 编程语言》（Swift3)。
 
-### 其他的依赖KVC的Cocoa的技术
+### 其他的依赖 KVC 的 Cocoa 的技术
 
 遵守 KVC 的对象能够广泛的参与 Cocoa 技术，这些技术依赖于这种访问，包括：  
 
@@ -150,7 +150,7 @@ key path 是一个用点分隔符指定一系列来回的对象属性的字符�
 当一个 key path 包含一个集合操作符时，任何在操作符之前的 key path 部分被称作左 key path，表明操作相关的集合与消息接收者关联。如果你直接给一个集合对象发送消息，比如 NSArray 实例，左 key path 可能被省略。  
 操作符之后的 key path 部分被称作右 key path，指定集合中操作符作用的属性。所有的集合操作符（除了 @count）都需要一个右 key path。如图 4-1 所示操作符 key path 格式。
 
-图4-1 操作符key path格式  
+图4-1 操作符 key path 格式  
 
 ![](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/art/keypath.jpg)
 
