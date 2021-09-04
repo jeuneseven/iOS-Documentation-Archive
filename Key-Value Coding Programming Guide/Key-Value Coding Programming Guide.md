@@ -95,14 +95,14 @@ key path 是一个用点分隔符指定一系列来回的对象属性的字符�
 
 和 getters 方法一样，符合 KVC 的对象也会根据 NSObject 的 NSKeyValueCoding 协议基于默认行为的实现提供一组小的通用的 setters：  
 
-* setValue:forKey: -以给定值给相关对象的接受者根据特定 key 设置值。setValue:forKey: 的默认实现会自动的解包NSNumber 和 NSValue 对象为标量和结构体，然后将其赋值给属性。参见《表示非对对象值》了解封包和解包语法的细节。  
+* setValue:forKey: -以给定值给相关对象的接受者根据特定 key 设置值。setValue:forKey: 的默认实现会自动的解包 NSNumber 和 NSValue 对象为标量和结构体，然后将其赋值给属性。参见《表示非对对象值》了解封包和解包语法的细节。  
 如果指定的 key 相关的属性，即接收 setter 的对象调用没有该属性的话，对象会发送一条 setValue:forUndefinedKey: 消息给其本身。setValue:forUndefinedKey: 的默认实现是生成一个 NSUndefinedKeyException 异常。不过子类可以重载该方法来处理自定义管理中的请求。
 * setValue:forKeyPath: -根据指定 key path 相关的接收者设定给定值。任何在 key path 序列中的对象只要不符合给定 key 的 KVC 协议，就会收到一条 setValue:forUndefinedKey: 消息。
 * setValuesForKeysWithDictionary: -使用指定字典中的值设置接受者的属性，使用字典的 key 来匹配属性。默认的 setValue:forKey: 调用的实现是每个键值对，根据需要用 nil 代替 NSNull 对象。
 
 在默认实现中，当你试图用一个 nil 设置一个非对象的属性时，符合 KVC 的对象会给其自身发送一条 setNilValueForKey: 消息。 setNilValueForKey: 的默认实现是会生成一个 NSInvalidArgumentException 异常，但是对象可以重载该方法用一个默认值代替或者标记值代替，这在《处理非对象值》中有相关描述。
 
-### 使用 Keys 来简化对象的访问
+### 使用 keys 来简化对象的访问
 
 想要看下基于 key 的 getters 和 setters 是如何简化你的代码的，请参考如下示例。在 macOS 中，NSTableView 和 NSOutlineView 对象会给每行关联一个标识符字符串。如果在列表后的模型对象不符合  KVC，列表的数据源方法会强制检查每行的标识符，目的为了查找到正确的属性返回，如 清单2-2 所示。更甚者，在未来，当你添加另一个属性给你的模型对象时，本例中是 Person 对象，你必须再重新过一遍数据源方法，添加其他的条件来为新的属性和返回相关值来进行测试。
 
