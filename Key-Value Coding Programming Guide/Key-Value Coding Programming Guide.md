@@ -89,13 +89,13 @@ key path 是一个用点分隔符指定一系列来回的对象属性的字符�
 >	注意  
 	集合类的对象，比如 NSArray, NSSet, 和 NSDictionary，不能包含 nil 作为值。你可以使用 NSNull 对象代表 nil 值。NSNull 会提供一个单独的实例给对象的属性表示 nil 值。dictionaryWithValuesForKeys: 的默认实现以及相关的 setValuesForKeysWithDictionary: 会在 NSNull（在字典的参数中）和 nil（在存储的属性中）之间自动转换。
 
-当你使用 key path 来定位一个属性时，如果 key path 中的最终 key 是对多关系（即它引用了集合），返回值会是一个根据 key到对多 key 的右侧的包含了所有值的集合。比如，请求 key path transactions.payee 的值会返回一个包含所有交易的所有payee 对象的数组，这在 key path 中对于可变数组也有效。accounts.transactions.payee 这个 key path 会返回所有账户中所有交易的所有 payee 对象。
+当你使用 key path 来定位一个属性时，如果 key path 中的最终 key 是对多关系（即它引用了集合），返回值会是一个根据 key到对多 key 的右侧的包含了所有值的集合。比如，请求 key path transactions.payee 的值会返回一个包含所有交易的所有 payee 对象的数组，这在 key path 中对于可变数组也有效。accounts.transactions.payee 这个 key path 会返回所有账户中所有交易的所有 payee 对象。
 
 ### 使用 keys 设置属性值
 
 和 getters 方法一样，符合 KVC 的对象也会根据 NSObject 的 NSKeyValueCoding 协议基于默认行为的实现提供一组小的通用的 setters：  
 
-* setValue:forKey: -以给定值给相关对象的接受者根据特定 key 设置值。setValue:forKey: 的默认实现会自动的解包 NSNumber 和 NSValue 对象为标量和结构体，然后将其赋值给属性。参见《表示非对对象值》了解封包和解包语法的细节。  
+* setValue:forKey: -以给定值给相关对象的接受者根据特定 key 设置值。setValue:forKey: 的默认实现会自动的解包 NSNumber 和 NSValue 对象为标量和结构体，然后将其赋值给属性。参见《表示非对象值》了解封包和解包语法的细节。  
 如果指定的 key 相关的属性，即接收 setter 的对象调用没有该属性的话，对象会发送一条 setValue:forUndefinedKey: 消息给其本身。setValue:forUndefinedKey: 的默认实现是生成一个 NSUndefinedKeyException 异常。不过子类可以重载该方法来处理自定义管理中的请求。
 * setValue:forKeyPath: -根据指定 key path 相关的接收者设定给定值。任何在 key path 序列中的对象只要不符合给定 key 的 KVC 协议，就会收到一条 setValue:forUndefinedKey: 消息。
 * setValuesForKeysWithDictionary: -使用指定字典中的值设置接受者的属性，使用字典的 key 来匹配属性。默认的 setValue:forKey: 调用的实现是每个键值对，根据需要用 nil 代替 NSNull 对象。
