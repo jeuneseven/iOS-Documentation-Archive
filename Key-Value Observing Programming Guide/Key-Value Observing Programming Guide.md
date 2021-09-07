@@ -101,7 +101,7 @@ addObserver:forKeyPath:options:context: 方法中的 context 指针包含了在�
 入口 NSKeyValueChangeIndexesKey 的变更词典是一个 NSIndexSet 对象，指定关系中的变更索引。如果在监听器注册的时候 NSKeyValueObservingOptionNew 或 NSKeyValueObservingOptionOld 被指定作为选项，变更字典中的 NSKeyValueChangeOldKey 和 NSKeyValueChangeNewKey 即表示包含之前的、之后的以及变更的相关值的数组。  
 清单 3 的例子展示了 observeValueForKeyPath:ofObject:change:context: 的实现，监听器 Person 打印了旧的和新的 balance 和 interestRate 属性值，如清单 2中注册的。
 
-清单 3 实现observeValueForKeyPath:ofObject:change:context:  
+清单 3 实现 observeValueForKeyPath:ofObject:change:context:  
 
 	- (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
@@ -168,7 +168,7 @@ KVO 和 KVC 所支持的数据类型相同，包含 OC 对象以及在“标量�
 NSObject 提供了一种自动的键值对变更通知的基本实现。自动的键值变更通知会使用符合键值的存取器和KVC方法来通知变更。自动的通知同样支持返回的集合代理对象，比如，mutableArrayValueForKey:。  
 清单1 中展示了属性 name 在变更时通知监听器的结果。  
 
-清单 1 调用方法会触发KVO变更通知发出  
+清单 1 调用方法会触发 KVO 变更通知发出  
 
 	// Call the accessor method.
 	[account setName:@"Savings"];
