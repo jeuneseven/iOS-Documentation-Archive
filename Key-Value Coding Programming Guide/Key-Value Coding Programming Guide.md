@@ -89,7 +89,7 @@ key path 是一个用点分隔符指定一系列来回的对象属性的字符�
 >	注意  
 	集合类的对象，比如 NSArray, NSSet, 和 NSDictionary，不能包含 nil 作为值。你可以使用 NSNull 对象代表 nil 值。NSNull 会提供一个单独的实例给对象的属性表示 nil 值。dictionaryWithValuesForKeys: 的默认实现以及相关的 setValuesForKeysWithDictionary: 会在 NSNull（在字典的参数中）和 nil（在存储的属性中）之间自动转换。
 
-当你使用 key path 来定位一个属性时，如果 key path 中的最终 key 是对多关系（即它引用了集合），返回值会是一个根据 key到对多 key 的右侧的包含了所有值的集合。比如，请求 key path transactions.payee 的值会返回一个包含所有交易的所有 payee 对象的数组，这在 key path 中对于可变数组也有效。accounts.transactions.payee 这个 key path 会返回所有账户中所有交易的所有 payee 对象。
+当你使用 key path 来定位一个属性时，如果 key path 中的最终 key 是对多关系（即它引用了集合），返回值会是一个根据 key 到对多 key 的右侧的包含了所有值的集合。比如，请求 key path transactions.payee 的值会返回一个包含所有交易的所有 payee 对象的数组，这在 key path 中对于可变数组也有效。accounts.transactions.payee 这个 key path 会返回所有账户中所有交易的所有 payee 对象。
 
 ### 使用 keys 设置属性值
 
