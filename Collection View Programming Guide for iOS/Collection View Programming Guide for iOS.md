@@ -565,6 +565,8 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 
 ## 概念
 
+创建一个自定义的 CV 布局是一个简单并且直接的需求，但实现过程的细节可能会非常不同。你的布局必须给每个在你的 cv 中包含的视图提供布局属性对象。这些属性的创建顺序依赖于你的应用程序的本质。在一个 cv 中可能存在上千上万个元素，直接计算和缓存布局属性是一个耗时的过程，所以这让只在需要特定元素的时候才创建属性变得比较合理。对于拥有少量元素的应用，一次性的计算布局信息并将其缓存来在属性被请求的时候引用能够节省你的应用的大量的不需要的重新计算的时间。本章节中的示例属于第二种分类。
+
 图 6-1 类层级  
 
 ![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/example_final_screen_2x.png)
