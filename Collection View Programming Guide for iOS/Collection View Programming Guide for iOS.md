@@ -606,6 +606,8 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 
 ### 创建布局属性
 
+![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/layout_process_2x.png)
+
 ### 存储布局属性
 
 ## 提供内容大小
