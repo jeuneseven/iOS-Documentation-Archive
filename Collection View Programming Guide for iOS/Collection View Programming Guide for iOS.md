@@ -559,6 +559,8 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 
 ### 提升你的布局的滚动体验
 
+![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/custom_target_scroll_offset_2x.png)
+
 ## 实现自定义布局的一些建议
 
 # 自定义布局举例
@@ -603,6 +605,8 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 ## 准备布局
 
 ### 创建布局属性
+
+![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/layout_process_2x.png)
 
 ### 存储布局属性
 
