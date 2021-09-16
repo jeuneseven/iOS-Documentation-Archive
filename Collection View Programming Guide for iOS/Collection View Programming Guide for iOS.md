@@ -608,11 +608,35 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 	    return self;
 	}
 
-自定义布局的最后一步是创建自定义布局属性。虽然这步并非必要，在本例中当 cell 被
+自定义布局的最后一步是创建自定义布局属性。虽然这步并非必要，在本例中当 cell 被占据的时候，代码需要访问当前 cell 的孩子的索引路径一边能够调整孩子 cell 的位置来匹配它的父亲。所以子类化 UICollectionViewLayoutAttributes 来存储 cell 的孩子的数组来提供该信息。子类化 UICollectionViewLayoutAttributes，然后头文件添加如下代码：  
+
+	@property (nonatomic) NSArray *children;
+
+如同 UICollectionViewLayoutAttributes 类参考中所阐释的，子类化布局属性需要你重写继承的 isEqual: 方法（iOS 7 和之后的版本）。更多为何这么做的信息，参考《UICollectionViewLayoutAttributes 类参考》 。  
+本例中的 isEqual: 的实现比较简单，因为只有一个领域需要比较——孩子数组的内容。如果布局属性对象的数组是匹配的，那么他们必须相等，因为孩子是属于一个类的。清单 6-3 展示了 isEqual: 方法的实现。  
+
+清单 6-3 满足子类布局属性的需要  
+
+	-(BOOL)isEqual:(id)object {
+	    MyCustomAttributes *otherAttributes = (MyCustomAttributes *)object;
+	    if ([self.children isEqualToArray:otherAttributes.children]) {
+	        return [super isEqual:object];
+	    }
+	    return NO;
+	}
+
+记住给在自定义布局文件中的自定义布局属性包含头文件。  
+在过程中的这个点，你已经开始使用你布置的基础来实现自定义布局的主要部分了。  
 
 ## 准备布局
 
+现在，所有的必须元素都已经被初始化，你可以准备布局了。cv 在布局过程中首先会调用 prepareLayout 方法。在本例中，prepareLayout 方法被用来举例说明 cv 中的每个视图的所有的布局属性对象，然后缓存这些属性到你的 layoutInformation 字典里稍后使用。更多关于 prepareLayout 方法的信息，参见《准备布局》。
+
 ### 创建布局属性
+
+实现 prepareLayout 方法的示例分为两部分。图 6-2 展示了方法第一部分的目标。代码迭代了每个 cell，如果 cell 有孩子，关联这些孩子给父亲 cell。如图所示，这个过程已经给每个 cell 都实现了，包括其他父亲 cell 的孩子 cell。  
+
+图 6-2 链接父亲和孩子索引
 
 ![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/layout_process_2x.png)
 
