@@ -640,6 +640,8 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 
 ![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/layout_process_2x.png)
 
+清单 6-4 展示了 prepareLayout 方法的第一部分实现。在代码的开始，两个可变的字典初始化规划来缓存机制的基础。首先，layoutInformation，是相当于 layoutInformation 属性的本地化。创建一个本地的可变拷贝让实例变量不可变，这在自定义布局的实现中是合理的，因为布局属性在 prepareLayout 方法运行结束的时候被修改。
+
 ### 存储布局属性
 
 ## 提供内容大小
