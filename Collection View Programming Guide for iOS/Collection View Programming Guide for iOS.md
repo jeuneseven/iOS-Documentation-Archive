@@ -654,6 +654,21 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 
 ## 接入辅助视图
 
+	// create another dictionary to specifically house the attributes for the supplementary view
+	NSMutableDictionary *supplementaryInfo = [NSMutableDictionary dictionary];
+	…
+	// within the initial pass over the data, create a set of attributes for the supplementary views as well
+	UICollectionViewLayoutAttributes *supplementaryAttributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:@"ConnectionViewKind" withIndexPath:indexPath];
+	[supplementaryInfo setObject: supplementaryAttributes forKey:indexPath];
+	…
+	// in the second pass over the data, set the frame for the supplementary views just as you did for the cells
+	UICollectionViewLayoutAttributes *supplementaryAttributes = [supplementaryInfo objectForKey:indexPath];
+	supplementaryAttributes.frame = [self frameForSupplementaryViewOfKind:@"ConnectionViewKind" AtIndexPath:indexPath];
+	[supplementaryInfo setObject:supplementaryAttributes ForKey:indexPath];
+	...
+	// before setting the instance version of _layoutInformation, insert the local supplementaryInfo dictionary into the local layoutInformation dictionary
+	[layoutInformation setObject:supplementaryInfo forKey:@"ConnectionViewKind"];
+
 ## 扼要重述
 
 通过包含辅助视图，你现在拥有了一个能够充分复制一个类层级的布局对象。在最终的实现当中，你可能想要加入一些调整到你自己的自定义布局中来节省空间。本例探索了一个真实的自定义 cv 布局的基本实现可能是什么样的。cv 是非常健壮的，提供了比我们见到的更多的灵活性。当移动、插入或者删除高亮和选择（甚至动画的时候）单元格的时候是非常容易接入到你的应用中的。要让你的自定义布局达到下一个级别，看下《创建自定义布局》的最后几个章节。
