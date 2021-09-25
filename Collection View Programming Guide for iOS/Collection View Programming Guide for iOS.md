@@ -670,6 +670,8 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 
 ## 接入辅助视图
 
+清单 6-9 为辅助试图创建属性对象
+
 	// create another dictionary to specifically house the attributes for the supplementary view
 	NSMutableDictionary *supplementaryInfo = [NSMutableDictionary dictionary];
 	…
