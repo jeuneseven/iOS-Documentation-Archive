@@ -551,6 +551,8 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 
 ### 连接你的自定义布局
 
+	self.collectionView.collectionViewLayout = [[MyCustomLayout alloc] init];
+
 ## 让你的自定义属性更有吸引力
 
 给每个单元格和视图在布局的过程中提供所需的布局属性，不过还有一些其他的行为能够给你的自定义布局提高用户体验。实现这些行为是可选的，但是我们建议你去做。
@@ -694,7 +696,6 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 	- (UICollectionViewLayoutAttributes *) layoutAttributesForSupplementaryViewOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
 	    return self.layoutInfo[kind][indexPath];
 	}
-
 
 ## 扼要重述
 
