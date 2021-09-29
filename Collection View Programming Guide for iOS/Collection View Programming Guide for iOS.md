@@ -666,9 +666,13 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 
 ## 当请求时提供特定属性
 
+清单 6-8 为特殊元素提供属性
+
 	- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
 	    return self.layoutInfo[@"MyCellKind"][indexPath];
 	}
+
+图 6-4 目前为止的布局
 
 ![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/example_mid_screen_2x.png)
 
