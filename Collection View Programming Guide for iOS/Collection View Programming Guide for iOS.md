@@ -664,6 +664,21 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 
 ## 提供布局属性
 
+	- (NSArray*)layoutAttributesForElementsInRect:(CGRect)rect {
+	    NSMutableArray *myAttributes [NSMutableArray arrayWithCapacity:self.layoutInformation.count];
+	    for(NSString *key in self.layoutInformation){
+	        NSDictionary *attributesDict = [self.layoutInformation objectForKey:key];
+	        for(NSIndexPath *key in attributesDict){
+	            UICollectionViewLayoutAttributes *attributes =
+	            [attributesDict objectForKey:key];
+	            if(CGRectIntersectsRect(rect, attributes.frame)){
+	                [attributes addObject:attributes];
+	            }
+	        }
+	    }
+	    return myAttributes;
+	}
+
 ## 当请求时提供特定属性
 
 清单 6-8 为特殊元素提供属性
