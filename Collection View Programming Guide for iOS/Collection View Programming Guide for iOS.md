@@ -559,6 +559,15 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 
 ### 通过辅助视图提升内容
 
+辅助视图是与 cv 的单元格分离的，并有其自己的布局属性集合。就像单元格一样，这些视图由数据源对象提供，但它们的目的是改善你的应用的主要内容。比如，UICollectionViewFlowLayout 给段头和尾使用辅助视图。其他的应用可能使用辅助视图给每个单元格赋予自己的文本标签来展示关于该单元格的信息。就像 cv 的单元格一样，辅助视图会经历一个 cv 的回收过程来优化资源量的使用。所以，所有你的应用中的辅助视图应该继承自 UICollectionReusableView 类。  
+给你的布局添加辅助视图要遵循以下两步：  
+
+1. 使用 registerClass:forSupplementaryViewOfKind:withReuseIdentifier: 或 registerNib:forSupplementaryViewOfKind:withReuseIdentifier: 之一来给你的 cv 布局对象注册辅助视图。
+2. 在你的数据源当中，实现 collectionView:viewForSupplementaryElementOfKind:atIndexPath: 方法。因为这些视图是可重用的，调用 dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath: 方法来出队列或者创建一个新的可重用的视图和在返回前设置任何需要的数据。
+3. 创建布局属性对象给你的辅助视图，就像你给你的单元格做的那样。
+4. 包含这些布局属性对象到属性数组中，由 layoutAttributesForElementsInRect: 方法返回。
+5. 实现 layoutAttributesForSupplementaryViewOfKind:atIndexPath: 方法，在查询的时候返回属性对象给特定的辅助视图。
+
 ### 在你的自定义布局中包含装饰视图
 
 ### 让插入和删除动画更有趣
