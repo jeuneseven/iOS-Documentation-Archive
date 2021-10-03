@@ -572,6 +572,16 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 
 ### 在你的自定义布局中包含装饰视图
 
+装饰视图是一种加强你的 cv 布局展示的可见装饰。和单元格和辅助视图不一样，装饰视图只提供可见的内容，因此不依赖于数据源。你可以使用它们来提供自定义的背景，填充单元格周围的空间，或者甚至于模糊单元格。装饰视图是定义好的，并且完全由布局对象所管理，并且不会与 cv 的数据源对象交互。  
+要添加装饰视图给你的布局，根据如下操作：  
+
+1. 使用 registerClass:forDecorationViewOfKind: 或者 registerNib:forDecorationViewOfKind: 方法注册你的装饰视图给布局对象。虽然这和单元格和辅助视图的注册很相似，记住注册装饰视图只在布局对象中发生，与数据源无关。
+2. 在你的布局对象的 layoutAttributesForElementsInRect: 方法中，给你的装饰对象创建属性，就像你给单元格和辅助视图创建一样。
+3. 在你的布局对象中实现 layoutAttributesForDecorationViewOfKind:atIndexPath: 方法，当需要的时候给你的装饰对象返回属性。
+4. 可选的，实现 initialLayoutAttributesForAppearingDecorationElementOfKind:atIndexPath: 和  finalLayoutAttributesForDisappearingDecorationElementOfKind:atIndexPath: 方法来处理展示和装饰视图的隐藏。更多信息，参见《让插入和删除动画更有趣》。
+
+
+
 ### 让插入和删除动画更有趣
 
 ![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/custom_insert_animations_2x.png)
