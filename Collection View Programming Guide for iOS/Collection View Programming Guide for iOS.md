@@ -580,7 +580,11 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 3. 在你的布局对象中实现 layoutAttributesForDecorationViewOfKind:atIndexPath: 方法，当需要的时候给你的装饰对象返回属性。
 4. 可选的，实现 initialLayoutAttributesForAppearingDecorationElementOfKind:atIndexPath: 和  finalLayoutAttributesForDisappearingDecorationElementOfKind:atIndexPath: 方法来处理展示和装饰视图的隐藏。更多信息，参见《让插入和删除动画更有趣》。
 
+创建装饰视图的过程与创建单元格和辅助视图的过程不同。 注册一个类或 nib 文件是确保装饰视图根据所需创建的时候你所有需要做的事。因为它们是纯粹可见的，装饰视图并不需要任何配置，在它被 nib 文件或者通过对象的 initWithFrame: 方法提供之前就已经完成了。因为这个原因，当一个装饰视图被需要的时候，cv 会为你创建它，并通过布局对象应用属性。任何装饰视图都应该是 UICollectionReusableView 的子类，因为布局对象对它的装饰视图使用了一个回收机制。 
 
+```
+注意：当给你的装饰视图创建属性的时候，不要忘了考虑 zIndex 属性。你可以使用 zIndex 属性将你的装饰视图（如果你想的话，在前面也可以）展示到单元格和辅助视图的后面。
+```
 
 ### 让插入和删除动画更有趣
 
