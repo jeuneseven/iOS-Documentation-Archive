@@ -588,7 +588,30 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 
 ### 让插入和删除动画更有趣
 
+插入和删除单元格和视图在布局期间构成了一种有趣的挑战。插入一个单元格能够触发布局其他的单元格和视图的改变。虽然布局对象知晓从当前位置到新位置以动画的形式展示已经存在的单元格和视图，但对于要被插入的单元格是没有当前位置的。cv 会询问布局对象提供一系列初始化属性用来动画，而非插入一个新单元格的时候无动画。类似的，当一个单元格被删除的时候，cv 会询问布局对象提供一系列最终的属性，用来确定任何动画的终点。  
+要了解如何初始化属性是如何工作的，来看一个实例比较有帮助。开始的布局（图 5-3）展示了一个 cv，它初始化时只包含了三个单元格，当一个新的单元格被插入时，cv 询问布局对象提供被插入的单元格的初始化属性。在这种情况下，布局对象设置单元格的最开始位置为 cv 的中心，然后设置其 alpha 值为 0，将其隐藏。在动画期间，这个新的单元格展示为淡入并将其从 cv 的中心移动到右下角的最终位置。  
+
+图 5-3 指定初始化属性给一个元素展示到屏幕上
+
 ![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/custom_insert_animations_2x.png)
+
+清单 5-2 展示了你可能从图 5-3 中需要用来指定插入单元格的初始化属性的代码。该方法设置了 CV 中心的单元格  的位置，并将其进行转换。布局对象可能随后提供最终位置和 alpha 值给单元格作为正常布局过程的一部分。  
+
+清单 5-2 为被插入的单元格指定初始化属性  
+
+	- (UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath {
+	   UICollectionViewLayoutAttributes* attributes = [self layoutAttributesForItemAtIndexPath:itemIndexPath];
+	   attributes.alpha = 0.0;
+	 
+	   CGSize size = [self collectionView].frame.size;
+	   attributes.center = CGPointMake(size.width / 2.0, size.height / 2.0);
+	   return attributes;
+	}
+
+
+```
+	注意：清单 5-2 可能在插入一个单元格的时候就动画展示所有的单元格，所以三个单元格在第四个被插入之前就已经展示好了
+```
 
 ### 提升你的布局的滚动体验
 
