@@ -610,10 +610,14 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 
 
 ```
-	注意：清单 5-2 可能在插入一个单元格的时候就动画展示所有的单元格，所以三个单元格在第四个被插入之前就已经展示好了
+	注意：清单 5-2 可能在插入一个单元格的时候就动画展示所有的单元格，所以三个单元格在第四个被插入之前就已经展示好了，所以也会从 cv 的中心弹出。要动画的只展示被插入的单元格，检查元素的索引路径是否符合传递给 prepareForCollectionViewUpdates: 方法的索引路径，并且只执行被查找到的匹配的动画。否则，通过调用 super 方法的 initialLayoutAttributesForAppearingItemAtIndexPath: 返回属性。
 ```
 
+处理删除的过程与处理插入的过程相同，除了你需要指定最终的属性，而非初始的属性。从前例可以看到，如果你使用插入单元格相同的属性，删除的单元格被移动到 cv 中心时可能会触发淡出效果。UICollectionViewLayout 类中有三个可用方法——两个分离的方法（给初始化和最终属性）给元素，辅助视图和装饰视图。
+
 ### 提升你的布局的滚动体验
+
+图 5-4 改变提议内容位移到一个更合适的值
 
 ![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/custom_target_scroll_offset_2x.png)
 
