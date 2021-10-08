@@ -551,6 +551,14 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 
 ### 按照请求提供布局属性
 
+cv 会周期性的询问你的布局对象来提供属性给每个正式布局过程之外的元素。比如，cv 会在当配置动画的插入和删除一个元素的的时候询问这些信息。你的布局对象必须准备好给每个它支持的单元格、辅助视图和装饰视图提供布局属性。通过重写如下方法来实现这一点：  
+
+* layoutAttributesForItemAtIndexPath:
+* layoutAttributesForSupplementaryViewOfKind:atIndexPath:
+* layoutAttributesForDecorationViewOfKind:atIndexPath:
+
+实现这些方法会取回当前给定的单元格或视图的布局属性。每个自定义布局对象都期待实现 layoutAttributesForItemAtIndexPath: 方法。如果你的布局没有包含任何辅助视图，你不需要重写 layoutAttributesForSupplementaryViewOfKind:atIndexPath: 方法。类似的，如果不包含装饰视图，你也不需要重写 layoutAttributesForDecorationViewOfKind:atIndexPath: 方法。当返回属性的时候，你不需要更新布局属性。如果你需要改变布局属性信息，让布局对象失效，然后让它在随后的布局循环周更新数据即可。
+
 ### 连接你的自定义布局
 
 有两种方式链接你的自定义布局到 cv 上：编程方式或通过故事板。cv 链接到它的布局是通过一个可写的属性，collectionViewLayout。通过设置该属性给你的自定义实现，设置你的 cv 布局属性到一个你的自定义布局对象的实例来实现。清单 5-1 展示了需要实现的一行代码。  
@@ -559,7 +567,7 @@ Collection view 会使用内容大小来对其滚动区域进行配置。举例�
 
 	self.collectionView.collectionViewLayout = [[MyCustomLayout alloc] init];
 
-或者，从你的故事板中，打开文档概要面板并设置你的 cv（在下拉菜单的列表中）。通过选定 cv，打开工具框中的属性检查器，并勾选布局选项标签 cv 变更 Flow 为 自定义。
+或者，从你的故事板中，打开文档概要面板并设置你的 cv（在下拉菜单的列表中）。通过选定 cv，打开工具框中的属性检查器，并勾选布局选项标签 cv 变更 Flow 为 自定义。它下方的选项从 Scroll Direction 变更为 Class，然后你现在就可以选择你的自定义类了。
 
 ## 让你的自定义属性更有吸引力
 
