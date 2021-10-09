@@ -728,6 +728,34 @@ cv 会周期性的询问你的布局对象来提供属性给每个正式布局�
 
 ### 存储布局属性
 
+图 6-3 布局过程
+
+![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/worked_example_2x.png)
+
+清单 6-5 存储布局属性
+
+	//continuation of prepareLayout implementation
+	    for(NSInteger section = numSections - 1; section >= 0; section—-){
+	        NSInteger numItems = [self.collectionView numberOfItemsInSection:section];
+	        NSInteger totalHeight = 0;
+	        for(NSInteger item = 0; item < numItems; item++){
+	            indexPath = [NSIndexPath indexPathForItem:item inSection:section];
+	            MyCustomAttributes *attributes = [cellInfo objectForKey:indexPath]; // 1
+	            attributes.frame = [self frameForCellAtIndexPath:indexPath
+	                                withHeight:totalHeight];
+	            [self adjustFramesOfChildrenAndConnectorsForClassAtIndexPath:indexPath]; // 2
+	            cellInfo[indexPath] = attributes;
+	            totalHeight += [self.customDataSource
+	                            numRowsForClassAndChildrenAtIndexPath:indexPath]; // 3
+	        }
+	        if(section == 0){
+	            self.maxNumRows = totalHeight; // 4
+	        }
+	    }
+	    [layoutInformation setObject:cellInformation forKey:@"MyCellKind"]; // 5
+	    self.layoutInformation = layoutInformation
+	}
+
 ## 提供内容大小
 
 ## 提供布局属性
