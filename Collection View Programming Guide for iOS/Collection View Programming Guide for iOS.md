@@ -758,6 +758,17 @@ cv 会周期性的询问你的布局对象来提供属性给每个正式布局�
 
 ## 提供内容大小
 
+在准备布局时，设置 maxNumRows 的值的代码是指在布局中最大一段的行数。这个信息可以影响设置适当的内容大小，即下一步布局的过程。清单 6-6 展示了 collectionViewContentSize 的实现。它依赖于常量 ITEM_WIDTH 和 ITEM_HEIGHT，这可能是应用（比如在自定义单元格实现单元格标签的大小）全局定义的。
+
+清单 6-6 设置内容区域大小
+
+	- (CGSize)collectionViewContentSize {
+	    CGFloat width = self.collectionView.numberOfSections * (ITEM_WIDTH + self.insets.left + self.insets.right);
+	    CGFloat height = self.maxNumRows * (ITEM_HEIGHT + _insets.top + _insets.bottom);
+	    return CGSizeMake(width, height);
+	}
+
+
 ## 提供布局属性
 
 	- (NSArray*)layoutAttributesForElementsInRect:(CGRect)rect {
