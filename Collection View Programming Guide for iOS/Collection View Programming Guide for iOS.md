@@ -771,6 +771,8 @@ cv 会周期性的询问你的布局对象来提供属性给每个正式布局�
 
 ## 提供布局属性
 
+清单 6-7 手机和处理存储属性
+
 	- (NSArray*)layoutAttributesForElementsInRect:(CGRect)rect {
 	    NSMutableArray *myAttributes [NSMutableArray arrayWithCapacity:self.layoutInformation.count];
 	    for(NSString *key in self.layoutInformation){
