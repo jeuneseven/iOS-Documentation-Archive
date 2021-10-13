@@ -796,6 +796,8 @@ cv 会周期性的询问你的布局对象来提供属性给每个正式布局�
 	    return self.layoutInfo[@"MyCellKind"][indexPath];
 	}
 
+图 6-4 展示了到目前为止代码所呈现的布局。所有的单元格都有其位置并且适配了其父单元格，但链接它们之间的线还没有绘制。
+
 图 6-4 目前为止的布局
 
 ![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/example_mid_screen_2x.png)
