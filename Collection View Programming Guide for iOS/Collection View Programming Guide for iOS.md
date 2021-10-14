@@ -790,6 +790,9 @@ cv 会周期性的询问你的布局对象来提供属性给每个正式布局�
 
 ## 当请求时提供特定属性
 
+如“根据需求提供布局属性”一段所描述，布局对象必须准备好返回布局属性当布局过程完成的时候在任意时间给你的 cv 中的任何类型的视图的任何单个元素。给三种类型的视图——单元格、辅助视图、装饰视图——但应用当前只使用了单元格，所以唯一的需要实现的方法是 layoutAttributesForItemAtIndexPath:。  
+清单 6-8 展示了该方法的实现。对于所有的单元格都存储在字典中，以及子字典中，返回属性对象存在特定的索引路径，作为它的 key。
+
 清单 6-8 为特殊元素提供属性
 
 	- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
