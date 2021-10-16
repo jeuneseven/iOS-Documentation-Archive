@@ -807,14 +807,14 @@ cv 会周期性的询问你的布局对象来提供属性给每个正式布局�
 
 ## 接入辅助视图
 
-在当前这种状态下，应用在层级意义上正确展示了所有的单元格，但由于没有链接父母和孩子的线条，因此很难解释类的视图。
+在当前这种状态下，应用在层级意义上正确展示了所有的单元格，但由于没有链接父母和孩子的线条，因此很难解释类的视图。要绘制链接类单元格和其孩子之间的线，这个应用的实现依赖于一个自定义试图，它能够合并到布局中，作为一个辅助视图。更多关于设计辅助视图的信息，参见“”
 
 清单 6-9 为辅助试图创建属性对象
 
 	// create another dictionary to specifically house the attributes for the supplementary view
 	NSMutableDictionary *supplementaryInfo = [NSMutableDictionary dictionary];
 	…
-	// within the initial pass over the data, create a set of attributes for the supplementary views as well
+	// within the initial pass  v a set of attributes for the supplementary views as well
 	UICollectionViewLayoutAttributes *supplementaryAttributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:@"ConnectionViewKind" withIndexPath:indexPath];
 	[supplementaryInfo setObject: supplementaryAttributes forKey:indexPath];
 	…
