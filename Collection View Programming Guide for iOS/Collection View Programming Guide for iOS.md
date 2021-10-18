@@ -673,11 +673,11 @@ cv 会周期性的询问你的布局对象来提供属性给每个正式布局�
 	@property (nonatomic, weak) id<MyCustomProtocol> customDataSource;
 	@end
 
-	@interface MyCustomLayout()
-
 其次，由于 cv 的元素的数量将会管理的非常低，自定义布局会利用一个缓存系统来存储布局属性在准备布局和接收 cv 向其请求的时候存储的值生成的信息。清单 6-2 展示了我们布局的三个私有属性，将要维持以及 init 方法。layoutInformation 字典存储了所有在我们 cv 中的所有类型的视图的布局属性。maxNumRows 属性会跟踪有多少个行需要占据我们的树形结构中的最上列。insets 对象控制着 cell 和在设置视图和内容尺寸之间的间距。前两个属性值是在准备布局的时候就被设置了，insets 对象应该在使用 init 方法的时候被设置。在本例中，INSET_TOP, INSET_LEFT, INSET_BOTTOM, 和 INSET_RIGHT 指代你定义的参数的常量。  
 
 清单 6-2 初始化变量
+
+	@interface MyCustomLayout()
 
 	@property (nonatomic) NSDictionary *layoutInformation;
 	@property (nonatomic) NSInteger maxNumRows;
