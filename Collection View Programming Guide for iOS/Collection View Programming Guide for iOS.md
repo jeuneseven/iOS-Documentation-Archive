@@ -95,6 +95,7 @@ collection view 所使用的布局过程与应用程序的其他视图的布局�
 图1-2 展示了一个垂直滚动的流式布局是如何对其单元格和辅助视图进行排版的。在垂直滚动流式布局中，内容区域的宽度保持固定，高度随内容增大。为了估算区域，布局对象会一次将视图和单元格进行布局，为它们选择最合适的位置。在流式布局这种情况下，单元格和辅助视图的尺寸会被指定为属性，无论是通过布局对象还是使用代理。计算布局就是使用这些属性将每个视图放置的问题。  
 
 图1-2 布局对象提供了布局相关的度量  
+
 ![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/cv_layout_basics_2x.png)
 
 布局对象不止控制了视图的尺寸和位置。它还指定了其他视图相关的属性，比如透明度，在3D空间中的转换以及相对于其他视图之上或之下的可见性（如果有的话）。这些属性能够让你创建更多有趣的布局。比如，你可以通过将视图放在彼此的顶部并更改其Z轴的顺序来创建单元格堆栈，或者可以在任意轴向上使用转换来对他们进行旋转。  
@@ -126,6 +127,7 @@ collection view 查找它所包含的数据时使用 NSIndexPath 对象。当试
 不论你如何排列数据对象的段落和元素，这些段落和元素的视觉效果依旧由布局对象所决定。不同的布局对象能够展示不同的段落和元素数据，如图2-1所示。在该图中，流式布局对象将垂直段落设计为每个连续段落在之前一个段落之后。自定义布局能够将段落排版为非线性布局，布局的显示与实际数据相分离。  
 
 图2-1 段落的排版根据布局对象的布局所排列  
+
 ![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/cv_layout_sections_2x.png)
 
 ### 设计你的数据对象
