@@ -829,6 +829,8 @@ cv 会周期性的询问你的布局对象来提供属性给每个正式布局�
 	// before setting the instance version of _layoutInformation, insert the local supplementaryInfo dictionary into the local layoutInformation dictionary
 	[layoutInformation setObject:supplementaryInfo forKey:@"ConnectionViewKind"];
 
+清单 6-10 展示了方法的实现，与 layoutAttributesForItemAtIndexPath: 几乎相同。作为例外，使用提供的 kind 字符串而非硬编码一个类型的师徒返回值，让你用来在自定义布局中使用多种辅助视图。
+
 清单 6-10 按要求提供辅助视图属性
 
 	- (UICollectionViewLayoutAttributes *) layoutAttributesForSupplementaryViewOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
