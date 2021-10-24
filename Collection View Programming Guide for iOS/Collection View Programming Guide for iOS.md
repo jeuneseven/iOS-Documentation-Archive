@@ -773,6 +773,8 @@ cv 会周期性的询问你的布局对象来提供属性给每个正式布局�
 
 ## 提供布局属性
 
+随着所有的布局属性对象被初始化和缓存，layoutAttributesForElementsInRect: 方法中的代码已经完全准备好提供所有请求的布局信息。这个方法是布局过程中的第二步，不像 prepareLayout 方法一样，它是必须的。方法提供了一个矩形区域并且需要一个布局属性对象的数组给包含在提供的矩形区域中的任何视图。在某些情况下，
+
 清单 6-7 手机和处理存储属性
 
 	- (NSArray*)layoutAttributesForElementsInRect:(CGRect)rect {
