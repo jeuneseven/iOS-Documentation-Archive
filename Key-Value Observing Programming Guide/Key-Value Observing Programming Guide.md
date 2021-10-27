@@ -304,31 +304,31 @@ keyPathsForValuesAffectingValueForKey: 方法不会支持包含一个对多关�
 1. 你可以使用 KVO 来注册父类（本例中是 Department），作为所有子类（本例中是 Employees）的相关属性的监听者。在子类对象被从关系中添加和移除的时候必须添加和移除父类作为监听者（参见“注册为 KVO”）。在 observeValueForKeyPath:ofObject:change:context: 方法中你应该更新依赖值来响应变化，如下属代码块所述：  
 
 ```
-	- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-	 
-	    if (context == totalSalaryContext) {
-	        [self updateTotalSalary];
-	    }
-	    else
-	    // deal with other observations and/or invoke super...
-	}
-	 
-	- (void)updateTotalSalary {
-	    [self setTotalSalary:[self valueForKeyPath:@"employees.@sum.salary"]];
-	}
-	 
-	- (void)setTotalSalary:(NSNumber *)newTotalSalary {
-	 
-	    if (totalSalary != newTotalSalary) {
-	        [self willChangeValueForKey:@"totalSalary"];
-	        _totalSalary = newTotalSalary;
-	        [self didChangeValueForKey:@"totalSalary"];
-	    }
-	}
-	 
-	- (NSNumber *)totalSalary {
-	    return _totalSalary;
-	}
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+ 
+    if (context == totalSalaryContext) {
+        [self updateTotalSalary];
+    }
+    else
+    // deal with other observations and/or invoke super...
+}
+ 
+- (void)updateTotalSalary {
+    [self setTotalSalary:[self valueForKeyPath:@"employees.@sum.salary"]];
+}
+ 
+- (void)setTotalSalary:(NSNumber *)newTotalSalary {
+ 
+    if (totalSalary != newTotalSalary) {
+        [self willChangeValueForKey:@"totalSalary"];
+        _totalSalary = newTotalSalary;
+        [self didChangeValueForKey:@"totalSalary"];
+    }
+}
+ 
+- (NSNumber *)totalSalary {
+    return _totalSalary;
+}
 ```
 
 2. 如果你使用了 Core Data，你可以将父类和应用的通知中心注册为 managed object 的 context。父类应该响应相应的子类在管理器中发送的变更通知，类似于 KVO。
