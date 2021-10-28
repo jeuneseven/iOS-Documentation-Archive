@@ -89,7 +89,7 @@ addObserver:forKeyPath:options:context: 方法中的 context 指针包含了在�
 	}
 
 ```
-注意：KVO 的 addObserver:forKeyPath:options:context: 方法对于监听对象、被监听的对象或者 context不会维持强引用。你应该根据需要对于监听对象、被监听的对象或者 context 维持强引用。
+注意：KVO 的 addObserver:forKeyPath:options:context: 方法对于监听对象、被监听的对象或者 context 不会维持强引用。你应该根据需要对于监听对象、被监听的对象或者 context 维持强引用。
 ```
 
 ## 接收变更通知
@@ -123,7 +123,7 @@ addObserver:forKeyPath:options:context: 方法中的 context 指针包含了在�
 	    }
 	}
 
-当注册为一个监听器的时候，如果指定一个 NULL context，你应该用通知的 key path 与你注册用来判断的变更的 key path 进行比较。如果你使用了一个单独的 context 给所有监听的 key paths，首先你要检查通知的 context，然后找到匹配的，使用 key path 字符串比较来判断到底是哪个发生了变更。如果你提供了一个唯一的 context 给每个 key path，如这里所述，一系列的直接指针比较会直接告诉你到底是不是这个监听的通知，并且如果是这样，到底是哪个 key path 发生了变更。  
+当注册为一个监听器的时候，如果指定一个 NULL 作为 context，你应该用通知的 key path 与你注册用来判断的变更的 key path 进行比较。如果你使用了一个单独的 context 给所有监听的 key paths，首先你要检查通知的 context，然后找到匹配的，使用 key path 字符串比较来判断到底是哪个发生了变更。如果你提供了一个唯一的 context 给每个 key path，如这里所述，一系列的直接指针比较会直接告诉你到底是不是这个监听的通知，并且如果是这样，到底是哪个 key path 发生了变更。  
 在任何情况下，监听器都应该是始终调用父类的 observeValueForKeyPath:ofObject:change:context: 实现（或者在一些简单的情况下，任意 key paths），当它不能够辨别 context 的时候，因为这意味着父类也注册了通知。
 
 > 注意：如果一个通知传播到类继承链的顶部，NSObject 会抛出 NSInternalInconsistencyException，因为这是一个编程错误：一个子类不能消耗一个它注册的通知。
@@ -165,7 +165,7 @@ KVO 和 KVC 所支持的数据类型相同，包含 OC 对象以及在“标量�
 
 ## 自动变更通知
 
-NSObject 提供了一种自动的键值对变更通知的基本实现。自动的键值变更通知会使用符合键值的存取器和KVC方法来通知变更。自动的通知同样支持返回的集合代理对象，比如，mutableArrayValueForKey:。  
+NSObject 提供了一种自动的键值对变更通知的基本实现。自动的键值变更通知会使用符合键值的存取器和 KVC 方法来通知变更。自动的通知同样支持返回的集合代理对象，比如，mutableArrayValueForKey:。  
 清单1 中展示了属性 name 在变更时通知监听器的结果。  
 
 清单 1 调用方法会触发 KVO 变更通知发出  
