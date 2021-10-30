@@ -731,6 +731,8 @@ cv 会周期性的询问你的布局对象来提供属性给每个正式布局�
 
 ### 存储布局属性
 
+图 6-3 描绘了发生在 prepareLayout 方法的第二部分的过程，在此树形层级从最后一行到第一行被构建完成。
+
 图 6-3 布局过程
 
 ![](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/worked_example_2x.png)
@@ -770,7 +772,6 @@ cv 会周期性的询问你的布局对象来提供属性给每个正式布局�
 	    CGFloat height = self.maxNumRows * (ITEM_HEIGHT + _insets.top + _insets.bottom);
 	    return CGSizeMake(width, height);
 	}
-
 
 ## 提供布局属性
 
