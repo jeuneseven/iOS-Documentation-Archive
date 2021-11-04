@@ -940,6 +940,10 @@ MVC 设计模式考虑了又三种类型的对象：模型对象，视图对象�
 
 ### MVC作为一个复合设计模式
 
+
+
+![](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaFundamentals/Art/traditional_mvc.gif)
+
 ### MVC应用的设计指南
 
 ### MVC在Cocoa中（OS X）
