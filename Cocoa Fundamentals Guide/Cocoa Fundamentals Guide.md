@@ -902,7 +902,7 @@ MVC设计模式赋值给类似应用的面向对象系统中的各个对象以�
 
 ##### 使用和局限
 
-## MVC设计模式
+## MVC 设计模式
 
 MVC 设计模式非常古老。它的变种在早期的 Smalltalk 就已经存在了。它是一种高层的模式，它只关心一个应用程序整体架构的本身和分类对象根据整体在应用中所扮演的角色。它也是一个复合模式，包含几个甚至更多的元素模式。
 
@@ -934,19 +934,19 @@ MVC 设计模式考虑了又三种类型的对象：模型对象，视图对象�
 深度阅读：《基于文档的应用程序概览》从另一个角度讨论了一个模型控制器对象和一个视图控制器对象之间的区别。
 ```
 
-### Cocoa控制器对象的类型
+### Cocoa 控制器对象的类型
 
 
 
-### MVC作为一个复合设计模式
+### MVC 作为一个复合设计模式
 
 
 
 ![](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaFundamentals/Art/traditional_mvc.gif)
 
-### MVC应用的设计指南
+### MVC 应用的设计指南
 
-### MVC在Cocoa中（OS X）
+### MVC 在Cocoa中（OS X）
 
 ## 对象模型
 
