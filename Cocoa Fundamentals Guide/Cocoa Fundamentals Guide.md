@@ -248,8 +248,8 @@ nonatomic | 指定存取方法合成为非原子化的方法。默认的，所�
 
 #### 快速枚举
 
-快速枚举是OC2.0中引入的一项语言功能，它为你枚举一个集合提供了简单的语法。也比使用传统的 NSEnumerator 对象迭代数组、集合和字典更快。此外，它通过包含一个突变保护防止在枚举过程中修改集合，确保安全枚举。（如果尝试突变，则会抛出异常。）  
-快速枚举的语法与在类似Perl和Ruby这种脚本语言中的类似；支持两个版本：  
+快速枚举是 OC2.0 中引入的一项语言功能，它为你枚举一个集合提供了简单的语法。也比使用传统的 NSEnumerator 对象迭代数组、集合和字典更快。此外，它通过包含一个突变保护防止在枚举过程中修改集合，确保安全枚举。（如果尝试突变，则会抛出异常。）  
+快速枚举的语法与在类似 Perl 和 Ruby 这种脚本语言中的类似；支持两个版本：  
 
 	for ( type newVariable in expression ) { statements }
 
@@ -258,8 +258,8 @@ nonatomic | 指定存取方法合成为非原子化的方法。默认的，所�
 	type existingVariable;
 	for( existingVariable in expression ) { statements }
 	
-expression必须必须是一个遵循NSFastEnumeration 协议的类。快速枚举的实现在OC运行时和Foundation框架中共享。Foundation框架声明了NSFastEnumeration协议，Foundation的集合类——NSArray, NSDictionary, 和 NSSet——和NSEnumerator类都采用的这一协议。其他类会持有其他对象的集合，包括自定义类也可以采用NSFastEnumeration协议来利用这一功能。  
-下列代码块展示了你可以使用快速枚举在NSArray 和 NSSet 对象上：  
+expression 必须必须是一个遵循 NSFastEnumeration 协议的类。快速枚举的实现在 OC 运行时和 Foundation 框架中共享。Foundation 框架声明了NSFastEnumeration 协议，Foundation 的集合类——NSArray, NSDictionary, 和 NSSet——和 NSEnumerator 类都采用的这一协议。其他类会持有其他对象的集合，包括自定义类也可以采用 NSFastEnumeration 协议来利用这一功能。  
+下列代码块展示了你可以使用快速枚举在 NSArray 和 NSSet 对象上：  
  
 	NSArray *array = [NSArray arrayWithObjects:
 	        @"One", @"Two", @"Three", @"Four", nil];
@@ -277,7 +277,7 @@ expression必须必须是一个遵循NSFastEnumeration 协议的类。快速枚�
 	}
 
 ```
-扩展阅读：要了解更多关于快速枚举，包括一个自定义集合类该如何利用这一功能，参见《OC编程语言》中的“快速枚举”一节。
+扩展阅读：要了解更多关于快速枚举，包括一个自定义集合类该如何利用这一功能，参见《OC 编程语言》中的“快速枚举”一节。
 ```
 
 ### 使用OC
