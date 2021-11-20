@@ -4,10 +4,10 @@
 
 # iOS技术相关
 
-iOS是运行在iPad，iPhone和iPod touch等设备上的操作系统。操作系统负责管理硬件设备以及提供实现app所需要的技术。操作系统也搭载了各种系统app，例如Phone，Mail，Safari等，用来提供一些标准系统服务给用户。  
+iOS 是运行在 iPad，iPhone 和 iPod touch 等设备上的操作系统。操作系统负责管理硬件设备以及提供实现 app 所需要的技术。操作系统也搭载了各种系统 app，例如 Phone，Mail，Safari 等，用来提供一些标准系统服务给用户。  
 
-iOS软件开发套件（简称SDK）包含大量的工具以及接口用来开发、安装、运行以及测试安装在iOS设备屏幕上的app。app使用iOS系统提供的Framework和OC开发并直接运行在iOS上。原生app与web app不同，原生app是被直接安装在设备上，因此对于用户始终可用，即使设备处于飞行模式。他们就在系统app的旁边，并且不论是app还是用户的数据都可以通过iTunes同步到用户的电脑上。  
-> 注意：通过结合HTML，CSS，JS代码来开发web app是可行的。web类app是运行在Safari浏览器中，并且需要网络来连接到web服务器。本文档并不覆盖开发web app 的相关内容。有关基于Safari开发web app的相关内容请查看： Safari Web Content Guide。
+iOS 软件开发套件（简称 SDK）包含大量的工具以及接口用来开发、安装、运行以及测试安装在 iOS 设备屏幕上的 app。app 使用 iOS 系统提供的 Framework 和 OC 开发并直接运行在 iOS 上。原生 app 与 web app 不同，原生 app 是被直接安装在设备上，因此对于用户始终可用，即使设备处于飞行模式。他们就在系统app的旁边，并且不论是app还是用户的数据都可以通过iTunes同步到用户的电脑上。  
+> 注意：通过结合 HTML，CSS，JS 代码来开发 web app 是可行的。web 类 app 是运行在 Safari 浏览器中，并且需要网络来连接到 web 服务器。本文档并不覆盖开发 web app 的相关内容。有关基于 Safari 开发 web app 的相关内容请查看： Safari Web Content Guide。
 
 ## 前言  
 iOS SDK提供了你开发iOS apps所需资源。多了解一些这些在SDK中的开发技术和工具有助于你更好的设计和实现你的app。
