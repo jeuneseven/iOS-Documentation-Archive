@@ -26,8 +26,13 @@ OS X 操作系统融合了稳定的核心一级先进的技术来帮助你交付
 ### 另请参阅
 
 Apple 为开发者提供了工具和额外信息来支持你的开发功能。  
-Xcode。  
+Xcode，苹果的集成开发环境，帮助你设计，创建，调试及优化你的软件。你可以从 Mac App Store 下载 Xcode。  
 关于 OS X 的开发工具概览，参见 [Xcode 苹果开发者网页](https://developer.apple.com/xcode/)，关于 Xcode 功能概览，阅读 [Xcode 概览](https://developer.apple.com/library/archive/documentation/ToolsLanguages/Conceptual/Xcode_Overview/index.html#//apple_ref/doc/uid/TP40010215)。  
+OS X 开发者库包含了文档，示例代码，指南和其他你编写 OS X 软件的时候所需的信息。你可以从 [苹果开发者网站](https://developer.apple.com/library/mac/navigation/) 或 Xcode 中访问 OS X 开发者库。
+
+- 苹果开源项目。
+- BSD。
+- 第三方书籍。
 
 # 为 Mac 平台创建软件产品
 
