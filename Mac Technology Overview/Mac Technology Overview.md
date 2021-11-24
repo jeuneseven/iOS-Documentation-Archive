@@ -31,9 +31,9 @@ Xcode，苹果的集成开发环境，帮助你设计，创建，调试及优化
 OS X 开发者库包含了文档，示例代码，指南和其他你编写 OS X 软件的时候所需的信息。你可以从 [苹果开发者网站](https://developer.apple.com/library/mac/navigation/) 或 Xcode 中访问 OS X 开发者库。在 Xcode 中，选择 帮助 > 文档和 API 参考 来查看文档和其他再管理中心窗口中的资源。  
 除了 OS X 开发者库，还有其他不同类型的软件信息资源来给 Mac 开发：
 
-- 苹果开源项目。
-- BSD。
-- 第三方书籍。
+- 苹果开源项目。Apple 制作来 OS X的主要部分——包括 UNIX 核心——可以在开发者社区中见到。要了解有关苹果在开源开发中的提交，参见 [开源开发资源](https://developer.apple.com/opensource/)。要了解更多的专题开源工程，比如 Bonjour 和 WebKit，参见 [Mac OS 形成](http://www.macosforge.org)。
+- BSD。伯克利软件分发系统(BSD)是基于 UNIX 的基础，是 OS X 核心环境的一部分。很多优秀的有关 BSD 和 UNIX 的书籍在书店中都可以找到。你也可以查找到额外的覆盖 BSD 变体的信息——比如，[FreeBSD 工程](http://www.freebsd.org)
+- 第三方书籍。在 Mac app 中在线有很多优秀的开发书籍，以及书店中的技术部分。
 
 # 为 Mac 平台创建软件产品
 
