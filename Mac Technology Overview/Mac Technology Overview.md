@@ -23,6 +23,11 @@ OS X 操作系统融合了稳定的核心一级先进的技术来帮助你交付
 
 #### 当移植一款 Cocoa Touch 应用时，要意识到 API 的类似和不同
 
+Cocoa 和 Cocoa Touch 应用的技术栈的基础是有很多类似的。一些系统框架在每个平台都是相同（或者几乎是相同的），包括 Foundation, Core Data, 和 AV Foundation。这种 API 的共性让迁移任务——比如从你的 Cocoa Touch 应用迁移数据模型——容易很多。  
+其他迁移任务更加具有挑战，因为它们依赖于在不同平台上影响的不同的框架。比如，端口控制器对象和审查用户界面更加依赖于任务，因为它们依赖于 AppKit 和 UIKit，这两个分别是在 Cocoa 和 Cocoa Touch 层的主要应用框架。
+
+相关章节：[从 Cocoa Touch 迁移](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/OSX_Technology_Overview/MigratingFromCocoaTouch/MigratingFromCocoaTouch.html#//apple_ref/doc/uid/TP40001067-CH8-SW1)
+
 ### 另请参阅
 
 Apple 为开发者提供了工具和额外信息来支持你的开发功能。  
