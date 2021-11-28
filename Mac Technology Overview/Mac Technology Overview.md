@@ -19,7 +19,7 @@ OS X 操作系统融合了稳定的核心一级先进的技术来帮助你交付
 
 ![](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/OSX_Technology_Overview/art/osx_architecture-layers_2x.png)
 
-
+底层技术更加专注于它提供的服务。通常来讲，高层的技术会将底层提供的技术纳入常见的应用行为。比较好的规则是使用高等级的编程接口来达成你的应用的目标。以下是 OS X 层的简介。  
 
 - Cocoa（应用）层
 - 媒体层
