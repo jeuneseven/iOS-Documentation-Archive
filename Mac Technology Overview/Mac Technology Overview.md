@@ -31,7 +31,13 @@ OS X 操作系统融合了稳定的核心一级先进的技术来帮助你交付
 
 #### 你可以为 Mac 创建多种类型的软件
 
+使用开发者工具和系统框架，你可以为 Mac 开发大量不同的软件，包括以下内容：
 
+- 应用。
+- 框架和库。
+- 命令行工具和后台常驻程序。
+- 应用插件和可加载的包。
+- 系统插件。
 
 相关章节：[为 Mac 平台创建软件产品](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/OSX_Technology_Overview/SoftwareProducts/SoftwareProducts.html#//apple_ref/doc/uid/TP40001067-CH206-TPXREF101)
 
