@@ -21,11 +21,11 @@ OS X 操作系统融合了稳定的核心一级先进的技术来帮助你交付
 
 底层技术更加专注于它提供的服务。通常来讲，高层的技术会将底层提供的技术纳入常见的应用行为。比较好的规则是使用高等级的编程接口来达成你的应用的目标。以下是 OS X 层的简介。  
 
-- Cocoa（应用）层
-- 媒体层
-- 核心服务层
-- 核心系统层
-- 内核和驱动层
+- Cocoa（应用）层包含构建一个应用用户界面，响应用户事件，管理应用行为的技术。
+- 媒体层包含播放，录音，编辑音频媒体，渲染动画 2D 和 3D 图像的特定技术。
+- 核心服务层包含很多基础服务以及从 ARC（自动引用计数器）到底层网络通信以及字符串操作和数据格式化等技术。
+- 核心系统层定义了和硬件以及网络相关的编程接口，包括在计算机 CPU 和 GPU 上运行高性能计算任务的接口。
+- 内核和驱动层由 Mach 核心环境，驱动，BSD 库函数（libSystem），以及其他底层组件组成。该层包含对于文件系统，网络，安全，进程间通信，编程语言，驱动和核心的支持。
 
 相关章节：[Cocoa 应用层](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/OSX_Technology_Overview/CocoaApplicationLayer/CocoaApplicationLayer.html#//apple_ref/doc/uid/TP40001067-CH274-SW1)，[媒体层](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/OSX_Technology_Overview/MediaLayer/MediaLayer.html#//apple_ref/doc/uid/TP40001067-CH273-SW1)，[核心服务层](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/OSX_Technology_Overview/CoreServicesLayer/CoreServicesLayer.html#//apple_ref/doc/uid/TP40001067-CH270-BCICAIFJ)，[核心系统层](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/OSX_Technology_Overview/CoreOSLayer/CoreOSLayer.html#//apple_ref/doc/uid/TP40001067-CH9-SW1)，[内核和驱动层](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/OSX_Technology_Overview/SystemTechnology/SystemTechnology.html#//apple_ref/doc/uid/TP40001067-CH207-BCICAIFJ)
 
