@@ -154,7 +154,8 @@ OS X 开发者库包含了文档，示例代码，指南和其他你编写 OS X 
 
 ### 迁移数据模型
 
-数据模型是基于 Foundation 和 Core Foundation 框架的 Cocoa Touch 应用能够用很少代价或者无需修改就能够迁移到 OS X 上。OS X 包含这两个框架，并且它们实际上与它们在 iOS 上的对应版本相同。
+数据模型是基于 Foundation 和 Core Foundation 框架的 Cocoa Touch 应用能够用很少代价或者无需修改就能够迁移到 OS X 上。OS X 包含这两个框架，并且它们实际上与它们在 iOS 上的对应版本相同。大部分存在的不同都相对较小，或者是相关功能在 iOS 上不会展示。比如，iOS 应用不支持 AppleScript。关于区分的列表，参见《Foundation 框架区分》。   
+如果你的 Cocoa Touch 应用是基于 Core Data 构建的，你可以很容易的将它的数据模型迁移到 OS X 应用上。OS X 中的 Core Data 框架支持二进制和 SQLite 数据存储（就如同它在 iOS 上一样），并且它还支持 XML 数据存储。对于支持的数据存储，你可以将你的 Core Data 数据源文件拷贝到你的 OS X 应用工程中使用。更多关于在你的应用中使用 Core Data 的信息，参见《Core Data 编程指南》。
 
 ### 迁移用户界面
 
