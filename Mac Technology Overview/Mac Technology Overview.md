@@ -75,6 +75,12 @@ OS X 开发者库包含了文档，示例代码，指南和其他你编写 OS X 
 
 ### 应用扩展
 
+
+- Today。
+- Share。
+- Action。
+- Finder。
+
 ### App Store
 
 ## 开发语言
