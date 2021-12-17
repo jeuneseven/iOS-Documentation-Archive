@@ -3,6 +3,11 @@
 # 简介
 ## 关于软件安全
 
+在云计算，高速现代计算网络领域，安全是软件工程最重要的方面。  
+理解安全的最重要的事情是这并不是一个子弹点。你不能在软件开发过程的重点再去接入它。必须在开始的时候就持续将安全注入你的应用或服务中，让其作为整个设计，实现，测试，发布的过程中的一部分。  
+
+应用对于安全数据的责任  
+
 ![](https://developer.apple.com/library/archive/documentation/Security/Conceptual/Security_Overview/Art/security_overview_intro_art_2x.png)
 
 ### 概览
@@ -10,6 +15,7 @@
 
 
 #### 危险模型会帮助你定位危险的区域
+
 
 
 ```
