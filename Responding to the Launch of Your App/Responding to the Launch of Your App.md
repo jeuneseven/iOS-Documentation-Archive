@@ -1,0 +1,1 @@
+[Responding to the Launch of Your App 原文链接](https://developer.apple.com/documentation/uikit/app_and_environment/responding_to_the_launch_of_your_app?language=objc)
