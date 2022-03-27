@@ -245,6 +245,8 @@
 
 ### 常见标准
 
+* 更多的关于常见标准的相关信息，包括完整官方标准下载链接，参见常见标准端口 http://www.commoncriteriaportal.org/  和常见标准评估网页，以及许可认证（CCEVS）（http://www.niap-ccevs.org/cc-scheme/）。
+
 ### Kerberos
 
 ### 其他安全网络协议
