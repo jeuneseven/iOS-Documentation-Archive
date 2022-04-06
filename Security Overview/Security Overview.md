@@ -246,9 +246,16 @@
 
 ## 第三方文档
 
+你可以考虑阅读以下优秀的计算机安全书籍。 分为主题领域。
+
 ### Cocoa 安全
 
+* 《专业 Cocoa 应用安全》Wrox 专业出版社，2010。Lee, Graham J.
+
 ### 威胁模型
+
+* Howard, Michael, 和 David LeBlanc。《编写安全代码》（第二版），微软出版社，2003.
+* Anderson, Ross。《安全工程：构建可依赖分发系统指南》第二版，John Wiley & Sons, 2001。
 
 ### 模糊测试
 
