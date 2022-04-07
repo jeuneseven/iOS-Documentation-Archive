@@ -259,6 +259,8 @@
 
 ### 模糊测试
 
+* Sutton, Michael, Adam Greene, 和 Pedram Amini。《模糊测试：强制发觉安全漏洞》，Pearson 出版社 2007。
+	
 ### 密码学
 
 ### 安全网络
