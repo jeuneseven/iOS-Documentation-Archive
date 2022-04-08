@@ -277,4 +277,7 @@
 
 ### Kerberos
 
+* 更多关于 Kerberos 鉴权信息，参见《MIT Kerberos 网页》。
+* 参见《macOS 服务帮助》了解支持 Kerberos 服务的细节，以及如何实现一个 Kerberos KDC 在你的 macOS 服务器上。
+
 ### 其他安全网络协议
