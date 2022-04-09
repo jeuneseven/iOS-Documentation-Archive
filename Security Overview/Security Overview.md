@@ -281,3 +281,6 @@
 * 参见《macOS 服务帮助》了解支持 Kerberos 服务的细节，以及如何实现一个 Kerberos KDC 在你的 macOS 服务器上。
 
 ### 其他安全网络协议
+
+* 如 RFC 2617 中所描述的 HTTP 鉴权模型，《HTTP 鉴权：基本和深入访问鉴权》。
+* 有关安全网络的 SSL 协议的信息，参见《IETF SSL Version 3.0 草稿特定》
