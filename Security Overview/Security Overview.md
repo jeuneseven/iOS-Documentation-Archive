@@ -268,7 +268,8 @@
 
 ### 安全网络
 
-* Gray, John Shapley。UNIX 进程通信
+* Gray, John Shapley。UNIX 进程通信。第二版。
+* Stevens, W. Richard. UNIX 网络编程：进程间通信。Vol 2，第二版。
 
 ### 通用
 
