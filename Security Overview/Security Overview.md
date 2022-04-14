@@ -270,6 +270,7 @@
 
 * Gray, John Shapley。UNIX 进程通信。第二版。
 * Stevens, W. Richard. UNIX 网络编程：进程间通信。Vol 2，第二版。
+* Stevens, W. Richard,Bill Fenner和Andres M. Rudoff。UNIX 网络编程：套间字网络接口。
 
 ### 通用
 
