@@ -184,6 +184,11 @@
 
 # 加密服务
 
+加密服务规范了传输（安全沟通）和在其他（安全区域）存储数据的安全数据的基础。使用精确的运算，它们能够让你：  
+
+* 加密和解密数据以便它不能够被外界监听所理解
+* 通过哈希，签名和校验来校验数据是否被修改
+
 ## 加密和解密
 
 ### 对称加密
@@ -270,7 +275,7 @@
 
 * Gray, John Shapley。UNIX 进程通信。第二版。
 * Stevens, W. Richard. UNIX 网络编程：进程间通信。Vol 2，第二版。
-* Stevens, W. Richard,Bill Fenner和Andres M. Rudoff。UNIX 网络编程：套间字网络接口。
+* Stevens, W. Richard, Bill Fenner和Andres M. Rudoff。UNIX 网络编程：套间字网络接口。
 
 ### 通用
 
