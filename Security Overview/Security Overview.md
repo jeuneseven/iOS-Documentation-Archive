@@ -193,7 +193,12 @@
 
 ## 加密和解密
 
+加密是一种通过将数据转换为一种除了知晓如何转换回去的人之外的将其转变为不可读的保护数据被窃取的方式。  
+加密通常用于保护传输中的数据和静态数据。
+
 ### 对称加密
+
+![](https://developer.apple.com/library/archive/documentation/Security/Conceptual/Security_Overview/Art/security_symmetric.jpg)
 
 ### 不对称加密
 
