@@ -198,7 +198,11 @@
 
 ### 对称加密
 
+在对称加密中，单独密钥（通常是一个厂的随机字节字符串）被用作数学传输一组信息并随后用在反向取回原始信息。
+
 ![](https://developer.apple.com/library/archive/documentation/Security/Conceptual/Security_Overview/Art/security_symmetric.jpg)
+
+对称加密通常用在安全沟通中。不过，因为两个终端必须知晓同样的密钥，对称加密本身并不足够。
 
 ### 不对称加密
 
