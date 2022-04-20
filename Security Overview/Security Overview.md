@@ -206,6 +206,8 @@
 
 ### 不对称加密
 
+![](https://developer.apple.com/library/archive/documentation/Security/Conceptual/Security_Overview/Art/security_asymmetric.jpg)
+
 ### 密码学
 
 ## 哈希
