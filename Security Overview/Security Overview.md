@@ -210,6 +210,10 @@
 
 ### 密码学
 
+密码学意味着以更不重要的其他类型的信息来隐藏信息。
+
+![](https://developer.apple.com/library/archive/documentation/Security/Conceptual/Security_Overview/Art/security_steganography.jpg)
+
 ## 哈希
 
 ## 签名和校验
