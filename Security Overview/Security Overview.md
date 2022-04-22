@@ -206,6 +206,12 @@
 
 ### 不对称加密
 
+非对称加密，两个数学上相关的密钥被用做信息传输的一部分。信息加密是以一个密钥能且仅能被另一个密钥解密，反之亦然。通常来讲，这些密钥之一（私钥）是被保密的，另一个密钥（公钥）是能够被制作。由于这个原因，非对称加密也被叫做 **公钥加密** 。
+
+```
+注意：尽管两个密钥从数学上相关
+```
+
 ![](https://developer.apple.com/library/archive/documentation/Security/Conceptual/Security_Overview/Art/security_asymmetric.jpg)
 
 ### 密码学
