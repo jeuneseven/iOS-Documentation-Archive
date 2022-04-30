@@ -72,6 +72,14 @@
 
 ### 混合数据的危险
 
+	{
+	    "mydictionary" :
+	    {
+	        "foo" : "Computer jargon",
+	        "bar" : "More computer jargon"
+	    }
+	}
+
 ### SQL 注入
 
 # 附录A：安全开发检查表
