@@ -79,6 +79,18 @@
 	        "bar" : "More computer jargon"
 	    }
 	}
+	
+	Term: baz
+	Definition: Still more computer jargon", "naughtyword": "A word you should not say
+	
+	{
+	    "mydictionary" :
+	    {
+	        "foo" : "Computer jargon",
+	        "bar" : "More computer jargon",
+	        "baz" : "Still more computer jargon", "naughtyword": "A word you should not say"
+	    }
+	}
 
 ### SQL 注入
 
