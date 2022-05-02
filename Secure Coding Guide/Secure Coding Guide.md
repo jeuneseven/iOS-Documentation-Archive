@@ -94,6 +94,16 @@
 
 ### SQL 注入
 
+	INSERT INTO users (name, description) VALUES ("John Doe", "A really hoopy frood.");
+
+	joe", "somebody"); DROP TABLE users; --
+
+
+	INSERT INTO users (name, description) VALUES ("joe", "somebody"); DROP TABLE users; --", "A really hoopy frood.");
+
+	INSERT INTO users (name, description) VALUES (?, ?);
+
+
 # 附录A：安全开发检查表
 
 本附录展示了一系列安全审查列表，你可以用它来帮你减少你的软件的安全威胁。本检查列表设计用来在软件开发阶段使用。如果你在开始编码之前通读了本章节，你可能会避免很多在完成编码的时候难于修正的安全陷阱。  
