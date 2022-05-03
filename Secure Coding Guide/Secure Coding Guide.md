@@ -103,6 +103,13 @@
 
 	INSERT INTO users (name, description) VALUES (?, ?);
 
+### C 语言命令行之行和 shell 脚本
+
+### URLs 引用
+
+### HTML 和 XML 引用
+
+## 避免跨域脚本
 
 # 附录A：安全开发检查表
 
